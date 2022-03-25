@@ -14,7 +14,6 @@ function getGoal(value){
 }
 
 function playGame(type, value, key){
-
     animation_vq=setInterval(()=>{
         animation(key, value);
     },100)
