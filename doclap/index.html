@@ -79,7 +79,7 @@
               <div class="vq">
                 <div class="vq-body">
                   <div class="vq-items">
-                    <span id="item_vq_1" class="vq-item active">
+                    <span id="item_vq_1" class="vq-item">
                       <img class="img-block" src="images/home/s2/s2-1/items/1.png" alt="" />
                     </span>
                     <span id="item_vq_2" class="vq-item">
@@ -129,10 +129,10 @@
                     </span>
                   </div>
                   <div class="vq-btns">
-                    <button class="btn-bg btn-du-xuan-1" type="button" data-bs-toggle="modal" data-bs-target="#modal-thuong-du-xuan" onclick="playGame(1)">
+                    <button class="btn-bg btn-du-xuan-1" type="button" onclick="playGame(1, 16, 'item_vq_')">
                       <span class="visually-hidden">Du xuân 1 lần</span>
                     </button>
-                    <button class="btn-bg btn-du-xuan-10" type="button" data-bs-toggle="modal" data-bs-target="#modal-thuong-du-xuan" onclick="playGame(10)">
+                    <button class="btn-bg btn-du-xuan-10" type="button" onclick="playGame(10, 16, 'item_vq_')">
                       <span class="visually-hidden">Du xuân 10 lần</span>
                     </button>
                   </div>
@@ -173,52 +173,52 @@
             <div class="section-2-3 section">
               <div class="bb-wrapper">
                 <div class="bb">
-                  <span class="bb-item hide">
+                  <span id="bb-item_1" class="bb-item" onclick="bocbanh('bb-item_', 1)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/1.png" alt="" />
                   </span>
-                  <span class="bb-item hide">
+                  <span id="bb-item_2" class="bb-item" onclick="bocbanh('bb-item_', 2)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/2.png" alt="" />
                   </span>
-                  <span class="bb-item hide">
+                  <span id="bb-item_3" class="bb-item" onclick="bocbanh('bb-item_', 3)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/3.png" alt="" />
                   </span>
-                  <span class="bb-item hide">
+                  <span id="bb-item_4" class="bb-item"onclick="bocbanh('bb-item_', 4)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/4.png" alt="" />
                   </span>
-                  <span class="bb-item hide">
+                  <span id="bb-item_5" class="bb-item" onclick="bocbanh('bb-item_', 5)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/5.png" alt="" />
                   </span>
-                  <span class="bb-item hide">
+                  <span id="bb-item_6" class="bb-item" onclick="bocbanh('bb-item_', 6)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/6.png" alt="" />
                   </span>
-                  <span class="bb-item">
+                  <span id="bb-item_7" class="bb-item" onclick="bocbanh('bb-item_', 7)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/7.png" alt="" />
                   </span>
-                  <span class="bb-item">
+                  <span id="bb-item_8" class="bb-item" onclick="bocbanh('bb-item_', 8)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/8.png" alt="" />
                   </span>
-                  <span class="bb-item">
+                  <span id="bb-item_9" class="bb-item" onclick="bocbanh('bb-item_', 9)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/9.png" alt="" />
                   </span>
-                  <span class="bb-item">
+                  <span id="bb-item_10" class="bb-item" onclick="bocbanh('bb-item_', 10)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/10.png" alt="" />
                   </span>
-                  <span class="bb-item">
+                  <span id="bb-item_11" class="bb-item" onclick="bocbanh('bb-item_', 11)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/11.png" alt="" />
                   </span>
-                  <span class="bb-item">
+                  <span id="bb-item_12" class="bb-item" onclick="bocbanh('bb-item_', 12)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/12.png" alt="" />
                   </span>
-                  <span class="bb-item">
+                  <span id="bb-item_13" class="bb-item" onclick="bocbanh('bb-item_', 13)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/13.png" alt="" />
                   </span>
-                  <span class="bb-item">
+                  <span id="bb-item_14" class="bb-item" onclick="bocbanh('bb-item_', 14)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/14.png" alt="" />
                   </span>
-                  <span class="bb-item">
+                  <span id="bb-item_15" class="bb-item" onclick="bocbanh('bb-item_', 15)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/15.png" alt="" />
                   </span>
-                  <span class="bb-item">
+                  <span id="bb-item_16" class="bb-item" onclick="bocbanh('bb-item_', 16)">
                     <img class="img-block" src="images/home/s2/s2-3/boc-banh/16.png" alt="" />
                   </span>
                 </div>
@@ -304,69 +304,79 @@
           <div class="tab-pane fade tab-pane-2" id="tab-2" role="tabpanel">
             <div class="section-2-4 section">
               <div class="flipbox">
-                <div class="flipbox-item active">
+                <div id="card_1" class="flipbox-item" onclick="playFlipCard(1, 'card_1', 'content_card_1')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />          
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
+                    <p id="content_card_1"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
                 </div>
-                <div class="flipbox-item">
+                <div id="card_2" class="flipbox-item" onclick="playFlipCard(1, 'card_2', 'content_card_2')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
+                    <p id="content_card_2"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
                 </div>
-                <div class="flipbox-item">
+                <div id="card_3" class="flipbox-item" onclick="playFlipCard(1, 'card_3', 'content_card_3')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
+                    <p id="content_card_3"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
                 </div>
-                <div class="flipbox-item">
+                <div id="card_4" class="flipbox-item" onclick="playFlipCard(1, 'card_4', 'content_card_4')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
+                    <p id="content_card_4"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
                 </div>
-                <div class="flipbox-item">
+                <div id="card_5" class="flipbox-item" onclick="playFlipCard(1, 'card_5', 'content_card_5')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
+                    <p id="content_card_5"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
                 </div>
-                <div class="flipbox-item">
+                <div id="card_6" class="flipbox-item" onclick="playFlipCard(1, 'card_6', 'content_card_6')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
+                    <p id="content_card_6"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
                 </div>
-                <div class="flipbox-item">
+                <div id="card_7" class="flipbox-item" onclick="playFlipCard(1, 'card_7', 'content_card_7')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
+                    <p id="content_card_7"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
                 </div>
-                <div class="flipbox-item">
+                <div id="card_8" class="flipbox-item" onclick="playFlipCard(1, 'card_8', 'content_card_8')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
+                    <p id="content_card_8"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
                 </div>
-                <div class="flipbox-item">
+                <div id="card_9" class="flipbox-item" onclick="playFlipCard(1, 'card_9', 'content_card_9')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
+                    <p id="content_card_9"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
                 </div>
-                <div class="flipbox-item">
+                <div id="card_10" class="flipbox-item" onclick="playFlipCard(1, 'card_10', 'content_card_10')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
+                    <p id="content_card_10"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
                 </div>
               </div>
               <div class="section-btns">
-                <button class="btn-img btn-lat-10-the" type="button" onclick="playFlipCard()">
+                <button class="btn-img btn-lat-10-the" type="button" onclick="playFlipCard(10, 'card_', 'content_card_')">
                   <span class="visually-hidden">Lật 10 thẻ</span>
                   <img src="images/home/s2/s2-4/btn-lat-10-the.png" alt="Lật 10 thẻ" />
                 </button>

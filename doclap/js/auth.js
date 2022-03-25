@@ -27,14 +27,14 @@ function veryfi(){
     } else {
         var code = parse_query_string("code", window.location.href);
         console.log('code:', code)
-        var currentPath=localStorage.getItem("currentPath");
+        // var currentPath=localStorage.getItem("currentPath");
         if (code != null) {
             const data={
                 "lang": "vi",
-                "osType": 'osName',
+                "osType": 'WINDOWS',
                 "deviceId": "00000000-0000-0000-0000-000000000000",
-                "deviceName": 'mobileModel',
-                "osVersion": 'osVersion',
+                "deviceName": 'none',
+                "osVersion": "10",
                 "appVersion": "1.0",
                 // "requestId": 365603310,
                 // "client_id": "SANBOX",
@@ -52,13 +52,13 @@ function veryfi(){
                 var user_save = response.data.data;
                 user_save.expired = new Date();
                 localStorage.setItem("user", JSON.stringify(user_save));
-                _this.setState({ user: response.data.data });
-                window.location.replace(`${window.location.protocol}//${window.location.host}${currentPath}`);
+                // _this.setState({ user: response.data.data });
+                window.location.replace(`${window.location.protocol}//${window.location.host}/doclap/index.html`);
             }).catch(function (error) {
                 if(error.response.data.code ===-403){
                     window.location.replace(`${window.location.protocol}//${window.location.host}/error`);
                 }
-                _this.props.setStatusServer();
+                // _this.props.setStatusServer();
                 localStorage.removeItem("user");
                 localStorage.removeItem("userInfo");
             })
