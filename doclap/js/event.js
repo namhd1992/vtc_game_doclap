@@ -69,14 +69,26 @@ function playFlipCard(value, key, content){
         var e = document.getElementById(key);
         e.classList.add("active");
         var e1 = document.getElementById(content);
-        e1.innerHTML+='+ 100 Hoa Mai'
+        e1.innerHTML+='+ 100 Hoa Mai';
+        setTimeout(()=>{
+            e.classList.remove("active");
+            e1.innerHTML='';
+        },3000)
     }else{
         for (let i = 1; i < value+1; i++) {
             var e = document.getElementById(key+i);
             e.classList.add("active");
             var e1 = document.getElementById(content+i);
-            e1.innerHTML+='+ 100 Hoa Mai'
+            e1.innerHTML+='+ 100 Hoa Mai';
         }
+        setTimeout(()=>{
+            for (let i = 1; i < value+1; i++) {
+                var e = document.getElementById(key+i);
+                e.classList.remove("active");
+                var e1 = document.getElementById(content+i);
+                e1.innerHTML='';
+            }
+        },3000)
     }
 }
 
