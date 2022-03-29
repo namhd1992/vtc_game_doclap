@@ -14,9 +14,15 @@ function getGoal(value){
 }
 
 function playGame(type, value, key){
+    document.getElementById("btn-du-xuan-1").disabled = true;
+    document.getElementById("btn-du-xuan-10").disabled = true;
     animation_vq=setInterval(()=>{
         animation(key, value);
     },100)
+    setTimeout(()=>{
+        document.getElementById("btn-du-xuan-1").disabled = false;
+        document.getElementById("btn-du-xuan-10").disabled = false;
+    },2000)
 }
 
 function animation(key, value){
@@ -42,11 +48,16 @@ function animation(key, value){
     
 }
 
+function paginationHistory(){
+
+}
+
 function getHistory(page){
 
 }
 
 function getGiftcodeByNumberPlay(value){
+    
 
 }
 

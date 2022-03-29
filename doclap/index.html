@@ -129,10 +129,10 @@
                     </span>
                   </div>
                   <div class="vq-btns">
-                    <button class="btn-bg btn-du-xuan-1" type="button" onclick="playGame(1, 16, 'item_vq_')">
+                    <button id="btn-du-xuan-1" class="btn-bg btn-du-xuan-1" type="button" onclick="playGame(1, 16, 'item_vq_')">
                       <span class="visually-hidden">Du xuân 1 lần</span>
                     </button>
-                    <button class="btn-bg btn-du-xuan-10" type="button" onclick="playGame(10, 16, 'item_vq_')">
+                    <button id="btn-du-xuan-10" class="btn-bg btn-du-xuan-10" type="button" onclick="playGame(10, 16, 'item_vq_')">
                       <span class="visually-hidden">Du xuân 10 lần</span>
                     </button>
                   </div>
@@ -252,7 +252,7 @@
                       </button>
                     </div>
                     <div class="kvmm-item-right">
-                      <p class="kvmm-text">Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên</p>
+                      <p class="kvmm-text" id="kvmm-text_16"></p>
                     </div>
                   </div>
                   <div class="kvmm-item">
@@ -266,7 +266,7 @@
                       </button>
                     </div>
                     <div class="kvmm-item-right">
-                      <p class="kvmm-text">Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên</p>
+                      <p class="kvmm-text" id="kvmm-text_12"></p>
                     </div>
                   </div>
                   <div class="kvmm-item">
@@ -280,7 +280,7 @@
                       </button>
                     </div>
                     <div class="kvmm-item-right">
-                      <p class="kvmm-text">Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên</p>
+                      <p class="kvmm-text" id="kvmm-text_8"></p>
                     </div>
                   </div>
                   <div class="kvmm-item">
@@ -294,7 +294,7 @@
                       </button>
                     </div>
                     <div class="kvmm-item-right">
-                      <p class="kvmm-text">Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên quà Tên</p>
+                      <p class="kvmm-text" id="kvmm-text_4"></p>
                     </div>
                   </div>
                 </div>
@@ -818,7 +818,7 @@
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="history_duxuan">
                   <tr>
                     <th class="text-primary" scope="row">1</th>
                     <td class="text-start">+10 Vàng</td>
