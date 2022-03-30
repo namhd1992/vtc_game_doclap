@@ -16,7 +16,35 @@ function getGoal(value){
 
 function playGame(type, value, key){
     if(!isPlay){
-        abc(type, value, key)
+        var user = JSON.parse(localStorage.getItem("user"));
+        if(user!==null){
+            var header = {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.access_token}`
+                }
+            }
+            var data= {...info};
+            data.gameId=1;
+            data.modeId=1;
+            data.userId=user.uid;
+            data.autoPlay=false;
+            data.round=1;
+            data.numPlayed=type;
+    
+            axios.post(base_url+ '/luckyrandom/api/v1/race/playing',data,header)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .then(function () {
+            });  
+            abc(type, value, key)
+        }else{
+
+        }
     }
 }
 
@@ -62,8 +90,32 @@ function getHistory(page){
 }
 
 function getGiftcodeByNumberPlay(value){
-    
+    var user = JSON.parse(localStorage.getItem("user"));
+    if(user!==null){
+        var header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.access_token}`
+            }
+        }
+        var data= {...info};
+        data.gameId=1;
+        data.modeId=1;
+        data.userId=user.uid;
+        data.rewardId=1
+        data.autoPlay=false;
+        data.numExchange=value;
 
+        axios.post(base_url+ '/luckyrandom/api/v1/rewards/exchange',data,header)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+        .then(function () {
+        }); 
+    } 
 }
 
 function getKeyGoal(){
