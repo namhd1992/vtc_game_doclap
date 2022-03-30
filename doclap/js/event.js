@@ -1,6 +1,7 @@
 
 var animation_vq={};
-var i=1
+var i=1;
+var isPlay=false;
 function goToFanpage(){
 
 }
@@ -14,19 +15,23 @@ function getGoal(value){
 }
 
 function playGame(type, value, key){
-    document.getElementById("btn-du-xuan-1").disabled = true;
-    document.getElementById("btn-du-xuan-10").disabled = true;
+    if(!isPlay){
+        abc(type, value, key)
+    }
+}
+
+function abc(type, value, key){
+    isPlay=true;
     animation_vq=setInterval(()=>{
         animation(key, value);
     },100)
     setTimeout(()=>{
-        document.getElementById("btn-du-xuan-1").disabled = false;
-        document.getElementById("btn-du-xuan-10").disabled = false;
+        isPlay=false;
+        clearInterval(animation_vq)
     },2000)
 }
 
 function animation(key, value){
-    console.log(key)
     var e = document.getElementById(key+i);
     e.classList.add("active");
     if(i>1){

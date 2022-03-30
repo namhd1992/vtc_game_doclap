@@ -6,28 +6,41 @@ function login(){
     window.location.replace(`http://graph.vtcmobile.vn/oauth/authorize?client_id=92d34808c813f4cd89578c92896651ca&redirect_uri=${window.location.protocol}//${window.location.host}/doclap/index.html&agencyid=0`)
 }
 
-function logoutAction(){
+function logout(){
     localStorage.removeItem("user");
     window.location.replace(
-        `https://graph.vtcmobile.vn/oauth/authorize?client_id=92d34808c813f4cd89578c92896651ca&redirect_uri=${window.location.protocol}//${window.location.host}&action=logout&agencyid=0`,
+        `https://graph.vtcmobile.vn/oauth/authorize?client_id=92d34808c813f4cd89578c92896651ca&redirect_uri=${window.location.protocol}//${window.location.host}/doclap/index.html&action=logout&agencyid=0`,
     );
 }
 
 function veryfi(){
+    var div_login=` <div style="width: 200px; height: 50; border: 1px solid white; padding: 5px; background-color: #7b0c04;">
+                        <span>Bùi Văn Nam</span></br>
+                        <span style="text-decoration: underline; cursor: pointer;" onclick="logout()">Thoát</span>
+                    </div>`;
+    var div_logout=`<a class="btn-bg btn-dang-nhap nav-link" role="button" target="_blank" onclick="login()">
+                        <span class="visually-hidden">Đăng nhập</span>
+                    </a>`;
     var user = JSON.parse(localStorage.getItem("user"));
+    var e = document.getElementById('li_auth');
     if (localStorage.getItem("user") != null) {
+        getAppSettingWithToken(user);
         var now = moment(new Date()); //todays date
         var end = moment(user.expired); // another date
         var duration = moment.duration(end.diff(now));
         var millisecond = Math.floor(duration.asMilliseconds()) + user.expires_in*1000;
         if (millisecond > 0) {
+            e.innerHTML=div_login;
         } else {
-            logoutAction();
+            logout();
+            e.innerHTML=div_logout;
         }
-    } else {
+    }else{
+
         var code = parse_query_string("code", window.location.href);
         console.log('code:', code)
         // var currentPath=localStorage.getItem("currentPath");
+        getAppSetting();
         if (code != null) {
             const data={
                 "lang": "vi",
@@ -37,16 +50,17 @@ function veryfi(){
                 "osVersion": "10",
                 "appVersion": "1.0",
                 // "requestId": 365603310,
-                // "client_id": "SANBOX",
-                "client_id": "PENALTY_WEB",
+                "client_id": "SANBOX",
+                // "client_id": "PENALTY_WEB",
                 "client_secret": "123456abcdef",
                 "grant_type": "vtc:scoin_code",
                 "scope": "profile games.catalog games.penalty games.bets wallet giftbox pay transaction content",
                 "code": code,
-                "code_verifier": ""
+                "code_verifier": "",
+                "site_id": 100004
             }
               
-            var url = "https://api.splay.vn/users/api/v1/account/oauthtoken";
+            var url = "http://171.244.11.133:8088/users/api/v1/account/oauthtoken";
 
             axios.post(url, data).then(function (response) {
                 var user_save = response.data.data;
@@ -62,6 +76,8 @@ function veryfi(){
                 localStorage.removeItem("user");
                 localStorage.removeItem("userInfo");
             })
+        }else{
+            e.innerHTML=div_logout;
         }
     }
 }
