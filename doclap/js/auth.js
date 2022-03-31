@@ -15,7 +15,7 @@ function logout(){
 
 function veryfi(){
     var div_login=` <div style="width: 200px; height: 50; border: 1px solid white; padding: 5px; background-color: #7b0c04;">
-                        <span>Bùi Văn Nam</span></br>
+                        <span id="account_user"></span></br>
                         <span style="text-decoration: underline; cursor: pointer;" onclick="logout()">Thoát</span>
                     </div>`;
     var div_logout=`<a class="btn-bg btn-dang-nhap nav-link" role="button" target="_blank" onclick="login()">
@@ -38,7 +38,6 @@ function veryfi(){
     }else{
 
         var code = parse_query_string("code", window.location.href);
-        console.log('code:', code)
         // var currentPath=localStorage.getItem("currentPath");
         getAppSetting();
         if (code != null) {

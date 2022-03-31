@@ -26,12 +26,12 @@
           <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="btn-bg btn-fanpage nav-link" role="button" onclick="goToFanpage()">
+                <a id="fanpage_fb" class="btn-bg btn-fanpage nav-link" href="" role="button" target="_blank">
                   <span class="visually-hidden">Fanpage</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="btn-bg btn-group nav-link" role="button" onclick="goToGroup()">
+                <a id="group_fb" class="btn-bg btn-group nav-link" href="" role="button" target="_blank">
                   <span class="visually-hidden">Group</span>
                 </a>
               </li>
@@ -152,7 +152,7 @@
               </div>
             </div>
             <div class="section-2-2 section">
-              <p class="section-text">Số lượt du xuân hiện tại: 20</p>
+              <p id="number_play_vq" class="section-text">Số lượt du xuân hiện tại: 20</p>
               <div class="timeline-wrapper">
                 <div class="timeline">
                   <h3 class="timeline-title">Lượt</h3>
@@ -647,7 +647,7 @@
     </footer>
   </div>
   <div class="download" id="download-sticky">
-    <div class="download-number">999999</div>
+    <div id="my_number_goal" class="download-number">999999</div>
     <button class="btn-img btn-nhan-vang download-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-vang">
       <span class="visually-hidden">Nhận vàng</span>
       <img src="images/download/btn-nhan-vang.png" alt="Nhận vàng" />
@@ -661,8 +661,8 @@
       <div class="modal-content">
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="modal-body perfect-scrollbar" data-plugin="perfect-scrollbar">
-          <h2 class="modal-title">Thể lệ điểm danh</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequuntur fuga molestias praesentium provident, repudiandae similique vero voluptatum. Ad dolore eaque facere laborum nulla quisquam. Dolor dolorum molestias mollitia odio!</p>
+          <h2 class="modal-title">Thể lệ sự kiện</h2>
+          <p id="content_evt_guide"></p>
         </div>
       </div>
     </div>
@@ -673,7 +673,7 @@
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="modal-body perfect-scrollbar" data-plugin="perfect-scrollbar">
           <h2 class="modal-title">Thể lệ điểm danh</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequuntur fuga molestias praesentium provident, repudiandae similique vero voluptatum. Ad dolore eaque facere laborum nulla quisquam. Dolor dolorum molestias mollitia odio!</p>
+          <p id="content_evt_rollup"></p>
         </div>
         <div class="modal-footer">
           <button class="btn-img modal-btn-1" type="button">
@@ -1360,6 +1360,14 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="modal-err" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-content-middle">
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+        <p id="content_err" class="modal-text-1 text-center mb-0" ></p>
+      </div>
+    </div>
+  </div>
   <div class="loader" id="loader">
     <div class="loader-spinner">
       <div class="sk-circle-fade">
@@ -1396,5 +1404,6 @@
   <script src="js/auth.js"></script>
   <script src="js/event.js"></script>
   <script src="js/ultil.js"></script>
+  <script src="js/constant.js"></script>
 </body>
 </html>
