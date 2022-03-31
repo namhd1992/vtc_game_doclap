@@ -59,6 +59,7 @@ function setDataToUI(data){
     var group_fb = document.getElementById('group_fb');
     var content_evt_guide = document.getElementById('content_evt_guide');
     var content_evt_rollup = document.getElementById('content_evt_rollup');
+    var content_rewards = document.getElementById('content_rewards');
     var obj_fanpage_fb=data.filter(v =>v.code===EVT_FANPAGE_URL);
     fanpage_fb.setAttribute("href", obj_fanpage_fb[0].value);
     var obj_group_fb=data.filter(v =>v.code===EVT_GROUP_URL);
@@ -67,6 +68,8 @@ function setDataToUI(data){
     content_evt_guide.innerHTML= obj_evt_guide[0].value;
     var obj_evt_rollup=data.filter(v =>v.code===EVT_ROLLUP_CONTENT);
     content_evt_rollup.innerHTML= obj_evt_rollup[0].value;
+    var obj_rewards=data.filter(v =>v.code===EVT_REWARDS);
+    content_rewards.innerHTML= obj_rewards[0].value;
 }
 
 function setDataUser(user){
