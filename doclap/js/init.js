@@ -46,30 +46,23 @@ function getAppSettingWithToken(user){
       });  
 }
 
-// function Linik(obj, code)
-// {
-//     var fanpage_fb = document.getElementById(obj);
-//     var obj_fanpage_fb=data.filter(v =>v.code===EVT_FANPAGE_URL);
-//     fanpage_fb.setAttribute("href", obj_fanpage_fb[0].value);
-// }
 
 function setDataToUI(data){
-    // Linik('fanpage_fb',EVT_FANPAGE_URL)
-    var fanpage_fb = document.getElementById('fanpage_fb');
-    var group_fb = document.getElementById('group_fb');
-    var content_evt_guide = document.getElementById('content_evt_guide');
-    var content_evt_rollup = document.getElementById('content_evt_rollup');
-    var content_rewards = document.getElementById('content_rewards');
     var obj_fanpage_fb=data.filter(v =>v.code===EVT_FANPAGE_URL);
-    fanpage_fb.setAttribute("href", obj_fanpage_fb[0].value);
     var obj_group_fb=data.filter(v =>v.code===EVT_GROUP_URL);
-    group_fb.setAttribute("href", obj_group_fb[0].value);
     var obj_evt_guide=data.filter(v =>v.code===EVT_GUIDE);
-    content_evt_guide.innerHTML= obj_evt_guide[0].value;
     var obj_evt_rollup=data.filter(v =>v.code===EVT_ROLLUP_CONTENT);
-    content_evt_rollup.innerHTML= obj_evt_rollup[0].value;
     var obj_rewards=data.filter(v =>v.code===EVT_REWARDS);
-    content_rewards.innerHTML= obj_rewards[0].value;
+    var obj_meta_title=data.filter(v =>v.code===EVT_META_TITLE);
+    var obj_meta_desc=data.filter(v =>v.code===EVT_META_DESC);
+    var obj_meta_img=data.filter(v =>v.code===EVT_IMAGE_URL);
+
+    var list_item_link=[{id:"fanpage_fb", value:obj_fanpage_fb[0].value},{id:'group_fb', value:obj_group_fb[0].value}];
+    var list_item_content=[{id:"content_evt_guide", value:obj_evt_guide[0].value},{id:'content_evt_rollup', value:obj_evt_rollup[0].value}, {id:'content_rewards', value:obj_rewards[0].value}]
+    var list_item_meta=[{id:"og-title", value:obj_meta_title[0].value},{id:'og-description', value:obj_meta_desc[0].value}, {id:'og-image', value:obj_meta_img[0].value}]
+    setLinkToItem(list_item_link);
+    setContentToItem(list_item_content);
+    setContentMeta(list_item_meta);
 }
 
 function setDataUser(user){

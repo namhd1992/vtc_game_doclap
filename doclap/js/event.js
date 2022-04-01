@@ -3,13 +3,6 @@ var animation_vq={};
 var i=1;
 var isPlay=false;
 var isPlayPickup=false;
-function goToFanpage(){
-
-}
-
-function goToFanpage(){
-
-}
 
 function getGoal(value){
     alert(value)
