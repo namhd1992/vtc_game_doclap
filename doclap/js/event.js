@@ -4,6 +4,36 @@ var i=1;
 var isPlay=false;
 var isPlayPickup=false;
 
+function rollup(roomId){
+    var user = JSON.parse(localStorage.getItem("user"));
+    if(user!==null){
+        var url=base_url+'/luckyrandom/api/v1/rewards/receive-event-free';
+        var header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.access_token}`
+            }
+        }
+        var data= {...info};
+        data.modeId=0;
+        data.roomId=roomId;
+        data.userId=user.uid;
+        data.character="";
+        data.server="";
+        axios.post(url,data,header)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+        .then(function () {
+        });
+    }else{
+        $('#modal-warning-login').modal('show'); 
+    }
+}
+
 function getGoal(value){
     alert(value)
 }
@@ -12,6 +42,7 @@ function playGame(type, value, key){
     if(!isPlay){
         var user = JSON.parse(localStorage.getItem("user"));
         if(user!==null){
+            var url=base_url+'/luckyrandom/api/v1/rewards/receive-event-play';
             var header = {
                 headers: {
                     "Content-Type": "application/json",
@@ -19,16 +50,12 @@ function playGame(type, value, key){
                 }
             }
             var data= {...info};
-            data.gameId=100007;
-            data.modeId=10012;
+            data.modeId=10003;
             data.userId=user.uid;
             data.autoPlay=false;
-            data.round=1;
+            data.round=0;
             data.numPlayed=type;
-
-            // fnB();
-    
-            axios.post(base_url+ '/luckyrandom/api/v1/race/playing',data,header)
+            axios.post(url,data,header)
             .then(function (response) {
                 console.log(response);
             })
@@ -91,8 +118,7 @@ function getHistory(page){
             }
         }
         var data= {...info};
-        data.gameId=10007;
-        data.modeId=1;
+        data.modeId=10012;
         data.userId=user.uid;
         data.transactionType=-1;
         data.serviceId= 1;
@@ -116,11 +142,11 @@ function getHistory(page){
     } else{
         $('#modal-warning-login').modal('show'); 
     }
-
 }
 
-function getGiftcodeByNumberPlay(value){
+function exchangeRewards(modeId, value){
     var user = JSON.parse(localStorage.getItem("user"));
+    var url=base_url+ '/luckyrandom/api/v1/rewards/exchange';
     if(user!==null){
         var header = {
             headers: {
@@ -129,14 +155,50 @@ function getGiftcodeByNumberPlay(value){
             }
         }
         var data= {...info};
-        data.gameId=8;
-        data.modeId=1;
+        data.modeId=modeId;
+        data.roomId=0;
         data.userId=user.uid;
-        data.rewardId=1
-        data.autoPlay=false;
-        data.numExchange=value;
+        data.rewardId=1;
+        data.character="";
+        data.server="";
+        data.milestones=value;
 
-        axios.post(base_url+ '/luckyrandom/api/v1/rewards/exchange',data,header)
+
+        axios.post(url,data,header)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+        .then(function () {
+        }); 
+    } else{
+        $('#modal-warning-login').modal('show'); 
+    }
+}
+
+function exchangeRewardsWithMilestones(modeId, value){
+    var user = JSON.parse(localStorage.getItem("user"));
+    var url=base_url+ '/luckyrandom/api/v1/rewards/receive-event-milestones';
+    if(user!==null){
+        var header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.access_token}`
+            }
+        }
+        var data= {...info};
+        data.modeId=modeId;
+        data.roomId=0;
+        data.userId=user.uid;
+        data.rewardId=1;
+        data.character="";
+        data.server="";
+        data.milestones=value;
+
+
+        axios.post(url,data,header)
         .then(function (response) {
             console.log(response);
         })
@@ -154,17 +216,51 @@ function getKeyGoal(){
 
 }
 
-function getGiftcodeByNumberBocBanh(value){
 
-}
-
-function bocbanh(key, position){
-    var e = document.getElementById(key+position);
-        e.classList.add("hide");
+function bocbanh(key, number){
+    var user = JSON.parse(localStorage.getItem("user"));
+    if(user!==null){
+        for (let i = 0; i < number; i++) {
+            var e = document.getElementById(key+(i+1));
+            e.classList.add("hide");
+        }
+    } else{
+        $('#modal-warning-login').modal('show'); 
+    }
+   
+    // $('#modal-nhan-code').modal('show'); 
+    
 }
 
 function playFlipCard(value, key, content){
     if(!isPlayPickup){
+        var user = JSON.parse(localStorage.getItem("user"));
+        if(user!==null){
+            var url=base_url+'/luckyrandom/api/v1/rewards/receive-event-play';
+            var header = {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.access_token}`
+                }
+            }
+            var data= {...info};
+            data.modeId=10010;
+            data.userId=user.uid;
+            data.autoPlay=false;
+            data.round=0;
+            data.numPlayed=value;
+            axios.post(url,data,header)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .then(function () {
+            });  
+        }else{
+            $('#modal-warning-login').modal('show'); 
+        }
         pick_up(value, key, content)
     }
 }
@@ -198,18 +294,6 @@ function pick_up(value, key, content){
             isPlayPickup=false;
         },3000)
     }
-}
-
-function getHistoryplayFlipCard(){
-
-}
-
-function rewardExchangeMai(value){
-
-}
-
-function rewardExchangeDao(value){
-
 }
 
 function openRuong(){

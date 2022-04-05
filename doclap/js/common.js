@@ -1,7 +1,6 @@
 function setLinkToItem(data){
     for (let i = 0; i < data.length; i++) {
         var e = document.getElementById(data[i].id);
-        console.log(e)
         e.setAttribute("href", data[i].value);
     }
    
@@ -22,10 +21,30 @@ function setContentMeta(data){
    
 }
 
-function getMethod(){
+function getMethod(url, params, fn, fe){
+    axios.get(url, {
+        params: params
+      })
+      .then(function (response) {
+          fn(response)
+      })
+      .catch(function (error) {
+        fe(error)
+      })
+      .then(function () {
+      });  
 
 }
 
-function postMethod(){
+function postMethod(url, data, header, fn, fe){
+    axios.post(url,data,header)
+    .then(function (response) {
+        fn(response);
+    })
+    .catch(function (error) {
+        fe(error)
+    })
+    .then(function () {
+    }); 
 
 }
