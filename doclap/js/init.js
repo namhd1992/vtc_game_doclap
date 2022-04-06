@@ -48,8 +48,13 @@ function setDataToUI(response){
   var obj_meta_desc=data.filter(v =>v.code===EVT_META_DESC);
   var obj_meta_img=data.filter(v =>v.code===EVT_IMAGE_URL);
 
-  var list_item_link=[{id:"fanpage_fb", value:obj_fanpage_fb[0].value},{id:"md_fanpage_fb", value:obj_fanpage_fb[0].value},{id:'group_fb', value:obj_group_fb[0].value},{id:'md_group_fb', value:obj_group_fb[0].value}];
-  var list_item_content=[{id:"content_evt_guide", value:obj_evt_guide[0].value},{id:'content_evt_rollup', value:obj_evt_rollup[0].value}, {id:'content_rewards', value:obj_rewards[0].value}]
+  var obj_rollup_points=data.filter(v =>v.code===EVT_ROLLUP_POINTS);
+  var obj_recharge_url=data.filter(v =>v.code===EVT_RECHARGE_URL);
+  var obj_payment_url=data.filter(v =>v.code===EVT_PAYMENT_URL);
+  var obj_moruong=data.filter(v =>v.code===EVT_MORUONG_CONTENT);
+
+  var list_item_link=[{id:"fanpage_fb", value:obj_fanpage_fb[0].value},{id:"md_fanpage_fb", value:obj_fanpage_fb[0].value},{id:'group_fb', value:obj_group_fb[0].value},{id:'md_group_fb', value:obj_group_fb[0].value},{id:'md_buycard', value:obj_payment_url[0].value},{id:'md_napgame', value:obj_recharge_url[0].value}];
+  var list_item_content=[{id:"content_evt_guide", value:obj_evt_guide[0].value},{id:'content_evt_rollup', value:obj_evt_rollup[0].value}, {id:'content_rewards', value:obj_rewards[0].value}, {id:'rollup_points', value:obj_rollup_points[0].value}, {id:'content_moruong', value:obj_moruong[0].value}]
   var list_item_meta=[{id:"og-title", value:obj_meta_title[0].value},{id:'og-description', value:obj_meta_desc[0].value}, {id:'og-image', value:obj_meta_img[0].value}]
   setLinkToItem(list_item_link);
   setContentToItem(list_item_content);
@@ -60,8 +65,8 @@ function setDataToUI(response){
 
 function setDataUser(response){
   var user=response.data.data.user;
-  var account_user = document.getElementById('account_user');
-  account_user.innerText= user.userName;
+  var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}]
+  setInfoUser(list);
 }
 
 function error(err){

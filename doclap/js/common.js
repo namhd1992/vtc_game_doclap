@@ -21,6 +21,14 @@ function setContentMeta(data){
    
 }
 
+function setInfoUser(data){
+    for (let i = 0; i < data.length; i++) {
+        var e = document.getElementById(data[i].id);
+        e.innerText= data[i].value;
+    }
+   
+}
+
 function getMethod(url, params, fn, fe){
     axios.get(url, {
         params: params

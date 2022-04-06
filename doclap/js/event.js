@@ -40,6 +40,7 @@ function getGoal(value){
 
 function playGame(type, value, key){
     if(!isPlay){
+        isPlay=true;
         var user = JSON.parse(localStorage.getItem("user"));
         if(user!==null){
             var url=base_url+'/luckyrandom/api/v1/rewards/receive-event-play';
@@ -57,37 +58,41 @@ function playGame(type, value, key){
             data.numPlayed=type;
             axios.post(url,data,header)
             .then(function (response) {
-                console.log(response);
+                console.log(response)
+                abc(type, value, key, response.data.data.rewards)
             })
             .catch(function (error) {
                 console.log(error);
             })
             .then(function () {
             });  
-            abc(type, value, key)
+            
         }else{
-            $('#modal-warning-login').modal('show'); 
+            $('#modal-warning-login').modal('show');
         }
     }
 }
 
-function abc(type, value, key){
-    isPlay=true;
+function abc(type, value, key, data){
     animation_vq=setInterval(()=>{
-        animation(key, value);
+        animation(key, value, data);
     },100)
     setTimeout(()=>{
         isPlay=false;
         clearInterval(animation_vq)
+        $('#modal-thuong-du-xuan').modal('show');
     },2000)
 }
 
-function animation(key, value){
+function animation(key, value, data){
     var e = document.getElementById(key+i);
     e.classList.add("active");
     if(i>1){
         var e1 = document.getElementById(key+(i-1));
         e1.classList.remove("active");
+        var result = document.getElementById('content_result_vq');
+        result.innerText=data[0].name;
+        
     }
     if(i===value){
         setTimeout(()=>{
@@ -121,16 +126,15 @@ function getHistory(page){
         data.modeId=10012;
         data.userId=user.uid;
         data.transactionType=-1;
-        data.serviceId= 1;
-        data.paymentMethod= -1;
-        data.source= -1;
-        data.fromDate=-1,
-        data.toDate= -1,
+        data.type= -1;
+        data.rewardType= -1;
+        data.fromDate=0,
+        data.toDate= 0,
         data.pageIndex= page;
         data.pageSize=10;
       
 
-        axios.post(base_url+ '/pay/api/v1/transaction/history',data,header)
+        axios.post(base_url+ '/luckyrandom/api/v1/games/logs',data,header)
         .then(function (response) {
             console.log(response);
         })
@@ -301,7 +305,25 @@ function openRuong(){
 }
 
 function getBXHLiXi(){
+    var url=base_url+'/luckyrandom/api/v1/games/payment-leaderboard'
+    var header = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+    var data= {...info};
+    data.modeId=10003;
+    data.startId=0;
 
+    axios.post(url,data,header)
+    .then(function (response) {
+        console.log(response);
+    })
+    .catch(function (error) {
+        console.log(error);
+    })
+    .then(function () {
+    }); 
 }
 
 function getRewardTop(value){
