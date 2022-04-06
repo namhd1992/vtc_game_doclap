@@ -58,7 +58,6 @@ function playGame(type, value, key){
             data.numPlayed=type;
             axios.post(url,data,header)
             .then(function (response) {
-                console.log(response)
                 abc(type, value, key, response.data.data.rewards)
             })
             .catch(function (error) {
@@ -91,6 +90,7 @@ function animation(key, value, data){
         var e1 = document.getElementById(key+(i-1));
         e1.classList.remove("active");
         var result = document.getElementById('content_result_vq');
+        // result.style.display='none';
         result.innerText=data[0].name;
         
     }
