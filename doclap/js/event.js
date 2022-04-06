@@ -73,6 +73,26 @@ function playGame(type, value, key){
 }
 
 function abc(type, value, key, data){
+    var n=Math.floor(Math.random() * 16);
+    if(type===1){
+        var tb = document.getElementById('tb_content_result_vq');
+        var result = document.getElementById('content_result_vq');
+        result.style.marginTop='100px';
+        result.innerText=data[0].name;
+        tb.innerHTML='';
+        
+    }else{
+        var e = document.getElementById('content_result_vq');
+        e.innerHTML='';
+        e.style.marginTop='0px';
+        var tb = document.getElementById('tb_content_result_vq');
+        for (let i = 0; i < type; i++) {
+            $(tb).append(`<tr>
+            <th scope="row">Lượt ${i}</th>
+            <td>${data[i].name}</td>
+          </tr>`);
+        }
+    }
     animation_vq=setInterval(()=>{
         animation(key, value, data);
     },100)
@@ -80,18 +100,15 @@ function abc(type, value, key, data){
         isPlay=false;
         clearInterval(animation_vq)
         $('#modal-thuong-du-xuan').modal('show');
-    },2000)
+    },(n+value)*100);
 }
 
-function animation(key, value, data){
+function animation(key, value){
     var e = document.getElementById(key+i);
     e.classList.add("active");
     if(i>1){
         var e1 = document.getElementById(key+(i-1));
         e1.classList.remove("active");
-        var result = document.getElementById('content_result_vq');
-        // result.style.display='none';
-        result.innerText=data[0].name;
         
     }
     if(i===value){
