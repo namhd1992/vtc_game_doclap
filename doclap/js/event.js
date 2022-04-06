@@ -100,6 +100,8 @@ function abc(type, value, key, data){
         isPlay=false;
         clearInterval(animation_vq)
         $('#modal-thuong-du-xuan').modal('show');
+        var e1 = document.getElementById(key+(i-1));
+        e1.classList.remove("active");
         i=1;
     },(n+value)*100);
 }
