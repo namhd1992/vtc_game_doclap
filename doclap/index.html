@@ -149,7 +149,7 @@
                   <button class="btn-bg btn-phan-thuong" type="button" data-bs-toggle="modal" data-bs-target="#modal-phan-thuong">
                     <span class="visually-hidden">Phần thưởng</span>
                   </button>
-                  <button class="btn-bg btn-lich-su-du-xuan" type="button" data-bs-toggle="modal" data-bs-target="#modal-lich-su-du-xuan" onclick="getHistory(0)">
+                  <button class="btn-bg btn-lich-su-du-xuan" type="button" data-bs-toggle="modal" data-bs-target="#modal-lich-su" onclick="getHistory(0)">
                     <span class="visually-hidden">Lịch sử du xuân</span>
                   </button>
                 </div>
@@ -160,19 +160,19 @@
               <div class="timeline-wrapper">
                 <div class="timeline">
                   <h3 class="timeline-title">Lượt</h3>
-                  <a class="timeline-item timeline-item-20" data-bs-toggle="modal" href="#modal-nhan-code" onclick="exchangeRewardsWithMilestones(10004, 20)">
+                  <a id="timeline_20" class="timeline-item timeline-item-20" data-bs-toggle="modal" href="#modal-nhan-code" onclick="exchangeRewardsWithMilestones(10004, 20)">
                     <span class="timeline-item-number">20</span>
                   </a>
-                  <a class="timeline-item timeline-item-40" data-bs-toggle="modal" href="#modal-nhan-code" onclick="exchangeRewardsWithMilestones(10004, 40)">
+                  <a id="timeline_40" class="timeline-item timeline-item-40" data-bs-toggle="modal" href="#modal-nhan-code" onclick="exchangeRewardsWithMilestones(10004, 40)">
                     <span class="timeline-item-number">40</span>
                   </a>
-                  <a class="timeline-item timeline-item-75 active" data-bs-toggle="modal" href="#modal-nhan-code" onclick="exchangeRewardsWithMilestones(10004, 75)">
+                  <a id="timeline_75" class="timeline-item timeline-item-75 active" data-bs-toggle="modal" href="#modal-nhan-code" onclick="exchangeRewardsWithMilestones(10004, 75)">
                     <span class="timeline-item-number">75</span>
                   </a>
-                  <a class="timeline-item timeline-item-120" data-bs-toggle="modal" href="#modal-nhan-code" onclick="exchangeRewardsWithMilestones(10004, 120)">
+                  <a id="timeline_120" class="timeline-item timeline-item-120" data-bs-toggle="modal" href="#modal-nhan-code" onclick="exchangeRewardsWithMilestones(10004, 120)">
                     <span class="timeline-item-number">120</span>
                   </a>
-                  <a class="timeline-item timeline-item-200" data-bs-toggle="modal" href="#modal-nhan-code" onclick="exchangeRewardsWithMilestones(10004, 200)">
+                  <a id="timeline_200" class="timeline-item timeline-item-200" data-bs-toggle="modal" href="#modal-nhan-code" onclick="exchangeRewardsWithMilestones(10004, 200)">
                     <span class="timeline-item-number">200</span>
                   </a>
                 </div>
@@ -316,71 +316,71 @@
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />          
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
-                    <p id="content_card_1"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
+                  <p id="content_card_1"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                 </div>
                 <div id="card_2" class="flipbox-item" onclick="playFlipCard(1, 'card_2', 'content_card_2')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
-                    <p id="content_card_2"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
+                  <p id="content_card_2"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                 </div>
                 <div id="card_3" class="flipbox-item" onclick="playFlipCard(1, 'card_3', 'content_card_3')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
-                    <p id="content_card_3"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
+                  <p id="content_card_3"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                 </div>
                 <div id="card_4" class="flipbox-item" onclick="playFlipCard(1, 'card_4', 'content_card_4')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
-                    <p id="content_card_4"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
+                  <p id="content_card_4"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                 </div>
                 <div id="card_5" class="flipbox-item" onclick="playFlipCard(1, 'card_5', 'content_card_5')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
-                    <p id="content_card_5"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
+                  <p id="content_card_5"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                 </div>
                 <div id="card_6" class="flipbox-item" onclick="playFlipCard(1, 'card_6', 'content_card_6')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
-                    <p id="content_card_6"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
+                  <p id="content_card_6"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                 </div>
                 <div id="card_7" class="flipbox-item" onclick="playFlipCard(1, 'card_7', 'content_card_7')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
-                    <p id="content_card_7"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
+                  <p id="content_card_7"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                 </div>
                 <div id="card_8" class="flipbox-item" onclick="playFlipCard(1, 'card_8', 'content_card_8')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
-                    <p id="content_card_8"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
+                  <p id="content_card_8"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                 </div>
                 <div id="card_9" class="flipbox-item" onclick="playFlipCard(1, 'card_9', 'content_card_9')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
-                    <p id="content_card_9"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
+                  <p id="content_card_9"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                 </div>
                 <div id="card_10" class="flipbox-item" onclick="playFlipCard(1, 'card_10', 'content_card_10')">
                   <div class="flipbox-item-inner">
                     <img class="img-block flipbox-item-front" src="images/home/s2/s2-4/item-front.jpg" alt="" />
                     <img class="img-block flipbox-item-back" src="images/home/s2/s2-4/item-1.jpg" alt="" />
-                    <p id="content_card_10"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                   </div>
+                  <p id="content_card_10"  style="position: absolute; text-align: center; width: 100%; top: 54%; color: green;"></p>
                 </div>
               </div>
               <div class="section-btns">
@@ -388,7 +388,7 @@
                   <span class="visually-hidden">Lật 10 thẻ</span>
                   <img src="images/home/s2/s2-4/btn-lat-10-the.png" alt="Lật 10 thẻ" />
                 </button>
-                <button class="btn-img btn-lich-su" type="button" data-bs-toggle="modal" data-bs-target="#modal-lich-su-lat" onclick="getHistory()">
+                <button class="btn-img btn-lich-su" type="button" data-bs-toggle="modal" data-bs-target="#modal-lich-su" onclick="getHistory()">
                   <span class="visually-hidden">Lịch sử</span>
                   <img src="images/home/s2/s2-4/btn-lich-su.png" alt="Lịch sử" />
                 </button>
@@ -598,7 +598,7 @@
                 <h2 class="section-title">
                   <span class="visually-hidden">Bảng xếp hạng nạp</span>
                   <img class="img-block" src="images/home/s2/s2-8/title.png" alt="Bảng xếp hạng nạp" />
-                  <button class="btn-img btn-bxh-circle" type="button" data-bs-toggle="modal" data-bs-target="#modal-bxh" onclick="getBXHLiXi()">
+                  <button class="btn-img btn-bxh-circle" type="button" onclick="getBXHLiXi()">
                     <span class="visually-hidden">Bảng xếp hạng</span>
                     <img src="images/home/s2/s2-8/btn-bxh-circle.png" alt="Bảng xếp hạng" />
                   </button>
@@ -719,12 +719,12 @@
       </div>
     </div>
   </div>
-  <div class="modal modal fade" id="modal-lich-su-du-xuan" tabindex="-1" aria-hidden="true">
+  <div class="modal modal fade" id="modal-lich-su" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="modal-body perfect-scrollbar" data-plugin="perfect-scrollbar">
-          <h2 class="modal-title">Lịch sử du xuân</h2>
+          <h2 class="modal-title">Lịch sử</h2>
           <div class="table-responsive table-responsive-flush">
             <div class="table-responsive-inner">
               <table class="table-1 table-1-fs-sm table table-borderless table-pe-0">
@@ -744,64 +744,10 @@
                     </th>
                   </tr>
                 </thead>
-                <tbody id="history_duxuan">
+                <tbody id="tb_history">
                   <tr>
                     <th class="text-primary" scope="row">1</th>
                     <td class="text-start">+10 Vàng</td>
-                    <td class="text-primary text-nowrap">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">2</th>
-                    <td class="text-start">+1 Lần Bóc Bánh</td>
-                    <td class="text-primary text-nowrap">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">3</th>
-                    <td class="text-start">Code Triệu Phúc</td>
-                    <td class="text-primary text-nowrap">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">4</th>
-                    <td class="text-start">+100 Vàng</td>
-                    <td class="text-primary text-nowrap">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">5</th>
-                    <td class="text-start">+3 Lần Bóc Bánh</td>
-                    <td class="text-primary text-nowrap">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">6</th>
-                    <td class="text-start">+10 Vàng</td>
-                    <td class="text-primary text-nowrap">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">7</th>
-                    <td class="text-start">+1 Lần Bóc Bánh</td>
-                    <td class="text-primary text-nowrap">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">8</th>
-                    <td class="text-start">Code Triệu Phúc</td>
-                    <td class="text-primary text-nowrap">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">9</th>
-                    <td class="text-start">+100 Vàng</td>
-                    <td class="text-primary text-nowrap">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">10</th>
-                    <td class="text-start">+1 Lần Bóc Bánh</td>
                     <td class="text-primary text-nowrap">23H00 -15-12</td>
                     <td class="text-blue">ĐÃ NHẬN</td>
                   </tr>
@@ -829,7 +775,7 @@
       <div class="modal-content">
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="modal-body perfect-scrollbar" data-plugin="perfect-scrollbar">
-          <h2 class="modal-title">Lịch sử du xuân</h2>
+          <h2 class="modal-title">Bảng Xếp Hạng</h2>
           <table class="table-1 table-1-fs-sm table table-borderless table-pe-0">
             <thead>
               <tr>
@@ -844,257 +790,7 @@
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th class="text-primary" scope="row">1</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">2</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">3</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">4</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">5</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">6</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">7</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">8</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">9</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">10</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">11</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">12</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">13</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">14</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">15</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">16</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">17</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">18</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">19</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">20</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">21</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">22</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">23</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">24</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">25</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">26</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">27</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">28</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">29</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">30</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">31</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">32</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">33</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">34</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">35</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">36</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">37</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">38</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">39</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">40</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">41</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">42</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">43</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">44</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">45</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">46</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">47</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">48</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">49</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
-              <tr>
-                <th class="text-primary" scope="row">50</th>
-                <td>NguThanSu*****</td>
-                <td class="text-primary">100</td>
-              </tr>
+            <tbody id="tb_modal_bxh">
             </tbody>
           </table>
         </div>
@@ -1126,100 +822,6 @@
             <span class="visually-hidden">Nạp Game</span>
             <img src="images/modals/btn-nap-game.png" alt="Nạp Game" />
           </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal modal fade" id="modal-lich-su-lat" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div class="modal-body perfect-scrollbar" data-plugin="perfect-scrollbar">
-          <h2 class="modal-title">Lịch sử lật</h2>
-          <div class="table-responsive table-responsive-flush">
-            <div class="table-responsive-inner">
-              <table class="table-1 table-1-fs-sm table table-borderless table-pe-0">
-                <thead>
-                  <tr>
-                    <th scope="col">
-                      <span>STT</span>
-                    </th>
-                    <th scope="col">
-                      <span>Phần Thưởng</span>
-                    </th>
-                    <th scope="col">
-                      <span>Thời gian</span>
-                    </th>
-                    <th scope="col">
-                      <span>Đối tượng</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th class="text-primary" scope="row">1</th>
-                    <td class="text-start">+10 Vàng</td>
-                    <td class="text-primary">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">2</th>
-                    <td class="text-start">+1 Lần Bóc Bánh</td>
-                    <td class="text-primary">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">3</th>
-                    <td class="text-start">Code Triệu Phúc</td>
-                    <td class="text-primary">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">4</th>
-                    <td class="text-start">+100 Vàng</td>
-                    <td class="text-primary">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">5</th>
-                    <td class="text-start">+3 Lần Bóc Bánh</td>
-                    <td class="text-primary">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">6</th>
-                    <td class="text-start">+10 Vàng</td>
-                    <td class="text-primary">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">7</th>
-                    <td class="text-start">+1 Lần Bóc Bánh</td>
-                    <td class="text-primary">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">8</th>
-                    <td class="text-start">Code Triệu Phúc</td>
-                    <td class="text-primary">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">9</th>
-                    <td class="text-start">+100 Vàng</td>
-                    <td class="text-primary">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                  <tr>
-                    <th class="text-primary" scope="row">10</th>
-                    <td class="text-start">+1 Lần Bóc Bánh</td>
-                    <td class="text-primary">23H00 -15-12</td>
-                    <td class="text-blue">ĐÃ NHẬN</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
         </div>
       </div>
     </div>

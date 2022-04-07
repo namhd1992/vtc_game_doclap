@@ -27,6 +27,7 @@ function getAppSettingWithToken(user){
   }
   var data= {...info};
   data.userId=user.uid;
+  data.claims= "UsersBalance,PlaySummary,RewardExchange"
 
   postMethod(url, data, header, cbwithtoken, error)
 }
@@ -34,6 +35,7 @@ function getAppSettingWithToken(user){
 function cbwithtoken(response){
   setDataToUI(response)
   setDataUser(response)
+  uiLine(response);
 }
 
 
@@ -61,6 +63,30 @@ function setDataToUI(response){
   setContentMeta(list_item_meta);
 }
 
+
+function uiLine(response){
+  // var number_play=response.data.data.user.pointAvailable;
+  var number_play=20
+  if(number_play >= 20 && number_play < 40){
+    var e = document.getElementById('timeline_20');
+    e.classList.add("active");
+  }else if(number_play >= 40 && number_play < 75){
+    var e = document.getElementById('timeline_40');
+    e.classList.add("active");
+  }else if(number_play >= 75 && number_play < 120){
+    var e = document.getElementById('timeline_75');
+    e.classList.add("active");
+  }else if(number_play >= 120 && number_play < 200){
+    var e = document.getElementById('timeline_120');
+    e.classList.add("active");
+  }else if(number_play >= 200){
+    var e = document.getElementById('timeline_200');
+    e.classList.add("active");
+  }else{
+    console.log('chưa đủ lượt chơi')
+  }
+ 
+}
 
 
 function setDataUser(response){

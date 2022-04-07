@@ -268,14 +268,15 @@ function playFlipCard(value, key, content){
                 }
             }
             var data= {...info};
-            data.modeId=10010;
+            // data.modeId=10010;
+            data.modeId=10003;
             data.userId=user.uid;
             data.autoPlay=false;
             data.round=0;
             data.numPlayed=value;
             axios.post(url,data,header)
             .then(function (response) {
-                console.log(response);
+                pick_up(value, key, content, response.data.data.rewards)
             })
             .catch(function (error) {
                 console.log(error);
@@ -285,17 +286,19 @@ function playFlipCard(value, key, content){
         }else{
             $('#modal-warning-login').modal('show'); 
         }
-        pick_up(value, key, content)
+        
     }
 }
 
-function pick_up(value, key, content){
+function pick_up(value, key, content, data){
     isPlayPickup=true;
     if(value===1){
         var e = document.getElementById(key);
         e.classList.add("active");
         var e1 = document.getElementById(content);
-        e1.innerHTML+='+ 100 Hoa Mai';
+        setTimeout(()=>{
+            e1.innerHTML+=data[0].name;
+        },300)
         setTimeout(()=>{
             e.classList.remove("active");
             e1.innerHTML='';
@@ -306,7 +309,7 @@ function pick_up(value, key, content){
             var e = document.getElementById(key+i);
             e.classList.add("active");
             var e1 = document.getElementById(content+i);
-            e1.innerHTML+='+ 100 Hoa Mai';
+            e1.innerHTML+=data[i-1].name;
         }
         setTimeout(()=>{
             for (let i = 1; i < value+1; i++) {
@@ -337,7 +340,16 @@ function getBXHLiXi(){
 
     axios.post(url,data,header)
     .then(function (response) {
-        console.log(response);
+        var tb = document.getElementById('tb_modal_bxh');
+        var list=response.data.data;
+        for (let i = 0; i < list.length; i++) {
+            $(tb).append(`<tr>
+            <th class="text-primary" scope="row">${list[i].order}</th>
+            <th>${list[i].userName}</th>
+            <td>${list[i].totalAmount}</td>
+          </tr>`);
+        }
+        $('#modal-bxh').modal('show');
     })
     .catch(function (error) {
         console.log(error);
