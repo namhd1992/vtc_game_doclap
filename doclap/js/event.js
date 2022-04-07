@@ -88,7 +88,7 @@ function abc(type, value, key, data){
         var tb = document.getElementById('tb_content_result_vq');
         for (let i = 0; i < type; i++) {
             $(tb).append(`<tr>
-            <th scope="row">Lượt ${i}</th>
+            <th scope="row">Lượt ${i+1}</th>
             <td>${data[i].name}</td>
           </tr>`);
         }
