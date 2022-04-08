@@ -143,7 +143,7 @@ function getHistory(page){
             }
         }
         var data= {...info};
-        data.modeId=10012;
+        data.modeId=10003;
         data.userId=user.uid;
         data.transactionType=-1;
         data.type= -1;
@@ -289,6 +289,11 @@ function playFlipCard(value, key, content){
         
     }
 }
+
+    $( ".flipbox-item" ).click(function() {
+    console.log('ok')
+  });
+
 
 function pick_up(value, key, content, data){
     isPlayPickup=true;

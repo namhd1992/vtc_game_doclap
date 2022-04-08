@@ -1,4 +1,14 @@
 
+const vtcmAuth = {
+	initAuth(){
+	},
+	
+	getConfig() {        
+        return '';
+    }
+};
+
+
 const info={
   lang: "vi",
   osType: "WINDOWS",
@@ -8,28 +18,33 @@ const info={
   osVersion: "10",
   appVersion: "2.0.0",
   requestId: 1929292992929,
-  siteId:100004,
-  gameId:100004,
 }
 
 function getAppSetting(){
-  var url=base_url+'/catalog/api/v1/setting/get-app-settings'; 
-  getMethod(url, info, setDataToUI, error)
+  var userInfo = vtcmAuth.getUser();
+  if (!vtcmAuth.isLogin())
+  {
+    var url=base_url+'/catalog/api/v1/setting/get-app-settings'; 
+    common_sdk.getMethod(url, info, setDataToUI, error)
+  }
+  else{
+    var url=base_url+'/catalog/api/v1/setting/app-settings';
+    var header = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${user.access_token}`
+      }
+    }
+    var data= {...info};
+    data.userId=user.uid;
+    data.claims= "UsersBalance,PlaySummary,RewardExchange"
+  
+    common_sdk.postMethod(url, data, header, cbwithtoken, error)
+  }
 }
 
 function getAppSettingWithToken(user){
-  var url=base_url+'/catalog/api/v1/setting/app-settings';
-  var header = {
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${user.access_token}`
-    }
-  }
-  var data= {...info};
-  data.userId=user.uid;
-  data.claims= "UsersBalance,PlaySummary,RewardExchange"
-
-  postMethod(url, data, header, cbwithtoken, error)
+  
 }
 
 function cbwithtoken(response){
@@ -58,9 +73,9 @@ function setDataToUI(response){
   var list_item_link=[{id:"fanpage_fb", value:obj_fanpage_fb[0].value},{id:"md_fanpage_fb", value:obj_fanpage_fb[0].value},{id:'group_fb', value:obj_group_fb[0].value},{id:'md_group_fb', value:obj_group_fb[0].value},{id:'md_buycard', value:obj_payment_url[0].value},{id:'md_napgame', value:obj_recharge_url[0].value}];
   var list_item_content=[{id:"content_evt_guide", value:obj_evt_guide[0].value},{id:'content_evt_rollup', value:obj_evt_rollup[0].value}, {id:'content_rewards', value:obj_rewards[0].value}, {id:'rollup_points', value:obj_rollup_points[0].value}, {id:'content_moruong', value:obj_moruong[0].value}]
   var list_item_meta=[{id:"og-title", value:obj_meta_title[0].value},{id:'og-description', value:obj_meta_desc[0].value}, {id:'og-image', value:obj_meta_img[0].value}]
-  setLinkToItem(list_item_link);
-  setContentToItem(list_item_content);
-  setContentMeta(list_item_meta);
+  common_sdk.setLinkToItem(list_item_link);
+  common_sdk.setContentToItem(list_item_content);
+  common_sdk.setContentMeta(list_item_meta);
 }
 
 
@@ -92,7 +107,7 @@ function uiLine(response){
 function setDataUser(response){
   var user=response.data.data.user;
   var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}]
-  setInfoUser(list);
+  common_sdk.setInfoUser(list);
 }
 
 function error(err){
