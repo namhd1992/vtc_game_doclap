@@ -33,10 +33,19 @@ const game_client = {
 		// });
 
 		// //
+        if(vtcmAuth.isLogin()){
+            document.getElementById("logout").style.display = "none";
+            document.getElementById("login").style.display = "block";
+
+        }else{
+            document.getElementById("login").style.display = "none";
+            document.getElementById("logout").style.display = "block";
+        }
+       
         
 	},
 	
-	getConfig() {        
+	getConfig() {   
         return this.config_;
     },
 	
@@ -46,13 +55,13 @@ const game_client = {
 	
 	getUserId(){
 		return this.config_.userId;
-	}
+	},
 };
 
-const MODE_ID_LIXI=100007;
-const MODE_ID_VQ=100007;
+// const MODE_ID_LIXI=100007;
+// const MODE_ID_VQ=100007;
 
-ready(() => {
+$(document).ready(function(){
 	'use strict';
     const vtcmAppConfig = {
         host: "http://abc.com",
@@ -60,7 +69,8 @@ ready(() => {
         apiBaseUrl: 'http://171.244.11.133:8088',
         client_id: "SANBOX",
         client_secret: "123456abcdef",
-        url_return:`http://127.0.0.1:5500/doclap/index.html`
+        url_return:`http://127.0.0.1:5500/doclap/tramtien/index.html`,
+        path:'/doclap/tramtien/index.html'
     };
     
     game_client.initApp(vtcmAppConfig);

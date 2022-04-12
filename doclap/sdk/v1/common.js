@@ -61,12 +61,10 @@ const common_sdk = {
     },
 
     postMethodToken(url, data, header, fn, fe){
-var token = vtcmAuth.getToken();
-
+        var token = vtcmAuth.getToken();
         if (token == '') {
             //yeu cau login lai
         }
-
         var header = {
             headers: {
               "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 const vtcmApp = {
-	config_: null,	
+	config_: null,
+    data_setting:{},	
 	version_: "1.0.0",
 	instances_: [],
 	isConnected: false,
@@ -20,9 +21,8 @@ const vtcmApp = {
 		
 		this.config_ = rawConfig;
         vtcmAuth.veryfi();
-
-        getAppSetting();
-
+        // vtcmInit.getAppSetting();
+        
 		// Linik('fanpage_fb',EVT_FANPAGE_URL);
 		// Linik('fanpage_fb',EVT_FANPAGE_URL);
 		// Linik('fanpage_fb',EVT_FANPAGE_URL);
@@ -56,6 +56,7 @@ const vtcmApp = {
 };
 
 ready(() => {
+    // alert('app')
 	'use strict';
 	var config = {};
 });

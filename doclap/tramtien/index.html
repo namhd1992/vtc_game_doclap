@@ -49,10 +49,14 @@
                   <span class="visually-hidden">Điểm danh</span>
                 </a>
               </li>
-              <li id="li_auth" class="nav-item">
-                <!-- <a class="btn-bg btn-dang-nhap nav-link" role="button" target="_blank" onclick="login()">
+              <li class="nav-item">
+                <a id="logout" class="btn-bg btn-dang-nhap nav-link" role="button" target="_blank" onclick="vtcmAuth.login()">
                   <span class="visually-hidden">Đăng nhập</span>
-                </a> -->
+                </a>
+                <div id="login" style="width: 200px; height: 50; border: 1px solid white; padding: 5px; background-color: #7b0c04; display: none;">
+                  <span id="account_user"></span></br>
+                  <span style="text-decoration: underline; cursor: pointer;" onclick="vtcmAuth.logout()">Thoát</span>
+                </div>
                 <!-- <div style="width: 200px; height: 50; border: 1px solid white; padding: 5px; background-color: #7b0c04;">
                   <span>Bùi Văn Nam</span></br>
                   <span style="text-decoration: underline; cursor: pointer;" onclick="logout()">Thoát</span>
@@ -137,10 +141,10 @@
                     </span>
                   </div>
                   <div class="vq-btns">
-                    <button id="btn-du-xuan-1" class="btn-bg btn-du-xuan-1" type="button" onclick="playGame(1, 16, 'item_vq_')">
+                    <button id="btn-du-xuan-1" class="btn-bg btn-du-xuan-1" type="button" onclick="vtcmEvent.playGame(1, 16, 'item_vq_')">
                       <span class="visually-hidden">Du xuân 1 lần</span>
                     </button>
-                    <button id="btn-du-xuan-10" class="btn-bg btn-du-xuan-10" type="button" onclick="playGame(10, 16, 'item_vq_')">
+                    <button id="btn-du-xuan-10" class="btn-bg btn-du-xuan-10" type="button" onclick="vtcmEvent.playGame(10, 16, 'item_vq_')">
                       <span class="visually-hidden">Du xuân 10 lần</span>
                     </button>
                   </div>
@@ -919,16 +923,19 @@
   <script src="js/vendor/perfect-scrollbar.min.js"></script>
   <script src="js/vendor/headroom.min.js"></script>
   <script src="js/vendor/clipboard.min.js"></script>
-  <script src="js/vendor/axios.min.js"></script>
-  <script src="js/vendor/jquery.min.js"></script>
-  <script src="js/vendor/moment-with-locales.min.js"></script>
+  <script src="../sdk/v1/vendor/axios.min.js"></script>
+  <script src="../sdk/v1/vendor/jquery.min.js"></script>
+  <script src="../sdk/v1/vendor/moment-with-locales.min.js"></script>
+  <script src="../sdk/v1/vendor/pagination.min.js"></script>
+  <script src="js/game_client.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/api.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/event.js"></script>
-  <script src="js/ultil.js"></script>
-  <script src="js/constant.js"></script>
-  <script src="js/common.js"></script>
+  <script src="../sdk/v1/app.js"></script>
+  <script src="../sdk/v1/auth.js"></script>
+  <script src="../sdk/v1/common.js"></script>
+  <script src="../sdk/v1/constant.js"></script>
+  <script src="../sdk/v1/event.js"></script>
+  <script src="../sdk/v1/init.js"></script>
+  <script src="../sdk/v1/ultil.js"></script>
+  <script src="../sdk/v1/vtcmLogger.js"></script>
 </body>
 </html>
