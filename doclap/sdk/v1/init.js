@@ -73,8 +73,7 @@ const vtcmInit = {
     common_sdk.setContentMeta(list_item_meta);
   },
   uiLine(response){
-    // var number_play=response.data.data.user.pointAvailable;
-    var number_play=20
+    var number_play=response.data.data.playSummary[0].playerCount;
     if(number_play >= 20 && number_play < 40){
       var e = document.getElementById('timeline_20');
       e.classList.add("active");
@@ -97,7 +96,9 @@ const vtcmInit = {
   },
   setDataUser(response){
     var user=response.data.data.user;
-    var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}]
+    var number_play=response.data.data.playSummary[0].playerCount;
+    var number_bocbanh=response.data.data.rewardExchange[0].totalAvailable;
+    var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}, {id:'number_play_vq', value:number_play}, {id:'number_bocbanh', value:number_bocbanh}]
     common_sdk.setInfoUser(list);
   },
   error(err){
