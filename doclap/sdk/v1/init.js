@@ -96,13 +96,19 @@ const vtcmInit = {
   },
   setDataUser(response){
     var user=response.data.data.user;
-    var number_play=response.data.data.playSummary[0].playerCount;
-    var number_bocbanh=response.data.data.rewardExchange[0].totalAvailable;
-    var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}, {id:'number_play_vq', value:number_play}, {id:'number_bocbanh', value:number_bocbanh}]
+    var number_play=response.data.data.playSummary[0] ? response.data.data.playSummary[0].playerCount : 0;
+    var number_bocbanh=response.data.data.rewardExchange[3] ? response.data.data.rewardExchange[3].totalAvailable : 0;
+    var number_hoamai=response.data.data.rewardExchange[1] ? response.data.data.rewardExchange[1].totalAvailable : 0;
+    var number_hoadao=response.data.data.rewardExchange[2] ? response.data.data.rewardExchange[2].totalAvailable : 0;
+    var number_key=response.data.data.rewardExchange[0] ? response.data.data.rewardExchange[0].totalAvailable : 0;
+    var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}, {id:'number_play_vq', value:number_play}, {id:'number_bocbanh', value:number_bocbanh}, {id:'number_hoamai', value:number_hoamai}, {id:'number_hoadao', value:number_hoadao}, {id:'number_key', value:number_key}]
     common_sdk.setInfoUser(list);
   },
   error(err){
-    console.log('err')
+    console.log(err)
+    // $('#modal-notify').modal('show'); 
+    // var e = document.getElementById('content_notify');
+    // e.innerText=error.response.data.message;
   }
   
 };
