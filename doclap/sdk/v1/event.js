@@ -111,6 +111,7 @@ const vtcmEvent = {
                 });  
                 
             }else{
+                vtcmEvent.isPlay=false;
                 $('#modal-warning-login').modal('show');
             }
         }
@@ -247,7 +248,7 @@ const vtcmEvent = {
         vtcmEvent.getHistory(vtcmEvent.page+1, vtcmEvent.modeId_history)
     },
 
-    exchangeRewards(modeId, value){
+    exchangeRewards(modeId, value, key){
         var url=vtcmApp.config_.apiBaseUrl+ '/luckyrandom/api/v1/rewards/exchange';
         if(vtcmAuth.isLogin()){
             var header = {
@@ -274,7 +275,9 @@ const vtcmEvent = {
                         $('#modal-notify').modal('show'); 
                         var e = document.getElementById('content_notify');
                         e.innerText='Nhận khóa thành công';
-                    }else{
+                    }else if(modeId===10005){
+                        vtcmEvent.bocbanh(key, number, modeId);
+                    }else {
                         $('#modal-nhan-code').modal('show'); 
                         document.getElementById('modal-form-code').value=response.data.rewards[0].rewardCode;
                     }
@@ -339,18 +342,10 @@ const vtcmEvent = {
     },
 
     bocbanh(key, number, modeId){
-        if(vtcmAuth.isLogin()){
-            vtcmEvent.exchangeRewards(modeId, number)
-            for (let i = 0; i < number; i++) {
-                var e = document.getElementById(key+(i+1));
-                e.classList.add("hide");
-            }
-        } else{
-            $('#modal-warning-login').modal('show'); 
+        for (let i = 0; i < number; i++) {
+            var e = document.getElementById(key+(i+1));
+            e.classList.add("hide");
         }
-       
-        // $('#modal-nhan-code').modal('show'); 
-        
     },
 
     playFlipCard(value, key, content){
@@ -390,6 +385,7 @@ const vtcmEvent = {
                 });  
             }else{
                 $('#modal-warning-login').modal('show'); 
+                vtcmEvent.isPlayPickup=false;
             }
             
         }

@@ -98,16 +98,22 @@ const vtcmInit = {
   },
   setDataUser(response){
     var user=response.data.data.user;
+    var rewardExchange=response.data.data.rewardExchange;
     var number_play=response.data.data.playSummary[0] ? response.data.data.playSummary[0].playerCount : 0;
-    var number_bocbanh=response.data.data.rewardExchange[3] ? response.data.data.rewardExchange[3].totalAvailable : 0;
-    var number_hoamai=response.data.data.rewardExchange[1] ? response.data.data.rewardExchange[1].totalAvailable : 0;
-    var number_hoadao=response.data.data.rewardExchange[2] ? response.data.data.rewardExchange[2].totalAvailable : 0;
-    var number_key=response.data.data.rewardExchange[0] ? response.data.data.rewardExchange[0].totalAvailable : 0;
+    var obj_bocbanh=rewardExchange.filter(v=>v.eventCode==="BANH_TRUNG");
+    var number_bocbanh=obj_bocbanh.length > 0 ? obj_bocbanh[0].totalAvailable : 0;
+    var obj_hoamai=rewardExchange.filter(v=>v.eventCode==="HOA_MAI");
+    var number_hoamai=obj_hoamai.length > 0 ? obj_hoamai[0].totalAvailable : 0;
+    var obj_hoadao=rewardExchange.filter(v=>v.eventCode==="HOA_DAO");
+    var number_hoadao=obj_hoadao.length > 0 ? obj_hoadao[0].totalAvailable : 0;
+    var obj_key=rewardExchange.filter(v=>v.eventCode==="NHAN_KHOA");
+    var number_key=obj_key.length > 0 ? obj_key[0].totalAvailable : 0;
     var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}, {id:'number_play_vq', value:number_play}, {id:'number_bocbanh', value:number_bocbanh}, {id:'number_hoamai', value:number_hoamai}, {id:'number_hoadao', value:number_hoadao}, {id:'number_key', value:number_key}]
     common_sdk.setInfoUser(list);
   },
+
   error(err){
-    vtcmAuth.logout();
+    // vtcmAuth.logout();
     // $('#modal-notify').modal('show'); 
     // var e = document.getElementById('content_notify');
     // e.innerText=error.response.data.message;
