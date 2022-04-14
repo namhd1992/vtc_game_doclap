@@ -7,7 +7,7 @@ const vtcmEvent = {
     modeId_history:0,
     totalPage:1,
 	initAuth(){
-        console.log('AAAAAAAA')
+        console.log('...')
 	},
 	
 	getConfig() {        
@@ -16,18 +16,17 @@ const vtcmEvent = {
 
   
   rollup(modeId, roomId){
-        var user = JSON.parse(localStorage.getItem("user"));
-        if(user!==null){
+        if(vtcmAuth.isLogin()){
             var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/rewards/receive-event-free';
             var header = {
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${user.access_token}`
+                    "Authorization": `Bearer ${vtcmAuth.getToken()}`
                 }
             }
             var data= {...info};
             data.modeId=modeId;
-            data.userId=user.uid;
+            data.userId=vtcmAuth.getUserId();
             data.roomId= roomId;
             data.character="";
             data.server="";
@@ -79,19 +78,18 @@ const vtcmEvent = {
     playGame(type, value, key){
         if(!vtcmEvent.isPlay){
             vtcmEvent.isPlay=true;
-            var user = JSON.parse(localStorage.getItem("user"));
-            if(user!==null){
+            if(vtcmAuth.isLogin()){
                 var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/rewards/receive-event-play';
                 var header = {
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${user.access_token}`
+                        "Authorization": `Bearer ${vtcmAuth.getToken()}`
                     }
                 }
                 var data= {...info};
                 data.modeId=10003;
                 data.gameId=vtcmApp.config_.gameId;
-                data.userId=user.uid;
+                data.userId=vtcmAuth.getUserId();
                 data.autoPlay=false;
                 data.round=0;
                 data.numPlayed=type;
@@ -186,18 +184,17 @@ const vtcmEvent = {
     },
 
     getHistory(page, modeId){
-        var user = JSON.parse(localStorage.getItem("user"));
-        if(user!==null){
+        if(vtcmAuth.isLogin()){
             if(vtcmEvent.totalPage>page && page>=0){
                 var header = {
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${user.access_token}`
+                        "Authorization": `Bearer ${vtcmAuth.getToken()}`
                     }
                 }
                 var data= {...info};
                 data.modeId=modeId;
-                data.userId=user.uid;
+                data.userId=vtcmAuth.getUserId();
                 data.transactionType=-1;
                 data.type= -1;
                 data.rewardType= -1;
@@ -251,20 +248,19 @@ const vtcmEvent = {
     },
 
     exchangeRewards(modeId, value){
-        var user = JSON.parse(localStorage.getItem("user"));
         var url=vtcmApp.config_.apiBaseUrl+ '/luckyrandom/api/v1/rewards/exchange';
-        if(user!==null){
+        if(vtcmAuth.isLogin()){
             var header = {
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${user.access_token}`
+                    "Authorization": `Bearer ${vtcmAuth.getToken()}`
                 }
             }
             var data= {...info};
             data.modeId=modeId;
             data.gameId=vtcmApp.config_.gameId;
             data.roomId=0;
-            data.userId=user.uid;
+            data.userId=vtcmAuth.getUserId();
             data.rewardId=1;
             data.character="";
             data.server="";
@@ -300,19 +296,18 @@ const vtcmEvent = {
     },
 
     exchangeRewardsWithMilestones(modeId, value){
-        var user = JSON.parse(localStorage.getItem("user"));
         var url=vtcmApp.config_.apiBaseUrl+ '/luckyrandom/api/v1/rewards/receive-event-milestones';
-        if(user!==null){
+        if(vtcmAuth.isLogin()){
             var header = {
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${user.access_token}`
+                    "Authorization": `Bearer ${vtcmAuth.getToken()}`
                 }
             }
             var data= {...info};
             data.modeId=modeId;
             data.roomId=0;
-            data.userId=user.uid;
+            data.userId=vtcmAuth.getUserId();
             data.rewardId=1;
             data.character="";
             data.server="";
@@ -344,8 +339,7 @@ const vtcmEvent = {
     },
 
     bocbanh(key, number, modeId){
-        var user = JSON.parse(localStorage.getItem("user"));
-        if(user!==null){
+        if(vtcmAuth.isLogin()){
             vtcmEvent.exchangeRewards(modeId, number)
             for (let i = 0; i < number; i++) {
                 var e = document.getElementById(key+(i+1));
@@ -361,19 +355,18 @@ const vtcmEvent = {
 
     playFlipCard(value, key, content){
         if(!vtcmEvent.isPlayPickup){
-            var user = JSON.parse(localStorage.getItem("user"));
-            if(user!==null){
+            if(vtcmAuth.isLogin()){
                 var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/rewards/receive-event-play';
                 var header = {
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${user.access_token}`
+                        "Authorization": `Bearer ${vtcmAuth.getToken()}`
                     }
                 }
                 var data= {...info};
                 data.modeId=10010;
                 // data.modeId=10003;
-                data.userId=user.uid;
+                data.userId=vtcmAuth.getUserId();
                 data.autoPlay=false;
                 data.round=0;
                 data.numPlayed=value;
@@ -470,6 +463,20 @@ const vtcmEvent = {
     },
 
     getRewardTop(value){
+
+    }, 
+
+    getKey(){
+        // var e=document.getElementById('tab-1')
+        // var e2=document.getElementById('tab-2')
+        // var btn1=document.getElementsByClassName('btn-boc-banh-chung-xanh')
+        // var btn2=document.getElementsByClassName('btn-li-xi-may-man')
+        // e.classList.add("active");
+        // e.classList.add("show");
+        // btn1.classList.add("active");
+        // e2.classList.remove("active");
+        // e2.classList.remove("show");
+        // btn2.classList.remove("active");
 
     }
 

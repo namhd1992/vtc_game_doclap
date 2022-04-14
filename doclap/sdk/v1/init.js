@@ -11,7 +11,7 @@ const info={
 }
 const vtcmInit = {
 	initAuth(){
-    console.log('AAAAAAAA')
+    console.log('...')
 	},
 	
 	getConfig() {        
@@ -51,29 +51,31 @@ const vtcmInit = {
   setDataToUI(response){
     vtcmApp.data_setting=response.data.data;
     var data=response.data.data.common;
-    var obj_fanpage_fb=data.filter(v =>v.code===EVT_FANPAGE_URL);
-    var obj_group_fb=data.filter(v =>v.code===EVT_GROUP_URL);
-    var obj_evt_guide=data.filter(v =>v.code===EVT_GUIDE);
-    var obj_evt_rollup=data.filter(v =>v.code===EVT_ROLLUP_CONTENT);
-    var obj_rewards=data.filter(v =>v.code===EVT_REWARDS);
-    var obj_meta_title=data.filter(v =>v.code===EVT_META_TITLE);
-    var obj_meta_desc=data.filter(v =>v.code===EVT_META_DESC);
-    var obj_meta_img=data.filter(v =>v.code===EVT_IMAGE_URL);
+    var obj_fanpage_fb=data.filter(v =>v.code===contants.EVT_FANPAGE_URL);
+    var obj_group_fb=data.filter(v =>v.code===contants.EVT_GROUP_URL);
+    var obj_evt_guide=data.filter(v =>v.code===contants.EVT_GUIDE);
+    var obj_evt_rollup=data.filter(v =>v.code===contants.EVT_ROLLUP_CONTENT);
+    var obj_rewards=data.filter(v =>v.code===contants.EVT_REWARDS);
+    var obj_meta_title=data.filter(v =>v.code===contants.EVT_META_TITLE);
+    var obj_meta_desc=data.filter(v =>v.code===contants.EVT_META_DESC);
+    var obj_meta_img=data.filter(v =>v.code===contants.EVT_IMAGE_URL);
   
-    var obj_rollup_points=data.filter(v =>v.code===EVT_ROLLUP_POINTS);
-    var obj_recharge_url=data.filter(v =>v.code===EVT_RECHARGE_URL);
-    var obj_payment_url=data.filter(v =>v.code===EVT_PAYMENT_URL);
-    var obj_moruong=data.filter(v =>v.code===EVT_MORUONG_CONTENT);
-  
+    var obj_rollup_points=data.filter(v =>v.code===contants.EVT_ROLLUP_POINTS);
+    var obj_recharge_url=data.filter(v =>v.code===contants.EVT_RECHARGE_URL);
+    var obj_payment_url=data.filter(v =>v.code===contants.EVT_PAYMENT_URL);
+    var obj_moruong=data.filter(v =>v.code===contants.EVT_MORUONG_CONTENT);
+
+    var obj_title=data.filter(v =>v.code===contants.EVT_NAME);
+    document.title=obj_title[0].value;
     var list_item_link=[{id:"fanpage_fb", value:obj_fanpage_fb[0].value},{id:"md_fanpage_fb", value:obj_fanpage_fb[0].value},{id:'group_fb', value:obj_group_fb[0].value},{id:'md_group_fb', value:obj_group_fb[0].value},{id:'md_buycard', value:obj_payment_url[0].value},{id:'md_napgame', value:obj_recharge_url[0].value}];
     var list_item_content=[{id:"content_evt_guide", value:obj_evt_guide[0].value},{id:'content_evt_rollup', value:obj_evt_rollup[0].value}, {id:'content_rewards', value:obj_rewards[0].value}, {id:'rollup_points', value:obj_rollup_points[0].value}, {id:'content_moruong', value:obj_moruong[0].value}]
-    var list_item_meta=[{id:"og-title", value:obj_meta_title[0].value},{id:'og-description', value:obj_meta_desc[0].value}, {id:'og-image', value:obj_meta_img[0].value}]
+    var list_item_meta=[{id:"og-title", value:obj_meta_title[0].value},{id:'og-description', value:obj_meta_desc[0].value}, {id:'description', value:obj_meta_desc[0].value}, {id:'og-image', value:obj_meta_img[0].value}]
     common_sdk.setLinkToItem(list_item_link);
     common_sdk.setContentToItem(list_item_content);
     common_sdk.setContentMeta(list_item_meta);
   },
   uiLine(response){
-    var number_play=response.data.data.playSummary[0].playerCount;
+    var number_play=response.data.data.playSummary[0] ? response.data.data.playSummary[0].playerCount : 0;
     if(number_play >= 20 && number_play < 40){
       var e = document.getElementById('timeline_20');
       e.classList.add("active");
@@ -105,7 +107,7 @@ const vtcmInit = {
     common_sdk.setInfoUser(list);
   },
   error(err){
-    console.log(err)
+    vtcmAuth.logout();
     // $('#modal-notify').modal('show'); 
     // var e = document.getElementById('content_notify');
     // e.innerText=error.response.data.message;

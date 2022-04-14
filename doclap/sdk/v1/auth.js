@@ -3,7 +3,7 @@ const vtcmAuth = {
     client_id:"92d34808c813f4cd89578c92896651ca",
 
 	initAuth(){
-        console.log('AAAAAA')
+        console.log('...')
 	},
 	
 	getConfig() {        
@@ -45,7 +45,7 @@ const vtcmAuth = {
             }
         }else{
     
-            var code = utils_sdk.parse_query_string("code", window.location.href);
+            var code = common_sdk.parse_query_string("code", window.location.href);
             // var currentPath=localStorage.getItem("currentPath");
             vtcmInit.getAppSetting();
             if (code != null) {
