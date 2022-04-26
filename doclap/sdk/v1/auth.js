@@ -40,7 +40,7 @@ const vtcmAuth = {
             if (millisecond > 0) {
                 // e.innerHTML=div_login;
             } else {
-                logout();
+                vtcmAuth.logout();
                 // e.innerHTML=div_logout;
             }
         }else{

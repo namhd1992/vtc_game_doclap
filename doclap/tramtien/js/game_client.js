@@ -65,12 +65,12 @@ $(document).ready(function(){
 	'use strict';
     const vtcmAppConfig = {
         host: "http://abc.com",
-        gameId:100004,
-        apiBaseUrl: 'http://171.244.11.133:8088',
-        client_id: "SANBOX",
-        client_secret: "123456abcdef",
-        url_return:`http://127.0.0.1:5500/doclap/tramtien/index.html`,
-        path:'/doclap/tramtien/index.html'
+		gameId:100004,
+		apiBaseUrl: 'http://api.gf.splay.vn',
+		client_id: "GF_EVENTS_WEB",
+		client_secret: "aP6k2Ql68arPH8l",
+		url_return:`http://tramtien.splay.vn/mungdoclap`,
+		path:'/mungdoclap'
     };
     
     game_client.initApp(vtcmAppConfig);

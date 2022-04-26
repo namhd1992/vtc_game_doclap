@@ -113,6 +113,9 @@ const vtcmInit = {
   },
 
   error(err){
+    if(error.response.status==401){
+      vtcmAuth.logout();
+    }
     // vtcmAuth.logout();
     // $('#modal-notify').modal('show'); 
     // var e = document.getElementById('content_notify');
