@@ -63,6 +63,7 @@ const vtcmApp = {
 		var data={...info};
 		data.siteId=vtcmApp.config_.gameId;
 		data.gameId=vtcmApp.config_.gameId;
+		data.modeId=10003;
 		if (!vtcmAuth.isLogin())
 		{
 		  var url=vtcmApp.config_.apiBaseUrl+'/catalog/api/v1/setting/get-app-settings'; 
