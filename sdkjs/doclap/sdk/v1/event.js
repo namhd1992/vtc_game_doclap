@@ -77,7 +77,7 @@ const vtcmEvent = {
     },
 
 
-    getHistory(page, modeId, handlingGetHistory, notificationErr){
+    getHistory(page, modeId, rewardType, handlingGetHistory, notificationErr){
         var header = {
             headers: {
                 "Content-Type": "application/json",
@@ -89,7 +89,7 @@ const vtcmEvent = {
         data.userId=vtcmAuth.getUserId();
         data.transactionType=-1;
         data.type= -1;
-        data.rewardType= -1;
+        data.rewardType= rewardType;
         data.fromDate=0,
         data.toDate= 0,
         data.pageIndex= page;
@@ -98,7 +98,7 @@ const vtcmEvent = {
 
         axios.post(vtcmApp.config_.apiBaseUrl+ '/luckyrandom/api/v1/games/logs',data,header)
         .then(function (response) {
-            handlingGetHistory(page, modeId, response)
+            handlingGetHistory(page, modeId,rewardType, response)
             common_sdk.ui.hideLoading();
         })
         .catch(function (error) {
@@ -108,7 +108,7 @@ const vtcmEvent = {
     },
 
 
-    exchangeRewards(modeId, value, key, handlingExchangeRewards, notificationErr){
+    exchangeRewards(modeId, value, handlingExchangeRewards, notificationErr){
         var url=vtcmApp.config_.apiBaseUrl+ '/luckyrandom/api/v1/rewards/exchange';
         var header = {
             headers: {
@@ -129,7 +129,7 @@ const vtcmEvent = {
 
         axios.post(url,data,header)
         .then(function (response) {
-            handlingExchangeRewards(modeId, value, key, response)
+            handlingExchangeRewards(modeId, value, response)
             common_sdk.ui.hideLoading();
         })
         .catch(function (error) {

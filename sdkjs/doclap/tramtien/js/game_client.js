@@ -1,3 +1,4 @@
+// rewardType=5
 const game_client = {
 	config_: null,	
 	version_: "1.0.0",
@@ -10,6 +11,7 @@ const game_client = {
     page:0,
     modeId_history:0,
     totalPage:1,
+	rewardType:-1,
 	
 	initApp(rawConfig = {}){
 		if (typeof rawConfig !== 'object') {
@@ -41,8 +43,13 @@ const game_client = {
 		});
 
 		$(".btn-lich-su-du-xuan").click(function(e) {
-			game_client.getHistory(0, 10003)
+			game_client.getHistory(0, 10003, -1)
 		});
+
+		$(".btn-diem-danh").click(function(e) {
+			game_client.getHistory(0, -1, 5)
+		});
+
 
 		$(".timeline-item").click(function(e) {
 			var value=e.currentTarget.getAttribute('value')
@@ -60,7 +67,7 @@ const game_client = {
 
 		$(".btn-nhan-giftcode").click(function(e) {
 			var value=e.currentTarget.getAttribute('value')
-			game_client.exchangeRewards(10005, value, 'bb-item_')
+			game_client.exchangeRewards(10005, value)
 		});
 
 		$(".flipbox-item").click(function(e) {
@@ -74,7 +81,7 @@ const game_client = {
 		});
 
 		$(".btn-lich-su").click(function(e) {
-			game_client.getHistory(0, 10010)
+			game_client.getHistory(0, 10010, -1)
 		});
 
 		$(".btn-doi-thuong").click(function(e) {
@@ -112,6 +119,7 @@ const game_client = {
 		game_client.setDataToUI(response)
 		game_client.setDataUser(response)
 		game_client.uiLine(response);
+		game_client.uiBocbanh(response);
 	},
 	
 	setDataToUI(response){
@@ -167,7 +175,13 @@ const game_client = {
 		}else{
 		  console.log('chưa đủ lượt chơi')
 		}
-	   
+	},
+
+	uiBocbanh(response){
+		var rewardExchange=response.data.data.rewardExchange;
+		var obj_bocbanh=rewardExchange.filter(v=>v.eventCode==="BANH_TRUNG");
+		var number_bocbanh=obj_bocbanh.length > 0 ? obj_bocbanh[0].totalAvailable : 0;
+		game_client.bocbanh(number_bocbanh,'bb-item_')
 	},
 
 	setDataUser(response){
@@ -211,7 +225,7 @@ const game_client = {
 			if(roomId!==0){
 				$('#modal-diem-danh').modal('hide'); 
 				$('#modal-nhan-code').modal('show'); 
-				document.getElementById('modal-form-code').value=response.data.rewards[0].rewardCode;
+				document.getElementById('modal-form-code').value=response.data.data.rewards[0].rewardCode;
 			}else{
 				$('#modal-nhan-vang').modal('hide'); 
 				$('#modal-notify').modal('show'); 
@@ -268,6 +282,7 @@ const game_client = {
             e.innerHTML='';
             e.style.marginTop='0px';
             var tb = document.getElementById('tb_content_result_vq');
+			tb.innerHTML='';
             for (let i = 0; i < data.length; i++) {
                 $(tb).append(`<tr>
                 <th scope="row">Lượt ${i+1}</th>
@@ -311,17 +326,17 @@ const game_client = {
         
     },
 	
-	getHistory(page, modeId){
+	getHistory(page, modeId, rewardType){
         if(vtcmAuth.isLogin()){
             if(game_client.totalPage>page && page>=0){
-                vtcmEvent.getHistory(page, modeId, this.handlingGetHistory, this.notificationErr)
+                vtcmEvent.getHistory(page, modeId, rewardType, this.handlingGetHistory, this.notificationErr)
             }
         } else{
             $('#modal-warning-login').modal('show'); 
         }
     },
 
-	handlingGetHistory(page, modeId, response){
+	handlingGetHistory(page, modeId,rewardType, response){
 		if(response.data.code >=0){
 			const items=response.data.data.items;
 			if(items.length>0){
@@ -338,6 +353,7 @@ const game_client = {
 				}
 				game_client.page=page;
 				game_client.modeId_history=modeId;
+				game_client.rewardType=rewardType;
 				$('#modal-lich-su').modal('show'); 
 			}else{
 				$('#modal-notify').modal('show'); 
@@ -353,32 +369,33 @@ const game_client = {
 	},
 
     previous(){
-        game_client.getHistory(game_client.page-1, game_client.modeId_history)
+        game_client.getHistory(game_client.page-1, game_client.modeId_history, game_client.rewardType)
     },
 
     next(){
-        game_client.getHistory(game_client.page+1, game_client.modeId_history)
+        game_client.getHistory(game_client.page+1, game_client.modeId_history, game_client.rewardType)
     },
 
-	exchangeRewards(modeId, value, key){
+	exchangeRewards(modeId, value){
         if(vtcmAuth.isLogin()){
-            vtcmEvent.exchangeRewards(modeId, value, key, this.handlingExchangeRewards, this.notificationErr)
+            vtcmEvent.exchangeRewards(modeId, value, this.handlingExchangeRewards, this.notificationErr)
         } else{
             $('#modal-warning-login').modal('show'); 
         }
     },
 
-	handlingExchangeRewards(modeId, value, key, response){
+	handlingExchangeRewards(modeId, value, response){
 		if(response.data.code >= 0){
 			if(modeId===10006){
 				$('#modal-notify').modal('show'); 
 				var e = document.getElementById('content_notify');
 				e.innerText='Nhận khóa thành công';
 			}else if(modeId===10005){
-				game_client.bocbanh(value, key);
+				$('#modal-nhan-code').modal('show'); 
+				document.getElementById('modal-form-code').value=response.data.data.rewards[0].rewardCode;
 			}else {
 				$('#modal-nhan-code').modal('show'); 
-				document.getElementById('modal-form-code').value=response.data.rewards[0].rewardCode;
+				document.getElementById('modal-form-code').value=response.data.data.rewards[0].rewardCode;
 			}
 			
 		}else{
@@ -389,8 +406,9 @@ const game_client = {
 	},
 
 	bocbanh(number, key){
-        for (let i = 0; i < number; i++) {
-            var e = document.getElementById(key+(i+1));
+		var n=number > 16 ? 16 : number;
+        for (let i = 1; i <= n; i++) {
+            var e = document.getElementById(key + i);
             e.classList.add("hide");
         }
     },
@@ -406,7 +424,7 @@ const game_client = {
 	handlingExchangeRewardsWithMilestones(response){
 		if(response.data.code >= 0){
 			$('#modal-nhan-code').modal('show'); 
-			document.getElementById('modal-form-code').value=response.data.rewards[0].rewardCode;
+			document.getElementById('modal-form-code').value=response.data.data.rewards[0].rewardCode;
 		}else{
 			$('#modal-notify').modal('show'); 
 			var e = document.getElementById('content_notify');
@@ -451,7 +469,7 @@ const game_client = {
                 game_client.isPlayPickup=false;
             },3000)
         }else{
-            for (let i = 1; i < data.length; i++) {
+            for (let i = 1; i < data.length+1; i++) {
                 var e = document.getElementById(key+i);
                 e.classList.add("active");
                 var e1 = document.getElementById(content+i);
@@ -541,10 +559,10 @@ $(document).ready(function(){
 		apiBaseUrl: 'http://api.gf.splay.vn',
 		client_id: "GF_EVENTS_WEB",
 		client_secret: "aP6k2Ql68arPH8l",
-		url_return:`http://tramtien.splay.vn/mungdoclap`,
-		path:'/mungdoclap'
-		// url_return:`http://10.1.0.191:5500/doclap/tramtien/index.html`,
-		// path:'/doclap/tramtien/index.html'
+		// url_return:`http://tramtien.splay.vn/mungdoclap`,
+		// path:'/mungdoclap'
+		url_return:`http://127.0.0.1:5500/doclap/tramtien/index.html`,
+		path:'/doclap/tramtien/index.html'
     };
     game_client.initApp(vtcmAppConfig);
 });
