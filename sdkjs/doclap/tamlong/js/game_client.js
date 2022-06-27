@@ -33,11 +33,11 @@ const game_client = {
 
 
 		$("#btn-du-xuan-1").click(function(e) {
-			game_client.playGame(1,16,'item_vq_')
+			game_client.playGame(10003, 1,16,'item_vq_')
 		});
 
 		$("#btn-du-xuan-10").click(function(e) {
-			game_client.playGame(10,16,'item_vq_')
+			game_client.playGame(10003, 10,16,'item_vq_')
 		});
 
 		$(".btn-lich-su-du-xuan").click(function(e) {
@@ -66,11 +66,11 @@ const game_client = {
 		$(".flipbox-item").click(function(e) {
 			var id=e.currentTarget.getAttribute('id')
 			var content=e.currentTarget.getAttribute('content')
-			game_client.playFlipCard(1, id, content)
+			game_client.playFlipCard(10010, 1, id, content)
 		});
 
 		$(".btn-lat-10-the").click(function(e) {
-			game_client.playFlipCard(10, 'card_', 'content_card_')
+			game_client.playFlipCard(10010, 10, 'card_', 'content_card_')
 		});
 
 		$(".btn-lich-su").click(function(e) {
@@ -231,11 +231,17 @@ const game_client = {
 	},
 	
 
-	playGame(type, value, key){
+	playGame(modeId, numPlayed, value, key){
+		var objectParamsReturn={
+			type:numPlayed,
+			value:value,
+			key:key,
+			modeId:modeId
+		}
         if(!game_client.isPlay){
             game_client.isPlay=true;
             if(vtcmAuth.isLogin()){
-				vtcmEvent.playGame(type, value, key, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
+				vtcmEvent.playGame(modeId, numPlayed, objectParamsReturn, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
             }else{
                 game_client.isPlay=false;
                 $('#modal-warning-login').modal('show');
@@ -243,9 +249,9 @@ const game_client = {
         }
     },
 
-	handlingPlayGame(type, value, key, response){
+	handlingPlayGame(objectParamsReturn, response){
 		if(response.data.code>=0){
-			game_client.abc(type, value, key, response.data.data.rewards)
+			game_client.abc(objectParamsReturn, response.data.data.rewards)
 		}else{
 			$('#modal-notify').modal('show'); 
 			var e = document.getElementById('content_notify');
@@ -254,9 +260,9 @@ const game_client = {
 		}
 	},
 
-	abc(type, value, key, data){
+	abc(objectParamsReturn, value, key, data){
         var n=Math.floor(Math.random() * 16);
-        if(type===1){
+        if(objectParamsReturn.type===1){
             var tb = document.getElementById('tb_content_result_vq');
             var result = document.getElementById('content_result_vq');
             result.style.marginTop='100px';
@@ -277,16 +283,16 @@ const game_client = {
             }
         }
         game_client.animation_vq=setInterval(()=>{
-            game_client.animation(key, value, data);
+            game_client.animation(objectParamsReturn.key, objectParamsReturn.value, data);
         },100)
         setTimeout(()=>{
             game_client.isPlay=false;
             clearInterval(game_client.animation_vq)
             $('#modal-thuong-du-xuan').modal('show');
-            var e1 = document.getElementById(key+(game_client.n-1));
+            var e1 = document.getElementById(objectParamsReturn.key+(game_client.n-1));
             e1.classList.remove("active");
             game_client.n=1;
-        },(n+value)*100);
+        },(n+objectParamsReturn.value)*100);
     },
 
     animation(key, value){
@@ -417,10 +423,16 @@ const game_client = {
 		}
 	},
 
-	playFlipCard(value, key, content){
+	playFlipCard(modeId, numPlayed, key, content){
+		var objectParamsReturn={
+			value:numPlayed,
+			key:key,
+			content:content,
+			modeId:modeId
+		}
         if(!game_client.isPlayPickup){
             if(vtcmAuth.isLogin()){
-                vtcmEvent.playFlipCard(value, key, content, this.handlingPlayFlipCard, this.notificationErr, this.setStatusLatThe)
+                vtcmEvent.playGame(modeId, numPlayed, objectParamsReturn, this.handlingPlayFlipCard, this.notificationErr, this.setStatusLatThe)
             }else{
                 $('#modal-warning-login').modal('show'); 
                 game_client.isPlayPickup=false;
@@ -429,9 +441,9 @@ const game_client = {
         }
     },
 
-	handlingPlayFlipCard(value, key, content, response){
+	handlingPlayFlipCard(objectParamsReturn, response){
 		if(response.data.code>=0){
-			game_client.pick_up(value, key, content, response.data.data.rewards)
+			game_client.pick_up(objectParamsReturn.value, objectParamsReturn.key, objectParamsReturn.content, response.data.data.rewards)
 		}else{
 			$('#modal-notify').modal('show'); 
 			var e = document.getElementById('content_notify');
@@ -539,7 +551,6 @@ const game_client = {
 $(document).ready(function(){
 	'use strict';
     const vtcmAppConfig = {
-        host: "http://abc.com",
 		gameId:100004,
 		apiBaseUrl: 'http://api.gf.splay.vn',
 		client_id: "GF_EVENTS_WEB",
