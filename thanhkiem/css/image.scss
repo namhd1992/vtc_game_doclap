@@ -1,0 +1,440 @@
+// @for $i from 1 through 4 {
+//     .webp .page--#{$i} {
+//         background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/bg/bg#{$i}.webp");
+//     }
+//     .no-webp .page--#{$i} {
+//         background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/bg/bg#{$i}.jpg");
+//     }
+// }
+@for $i from 1 through 5 {
+    .webp .artGroup--#{$i} {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/bg/art#{$i}.webp");
+    }
+    .no-webp .artGroup--#{$i} {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/bg/art#{$i}.png");
+    }
+}
+.webp .main {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/bg/bgbig.webp");
+}
+.no-webp .main {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/bg/bgbig.jpg");
+}
+.webp .logoImage {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/logo.webp");
+}
+.no-webp .logoImage {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/logo.png");
+}
+.webp .slogan--1 {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/slogan.webp");
+}
+.no-webp .slogan--1 {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/slogan.png");
+}
+.webp .backgroundArt {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/bg/art.webp");
+}
+.no-webp .backgroundArt {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/bg/art.png");
+}
+.webp .imageGroup {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/image1.webp");
+}
+.no-webp .imageGroup {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/image1.png");
+}
+
+.webp .registration {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/bg-text.webp");
+}
+.no-webp .registration {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/bg-text.png");
+}
+
+.webp .loading {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/loading.webp");
+}
+.no-webp .loading {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/loading.png");
+}
+
+.webp .buttonItem {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/btn2mb.webp");
+}
+.no-webp .buttonItem{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/btn2mb.png");
+}
+.webp .wheel {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/vongquay.webp");
+}
+.no-webp .wheel{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/vongquay.png");
+}
+.webp .wheelSpin{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/vongtrong.webp");
+}
+.no-webp .wheelSpin{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/vongtrong.png");
+}
+.webp .playNow{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/play.webp");
+}
+.no-webp .playNow{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/play.png");
+}
+.webp .pointStages{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/btn3mb.webp");
+}
+.no-webp .pointStages{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/btn3mb.png");
+}
+.webp .boxImage{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/boxmb.webp");
+}
+.no-webp .boxImage{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/boxmb.png");
+}
+.webp .pop__group{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/pop.webp");
+}
+.no-webp .pop__group{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/pop.png");
+}
+.webp .pop__group--mission{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/pop2.webp");
+}
+.no-webp .pop__group--mission{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/pop2.png");
+}
+.webp .pop__group--notifyBox{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/pop2.webp");
+}
+.no-webp .pop__group--notifyBox{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/pop2.png");
+}
+.webp .btn__ms{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/btnpop.webp");
+}
+.no-webp .btn__ms{
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/btnpop.png");
+}
+.webp .slogan--2 {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/text11.webp");
+}
+.no-webp .slogan--2 {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/text11.png");
+}
+.webp .slogan--3 {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/text22.webp");
+}
+.no-webp .slogan--3 {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/text22.png");
+}
+.webp .slogan--4 {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/text32.webp");
+}
+.no-webp .slogan--4 {
+    background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/text32.png");
+}
+.scrollbar--custom::-webkit-scrollbar-track
+{
+    box-shadow: inset 0 0 6px  #ccc;
+    background-color:#ccc;
+}
+.scrollbar--custom::-webkit-scrollbar
+{
+    width: 3px;
+    background-color: #ccc;
+    -webkit-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    margin-right: -20px;
+}
+.scrollbar--custom::-webkit-scrollbar-thumb
+{
+    background-color: #936603;
+    border-radius: 10px;
+}
+@keyframes lenxuong {
+    0% {transform: translateX(0px) translateY(10px)}
+    50% {transform: translateX(0px) translateY(0)}
+    100% {transform: translateX(0px) translateY(10px)}
+}
+@-webkit-keyframes lenxuong {
+    0% {transform: translateX(0px) translateY(10px)}
+    50% {transform: translateX(0px) translateY(0)}
+    100% {transform: translateX(0px) translateY(10px)}
+}
+@keyframes showpopup {
+    0% {
+        top: 60%;
+    }
+    100% {
+        top: 50%;
+    }
+}
+@keyframes showArts {
+    0% {
+        transform:translateX(-60%);
+        opacity: 0.2;
+    }
+    100% {
+        transform:translateX(-50%);
+        opacity: 1;
+    }
+}
+@keyframes showArt {
+    0% {
+       opacity: 0.5;
+       transform: scale(0.7);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes light {
+    from {
+        left: -100%;
+        top: -100%;
+    }
+    to {
+        left: 100%;
+        top: 100%;
+    }
+}
+@-webkit-keyframes light {
+    from {
+        left: -100%;
+        top: -100%;
+    }
+    to {
+        left: 100%;
+        top: 100%;
+    }
+}
+@keyframes turn1 {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes zoomEffect2 {
+    0% {
+        transform: scale(1, 1);
+    }
+    25% {
+        transform: scale(1.02, 1.02);
+    }
+    50% {
+        transform: scale(1, 1);
+    }
+    75% {
+        transform: scale(1.02, 1.02);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+@-webkit-keyframes zoomEffect2 {
+    0% {
+        transform: scale(1, 1);
+    }
+    25% {
+        transform: scale(1.02, 1.02);
+    }
+    50% {
+        transform: scale(1, 1);
+    }
+    75% {
+        transform: scale(1.02, 1.02);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+
+@-webkit-keyframes searchLights {
+	0% {
+		left: -100px;
+		top: 30px;
+	}
+	to {
+		left: 250px;
+		top: 30px;
+	}
+}
+
+@-moz-keyframes searchLights {
+	0% {
+		left: -100px;
+		top: 30px;
+	}
+	to {
+		left: 250px;
+		top: 30px;
+	}
+}
+
+@-o-keyframes searchLights {
+	0% {
+		left: -100px;
+		top: 30px;
+	}
+	to {
+		left: 250px;
+		top: 30px;
+	}
+}
+
+@keyframes searchLights {
+	0% {
+		left: -100px;
+		top: 30px;
+	}
+	to {
+		left: 250px;
+		top: 30px;
+	}
+}
+@keyframes moveleft {
+    0% {
+      left: -100%; }
+    100% {
+      left: 100%; }
+}
+@-webkit-keyframes wobble {
+    from,
+    to {
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      -webkit-transform: translateX(-50%) translate3d(-1%, 0, 0) rotate3d(0, 0, 1, -1deg);
+              transform: translateX(-50%) translate3d(-1%, 0, 0) rotate3d(0, 0, 1, -1deg);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+      -webkit-transform: translateX(-50%) translate3d(1%, 0, 0) rotate3d(0, 0, 1, 1deg);
+              transform: translateX(-50%) translate3d(1%, 0, 0) rotate3d(0, 0, 1, 1deg);
+    }
+  }
+  @keyframes wobble {
+    from,
+    to {
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      -webkit-transform: translateX(-50%) translate3d(-1%, 0, 0) rotate3d(0, 0, 1, -1deg);
+              transform: translateX(-50%) translate3d(-1%, 0, 0) rotate3d(0, 0, 1, -1deg);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+      -webkit-transform: translateX(-50%) translate3d(1%, 0, 0) rotate3d(0, 0, 1, 1deg);
+              transform: translateX(-50%) translate3d(1%, 0, 0) rotate3d(0, 0, 1, 1deg);
+    }
+  }
+@media(max-width:1600px){
+    .popFix .art__girl{
+        left: 46% !important;
+    }
+}
+@media(max-width:1400px){
+    .popFix .art__girl{
+       display: none !important;
+    }  
+}
+@media(max-width:1024px){
+    @for $i from 1 through 5 {
+        .webp .artGroup--#{$i} {
+            background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/bg/art#{$i}mb.webp");
+        }
+        .no-webp .artGroup--#{$i} {
+            background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/bg/art#{$i}mb.png");
+        }
+    }
+}
+@media(max-width:960px){
+    .webp .main {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/bg.webp");
+    }
+    .no-webp .main {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/bg.jpg");
+    }
+    .webp .btnItem--home {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/btnmb1.webp");
+    }
+    .no-webp .btnItem--home {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/btnmb1.png");
+    }
+    .webp .btnItem--group {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/btnmb2.webp");
+    }
+    .no-webp .btnItem--group {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/btnmb2.png");
+    }
+    .webp .btnItem--fanpage {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/btnmb3.webp");
+    }
+    .no-webp .btnItem--fanpage {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/btnmb3.png");
+    }
+    .webp .slogan--1 {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/sloganmbfx.webp");
+    }
+    .no-webp .slogan--1{
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/sloganmbfx.png");
+    }
+    .webp .btnGroup--home {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/m1.webp");
+    }
+    .no-webp .btnGroup--home{
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/m1.png");
+    }
+    .webp .btnGroup--ios {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/m2.webp");
+    }
+    .no-webp .btnGroup--ios{
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/m2.png");
+    }
+    .webp .btnGroup--adr {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/m3.webp");
+    }
+    .no-webp .btnGroup--adr{
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/m3.png");
+    }
+    .webp .btnGroup--video {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/m4.webp");
+    }
+    .no-webp .btnGroup--video{
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/m4.png");
+    }
+    .webp .btnGroup--video {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/m4.webp");
+    }
+    .no-webp .btnGroup--video{
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/m4.png");
+    }
+    .webp .btnAward {
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/btnmb.webp");
+    }
+    .no-webp .btnAward{
+        background-image: url("https://cdn.smobgame.com/template/thanhkiem/images/update/btnmb.png");
+    }
+}

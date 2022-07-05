@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'UTM Essendine Caps';
+    src: url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMEssendineCapsBold.eot');
+    src: url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMEssendineCapsBold.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMEssendineCapsBold.woff2') format('woff2'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMEssendineCapsBold.woff') format('woff'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMEssendineCapsBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'UTM Alter Gothic';
+    src: url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMAlterGothic.eot');
+    src: url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMAlterGothic.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMAlterGothic.woff2') format('woff2'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMAlterGothic.woff') format('woff'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMAlterGothic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'UTM Essendine Caps';
+    src: url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMEssendineCaps.eot');
+    src: url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMEssendineCaps.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMEssendineCaps.woff2') format('woff2'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMEssendineCaps.woff') format('woff'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMEssendineCaps.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'VL Bebas Neue';
+    src: url('https://cdn.smobgame.com/template/thanhkiem/fonts/VLBebasNeueBold.eot');
+    src: url('https://cdn.smobgame.com/template/thanhkiem/fonts/VLBebasNeueBold.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/VLBebasNeueBold.woff2') format('woff2'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/VLBebasNeueBold.woff') format('woff'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/VLBebasNeueBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'UTM Copperplate';
+    src: url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMCopperplateBold.eot');
+    src: url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMCopperplateBold.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMCopperplateBold.woff2') format('woff2'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMCopperplateBold.woff') format('woff'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMCopperplateBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'UTM Copperplate';
+    src: url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMCopperplate.eot');
+    src: url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMCopperplate.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMCopperplate.woff2') format('woff2'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMCopperplate.woff') format('woff'),
+        url('https://cdn.smobgame.com/template/thanhkiem/fonts/UTMCopperplate.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
