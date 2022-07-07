@@ -11,6 +11,7 @@ const vtcmAuth = {
     },
 
     login(){
+        console.log(`${vtcmAuth.url_auth}?client_id=${vtcmAuth.client_id}&agencyid=0&redirect_uri=${vtcmApp.config_.url_return}`)
         window.location.replace(`${vtcmAuth.url_auth}?client_id=${vtcmAuth.client_id}&agencyid=0&redirect_uri=${vtcmApp.config_.url_return}`)
     },
 

@@ -38,12 +38,12 @@ const vtcmEvent = {
             handlingRollup(roomId, response)
             common_sdk.ui.hideLoading();
         })
-        .catch(function (error) {
+        .catch(function (err) {
             if(err.response){
                 if(err.response.status===401){
                     vtcmAuth.logout();
                 }else{
-                    notificationErrRollup(roomId, error)
+                    notificationErrRollup(roomId, err)
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {
@@ -78,14 +78,14 @@ const vtcmEvent = {
             handlingPlayGame(objectParamsReturn, response)
             common_sdk.ui.hideLoading();
         })
-        .catch(function (error) {
+        .catch(function (err) {
             if(err.response){
                 if(err.response.status===401){
                     vtcmAuth.logout();
                 }else{
                     common_sdk.ui.hideLoading();
                     setStatusGame();
-                    notificationErr(error)
+                    notificationErr(err)
                 }
             }else if (err.request) {
                 $('body').html('');
@@ -122,12 +122,12 @@ const vtcmEvent = {
             handlingGetHistory(page, modeId,rewardType, response)
             common_sdk.ui.hideLoading();
         })
-        .catch(function (error) {
+        .catch(function (err) {
             if(err.response){
                 if(err.response.status===401){
                     vtcmAuth.logout();
                 }else{
-                    notificationErr(error)
+                    notificationErr(err)
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {
@@ -165,12 +165,12 @@ const vtcmEvent = {
             handlingExchangeRewards(modeId, value, response)
             common_sdk.ui.hideLoading();
         })
-        .catch(function (error) {
+        .catch(function (err) {
             if(err.response){
                 if(err.response.status===401){
                     vtcmAuth.logout();
                 }else{
-                    notificationErr(error)
+                    notificationErr(err)
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {
@@ -206,12 +206,12 @@ const vtcmEvent = {
             handlingExchangeRewardsWithMilestones(response)
             common_sdk.ui.hideLoading();
         })
-        .catch(function (error) {
+        .catch(function (err) {
             if(err.response){
                 if(err.response.status===401){
                     vtcmAuth.logout();
                 }else{
-                    notificationErr(error)
+                    notificationErr(err)
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {
@@ -247,13 +247,13 @@ const vtcmEvent = {
                     handlingPlayFlipCard(value, key, content, response)
                     common_sdk.ui.hideLoading();
                 })
-                .catch(function (error) {
+                .catch(function (err) {
                     if(err.response){
                         if(err.response.status===401){
                             vtcmAuth.logout();
                         }else{
                             setStatusLatThe();
-                            notificationErr(error);
+                            notificationErr(err);
                             common_sdk.ui.hideLoading();
                         }
                     }else if (err.request) {
@@ -283,12 +283,12 @@ const vtcmEvent = {
             handlingGetBXHLiXi(response)
             common_sdk.ui.hideLoading();
         })
-        .catch(function (error) {
+        .catch(function (err) {
             if(err.response){
                 if(err.response.status===401){
                     vtcmAuth.logout();
                 }else{
-                    notificationErr(error)
+                    notificationErr(err)
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {

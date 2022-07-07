@@ -22,14 +22,15 @@ const game_client = {
 		vtcmApp.initApp(rawConfig);
         if(vtcmAuth.isLogin()){
 			vtcmApp.getAppSetting(game_client.cbwithtoken);
-			
-            document.getElementById("logout").style.display = "none";
-            document.getElementById("login").style.display = "block";
+            document.getElementById("username").innerHTML = vtcmAuth.getUserName();
+            document.getElementById("login").style.display = "none";
+            document.getElementById("logout").style.display = "block";
 
         }else{
 			vtcmApp.getAppSetting(game_client.setDataToUI);
-            document.getElementById("login").style.display = "none";
-            document.getElementById("logout").style.display = "block";
+            document.getElementById("logout").style.display = "none";
+            document.getElementById("login").style.display = "block";
+          
         }
 
 
@@ -116,6 +117,7 @@ const game_client = {
 	},
 
 	cbwithtoken(response){
+        // alert('ok')
 		game_client.setDataToUI(response)
 		game_client.setDataUser(response)
 		game_client.uiLine(response);
@@ -133,6 +135,12 @@ const game_client = {
 		}
 		var obj_fanpage_fb=data.filter(v =>v.code===contants.EVT_FANPAGE_URL);
 		var obj_group_fb=data.filter(v =>v.code===contants.EVT_GROUP_URL);
+        var obj_home_page=data.filter(v =>v.code===contants.EVT_HOMEPAGE_URL);
+        var obj_link_android=data.filter(v =>v.code===contants.EVT_LINK_ANDROID);
+        var obj_link_ios=data.filter(v =>v.code===contants.EVT_LINK_IOS);
+        var obj_link_desktop=data.filter(v =>v.code===contants.EVT_LINK_DESKTOP);
+
+
 		var obj_evt_guide=data.filter(v =>v.code===contants.EVT_GUIDE);
 		var obj_evt_rollup=data.filter(v =>v.code===contants.EVT_ROLLUP_CONTENT);
 		var obj_rewards=data.filter(v =>v.code===contants.EVT_REWARDS);
@@ -147,9 +155,27 @@ const game_client = {
 	
 		var obj_title=data.filter(v =>v.code===contants.EVT_NAME);
 		document.title=obj_title[0].value;
-		var list_item_link=[{id:"fanpage_fb", value:obj_fanpage_fb[0].value},{id:"md_fanpage_fb", value:obj_fanpage_fb[0].value},{id:'group_fb', value:obj_group_fb[0].value},{id:'md_group_fb', value:obj_group_fb[0].value},{id:'md_buycard', value:obj_payment_url[0].value},{id:'md_napgame', value:obj_recharge_url[0].value}];
-		var list_item_content=[{id:"content_evt_guide", value:obj_evt_guide[0].value},{id:'content_evt_rollup', value:obj_evt_rollup[0].value}, {id:'content_rewards', value:obj_rewards[0].value}, {id:'rollup_points', value:obj_rollup_points[0].value}, {id:'content_moruong', value:obj_moruong[0].value}]
-		var list_item_meta=[{id:"og-title", value:obj_meta_title[0].value},{id:'og-description', value:obj_meta_desc[0].value}, {id:'description', value:obj_meta_desc[0].value}, {id:'og-image', value:obj_meta_img[0].value}]
+		var list_item_link=[{id:"sdk_fanpage_fb", value:obj_fanpage_fb[0] ? obj_fanpage_fb[0].value : ''},
+        {id:'sdk_group_fb', value:obj_group_fb[0] ? obj_group_fb[0].value : ''},
+        {id:'sdk_home_page', value:obj_home_page[0] ? obj_home_page[0].value : ''},
+        {id:'sdk_link_game_android', value:obj_link_android[0] ? obj_link_android[0].value : ''},
+        {id:'sdk_link_game_ios', value:obj_link_ios[0] ? obj_link_ios[0].value : ''},
+        {id:'sdk_link_game_desktop', value:obj_link_desktop[0] ? obj_link_desktop[0].value : ''},
+        {id:'md_buycard', value:obj_payment_url[0] ? obj_payment_url[0].value : ''},
+        {id:'md_napgame', value:obj_recharge_url[0] ? obj_recharge_url[0].value : ''}];
+
+
+		var list_item_content=[{id:"sdk_content_evt_guide", value:obj_evt_guide[0] ? obj_evt_guide[0].value : ''},
+        {id:'sdk_content_evt_rollup', value:obj_evt_rollup[0] ? obj_evt_rollup[0].value : ''},
+        {id:'sdk_content_rewards', value:obj_rewards[0] ? obj_rewards[0].value : ''},
+        {id:'rollup_points', value:obj_rollup_points[0] ? obj_rollup_points[0].value : ''}, 
+        {id:'content_moruong', value:obj_moruong[0] ? obj_moruong[0].value : '' }]
+
+		var list_item_meta=[{id:"og-title", value:obj_meta_title[0] ? obj_meta_title[0].value : ''},
+        {id:'og-description', value:obj_meta_desc[0] ? obj_meta_desc[0].value : ''}, 
+        {id:'description', value:obj_meta_desc[0] ? obj_meta_desc[0].value : ''}, 
+        {id:'og-image', value:obj_meta_img[0] ? obj_meta_img[0].value : ''}];
+
 		common_sdk.setLinkToItem(list_item_link);
 		common_sdk.setContentToItem(list_item_content);
 		common_sdk.setContentMeta(list_item_meta);
@@ -188,6 +214,18 @@ const game_client = {
 		var user=response.data.data.user;
 		var rewardExchange=response.data.data.rewardExchange;
 		var number_play=response.data.data.playSummary[0] ? response.data.data.playSummary[0].playerCount : 0;
+        var list=[];
+        list.push({id:'account_user', value:user.userName})
+        var event_rewards=this.config_.arr_event_change_rewards;
+        for (let i = 0; i < event_rewards.length; i++) {
+            var obj=rewardExchange.filter(v=>v.eventCode===event_rewards[i].name);
+            var number_x=obj.length > 0 ? obj[0].totalAvailable : 0;
+            let s={
+                id:event_rewards[i].classname,
+                value:number_x
+            }
+            list.push(s);
+        }
 		var obj_bocbanh=rewardExchange.filter(v=>v.eventCode==="BANH_TRUNG");
 		var number_bocbanh=obj_bocbanh.length > 0 ? obj_bocbanh[0].totalAvailable : 0;
 		var obj_hoamai=rewardExchange.filter(v=>v.eventCode==="HOA_MAI");
@@ -196,7 +234,7 @@ const game_client = {
 		var number_hoadao=obj_hoadao.length > 0 ? obj_hoadao[0].totalAvailable : 0;
 		var obj_key=rewardExchange.filter(v=>v.eventCode==="NHAN_KHOA");
 		var number_key=obj_key.length > 0 ? obj_key[0].totalAvailable : 0;
-		var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}, {id:'number_play_vq', value:number_play}, {id:'number_bocbanh', value:number_bocbanh}, {id:'number_hoamai', value:number_hoamai}, {id:'number_hoadao', value:number_hoadao}, {id:'number_key', value:number_key}]
+		// var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}, {id:'number_play_vq', value:number_play}, {id:'number_bocbanh', value:number_bocbanh}, {id:'number_hoamai', value:number_hoamai}, {id:'number_hoadao', value:number_hoadao}, {id:'number_key', value:number_key}]
 		common_sdk.setInfoUser(list);
 	},
 	
@@ -245,11 +283,16 @@ const game_client = {
 	},
 	
 
-	playGame(type, value, key){
+
+	playGame(modeId, numPlayed){
+		var objectParamsReturn={
+			type:numPlayed,
+			modeId:modeId
+		}
         if(!game_client.isPlay){
             game_client.isPlay=true;
             if(vtcmAuth.isLogin()){
-				vtcmEvent.playGame(type, value, key, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
+				vtcmEvent.playGame(modeId, numPlayed, objectParamsReturn, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
             }else{
                 game_client.isPlay=false;
                 $('#modal-warning-login').modal('show');
@@ -258,13 +301,18 @@ const game_client = {
     },
 
 	handlingPlayGame(type, value, key, response){
+        setTimeout(()=>{
+            game_client.isPlay=false;
+        },1000)
+        
 		if(response.data.code>=0){
-			game_client.abc(type, value, key, response.data.data.rewards)
+            
+			// game_client.abc(type, value, key, response.data.data.rewards)
 		}else{
-			$('#modal-notify').modal('show'); 
-			var e = document.getElementById('content_notify');
-			e.innerText=response.data.message;
-			game_client.isPlay=false;
+			// $('#modal-notify').modal('show'); 
+			// var e = document.getElementById('content_notify');
+			// e.innerText=response.data.message;
+			// // game_client.isPlay=false;
 		}
 	},
 
@@ -380,7 +428,8 @@ const game_client = {
         if(vtcmAuth.isLogin()){
             vtcmEvent.exchangeRewards(modeId, value, this.handlingExchangeRewards, this.notificationErr)
         } else{
-            $('#modal-warning-login').modal('show'); 
+            // $('#modal-warning-login').modal('show'); 
+            alert('Bạn chưa đăng nhập')
         }
     },
 

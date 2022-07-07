@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <meta name="description" content="Ngược dòng lịch sử nhận quà cực zữ"> -->
     <link rel="stylesheet" href="css/swiper-bundle.min.css">
     <link rel="preload" href="font/landing/UTMEssendineCapsBold.woff" type="font/woff" crossorigin>
     <link rel="preload" href="font/landing/UTMEssendineCaps.woff" type="font/woff" crossorigin>
@@ -15,6 +16,9 @@
     <link rel="stylesheet" href="css/aos.css">
     <link rel="stylesheet" href="css/image.css">
     <link rel="stylesheet" href="css/landing.css">
+    <meta name="og-title" property="og:title" content="Ngược dòng lịch sử nhận quà cực zữ" />
+	<meta name="og-description" property="og:description" content="Tham gia và nhận những giải thưởng vô cùng giá trị nào anh em ơi. Sự kiện độc quyền mừng đại lễ 30/4 - 1/5 giành riêng cho tất cả các game thủ." />
+	<meta name="og-image" property="og:image" content="https://i.postimg.cc/d033PyqN/thumbshare.jpg" />
 </head>
 
 <body>
@@ -24,17 +28,17 @@
                 <div class="textNotify">CHÍNH THỨC RA MẮT: 10:00 NGÀY 12/05/2022</div>
                 <div class="nav">
                     <a class="navItem navItem--name" id="username"></a>
-                    <a class="navItem navItem--logout" id="logout"></a>
-                    <a class="navItem navItem--login" id="login"></a>
+                    <a class="navItem navItem--logout" id="logout" onclick="vtcmAuth.logout()">Đăng xuất</a>
+                    <a class="navItem navItem--login" id="login" onclick="vtcmAuth.login()">Đăng nhập</a>
                 </div>
             </div>
         </div>
         <section class="page page--1">
             <div class="pageInner">
                 <div class="headerMB">
-                    <a class="btnItem btnItem--home" id="home_page">Trang Chủ</a>
-                    <a class="btnItem btnItem--group" target="_blank" id="group_fb">Group</a>
-                    <a class="btnItem btnItem--fanpage" target="_blank" id="fanpage_fb">FanPage</a>
+                    <a class="btnItem btnItem--home sdk_home_page" target="_blank">Trang Chủ</a>
+                    <a class="btnItem btnItem--group sdk_group_fb" target="_blank" >Group</a>
+                    <a class="btnItem btnItem--fanpage sdk_fanpage_fb" target="_blank">FanPage</a>
                 </div>
                 <h1 class="logo" data-aos-delay="50" data-aos="fade-down"><a class="logoImage" href="javascript:void(0);">Thánh Kiếm</a></h1>
                 <div data-aos="fade-left">
@@ -42,14 +46,14 @@
                 </div>
                 <div class="boxDownload">
                     <a class="btnDownMb" target="_blank" href="javascript:void(0);"></a>
-                    <a class="btnGroup btnGroup--home imageGroup" data-aos="fade-up" href="javascript:void(0);">Trang
+                    <a class="btnGroup btnGroup--home imageGroup sdk_home_page" data-aos="fade-up">Trang
                         Chủ</a>
                     <div class="btnDownload" data-aos-delay="100" data-aos="fade-up">
-                        <a class="btnGroup btnGroup--ios" target="_blank" id="link_game_ios"><span
+                        <a class="btnGroup btnGroup--ios sdk_link_game_ios" target="_blank"><span
                                 id="logo-flash">Tải Game Ios</span></a>
-                        <a class="btnGroup btnGroup--adr" target="_blank" id="link_game_android"><span
+                        <a class="btnGroup btnGroup--adr sdk_link_game_android" target="_blank"><span
                                 id="logo-flash">Tải Game Adr</span></a>
-                        <a class="btnGroup btnGroup--apk" id="link_game_desktop"><span
+                        <a class="btnGroup btnGroup--apk sdk_link_game_desktop"><span
                                 id="logo-flash">Tải Game akp</span></a>
                     </div>
                     <div data-aos-delay="200" data-aos="fade-up"><a class="btnGroup btnGroup--video imageGroup" href="javascript:void(0);" id="playme" onclick="revealVideo('video')">Video Trailer</a>
@@ -107,28 +111,28 @@
                     <a class="buttonItem buttonItem--rules" href="javascript:void(0);">Thể Lệ</a>
                     <a class="buttonItem buttonItem--award" href="javascript:void(0);">Phần Thưởng</a>
                     <!-- <a class="buttonItem buttonItem--rank" href="javascript:void(0);">Bảng Xếp Hạng</a> -->
-                    <a class="buttonItem buttonItem--addTurn" href="javascript:void(0);">Thêm Lượt</a>
+                    <a class="buttonItem buttonItem--addTurn" onclick="game_client.rollup(10194, 10162)">Thêm Lượt</a>
                 </div>
                 <div class="wheel" data-aos="zoom-out-down" data-aos-delay="200">
                     <div class="wheelSpin"></div>
-                    <a class="playNow" href="javascript:void(0);">Chơi Ngay</a>
+                    <a class="playNow" onclick="game_client.playGame(10192,1)">Chơi Ngay</a>
                 </div>
                 <p class="turnText">Lượt quay còn lại: <span class="turn">100</span> lượt</p>
                 <a class="imageGroup btnAward" href="javascript:void(0);">Đổi Thưởng</a>
                 <div class="loadingBox" data-aos="fade-up">
-                    <a class="pointStages pointStages--200 active" href="javascript:void(0);">
+                    <a class="pointStages pointStages--200 active" onclick="game_client.exchangeRewards(10193, 200)">
                         <span class="boxImage boxImage--1" data-aos="zoom-in" data-aos-delay="200">Mốc 200</span>
                     </a>
-                    <a class="pointStages pointStages--400" href="javascript:void(0);">
+                    <a class="pointStages pointStages--400" onclick="game_client.exchangeRewards(10193, 400)">
                         <span class="boxImage boxImage--2" data-aos="zoom-in" data-aos-delay="300">Mốc 400</span>
                     </a>
-                    <a class="pointStages pointStages--500" href="javascript:void(0);">
+                    <a class="pointStages pointStages--500" onclick="game_client.exchangeRewards(10193, 500)">
                         <span class="boxImage boxImage--3" data-aos="zoom-in" data-aos-delay="400">Mốc 500</span>
                     </a>
-                    <a class="pointStages pointStages--1000" href="javascript:void(0);">
+                    <a class="pointStages pointStages--1000" onclick="game_client.exchangeRewards(10193, 1000)">
                         <span class="boxImage boxImage--4" data-aos="zoom-in" data-aos-delay="500">Mốc 1000</span>
                     </a>
-                    <a class="pointStages pointStages--1500" href="javascript:void(0);">
+                    <a class="pointStages pointStages--1500" onclick="game_client.exchangeRewards(10193, 1500)">
                         <span class="boxImage boxImage--5" data-aos="zoom-in" data-aos-delay="600">Mốc 1500</span>
                     </a>
                 </div>
@@ -180,9 +184,9 @@
                 <span class="lhsprite shuye5"></span>
                 <span class="lhsprite shuye6"></span>
             </div>
-            <a class="linkItem linkItem--home" href="javascript:void(0);">Trang Chủ</a>
-            <a class="linkItem linkItem--group" href="https://www.facebook.com/groups/5009031075830755" target="_blank">Group</a>
-            <a class="linkItem linkItem--fanpage" href="https://www.facebook.com/thanhkiemluanhoi" target="_blank">Fanpage</a>
+            <a class="linkItem linkItem--home sdk_home_page" target="_blank">Trang Chủ</a>
+            <a class="linkItem linkItem--group sdk_group_fb" target="_blank">Group</a>
+            <a class="linkItem linkItem--fanpage sdk_fanpage_fb" target="_blank">Fanpage</a>
             <div class="toggle open"></div>
         </section>
         <a class="boxFix" href="javascript:void(0);"></a>
@@ -192,7 +196,7 @@
             <a href="javascript:void(0);" class="closeModal btn__close" data-dismiss="modal"></a>
             <h3 class="pop__title pop__title--rules">Thể Lệ</h3>
             <div class="pop__inner pop__inner--rules scrollbar scrollbar--custom">
-                <div id="content_evt_guide">
+                <div class="sdk_content_evt_guide">
                     <!-- <strong class="strong--1">VÒNG QUAY LUÂN HỒI</strong></br>
                     - Thời gian: Từ 10h ngày <strong>27/04</strong> đến 23h59 ngày <strong>04/05</strong>.</br>
                     - <strong>Trong thời gian sự kiện:</strong></br>
@@ -213,7 +217,10 @@
             <a href="javascript:void(0);" class="closeModal btn__close" data-dismiss="modal"></a>
             <h3 class="pop__title pop__title--award">Phần Thưởng</h3>
             <div class="pop__inner pop__inner--award scrollbar scrollbar--custom">
-                <p>
+                <div class="sdk_content_rewards">
+
+                </div>
+                <!-- <p>
                     <strong>1. Quà đạt mốc Đăng Ký Trước:</strong></br>
                     - Giftcode Bạch Kim: Thẻ Làm Mới Ủy Thác*5, Đá Cường Hóa Đột Phá*20, Kim Tệ *50.000.</br>
                     - Giftcode Hoàng Kim: Gói EXP Kỹ Năng*5, Đá Cường Hóa Trang Sức*20, Lam Bảo Thạch Lv.3*2.</br>
@@ -226,7 +233,7 @@
                     - Mốc 500 điểm: Hồng Bảo Thạch Lv.4*1, Đá Đột Phá Trang Sức*5, Kim Tệ *30.000.</br>
                     - Mốc 1000 điểm: Thẻ Bài Chandler*1, Du Hành*5, Kim Cương *500.</br>
                     - Mốc 1500 điểm: Thủy Tinh Ma Linh*10, Kẹo EXP Ma Linh Cao*10, Kim Cương *1.000.</br>
-                </p>
+                </p> -->
             </div>
         </div>
     </div>
@@ -315,6 +322,7 @@
                         </tr>
                     </thead>
                     <tbody id="tbHistories">
+                        
                     </tbody>
                 </table>
             </div>
@@ -371,16 +379,27 @@
     <script src="../sdk/v2/ui.js"></script>
     <script type="text/javascript">
          const vtcmAppConfig = {
-            gameId:100004,
+            gameId:100072,
             apiBaseUrl: 'http://api.gf.splay.vn',
             client_id: "GF_EVENTS_WEB",
             client_secret: "aP6k2Ql68arPH8l",
+            arr_event_change_rewards:[{name:'DIEM', classname: 'sdk_event_change_point'},{name:'HOA_MAI', classname: 'sdk_event_change_hoamai'}],
             // url_return:`http://tramtien.splay.vn/mungdoclap`,
             // path:'/mungdoclap'
-            url_return:`http://127.0.0.1:5500/doclap/tramtien/index.html`,
-            path:'/doclap/tramtien/index.html'
+            url_return:`http://127.0.0.1:5500/landing.html`,
+            path:'/landing.html'
         };
         game_client.initApp(vtcmAppConfig);
+
+
+        // C1: onclick="game_client.playGame(10192,1, 'class_alert', 'Cau thong bao [ITEM_NAME] vang')"
+
+        // C2: game_client.playGame(10192,1, function(diem){
+        //     $('class_alert').text('Bạn nhận được '+ diem +' luot choi / vang'); //Thanh cong
+
+        //     $('class_alert').text('He thong dang ban'); //Loi
+        //     //show popup
+        // })
     </script>
 </body>
 

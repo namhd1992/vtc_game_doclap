@@ -5,22 +5,31 @@ const common_sdk = {
     
     setLinkToItem(data){
         for (let i = 0; i < data.length; i++) {
-            var e = document.getElementById(data[i].id);
-            e.setAttribute("href", data[i].value);
+            var e = document.getElementsByClassName(data[i].id);
+            for (let j = 0; j < e.length; j++) {
+                var f=e.item(j);
+                f.setAttribute("href", data[i].value);
+            }
         }
        
     },
     setContentToItem(data){
         for (let i = 0; i < data.length; i++) {
             var e = document.getElementById(data[i].id);
-            e.innerHTML= data[i].value;
+            if(e!==null){
+                e.innerHTML= data[i].value;
+            }
+            
         }
        
     },
 
     setContentMeta(data){
         for (let i = 0; i < data.length; i++) {
-            document.querySelector(`meta[name="${data[i].id}"]`).setAttribute("content", data[i].value);
+            if(document.querySelector(`meta[name="${data[i].id}"]`)!==null){
+                document.querySelector(`meta[name="${data[i].id}"]`).setAttribute("content", data[i].value);
+            }
+            
         }
        
     },
