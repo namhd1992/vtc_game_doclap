@@ -15,9 +15,10 @@ const common_sdk = {
     },
     setContentToItem(data){
         for (let i = 0; i < data.length; i++) {
-            var e = document.getElementById(data[i].id);
-            if(e!==null){
-                e.innerHTML= data[i].value;
+            var e = document.getElementsByClassName(data[i].id);
+            for (let j = 0; j < e.length; j++) {
+                var f=e.item(j);
+                f.innerHTML= data[i].value;
             }
             
         }
@@ -36,8 +37,11 @@ const common_sdk = {
 
     setInfoUser(data){
         for (let i = 0; i < data.length; i++) {
-            var e = document.getElementById(data[i].id);
-            e.innerText= data[i].value;
+            var e = document.getElementsByClassName(data[i].id);
+            for (let j = 0; j < e.length; j++) {
+                var f=e.item(j);
+                f.innerHTML= data[i].value;
+            }
         }
        
     },

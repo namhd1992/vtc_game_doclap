@@ -85,7 +85,7 @@ const vtcmEvent = {
                 }else{
                     common_sdk.ui.hideLoading();
                     setStatusGame();
-                    notificationErr(err)
+                    notificationErr(objectParamsReturn,err)
                 }
             }else if (err.request) {
                 $('body').html('');
@@ -141,7 +141,7 @@ const vtcmEvent = {
     },
 
 
-    exchangeRewards(modeId, value, handlingExchangeRewards, notificationErr){
+    exchangeRewards(modeId, value,objectParamsReturn, handlingExchangeRewards, notificationErr){
         var url=vtcmApp.config_.apiBaseUrl+ '/luckyrandom/api/v1/rewards/exchange';
         var header = {
             headers: {
@@ -162,7 +162,7 @@ const vtcmEvent = {
 
         axios.post(url,data,header)
         .then(function (response) {
-            handlingExchangeRewards(modeId, value, response)
+            handlingExchangeRewards(objectParamsReturn, response)
             common_sdk.ui.hideLoading();
         })
         .catch(function (err) {
@@ -170,7 +170,7 @@ const vtcmEvent = {
                 if(err.response.status===401){
                     vtcmAuth.logout();
                 }else{
-                    notificationErr(err)
+                    notificationErr(objectParamsReturn, err)
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {

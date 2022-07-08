@@ -32,88 +32,6 @@ const game_client = {
             document.getElementById("login").style.display = "block";
           
         }
-
-
-
-		$("#btn-du-xuan-1").click(function(e) {
-			game_client.playGame(1,16,'item_vq_')
-		});
-
-		$("#btn-du-xuan-10").click(function(e) {
-			game_client.playGame(10,16,'item_vq_')
-		});
-
-		$(".btn-lich-su-du-xuan").click(function(e) {
-			game_client.getHistory(0, 10003, -1)
-		});
-
-		$(".btn-diem-danh").click(function(e) {
-			game_client.getHistory(0, -1, 5)
-		});
-
-
-		$(".timeline-item").click(function(e) {
-			var value=e.currentTarget.getAttribute('value')
-			game_client.exchangeRewardsWithMilestones(10004, value)
-		});
-
-		$(".btn-nhan-khoa").click(function(e) {
-			game_client.exchangeRewards(10006, 1)
-		});
-
-		$(".btn-nhan-khoa-2").click(function(e) {
-			game_client.exchangeRewards(10006, 1)
-		});
-		
-
-		$(".btn-nhan-giftcode").click(function(e) {
-			var value=e.currentTarget.getAttribute('value')
-			game_client.exchangeRewards(10005, value)
-		});
-
-		$(".flipbox-item").click(function(e) {
-			var id=e.currentTarget.getAttribute('id')
-			var content=e.currentTarget.getAttribute('content')
-			game_client.playFlipCard(1, id, content)
-		});
-
-		$(".btn-lat-10-the").click(function(e) {
-			game_client.playFlipCard(10, 'card_', 'content_card_')
-		});
-
-		$(".btn-lich-su").click(function(e) {
-			game_client.getHistory(0, 10010, -1)
-		});
-
-		$(".btn-doi-thuong").click(function(e) {
-			var modeId=e.currentTarget.getAttribute('modeId')
-			var value=e.currentTarget.getAttribute('value')
-			game_client.exchangeRewards(modeId, value)
-		});
-
-		$(".btn-mo-ruong").click(function(e) {
-			game_client.exchangeRewards(10023, 1)
-		});
-
-		$(".btn-bxh-circle").click(function(e) {
-			game_client.getBXHLiXi()
-		});
-        
-		$(".btn-nhan-thuong").click(function(e) {
-			var modeId=e.currentTarget.getAttribute('modeId')
-			var value=e.currentTarget.getAttribute('value')
-			game_client.exchangeRewardsWithMilestones(modeId, value)
-		});
-
-		$(".modal-btn-1").click(function(e) {
-			var roomId=e.currentTarget.getAttribute('roomId')
-			game_client.rollup(10013, roomId)
-		});
-
-		$(".modal-btn-2").click(function(e) {
-			var modeId=e.currentTarget.getAttribute('modeId')
-			game_client.rollup(modeId,0)
-		});
 	},
 
 	cbwithtoken(response){
@@ -135,7 +53,7 @@ const game_client = {
 		}
 		var obj_fanpage_fb=data.filter(v =>v.code===contants.EVT_FANPAGE_URL);
 		var obj_group_fb=data.filter(v =>v.code===contants.EVT_GROUP_URL);
-        var obj_home_page=data.filter(v =>v.code===contants.EVT_HOMEPAGE_URL);
+        var obj_website_url=data.filter(v =>v.code===contants.EVT_WEBSITE_URL);
         var obj_link_android=data.filter(v =>v.code===contants.EVT_LINK_ANDROID);
         var obj_link_ios=data.filter(v =>v.code===contants.EVT_LINK_IOS);
         var obj_link_desktop=data.filter(v =>v.code===contants.EVT_LINK_DESKTOP);
@@ -157,7 +75,7 @@ const game_client = {
 		document.title=obj_title[0].value;
 		var list_item_link=[{id:"sdk_fanpage_fb", value:obj_fanpage_fb[0] ? obj_fanpage_fb[0].value : ''},
         {id:'sdk_group_fb', value:obj_group_fb[0] ? obj_group_fb[0].value : ''},
-        {id:'sdk_home_page', value:obj_home_page[0] ? obj_home_page[0].value : ''},
+        {id:'sdk_website_url', value:obj_website_url[0] ? obj_website_url[0].value : ''},
         {id:'sdk_link_game_android', value:obj_link_android[0] ? obj_link_android[0].value : ''},
         {id:'sdk_link_game_ios', value:obj_link_ios[0] ? obj_link_ios[0].value : ''},
         {id:'sdk_link_game_desktop', value:obj_link_desktop[0] ? obj_link_desktop[0].value : ''},
@@ -181,41 +99,12 @@ const game_client = {
 		common_sdk.setContentMeta(list_item_meta);
 	},
 
-	uiLine(response){
-		var number_play=response.data.data.playSummary[0] ? response.data.data.playSummary[0].playerCount : 0;
-		if(number_play >= 20 && number_play < 40){
-		  var e = document.getElementById('timeline_20');
-		  e.classList.add("active");
-		}else if(number_play >= 40 && number_play < 75){
-		  var e = document.getElementById('timeline_40');
-		  e.classList.add("active");
-		}else if(number_play >= 75 && number_play < 120){
-		  var e = document.getElementById('timeline_75');
-		  e.classList.add("active");
-		}else if(number_play >= 120 && number_play < 200){
-		  var e = document.getElementById('timeline_120');
-		  e.classList.add("active");
-		}else if(number_play >= 200){
-		  var e = document.getElementById('timeline_200');
-		  e.classList.add("active");
-		}else{
-		  console.log('chưa đủ lượt chơi')
-		}
-	},
-
-	uiBocbanh(response){
-		var rewardExchange=response.data.data.rewardExchange;
-		var obj_bocbanh=rewardExchange.filter(v=>v.eventCode==="BANH_TRUNG");
-		var number_bocbanh=obj_bocbanh.length > 0 ? obj_bocbanh[0].totalAvailable : 0;
-		game_client.bocbanh(number_bocbanh,'bb-item_')
-	},
-
 	setDataUser(response){
 		var user=response.data.data.user;
 		var rewardExchange=response.data.data.rewardExchange;
 		var number_play=response.data.data.playSummary[0] ? response.data.data.playSummary[0].playerCount : 0;
         var list=[];
-        list.push({id:'account_user', value:user.userName})
+        list.push({id:'sdk_account_user', value:user.userName}, {id:'sdk_my_number_goal', value:user.pointAvailable})
         var event_rewards=this.config_.arr_event_change_rewards;
         for (let i = 0; i < event_rewards.length; i++) {
             var obj=rewardExchange.filter(v=>v.eventCode===event_rewards[i].name);
@@ -260,35 +149,24 @@ const game_client = {
 
 	handlingRollup(roomId, response){
 		if(response.data.code >= 0){
-			if(roomId!==0){
-				$('#modal-diem-danh').modal('hide'); 
-				$('#modal-nhan-code').modal('show'); 
-				document.getElementById('modal-form-code').value=response.data.data.rewards[0].rewardCode;
-			}else{
-				$('#modal-nhan-vang').modal('hide'); 
-				$('#modal-notify').modal('show'); 
-				var e = document.getElementById('content_notify');
-				e.innerText=response.data.message;
-			}
+			alert('Điểm danh thành công. Bạn nhận được 1 lượt chơi')
 		}else{
-			if(roomId!==0){
-				$('#modal-diem-danh').modal('hide'); 
-			}else{
-				$('#modal-nhan-vang').modal('hide'); 
-			}
-			$('#modal-notify').modal('show'); 
-			var e = document.getElementById('content_notify');
-			e.innerText=response.data.message;
+			alert('Điểm danh thất bại.')
 		}
 	},
 	
 
 
-	playGame(modeId, numPlayed){
+	playGame(modeId, numPlayed, key, message){
 		var objectParamsReturn={
 			type:numPlayed,
-			modeId:modeId
+			modeId:modeId,
+			key:key, 
+			message:message
 		}
+		var e = document.getElementsByClassName(key);
+		var f=e.item(0);
+		f.innerHTML=''
         if(!game_client.isPlay){
             game_client.isPlay=true;
             if(vtcmAuth.isLogin()){
@@ -300,79 +178,24 @@ const game_client = {
         }
     },
 
-	handlingPlayGame(type, value, key, response){
+	handlingPlayGame(objectParamsReturn, response){
+		console.log(objectParamsReturn)
         setTimeout(()=>{
             game_client.isPlay=false;
         },1000)
         
 		if(response.data.code>=0){
-            
-			// game_client.abc(type, value, key, response.data.data.rewards)
+			var e = document.getElementsByClassName(objectParamsReturn.key);
+			var f=e.item(0);
+			f.innerHTML=objectParamsReturn.message.replace('$', response.data.data.rewards[0].name);
 		}else{
-			// $('#modal-notify').modal('show'); 
-			// var e = document.getElementById('content_notify');
-			// e.innerText=response.data.message;
-			// // game_client.isPlay=false;
+			var e = document.getElementsByClassName(objectParamsReturn.key);
+			var f=e.item(0);
+			f.innerHTML=response.data.message;
 		}
 	},
 
-	abc(type, value, key, data){
-        var n=Math.floor(Math.random() * 16);
-        if(type===1){
-            var tb = document.getElementById('tb_content_result_vq');
-            var result = document.getElementById('content_result_vq');
-            result.style.marginTop='100px';
-            result.innerText=data[0].name;
-            tb.innerHTML='';
-            
-        }else{
-            var e = document.getElementById('content_result_vq');
-            e.innerHTML='';
-            e.style.marginTop='0px';
-            var tb = document.getElementById('tb_content_result_vq');
-			tb.innerHTML='';
-            for (let i = 0; i < data.length; i++) {
-                $(tb).append(`<tr>
-                <th scope="row">Lượt ${i+1}</th>
-                <td>${data[i].name}</td>
-              </tr>`);
-            }
-        }
-        game_client.animation_vq=setInterval(()=>{
-            game_client.animation(key, value, data);
-        },100)
-        setTimeout(()=>{
-            game_client.isPlay=false;
-            clearInterval(game_client.animation_vq)
-            $('#modal-thuong-du-xuan').modal('show');
-            var e1 = document.getElementById(key+(game_client.n-1));
-            e1.classList.remove("active");
-            game_client.n=1;
-        },(n+value)*100);
-    },
-
-    animation(key, value){
-        var e = document.getElementById(key+game_client.n);
-        e.classList.add("active");
-        if(game_client.n>1){
-            var e1 = document.getElementById(key+(game_client.n-1));
-            e1.classList.remove("active");
-            
-        }
-        if(game_client.n===value){
-            setTimeout(()=>{
-                var e1 = document.getElementById(key+value);
-                e1.classList.remove("active");
-            },100)
-            
-        }
-        if(game_client.n<value){
-            game_client.n+=1;
-        }else{
-            game_client.n=1;
-        }
-        
-    },
+	
 	
 	getHistory(page, modeId, rewardType){
         if(vtcmAuth.isLogin()){
@@ -424,33 +247,33 @@ const game_client = {
         game_client.getHistory(game_client.page+1, game_client.modeId_history, game_client.rewardType)
     },
 
-	exchangeRewards(modeId, value){
+	exchangeRewards(modeId, value, key, message){
+		var objectParamsReturn={
+			modeId:modeId,
+			value:value,
+			key:key, 
+			message:message
+		}
+		var e = document.getElementsByClassName(key);
+		var f=e.item(0);
+		
+		f.innerHTML=''
         if(vtcmAuth.isLogin()){
-            vtcmEvent.exchangeRewards(modeId, value, this.handlingExchangeRewards, this.notificationErr)
+            vtcmEvent.exchangeRewards(modeId, value,objectParamsReturn, this.handlingExchangeRewards, this.notificationErr)
         } else{
-            // $('#modal-warning-login').modal('show'); 
             alert('Bạn chưa đăng nhập')
         }
     },
 
-	handlingExchangeRewards(modeId, value, response){
+	handlingExchangeRewards(objectParamsReturn, response){
 		if(response.data.code >= 0){
-			if(modeId===10006){
-				$('#modal-notify').modal('show'); 
-				var e = document.getElementById('content_notify');
-				e.innerText='Nhận khóa thành công';
-			}else if(modeId===10005){
-				$('#modal-nhan-code').modal('show'); 
-				document.getElementById('modal-form-code').value=response.data.data.rewards[0].rewardCode;
-			}else {
-				$('#modal-nhan-code').modal('show'); 
-				document.getElementById('modal-form-code').value=response.data.data.rewards[0].rewardCode;
-			}
-			
+			var e = document.getElementsByClassName(objectParamsReturn.key);
+			var f=e.item(0);
+			f.innerHTML=objectParamsReturn.message.replace('$', response.data.data.rewards[0].name);
 		}else{
-			$('#modal-notify').modal('show'); 
-			var e = document.getElementById('content_notify');
-			e.innerText=response.data.message;
+			var e = document.getElementsByClassName(objectParamsReturn.key);
+			var f=e.item(0);
+			f.innerHTML=response.data.message;
 		}
 	},
 
@@ -481,60 +304,6 @@ const game_client = {
 		}
 	},
 
-	playFlipCard(value, key, content){
-        if(!game_client.isPlayPickup){
-            if(vtcmAuth.isLogin()){
-                vtcmEvent.playFlipCard(value, key, content, this.handlingPlayFlipCard, this.notificationErr, this.setStatusLatThe)
-            }else{
-                $('#modal-warning-login').modal('show'); 
-                game_client.isPlayPickup=false;
-            }
-            
-        }
-    },
-
-	handlingPlayFlipCard(value, key, content, response){
-		if(response.data.code>=0){
-			game_client.pick_up(value, key, content, response.data.data.rewards)
-		}else{
-			$('#modal-notify').modal('show'); 
-			var e = document.getElementById('content_notify');
-			e.innerText=response.data.message;
-		}
-	},
-
-	pick_up(value, key, content, data){
-        game_client.isPlayPickup=true;
-        if(value===1){
-            var e = document.getElementById(key);
-            e.classList.add("active");
-            var e1 = document.getElementById(content);
-            setTimeout(()=>{
-                e1.innerHTML+=data[0].name;
-            },300)
-            setTimeout(()=>{
-                e.classList.remove("active");
-                e1.innerHTML='';
-                game_client.isPlayPickup=false;
-            },3000)
-        }else{
-            for (let i = 1; i < data.length+1; i++) {
-                var e = document.getElementById(key+i);
-                e.classList.add("active");
-                var e1 = document.getElementById(content+i);
-                e1.innerHTML+=data[i-1].name;
-            }
-            setTimeout(()=>{
-                for (let i = 1; i < value+1; i++) {
-                    var e = document.getElementById(key+i);
-                    e.classList.remove("active");
-                    var e1 = document.getElementById(content+i);
-                    e1.innerHTML='';
-                }
-                game_client.isPlayPickup=false;
-            },3000)
-        }
-    },
 
 	getBXHLiXi(){
         vtcmEvent.getBXHLiXi(this.handlingGetBXHLiXi, this.notificationErr);
@@ -559,10 +328,10 @@ const game_client = {
 		}
 	}, 
 
-	notificationErr(error){
-		$('#modal-notify').modal('show'); 
-		var e = document.getElementById('content_notify');
-		e.innerText=error.response.data.message;
+	notificationErr(objectParamsReturn, error){
+		var e = document.getElementsByClassName(objectParamsReturn.key);
+		var f=e.item(0);
+		f.innerHTML=error.response.data.message;
 	},
 
 	setStatusVQ(){

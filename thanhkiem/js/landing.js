@@ -46,7 +46,7 @@ $(document).ready(function () {
 		$("#pop__rules").modal("show");
 	});
     $('.buttonItem--addTurn').click(function () {
-		$("#pop__mission").modal("show");
+		// $("#pop__mission").modal("show");
 	});
 	$('.pointStages').click(function () {
 		$("#pop__notifyBox").modal("show");
