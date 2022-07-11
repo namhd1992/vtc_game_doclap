@@ -164,9 +164,9 @@ const game_client = {
 			key:key, 
 			message:message
 		}
-		var e = document.getElementsByClassName(key);
-		var f=e.item(0);
-		f.innerHTML=''
+		// var e = document.getElementsByClassName(key);
+		// var f=e.item(0);
+		// f.innerHTML=''
         if(!game_client.isPlay){
             game_client.isPlay=true;
             if(vtcmAuth.isLogin()){
@@ -185,13 +185,13 @@ const game_client = {
         },1000)
         
 		if(response.data.code>=0){
-			var e = document.getElementsByClassName(objectParamsReturn.key);
-			var f=e.item(0);
-			f.innerHTML=objectParamsReturn.message.replace('$', response.data.data.rewards[0].name);
+			// var e = document.getElementsByClassName(objectParamsReturn.key);
+			// var f=e.item(0);
+			// f.innerHTML=objectParamsReturn.message.replace('$', response.data.data.rewards[0].name);
 		}else{
-			var e = document.getElementsByClassName(objectParamsReturn.key);
-			var f=e.item(0);
-			f.innerHTML=response.data.message;
+			// var e = document.getElementsByClassName(objectParamsReturn.key);
+			// var f=e.item(0);
+			// f.innerHTML=response.data.message;
 		}
 	},
 
@@ -254,10 +254,10 @@ const game_client = {
 			key:key, 
 			message:message
 		}
-		var e = document.getElementsByClassName(key);
-		var f=e.item(0);
+		// var e = document.getElementsByClassName(key);
+		// var f=e.item(0);
 		
-		f.innerHTML=''
+		// f.innerHTML=''
         if(vtcmAuth.isLogin()){
             vtcmEvent.exchangeRewards(modeId, value,objectParamsReturn, this.handlingExchangeRewards, this.notificationErr)
         } else{
@@ -267,13 +267,13 @@ const game_client = {
 
 	handlingExchangeRewards(objectParamsReturn, response){
 		if(response.data.code >= 0){
-			var e = document.getElementsByClassName(objectParamsReturn.key);
-			var f=e.item(0);
-			f.innerHTML=objectParamsReturn.message.replace('$', response.data.data.rewards[0].name);
+			// var e = document.getElementsByClassName(objectParamsReturn.key);
+			// var f=e.item(0);
+			// f.innerHTML=objectParamsReturn.message.replace('$', response.data.data.rewards[0].name);
 		}else{
-			var e = document.getElementsByClassName(objectParamsReturn.key);
-			var f=e.item(0);
-			f.innerHTML=response.data.message;
+			// var e = document.getElementsByClassName(objectParamsReturn.key);
+			// var f=e.item(0);
+			// f.innerHTML=response.data.message;
 		}
 	},
 

@@ -26,6 +26,7 @@ const contants={
     EVT_YOUTUBE_URL:'EVT_YOUTUBE_URL',
     EVT_FACEBOOK_URL:'EVT_FACEBOOK_URL',
     EVT_TWITER_URL:'EVT_TWITER_URL',
+	EVT_TIKTOK_URL:'EVT_TIKTOK_URL',
     EVT_GOOGLE_ID:'EVT_GOOGLE_ID',
     EVT_GOOGLE_TAGS_CODE:'EVT_GOOGLE_TAGS_CODE',
     EVT_FACEBOOK_PIXELCODE:'EVT_FACEBOOK_PIXELCODE',
@@ -42,6 +43,7 @@ const contants={
 	EVT_LINK_ANDROID:'EVT_LINK_ANDROID',
 	EVT_LINK_IOS:'EVT_LINK_IOS',
 	EVT_LINK_DESKTOP:'EVT_LINK_DESKTOP',
+	EVT_LINK_REGISTER_EVENT:'EVT_LINK_REGISTER_EVENT',
     MODE_ID_LIXI:100007,
     MODE_ID_VQ:100007,
 }
@@ -67,7 +69,6 @@ const vtcmApp = {
 		var data={...info};
 		data.siteId=vtcmApp.config_.gameId;
 		data.gameId=vtcmApp.config_.gameId;
-		data.modeId=10003;
 		if (!vtcmAuth.isLogin())
 		{
 		  var url=vtcmApp.config_.apiBaseUrl+'/catalog/api/v1/setting/get-app-settings'; 
