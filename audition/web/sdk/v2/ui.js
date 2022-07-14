@@ -12,6 +12,8 @@ const game_client = {
     modeId_history:0,
     totalPage:1,
 	rewardType:-1,
+	currentNameAlbum:'DANGXINH',
+	listAlbum:[],
 	
 	initApp(rawConfig = {}){
 		if (typeof rawConfig !== 'object') {
@@ -54,6 +56,9 @@ const game_client = {
 		var obj_fanpage_fb=data.filter(v =>v.code===contants.EVT_FANPAGE_URL);
 		var obj_group_fb=data.filter(v =>v.code===contants.EVT_GROUP_URL);
         var obj_website_url=data.filter(v =>v.code===contants.EVT_WEBSITE_URL);
+		var obj_youtube=data.filter(v =>v.code===contants.EVT_YOUTUBE_URL);
+        var obj_tiktok=data.filter(v =>v.code===contants.EVT_TIKTOK_URL);
+
         var obj_link_android=data.filter(v =>v.code===contants.EVT_LINK_ANDROID);
         var obj_link_ios=data.filter(v =>v.code===contants.EVT_LINK_IOS);
         var obj_link_desktop=data.filter(v =>v.code===contants.EVT_LINK_DESKTOP);
@@ -65,6 +70,7 @@ const game_client = {
 		var obj_meta_title=data.filter(v =>v.code===contants.EVT_META_TITLE);
 		var obj_meta_desc=data.filter(v =>v.code===contants.EVT_META_DESC);
 		var obj_meta_img=data.filter(v =>v.code===contants.EVT_IMAGE_URL);
+		var obj_welfare=data.filter(v =>v.code===contants.EVT_WELFARE);
 	  
 		var obj_rollup_points=data.filter(v =>v.code===contants.EVT_ROLLUP_POINTS);
 		var obj_recharge_url=data.filter(v =>v.code===contants.EVT_RECHARGE_URL);
@@ -76,6 +82,9 @@ const game_client = {
 		var list_item_link=[{id:"sdk_fanpage_fb", value:obj_fanpage_fb[0] ? obj_fanpage_fb[0].value : ''},
         {id:'sdk_group_fb', value:obj_group_fb[0] ? obj_group_fb[0].value : ''},
         {id:'sdk_website_url', value:obj_website_url[0] ? obj_website_url[0].value : ''},
+		{id:'sdk_youtube', value:obj_youtube[0] ? obj_youtube[0].value : ''},
+        {id:'sdk_tiktok', value:obj_tiktok[0] ? obj_tiktok[0].value : ''},
+
         {id:'sdk_link_game_android', value:obj_link_android[0] ? obj_link_android[0].value : ''},
         {id:'sdk_link_game_ios', value:obj_link_ios[0] ? obj_link_ios[0].value : ''},
         {id:'sdk_link_game_desktop', value:obj_link_desktop[0] ? obj_link_desktop[0].value : ''},
@@ -86,6 +95,7 @@ const game_client = {
 		var list_item_content=[{id:"sdk_content_evt_guide", value:obj_evt_guide[0] ? obj_evt_guide[0].value : ''},
         {id:'sdk_content_evt_rollup', value:obj_evt_rollup[0] ? obj_evt_rollup[0].value : ''},
         {id:'sdk_content_rewards', value:obj_rewards[0] ? obj_rewards[0].value : ''},
+		{id:'sdk_welfare', value:obj_welfare[0] ? obj_welfare[0].value : ''},
         {id:'rollup_points', value:obj_rollup_points[0] ? obj_rollup_points[0].value : ''}, 
         {id:'content_moruong', value:obj_moruong[0] ? obj_moruong[0].value : '' }]
 
@@ -104,25 +114,43 @@ const game_client = {
 		var rewardExchange=response.data.data.rewardExchange;
 		var number_play=response.data.data.playSummary[0] ? response.data.data.playSummary[0].playerCount : 0;
         var list=[];
+		var listRewards=[];
         list.push({id:'sdk_account_user', value:user.userName}, {id:'sdk_my_number_goal', value:user.pointAvailable})
-        var event_rewards=this.config_.arr_event_change_rewards;
-        for (let i = 0; i < event_rewards.length; i++) {
-            var obj=rewardExchange.filter(v=>v.eventCode===event_rewards[i].name);
-            var number_x=obj.length > 0 ? obj[0].totalAvailable : 0;
-            let s={
-                id:event_rewards[i].classname,
-                value:number_x
-            }
-            list.push(s);
-        }
-		var obj_bocbanh=rewardExchange.filter(v=>v.eventCode==="BANH_TRUNG");
-		var number_bocbanh=obj_bocbanh.length > 0 ? obj_bocbanh[0].totalAvailable : 0;
-		var obj_hoamai=rewardExchange.filter(v=>v.eventCode==="HOA_MAI");
-		var number_hoamai=obj_hoamai.length > 0 ? obj_hoamai[0].totalAvailable : 0;
-		var obj_hoadao=rewardExchange.filter(v=>v.eventCode==="HOA_DAO");
-		var number_hoadao=obj_hoadao.length > 0 ? obj_hoadao[0].totalAvailable : 0;
-		var obj_key=rewardExchange.filter(v=>v.eventCode==="NHAN_KHOA");
-		var number_key=obj_key.length > 0 ? obj_key[0].totalAvailable : 0;
+        // var event_rewards=this.config_.arr_event_change_rewards;
+        // for (let i = 0; i < event_rewards.length; i++) {
+        //     var obj=rewardExchange.filter(v=>v.eventCode===event_rewards[i].name);
+        //     var number_x=obj.length > 0 ? obj[0].totalAvailable : 0;
+        //     let s={
+        //         id:event_rewards[i].classname,
+        //         value:number_x
+        //     }
+        //     list.push(s);
+        // }
+		var obj_dangxinh=rewardExchange.filter(v=>v.eventCode==="DANGXINH");
+		var number_dangxinh=obj_dangxinh.length > 0 ? obj_dangxinh[0].totalAvailable : '0';
+		number_dangxinh=number_dangxinh > 9 ? number_dangxinh : `0${number_dangxinh}`;
+
+		var obj_camxuc=rewardExchange.filter(v=>v.eventCode==="CAMXUC");
+		var number_camxuc=obj_camxuc.length > 0 ? obj_camxuc[0].totalAvailable : '0';
+		number_camxuc=number_camxuc > 9 ? number_camxuc : `0${number_camxuc}`;
+
+		var obj_catinh=rewardExchange.filter(v=>v.eventCode==="CATINH");
+		var number_catinh=obj_catinh.length > 0 ? obj_catinh[0].totalAvailable : '0';
+		number_catinh=number_catinh > 9 ? number_catinh : `0${number_catinh}`;
+
+		var obj_luayeu=rewardExchange.filter(v=>v.eventCode==="LUAYEU");
+		var number_luayeu=obj_luayeu.length > 0 ? obj_luayeu[0].totalAvailable : '0';
+		number_luayeu=number_luayeu > 9 ? number_luayeu : `0${number_luayeu}`;
+
+		var obj_chatphieu=rewardExchange.filter(v=>v.eventCode==="CHATPHIEU");
+		var number_chatphieu=obj_chatphieu.length > 0 ? obj_chatphieu[0].totalAvailable : '0';
+		number_chatphieu=number_chatphieu > 9 ? number_chatphieu : `0${number_chatphieu}`;
+
+		listRewards.push({id:'DANGXINH', value:number_dangxinh}, {id:'CAMXUC', value:number_camxuc}, 
+		{id:'CATINH', value:number_catinh}, {id:'LUAYEU', value:number_luayeu}, {id:'CHATPHIEU', value:number_chatphieu});
+		game_client.setNumberAlbum(number_dangxinh);
+		game_client.listAlbum=listRewards;
+
 		// var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}, {id:'number_play_vq', value:number_play}, {id:'number_bocbanh', value:number_bocbanh}, {id:'number_hoamai', value:number_hoamai}, {id:'number_hoadao', value:number_hoadao}, {id:'number_key', value:number_key}]
 		common_sdk.setInfoUser(list);
 	},
@@ -143,13 +171,17 @@ const game_client = {
 		if(vtcmAuth.isLogin()){
 			vtcmEvent.rollup(modeId, roomId, this.handlingRollup, this.notificationErrRollup)
 		}else{
-            $('#modal-warning-login').modal('show'); 
+            alert('Bạn chưa đăng nhập.')
         }
 	},
 
 	handlingRollup(roomId, response){
 		if(response.data.code >= 0){
-			alert('Điểm danh thành công. Bạn nhận được 1 lượt chơi')
+			if(roomId===10116){
+				alert('Điểm danh thành công. Bạn nhận được 1 lượt chơi')
+			}else if(roomId===10134){
+				alert('Chia sẻ thành công. Bạn nhận được 1 lượt chơi')
+			}
 		}else{
 			alert('Điểm danh thất bại.')
 		}
@@ -164,35 +196,126 @@ const game_client = {
 			key:key, 
 			message:message
 		}
-		// var e = document.getElementsByClassName(key);
-		// var f=e.item(0);
-		// f.innerHTML=''
+		var e = document.getElementsByClassName(key);
+		var f=e.item(0);
+		f.innerHTML=''
         if(!game_client.isPlay){
             game_client.isPlay=true;
             if(vtcmAuth.isLogin()){
 				vtcmEvent.playGame(modeId, numPlayed, objectParamsReturn, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
             }else{
                 game_client.isPlay=false;
-                $('#modal-warning-login').modal('show');
+                var e = document.getElementsByClassName(key);
+				for (let j = 0; j < e.length; j++) {
+					var f=e.item(0);
+					f.innerHTML= "Bạn chưa đăng nhập";
+				}
             }
         }
     },
 
 	handlingPlayGame(objectParamsReturn, response){
-		console.log(objectParamsReturn)
         setTimeout(()=>{
             game_client.isPlay=false;
         },1000)
         
 		if(response.data.code>=0){
-			// var e = document.getElementsByClassName(objectParamsReturn.key);
-			// var f=e.item(0);
-			// f.innerHTML=objectParamsReturn.message.replace('$', response.data.data.rewards[0].name);
+			var className=game_client.getAlbum(response.data.data.rewards[0])
+			var e = document.getElementsByClassName(objectParamsReturn.key);
+			var f=e.item(0);
+			f.innerHTML=`<p>Chúc mừng bạn nhận được album:</p>
+			<div class="albumImage ${className}"></div>`
+
+			var imgReward=game_client.getAlbumReward(response.data.data.rewards[0])
+			var i = document.getElementsByClassName('album_rewards');
+			var h=i.item(0);
+			$(h).addClass(imgReward);
+
 		}else{
 			// var e = document.getElementsByClassName(objectParamsReturn.key);
 			// var f=e.item(0);
 			// f.innerHTML=response.data.message;
+			var e = document.getElementsByClassName(objectParamsReturn.key);
+			var f=e.item(0);
+			f.innerHTML=response.data.message;
 		}
+	},
+
+	nextAlbum(){
+		var pos = game_client.listAlbum.map(function(e) { return e.id; }).indexOf(game_client.currentNameAlbum);
+		if(pos===4){
+			pos=-1;
+		}
+		var item=game_client.listAlbum[pos+1];
+		game_client.currentNameAlbum=item.id;
+		game_client.setNumberAlbum(item.value)
+
+	},
+
+	backAlbum(){
+		var pos = game_client.listAlbum.map(function(e) { return e.id; }).indexOf(game_client.currentNameAlbum);
+		if(pos===0){
+			pos=6;
+		}
+		var item=game_client.listAlbum[pos-1];
+		game_client.currentNameAlbum=item.id;
+		game_client.setNumberAlbum(item.value)
+	},
+
+	setNumberAlbum(content){
+		var e = document.getElementsByClassName('numAlbum');
+		var f=e.item(0);
+		f.innerHTML= content;
+	},
+
+	getAlbum(item){
+		var className=''
+		switch (item.eventCode) {
+			case "DANGXINH":
+				className = 'albumImage--1'
+				break;
+			case "CAMXUC":
+				className = 'albumImage--2'
+				break;
+			case "CATINH":
+				className = 'albumImage--3'
+				break;
+			case "LUAYEU":
+				className = 'albumImage--4'
+				break;
+			case "CHATPHIEU":
+				className = 'albumImage--5'
+				break;
+			default:
+				className = 'albumImage--1'
+				break;
+		}
+		return className;
+	},
+
+	getAlbumReward(item){
+		var className=''
+		switch (item.eventCode) {
+			case "DANGXINH":
+				className = 'abum--1'
+				break;
+			case "CAMXUC":
+				className = 'abum--2'
+				break;
+			case "CATINH":
+				className = 'abum--3'
+				break;
+			case "LUAYEU":
+				className = 'abum--4'
+				break;
+			case "CHATPHIEU":
+				className = 'abum--5'
+				break;
+			default:
+				className = 'albumImage--1'
+				break;
+		}
+		return className;
 	},
 
 	
