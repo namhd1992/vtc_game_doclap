@@ -62,7 +62,7 @@ const vtcmAuth = {
                     user_save.expired = new Date();
                     localStorage.setItem("user", JSON.stringify(user_save));
                     // _this.setState({ user: response.data.data });
-                    // window.location.replace(`${window.location.protocol}//${window.location.host}${vtcmApp.config_.path}`);
+                    window.location.replace(`${window.location.protocol}//${window.location.host}${vtcmApp.config_.path}`);
                 }).catch(function (error) {
                     // if(error.response.data.code ===-403){
                     //     window.location.replace(`${window.location.protocol}//${window.location.host}/error`);

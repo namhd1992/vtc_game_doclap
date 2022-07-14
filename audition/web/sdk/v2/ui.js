@@ -24,6 +24,7 @@ const game_client = {
 		
 		this.config_ = rawConfig;
 		vtcmApp.initApp(rawConfig);
+		game_client.sendLinkShare()
         if(vtcmAuth.isLogin()){
 			vtcmApp.getAppSetting(game_client.cbwithtoken);
             document.getElementById("username").innerHTML = vtcmAuth.getUserName();
@@ -434,7 +435,7 @@ const game_client = {
 
 	handlingGetLinkShare(response){
 		if(response.data.code>=0){
-			var link=window.location.href +'?inviden=' response.data.data.link;
+			var link=window.location.href +'?inviden=' + response.data.data.link;
 			game_client.linkShare=link;
 		}else{
 
@@ -443,8 +444,11 @@ const game_client = {
 
 	sendLinkShare(){
 		if(vtcmAuth.isLogin()){
-			var invide = common_sdk.parse_query_string("code", window.location.href);
-            vtcmEvent.sendLinkShare(this.handlingSendLinkShare, this.notification)
+			var inviden = common_sdk.parse_query_string("inviden", window.location.href);
+			if(inviden!==null){
+				vtcmEvent.sendLinkShare(this.handlingSendLinkShare, this.notification)
+			}
+            
         } else{
 			game_client.notification("Bạn chưa đăng nhập",'')
         }

@@ -302,7 +302,7 @@ const vtcmEvent = {
     },
 
     getLinkShare(handlingGetLinkShare, notification){
-        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/games/payment-leaderboard'
+        var url=vtcmApp.config_.apiBaseUrl+'/api/v1/setting/get-invite-link'
         var header = {
             headers: {
                 "Content-Type": "application/json"
