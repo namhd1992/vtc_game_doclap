@@ -9,14 +9,20 @@
     <link rel="stylesheet" href="css/aos.css">
     <link rel="stylesheet" href="css/image.css">
     <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="../web/sdk/v2/css/index.css">
 
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-KLLM593');</script>
 </head>
 
 <body>
-    <div id="fullpage" class="f-container main">
+    <div id="fullpage" class="f-container main sdk_page">
         <div class="navTop">
             <div class="navInner">
-                <div class="textNotify">CHÍNH THỨC RA MẮT: 10:00 NGÀY 22/07/2022</div>
+                <div class="textNotify">CHÍNH THỨC RA MẮT: 10:00 NGÀY 03/08/2022</div>
                 <div class="nav">
                     <a class="navItem navItem--name" id="username"></a>
                     <a class="navItem navItem--logout" id="logout" onclick="vtcmAuth.logout()">Đăng Xuất</a>
@@ -60,12 +66,12 @@
                     <a class="btnRegister2" target="_blank" href="https://www.facebook.com/groups/autopvtc.vn" data-aos="fade-up" data-aos-delay="200"></a>
                     <div class="award" data-aos="zoom-in" data-aos-delay="300">
                         <div class="awardLeft">
-                            <div class="stageC itemAward itemAward--1" data-pop="1"><span class="stage stage--1" onclick="game_client.exchangeRewards(10151, 3000, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $')">Mốc 3k</span></div>
-                            <div class="stageC itemAward itemAward--2" data-pop="2"><span class="stage stage--2" onclick="game_client.exchangeRewards(10151, 7000, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $')">Mốc 7k</span></div>
-                            <div class="stageC itemAward itemAward--3" data-pop="3"><span class="stage stage--3" onclick="game_client.exchangeRewards(10151, 1200, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $')">Mốc 12k</span></div>
-                            <div class="stageC itemAward itemAward--4" data-pop="4"><span class="stage stage--4" onclick="game_client.exchangeRewards(10151, 1800, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $')">Mốc 18k</span></div>
+                            <div class="stageC itemAward itemAward--1" data-pop="1"><span class="stage stage--1">Mốc 3k</span></div>
+                            <div class="stageC itemAward itemAward--2" data-pop="2"><span class="stage stage--2">Mốc 7k</span></div>
+                            <div class="stageC itemAward itemAward--3" data-pop="3"><span class="stage stage--3">Mốc 12k</span></div>
+                            <div class="stageC itemAward itemAward--4" data-pop="4"><span class="stage stage--4">Mốc 18k</span></div>
                         </div>
-                        <div class="awardRight stageC" data-pop="5"><span class="stage stage--5" onclick="game_client.exchangeRewards(10151, 2500, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $')">Mốc 25k</span></div>
+                        <div class="awardRight stageC" data-pop="5"><span class="stage stage--5">Mốc 25k</span></div>
                     </div>
                     <div class="artPage2" data-aos="fade-right" data-aos-delay="400"></div>
                 </div>
@@ -118,7 +124,7 @@
                             <div class="btnAbum">
                                 <a class="btnGroup btnGroup--rules" href="javascript:void(0);">Thể Lệ</a>
                                 <a class="btnGroup btnGroup--abum" href="javascript:void(0);">Bộ Sưu Tập</a>
-                                <a class="btnGroup btnGroup--addTurn" href="javascript:void(0);">Thêm Lượt</a>
+                                <a class="btnGroup btnGroup--addTurn" onclick="game_client.getLinkShare()">Thêm Lượt</a>
                             </div>
                             <a class="btnNum btnNum--1 active" data-pop2="1" href="javascript:void(0);" data-aos="fade-right" data-aos-delay="500">01</a>
                             <a class="btnNum btnNum--2" data-pop2="2" href="javascript:void(0);" data-aos="fade-right" data-aos-delay="600">02</a>
@@ -228,61 +234,28 @@
             </div>
         </div>
     </div>
-    <!-- <div class="modal" data-pop="1" id="pop__stage1" tabindex="-1" role="dialog" aria-hidden="true">
+ 
+    <div class="modal" id="pop__stage" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="cnt pop__bg pop__group pop__group--stage">
             <a href="javascript:void(0);" class="closeModal btn__close" data-dismiss="modal"></a>
-            <h3 class="pop__title pop__title--stage">Mốc 3k</h3>
+            <h3 class="pop__title pop__title--stage">Quà Mốc</h3>
             <div class="pop__inner pop__inner--stage scrollbar scrollbar--custom">
                 <p>
-                    - Thông tin quà mốc 3k.</br>
+
+                    <strong>QUÀ MỐC THÀNH VIÊN AU TOP - DÂN CHƠI HỆ QUẨY</strong></br>
+                    Anh chị em dân quẩy hãy mau mau tham gia group chính thức của AU TOP để đạt mốc thành viên nhận quà khủng nhé!</br>
+                    - Mốc 3k: Giấc mơ ngọc bích*5.</br>
+                    - Mốc 7k: Hộp xe đạp hoa*10.</br>
+                    - Mốc 12k: Hiệu ứng lấp lánh (7 ngày).</br>
+                    - Mốc 18k: Hộp Victoria*5.</br>
+                    - Mốc 25k: Cánh tuyết hồ điệp (7 ngày).</br>
+                    <strong>Lưu ý:</strong> Quà sẽ được phát All Server sau khi game ra mắt dựa trên số lượng người tham gia Group AU TOP - Dân Chơi Hệ Quẩy
+                    </br>
                 </p>
             </div>
         </div>
     </div>
-    <div class="modal" data-pop="2" id="pop__stage2" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="cnt pop__bg pop__group pop__group--stage">
-            <a href="javascript:void(0);" class="closeModal btn__close" data-dismiss="modal"></a>
-            <h3 class="pop__title pop__title--stage">Mốc 7k</h3>
-            <div class="pop__inner pop__inner--stage scrollbar scrollbar--custom">
-                <p>
-                    - Thông tin quà mốc 7k.</br>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="modal" data-pop="3" id="pop__stage3" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="cnt pop__bg pop__group pop__group--stage">
-            <a href="javascript:void(0);" class="closeModal btn__close" data-dismiss="modal"></a>
-            <h3 class="pop__title pop__title--stage">Mốc 12k</h3>
-            <div class="pop__inner pop__inner--stage scrollbar scrollbar--custom">
-                <p>
-                    - Thông tin quà mốc 12k.</br>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="modal" data-pop="4" id="pop__stage4" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="cnt pop__bg pop__group pop__group--stage">
-            <a href="javascript:void(0);" class="closeModal btn__close" data-dismiss="modal"></a>
-            <h3 class="pop__title pop__title--stage">Mốc 18k</h3>
-            <div class="pop__inner pop__inner--stage scrollbar scrollbar--custom">
-                <p>
-                    - Thông tin quà mốc 18k.</br>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="modal" data-pop="5" id="pop__stage5" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="cnt pop__bg pop__group pop__group--stage">
-            <a href="javascript:void(0);" class="closeModal btn__close" data-dismiss="modal"></a>
-            <h3 class="pop__title pop__title--stage">Mốc 25k</h3>
-            <div class="pop__inner pop__inner--stage scrollbar scrollbar--custom">
-                <p>
-                    - Thông tin quà mốc 25k.</br>
-                </p>
-            </div>
-        </div>
-    </div> -->
+
     <div class="modal" id="pop__welfare" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="cnt pop__bg pop__group pop__group--welfare">
             <a href="javascript:void(0);" class="closeModal btn__close" data-dismiss="modal"></a>
@@ -323,14 +296,14 @@
                         <h4 class="mission__name">Chia sẻ sự kiện nhận lượt (<span id="shareFb_turns">0</span>/1)</h4>
                         <p class="event__content">(Chia sẻ sự kiện nhận 1 lượt)</p>
                     </div>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.google.com/" class="btn__ms" id="share_fb" target="_blank" onclick="game_client.rollup(10160, 10134)">Chia sẻ</a>
+                    <a class="btn__ms" id="share_fb" target="_blank" onclick="game_client.share()">Chia sẻ</a>
                 </div>
                 <div class="mission__item">
                     <div class="title__mission">
                         <h4 class="mission__name mission__name--3">Mời bạn nhận 1 lượt (<span id="shareCode_turns">0</span>/3)</h4>
                         <p class="event__content">(Tối đa 3 lượt)</p>
                     </div>
-                    <a class="btn__ms btn__ms--3 btn-cop" id="btn-copy" href="javascript:void(0)">Copy Link</a>
+                    <a class="btn__ms btn__ms--3 btn-cop" id="btn-copy" onclick="game_client.copyLink()">Copy Link</a>
                 </div>
             </div>
         </div>
@@ -364,7 +337,7 @@
                     <div class="item item--2"></div>
                 </div>
                 <p class="textNoti">Bạn cần đủ 2 album để đổi thưởng</p>
-                <a class="btnAward btnAward--1" onclick="game_client.exchangeRewards(10123, 1, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $')">Đổi Ngay</a>
+                <a class="btnAward btnAward--1" onclick="game_client.exchangeRewards(10123, 1, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $', 'pop__award1', 'pop__notifyGC')">Đổi Ngay</a>
             </div>
         </div>
     </div>
@@ -378,7 +351,7 @@
                     <div class="item item--4"></div>
                 </div>
                 <p class="textNoti">Bạn cần đủ 2 album để đổi thưởng</p>
-                <a class="btnAward btnAward--2" onclick="game_client.exchangeRewards(10124, 1, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $')">Đổi Ngay</a>
+                <a class="btnAward btnAward--2" onclick="game_client.exchangeRewards(10124, 1, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $', 'pop__award2', 'pop__notifyGC')">Đổi Ngay</a>
             </div>
         </div>
     </div>
@@ -393,7 +366,7 @@
                     <div class="item item--3"></div>
                 </div>
                 <p class="textNoti">Bạn cần đủ 3 album để đổi thưởng</p>
-                <a class="btnAward btnAward--3" onclick="game_client.exchangeRewards(10125, 1, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $')">Đổi Ngay</a>
+                <a class="btnAward btnAward--3" onclick="game_client.exchangeRewards(10125, 1, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $', 'pop__award3', 'pop__notifyGC')">Đổi Ngay</a>
             </div>
         </div>
     </div>
@@ -408,7 +381,7 @@
                     <div class="item item--5"></div>
                 </div>
                 <p class="textNoti">Bạn cần đủ 3 album để đổi thưởng</p>
-                <a class="btnAward btnAward--4" onclick="game_client.exchangeRewards(10126, 1, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $')">Đổi Ngay</a>
+                <a class="btnAward btnAward--4" onclick="game_client.exchangeRewards(10126, 1, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $', 'pop__award4', 'pop__notifyGC')">Đổi Ngay</a>
             </div>
         </div>
     </div>
@@ -425,7 +398,7 @@
                     <div class="item item--5"></div>
                 </div>
                 <p class="textNoti">Bạn cần đủ 5 album để đổi thưởng</p>
-                <a class="btnAward btnAward--5" onclick="game_client.exchangeRewards(10127, 1, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $')">Đổi Ngay</a>
+                <a class="btnAward btnAward--5" onclick="game_client.exchangeRewards(10127, 1, 'sdk_content_giftcode', 'Chúc mừng bạn nhận được $', 'pop__award5',  'pop__notifyGC')">Đổi Ngay</a>
             </div>
         </div>
     </div>
@@ -446,16 +419,29 @@
                                 <li><img src="https://cdn.smobgame.com/template/au/images/landing/update/dia5.png" alt="abum"></li>
                             </ul>
                 </div>
-                <p class="textNotiAb">Bạn đã sở hữu <span class="numAlbum"></span> Album</p>
+                <p class="textNotiAb">Bạn đã sở hữu <span class="numAlbum">00</span> Album</p>
             </div>
         </div>
     </div>
+
+    <div class="modal" id="pop__notifyGC" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="cnt pop__group pop__group--notify">
+            <a href="javascript:void(0);" class="closeModal btn__close" data-dismiss="modal"></a>
+            <h2 class="pop__title pop__title--notify">Thông Báo</h2>
+            <div class="pop__inner pop__inner--notify scrollbar scrollbar--custom">
+                <p class="text__notify">Chúc mừng bạn đã nhận đc Giftcode</p>
+                <span style="font-weight: bold;" class="sdk_content_giftcode"></span>
+                <a class="copyGc" onclick="game_client.copyGiftcode()">Copy</a>
+            </div>
+        </div>
+    </div>
+
     <div class="modal" id="pop__notify" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="cnt pop__group pop__group--notify">
             <a href="javascript:void(0);" class="closeModal btn__close" data-dismiss="modal"></a>
             <h2 class="pop__title pop__title--notify">Thông Báo</h2>
             <div class="pop__inner pop__inner--notify scrollbar scrollbar--custom">
-                <p class="text__notify">Thông báo ở đây</p>
+                <p class="sdk_text_notify"></p>
             </div>
         </div>
     </div>
@@ -518,6 +504,7 @@
        };
        game_client.initApp(vtcmAppConfig);
    </script>
+
 </body>
 
 </html>

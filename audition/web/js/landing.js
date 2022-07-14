@@ -13,6 +13,10 @@ $(document).ready(function() {
         var $popF2 = $(this).attr('data-pop2');
         $('.modal[data-pop2=' + $popF2 + ']').modal();
     })
+
+    $('.itemAward,.awardRight').click(function() {
+        $('#pop__stage').modal();
+    });
     $('.btnGroup--addTurn').click(function() {
         $('#pop__mission').modal();
     });
@@ -25,6 +29,10 @@ $(document).ready(function() {
     $('.btnVipG--right').click(function() {
         $('#pop__welfare').modal();
     });
+    $('.btnAward').click(function() {
+        $('#pop__notifyGC').modal();
+    });
+
     // $('.btnRegister2,.btnVipG--Register').click(function() {
     //     $('#cms').modal();
     // });

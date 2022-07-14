@@ -14,6 +14,8 @@ const game_client = {
 	rewardType:-1,
 	currentNameAlbum:'DANGXINH',
 	listAlbum:[],
+	linkShare:'',
+	contentGiftcode:'',
 	
 	initApp(rawConfig = {}){
 		if (typeof rawConfig !== 'object') {
@@ -37,7 +39,6 @@ const game_client = {
 	},
 
 	cbwithtoken(response){
-        // alert('ok')
 		game_client.setDataToUI(response)
 		game_client.setDataUser(response)
 		game_client.uiLine(response);
@@ -168,22 +169,27 @@ const game_client = {
 	},
 
 	rollup(modeId, roomId){
+		var objectParamsReturn={
+			modeId:modeId,
+			roomId:roomId, 
+		}
 		if(vtcmAuth.isLogin()){
-			vtcmEvent.rollup(modeId, roomId, this.handlingRollup, this.notificationErrRollup)
+			vtcmEvent.rollup(modeId, roomId,objectParamsReturn, this.handlingRollup, this.notificationErrRollup)
 		}else{
-            alert('Bạn chưa đăng nhập.')
+			game_client.notification("Bạn chưa đăng nhập.", 'pop__mission')
         }
 	},
 
-	handlingRollup(roomId, response){
+	handlingRollup(objectParamsReturn, response){
+		$('#pop__mission').modal('hide');
 		if(response.data.code >= 0){
-			if(roomId===10116){
-				alert('Điểm danh thành công. Bạn nhận được 1 lượt chơi')
-			}else if(roomId===10134){
-				alert('Chia sẻ thành công. Bạn nhận được 1 lượt chơi')
+			if(objectParamsReturn.roomId===10116){
+				game_client.notification("Điểm danh thành công. Bạn nhận được 1 lượt chơi.",'')
+			}else if(objectParamsReturn.roomId===10134){
+				game_client.notification("Chia sẻ thành công. Bạn nhận được 1 lượt chơi.",'')
 			}
 		}else{
-			alert('Điểm danh thất bại.')
+			game_client.notification("Điểm danh thất bại.", '')
 		}
 	},
 	
@@ -243,23 +249,31 @@ const game_client = {
 
 	nextAlbum(){
 		var pos = game_client.listAlbum.map(function(e) { return e.id; }).indexOf(game_client.currentNameAlbum);
-		if(pos===4){
-			pos=-1;
+		if(pos !== -1){
+			if(pos===4){
+				pos=-1;
+			}
+			var item=game_client.listAlbum[pos+1];
+			game_client.currentNameAlbum=item.id;
+			game_client.setNumberAlbum(item.value)
+		}else{
+			game_client.setNumberAlbum('00')
 		}
-		var item=game_client.listAlbum[pos+1];
-		game_client.currentNameAlbum=item.id;
-		game_client.setNumberAlbum(item.value)
-
 	},
 
 	backAlbum(){
 		var pos = game_client.listAlbum.map(function(e) { return e.id; }).indexOf(game_client.currentNameAlbum);
-		if(pos===0){
-			pos=6;
+		if(pos !== -1){
+			if(pos===0){
+				pos=6;
+			}
+			var item=game_client.listAlbum[pos-1];
+			game_client.currentNameAlbum=item.id;
+			game_client.setNumberAlbum(item.value)
+		}else{
+			game_client.setNumberAlbum('00')
 		}
-		var item=game_client.listAlbum[pos-1];
-		game_client.currentNameAlbum=item.id;
-		game_client.setNumberAlbum(item.value)
+	
 	},
 
 	setNumberAlbum(content){
@@ -370,34 +384,82 @@ const game_client = {
         game_client.getHistory(game_client.page+1, game_client.modeId_history, game_client.rewardType)
     },
 
-	exchangeRewards(modeId, value, key, message){
+	exchangeRewards(modeId, value, key, message, id_popup, id_popup_result){
 		var objectParamsReturn={
 			modeId:modeId,
 			value:value,
 			key:key, 
 			message:message
 		}
-		// var e = document.getElementsByClassName(key);
-		// var f=e.item(0);
-		
-		// f.innerHTML=''
+		var e = document.getElementsByClassName(key);
+		var f=e.item(0);
+		f.innerHTML='';
+		$(`#${id_popup}`).modal('hide'); 
         if(vtcmAuth.isLogin()){
             vtcmEvent.exchangeRewards(modeId, value,objectParamsReturn, this.handlingExchangeRewards, this.notificationErr)
         } else{
-            alert('Bạn chưa đăng nhập')
+			setTimeout(()=>{
+				$(`#${id_popup_result}`).modal('hide'); 
+			},1)
+			
+			game_client.notification("Bạn chưa đăng nhập");
         }
     },
 
 	handlingExchangeRewards(objectParamsReturn, response){
 		if(response.data.code >= 0){
-			// var e = document.getElementsByClassName(objectParamsReturn.key);
-			// var f=e.item(0);
-			// f.innerHTML=objectParamsReturn.message.replace('$', response.data.data.rewards[0].name);
+			var e = document.getElementsByClassName(objectParamsReturn.key);
+			var f=e.item(0);
+			f.innerHTML=response.data.data.rewards[0].name;
+			game_client.contentGiftcode=response.data.data.rewards[0].name;
 		}else{
-			// var e = document.getElementsByClassName(objectParamsReturn.key);
-			// var f=e.item(0);
-			// f.innerHTML=response.data.message;
+			var e = document.getElementsByClassName(objectParamsReturn.key);
+			var f=e.item(0);
+			f.innerHTML=response.data.message;
 		}
+	},
+
+	share(){
+		window.open('https://www.facebook.com/sharer/sharer.php?u=https://www.google.com/')
+		game_client.rollup(10160, 10134)
+	},
+
+	getLinkShare(){
+		if(vtcmAuth.isLogin()){
+            vtcmEvent.getLinkShare(this.handlingGetLinkShare, this.notification)
+        } else{
+            game_client.notification("Bạn chưa đăng nhập",'pop__mission')
+        }
+	},
+
+	handlingGetLinkShare(response){
+		if(response.data.code>=0){
+			var link=window.location.href +'?inviden=' response.data.data.link;
+			game_client.linkShare=link;
+		}else{
+
+		}
+	},
+
+	sendLinkShare(){
+		if(vtcmAuth.isLogin()){
+			var invide = common_sdk.parse_query_string("code", window.location.href);
+            vtcmEvent.sendLinkShare(this.handlingSendLinkShare, this.notification)
+        } else{
+			game_client.notification("Bạn chưa đăng nhập",'')
+        }
+	},
+
+	handlingSendLinkShare(response){
+
+	},
+
+	copyLink(){
+		navigator.clipboard.writeText(game_client.linkShare);
+	},
+
+	copyGiftcode(){
+		navigator.clipboard.writeText(game_client.contentGiftcode);
 	},
 
 	bocbanh(number, key){
@@ -465,16 +527,23 @@ const game_client = {
 		game_client.isPlayPickup=false;
 	},
 
-	notificationErrRollup(roomId, error){
-		if(roomId!==0){
-			$('#modal-diem-danh').modal('hide'); 
-		}else{
-			$('#modal-nhan-vang').modal('hide'); 
+	notificationErrRollup(objectParamsReturn, error){
+		$('#pop__notify').modal('show'); 
+		var e = document.getElementsByClassName('sdk_text_notify');
+		var f=e.item(0);
+		f.innerHTML= error.response.data.message;
+	},
+
+	notification(message, id_popup){
+		if(id_popup!==''){
+			setTimeout(()=>{
+				$(`#${id_popup}`).modal('hide'); 
+			},1)
 		}
-		
-		$('#modal-notify').modal('show'); 
-		var e = document.getElementById('content_notify');
-		e.innerText=error.response.data.message;
+		$('#pop__notify').modal('show'); 
+		var e = document.getElementsByClassName('sdk_text_notify');
+		var f=e.item(0);
+		f.innerHTML= message;
 	},
 
 	timeConvert(time){

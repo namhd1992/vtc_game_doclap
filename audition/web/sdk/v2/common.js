@@ -120,7 +120,7 @@ const common_sdk = {
 
     ui:{
         showLoading(){
-            var loading=document.querySelector('.page');
+            var loading=document.querySelector('.sdk_page');
             loading.insertAdjacentHTML('beforebegin','<div class="loader-line"></div>')
         },
     

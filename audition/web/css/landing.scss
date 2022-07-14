@@ -610,7 +610,7 @@ body {
                         content: "23.07";
                     }
                     &::after {
-                        content: "Event Đăng Ký App";
+                        content: "Đăng ký trước";
                     }
                 }
                 &--2 {
@@ -621,10 +621,10 @@ body {
                         left: 21vw;
                     }
                     &::before {
-                        content: "31/07";
+                        content: "29/7";
                     }
                     &::after {
-                        content: "Event Tải Game Vote App";
+                        content: "Tải game vote app";
                     }
                 }
                 &--3 {
@@ -635,33 +635,24 @@ body {
                         left: 40vw;
                     }
                     &::before {
-                        content: "02/08";
+                        content: "30/7";
                     }
                     &::after {
-                        content: "Khai mở Alpha Test";
+                        content: "TikTok Challenge";
                     }
                 }
                 &--4 {
-                    top: -36px;
-                    left: 724px;
-                    width: 378px;
-                    height: 283px;
-                    background-image: url("https://cdn.smobgame.com/template/au/images/landing/moca.png");
+                    top: -22px;
+                    left: 810px;
                     @include screen("tablet") {
-                        top: -7.2vw;
-                        left: 50vw;
-                        width: 39vw;
-                        height: 29vw;
+                        top: -5.2vw;
+                        left: 58vw;
                     }
                     &::before {
-                        content: "05/08";
-                        top: 44%;
-                        left: 43%;
+                        content: "1/8";
                     }
                     &::after {
-                        content: "Chính thức ra mắt";
-                        top: 81%;
-                        left: 44%;
+                        content: "Khai mở Alpha Test";
                     }
                 }
                 &--5 {
@@ -677,12 +668,12 @@ body {
                         height: 29vw;
                     }
                     &::before {
-                        content: "06/08";
+                        content: "3/8";
                         top: 44%;
                         left: 43%;
                     }
                     &::after {
-                        content: "Event Dance Cover";
+                        content: "Chính thức ra mắt";
                         top: 81%;
                         left: 44%;
                     }
@@ -899,30 +890,30 @@ body {
                             background-size: 100%;
                             width: 23vw;
                             height: 18vw;
-                            top: -2vw;
+                            top: -3vw;
                             left: 4%;
                             background-size: 100%;
                         }
                     }
                     &--1 {
                         &::before {
-                            background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dk1.png");
+                            background-image: url("https://cdn.smobgame.com/template/au/images/landing/dk11.png");
                         }
                     }
                     &--2 {
                         &::before {
-                            background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dk2.png");
+                            background-image: url("https://cdn.smobgame.com/template/au/images/landing/dk21.png");
                         }
                     }
                     &--3 {
                         &::before {
-                            background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dk3.png");
+                            background-image: url("https://cdn.smobgame.com/template/au/images/landing/dk31.png");
                         }
                     }
                     &--4 {
                         &::before {
                             left: 18%;
-                            background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dk4.png");
+                            background-image: url("https://cdn.smobgame.com/template/au/images/landing/dk51.png");
                             @include screen("tablet") {
                                 left: 12%;
                             }
@@ -988,7 +979,7 @@ body {
                     position: absolute;
                     width: 416px;
                     height: 390px;
-                    background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dk5.png");
+                    background-image: url("https://cdn.smobgame.com/template/au/images/landing/dk61.png");
                     @extend %CSS-left50;
                     top: -3px;
                     left: 8%;
@@ -2351,6 +2342,38 @@ body {
                 margin: 6px auto 0 auto;
                 background-size: 120px;
                 font-size: 14px;
+            }
+        }
+        .copyGc {
+            @extend %CSS-backgroundimage;
+            width: 220px;
+            height: 79px;
+            margin: 10px auto 0 auto;
+            @extend %CSS--center;
+            font-size: 24px;
+            color: #fff;
+            font-family: "UTMBebas";
+            background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpop.png");
+            &:hover {
+                background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpop1.png");
+            }
+            @include screen("mobile") {
+                width: 120px;
+                height: 42px;
+                margin: 6px auto 0 auto;
+                background-size: 120px;
+                font-size: 14px;
+            }
+        }
+        .gc {
+            font-weight: bold;
+            font-size: 21px;
+            text-transform: uppercase;
+            margin: 6px auto 0 auto;
+            text-align: center;
+            @include screen("mobile") {
+                margin: 3px auto 0 auto;
+                font-size: 16px;
             }
         }
         .table-bordered {

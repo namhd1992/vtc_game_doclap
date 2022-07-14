@@ -15,7 +15,7 @@ const vtcmEvent = {
     },
 
   
-    rollup(modeId, roomId, handlingRollup, notificationErrRollup){
+    rollup(modeId, roomId,objectParamsReturn, handlingRollup, notificationErrRollup){
 
         var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/rewards/receive-event-free';
         var header = {
@@ -35,7 +35,7 @@ const vtcmEvent = {
 
         axios.post(url,data,header)
         .then(function (response) {
-            handlingRollup(roomId, response)
+            handlingRollup(objectParamsReturn, response)
             common_sdk.ui.hideLoading();
         })
         .catch(function (err) {
@@ -43,7 +43,7 @@ const vtcmEvent = {
                 if(err.response.status===401){
                     vtcmAuth.logout();
                 }else{
-                    notificationErrRollup(roomId, err)
+                    notificationErrRollup(objectParamsReturn, err)
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {
@@ -289,6 +289,76 @@ const vtcmEvent = {
                     vtcmAuth.logout();
                 }else{
                     notificationErr(err)
+                    common_sdk.ui.hideLoading();
+                }
+            }else if (err.request) {
+                $('body').html('');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+            }else{
+                console.log('Error', err.message);
+            }
+            
+        })
+    },
+
+    getLinkShare(handlingGetLinkShare, notification){
+        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/games/payment-leaderboard'
+        var header = {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        var data= {...info};
+        data.startId=0;
+        data.gameId=vtcmApp.config_.gameId;
+        common_sdk.ui.showLoading();
+        
+        axios.post(url,data,header)
+        .then(function (response) {
+            handlingGetLinkShare(response)
+            common_sdk.ui.hideLoading();
+        })
+        .catch(function (err) {
+            if(err.response){
+                if(err.response.status===401){
+                    vtcmAuth.logout();
+                }else{
+                    notification(error.response.data.message)
+                    common_sdk.ui.hideLoading();
+                }
+            }else if (err.request) {
+                $('body').html('');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+            }else{
+                console.log('Error', err.message);
+            }
+            
+        })
+    },
+
+    sendLinkShare(code, handlingSendLinkShare, notification){
+        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/games/payment-leaderboard'
+        var header = {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        var data= {...info};
+        data.startId=0;
+        data.gameId=vtcmApp.config_.gameId;
+        common_sdk.ui.showLoading();
+        
+        axios.post(url,data,header)
+        .then(function (response) {
+            handlingSendLinkShare(response)
+            common_sdk.ui.hideLoading();
+        })
+        .catch(function (err) {
+            if(err.response){
+                if(err.response.status===401){
+                    vtcmAuth.logout();
+                }else{
+                    notification(error.response.data.message)
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {
