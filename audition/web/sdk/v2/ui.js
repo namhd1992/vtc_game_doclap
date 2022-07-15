@@ -60,6 +60,7 @@ const game_client = {
         var obj_website_url=data.filter(v =>v.code===contants.EVT_WEBSITE_URL);
 		var obj_youtube=data.filter(v =>v.code===contants.EVT_YOUTUBE_URL);
         var obj_tiktok=data.filter(v =>v.code===contants.EVT_TIKTOK_URL);
+		var obj_total_register=data.filter(v =>v.code===contants.EVT_TOTAL_REGISTER);
 
         var obj_link_android=data.filter(v =>v.code===contants.EVT_LINK_ANDROID);
         var obj_link_ios=data.filter(v =>v.code===contants.EVT_LINK_IOS);
@@ -99,7 +100,8 @@ const game_client = {
         {id:'sdk_content_rewards', value:obj_rewards[0] ? obj_rewards[0].value : ''},
 		{id:'sdk_welfare', value:obj_welfare[0] ? obj_welfare[0].value : ''},
         {id:'rollup_points', value:obj_rollup_points[0] ? obj_rollup_points[0].value : ''}, 
-        {id:'content_moruong', value:obj_moruong[0] ? obj_moruong[0].value : '' }]
+        {id:'content_moruong', value:obj_moruong[0] ? obj_moruong[0].value : '' },
+		{id:'sdk_total_register', value:obj_total_register[0] ? obj_total_register[0].value : '' }]
 
 		var list_item_meta=[{id:"og-title", value:obj_meta_title[0] ? obj_meta_title[0].value : ''},
         {id:'og-description', value:obj_meta_desc[0] ? obj_meta_desc[0].value : ''}, 
