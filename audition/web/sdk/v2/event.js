@@ -302,15 +302,19 @@ const vtcmEvent = {
     },
 
     getLinkShare(handlingGetLinkShare, notification){
-        var url=vtcmApp.config_.apiBaseUrl+'/api/v1/setting/get-invite-link'
+        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/account/get-invite-code'
         var header = {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${vtcmAuth.getToken()}`
             }
         }
         var data= {...info};
-        data.startId=0;
-        data.gameId=vtcmApp.config_.gameId;
+        data.modeId=0;
+        data.roomId=0;
+        data.inviteCode="";
+        data.userId=vtcmAuth.getUserId();
+        // data.gameId=vtcmApp.config_.gameId;
         common_sdk.ui.showLoading();
         
         axios.post(url,data,header)
@@ -337,15 +341,19 @@ const vtcmEvent = {
     },
 
     sendLinkShare(code, handlingSendLinkShare, notification){
-        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/games/payment-leaderboard'
+        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/account/post-invite-code'
         var header = {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${vtcmAuth.getToken()}`
             }
         }
         var data= {...info};
-        data.startId=0;
-        data.gameId=vtcmApp.config_.gameId;
+        data.modeId=0;
+        data.roomId=0;
+        data.inviteCode=code;
+        data.userId=vtcmAuth.getUserId();
+        // data.gameId=vtcmApp.config_.gameId;
         common_sdk.ui.showLoading();
         
         axios.post(url,data,header)
@@ -358,7 +366,7 @@ const vtcmEvent = {
                 if(err.response.status===401){
                     vtcmAuth.logout();
                 }else{
-                    notification(error.response.data.message)
+                    // notification(error.response.data.message)
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {

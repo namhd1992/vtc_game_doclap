@@ -24,7 +24,7 @@ const game_client = {
 		
 		this.config_ = rawConfig;
 		vtcmApp.initApp(rawConfig);
-		game_client.sendLinkShare()
+		game_client.sendLinkShare();
         if(vtcmAuth.isLogin()){
 			vtcmApp.getAppSetting(game_client.cbwithtoken);
             document.getElementById("username").innerHTML = vtcmAuth.getUserName();
@@ -117,7 +117,7 @@ const game_client = {
 		var number_play=response.data.data.playSummary[0] ? response.data.data.playSummary[0].playerCount : 0;
         var list=[];
 		var listRewards=[];
-        list.push({id:'sdk_account_user', value:user.userName}, {id:'sdk_my_number_goal', value:user.pointAvailable})
+        list.push({id:'sdk_account_user', value:user.userName}, {id:'sdk_numberpoint', value:user.pointAvailable})
         // var event_rewards=this.config_.arr_event_change_rewards;
         // for (let i = 0; i < event_rewards.length; i++) {
         //     var obj=rewardExchange.filter(v=>v.eventCode===event_rewards[i].name);
@@ -420,9 +420,9 @@ const game_client = {
 		}
 	},
 
-	share(){
-		window.open('https://www.facebook.com/sharer/sharer.php?u=https://www.google.com/')
-		game_client.rollup(10160, 10134)
+	share(modeId, roomId){
+		window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`)
+		game_client.rollup(modeId, roomId)
 	},
 
 	getLinkShare(){
@@ -435,7 +435,7 @@ const game_client = {
 
 	handlingGetLinkShare(response){
 		if(response.data.code>=0){
-			var link=window.location.href +'?inviden=' + response.data.data.link;
+			var link=window.location.href +'?inviden=' + response.data.data.inviteCode;
 			game_client.linkShare=link;
 		}else{
 
@@ -443,19 +443,24 @@ const game_client = {
 	},
 
 	sendLinkShare(){
-		if(vtcmAuth.isLogin()){
-			var inviden = common_sdk.parse_query_string("inviden", window.location.href);
-			if(inviden!==null){
-				vtcmEvent.sendLinkShare(this.handlingSendLinkShare, this.notification)
+		var inviden = common_sdk.parse_query_string("inviden", window.location.href);
+		if(inviden!==null){
+			if(vtcmAuth.isLogin()){
+				vtcmEvent.sendLinkShare(inviden, this.handlingSendLinkShare, this.notification)
+			} else{
+				game_client.notification("Bạn chưa đăng nhập",'')
 			}
-            
-        } else{
-			game_client.notification("Bạn chưa đăng nhập",'')
-        }
+		}
 	},
 
 	handlingSendLinkShare(response){
-
+		if(response.data.code>=0){
+			console.log('thành công')
+			// game_client.notification("",'')
+		}else{
+			console.log('thất bại')
+			// game_client.notification("",'')
+		}
 	},
 
 	copyLink(){
