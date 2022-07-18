@@ -117,8 +117,8 @@ const vtcmApp = {
 	}
 };
 
-ready(() => {
-    // alert('app')
-	'use strict';
-	var config = {};
-});
+// ready(() => {
+//     // alert('app')
+// 	'use strict';
+// 	var config = {};
+// });
