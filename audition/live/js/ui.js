@@ -81,7 +81,7 @@ const game_client = {
 		var obj_moruong=data.filter(v =>v.code===contants.EVT_MORUONG_CONTENT);
 	
 		var obj_title=data.filter(v =>v.code===contants.EVT_NAME);
-		document.title=obj_title[0].value;
+		document.title=obj_title[0] ? obj_title[0].value : '';
 		var list_item_link=[{id:"sdk_fanpage_fb", value:obj_fanpage_fb[0] ? obj_fanpage_fb[0].value : ''},
         {id:'sdk_group_fb', value:obj_group_fb[0] ? obj_group_fb[0].value : ''},
         {id:'sdk_website_url', value:obj_website_url[0] ? obj_website_url[0].value : ''},
@@ -185,13 +185,13 @@ const game_client = {
 
 	handlingRollup(objectParamsReturn, response){
 		$('#pop__mission').modal('hide');
-		if(objectParamsReturn.roomId===10116){
+		if(objectParamsReturn.roomId===10168){
 			if(response.data.code >= 0){
 				game_client.notification("Điểm danh thành công. Bạn nhận được 1 lượt chơi.",'')
 			}else{
 				game_client.notification(response.data.message, '')
 			}
-		}else if(objectParamsReturn.roomId===10134){
+		}else if(objectParamsReturn.roomId===10169){
 			if(response.data.code >= 0){
 				game_client.notification("Chia sẻ thành công. Bạn nhận được 1 lượt chơi.",'')
 			}else{
@@ -417,8 +417,8 @@ const game_client = {
 		if(response.data.code >= 0){
 			var e = document.getElementsByClassName(objectParamsReturn.key);
 			var f=e.item(0);
-			f.innerHTML=response.data.data.rewards[0].name;
-			game_client.contentGiftcode=response.data.data.rewards[0].name;
+			f.innerHTML=response.data.data.rewards[0].rewardCode;
+			game_client.contentGiftcode=response.data.data.rewards[0].rewardCode;
 		}else{
 			var e = document.getElementsByClassName(objectParamsReturn.key);
 			var f=e.item(0);
