@@ -24,7 +24,7 @@ const game_client = {
 		
 		this.config_ = rawConfig;
 		vtcmApp.initApp(rawConfig);
-		game_client.sendLinkShare();
+		game_client.sendLinkShare(10198, 10167);
         if(vtcmAuth.isLogin()){
 			vtcmApp.getAppSetting(game_client.cbwithtoken);
             document.getElementById("username").innerHTML = vtcmAuth.getUserName();
@@ -37,6 +37,8 @@ const game_client = {
             document.getElementById("login").style.display = "block";
           
         }
+		// $('.copyGc').copyOnClick({copyMode:"val",confirmClass:"copy-confirmation",});
+		
 	},
 
 	cbwithtoken(response){
@@ -431,9 +433,9 @@ const game_client = {
 		game_client.rollup(modeId, roomId)
 	},
 
-	getLinkShare(){
+	getLinkShare(modeId, roomId){
 		if(vtcmAuth.isLogin()){
-            vtcmEvent.getLinkShare(this.handlingGetLinkShare, this.notification)
+            vtcmEvent.getLinkShare(modeId, roomId, 'pop__mission', this.handlingGetLinkShare, this.notification)
         } else{
             game_client.notification("Bạn chưa đăng nhập",'pop__mission')
         }
@@ -448,11 +450,11 @@ const game_client = {
 		}
 	},
 
-	sendLinkShare(){
+	sendLinkShare(modeId, roomId){
 		var inviden = common_sdk.parse_query_string("inviden", window.location.href);
 		if(inviden!==null){
 			if(vtcmAuth.isLogin()){
-				vtcmEvent.sendLinkShare(inviden, this.handlingSendLinkShare, this.notification)
+				vtcmEvent.sendLinkShare(modeId, roomId, inviden, this.handlingSendLinkShare, this.notification)
 			} else{
 				game_client.notification("Bạn chưa đăng nhập",'')
 			}
@@ -470,12 +472,27 @@ const game_client = {
 	},
 
 	copyLink(){
-		navigator.clipboard.writeText(game_client.linkShare);
+		// navigator.clipboard.writeText(game_client.linkShare);
+		game_client.copyToClipboard(game_client.linkShare)
 	},
 
 	copyGiftcode(){
-		navigator.clipboard.writeText(game_client.contentGiftcode);
+		// $('.copyGc').copyOnClick({copyMode:"val",confirmClass:"copy-confirmation",});
+		game_client.copyToClipboard(game_client.contentGiftcode)
+		// navigator.clipboard.writeText(game_client.contentGiftcode);
 	},
+
+	copyToClipboard(text) {
+		var textField = document.createElement('textarea');
+		textField.innerText = text;
+		document.body.appendChild(textField);
+		textField.select();
+		textField.focus(); 
+		document.execCommand('copy');
+		textField.remove();
+		ajax-error.focus(); 
+	},
+
 
 	bocbanh(number, key){
 		var n=number > 16 ? 16 : number;
