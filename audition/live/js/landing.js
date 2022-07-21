@@ -41,9 +41,9 @@ $(document).ready(function() {
     }
     var classs = ['abum--1', 'abum--2', 'abum--3', 'abum--4', 'abum--5'];
     $('.play').click(function() {
-        setTimeout(function() {
-            $('.abum').addClass(classs[Math.floor(Math.random() * classs.length)]);
-        }, 1000);
+        // setTimeout(function() {
+        //     $('.abum').addClass(classs[Math.floor(Math.random() * classs.length)]);
+        // }, 1000);
         setTimeout(function() {
             $('#pop__notifyAward').modal('show');
         }, 3000);

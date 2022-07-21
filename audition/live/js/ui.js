@@ -16,6 +16,9 @@ const game_client = {
 	listAlbum:[],
 	linkShare:'',
 	contentGiftcode:'',
+	oldClass:'',
+	pointAvailable:0,
+	
 	
 	initApp(rawConfig = {}){
 		if (typeof rawConfig !== 'object') {
@@ -121,6 +124,7 @@ const game_client = {
 		var number_play=response.data.data.playSummary[0] ? response.data.data.playSummary[0].playerCount : 0;
         var list=[];
 		var listRewards=[];
+		game_client.pointAvailable=user.pointAvailable;
         list.push({id:'sdk_account_user', value:user.userName}, {id:'sdk_numberpoint', value:user.pointAvailable})
         // var event_rewards=this.config_.arr_event_change_rewards;
         // for (let i = 0; i < event_rewards.length; i++) {
@@ -133,24 +137,24 @@ const game_client = {
         //     list.push(s);
         // }
 		var obj_dangxinh=rewardExchange.filter(v=>v.eventCode==="DANGXINH");
-		var number_dangxinh=obj_dangxinh.length > 0 ? obj_dangxinh[0].totalAvailable : '0';
-		number_dangxinh=number_dangxinh > 9 ? number_dangxinh : `0${number_dangxinh}`;
+		var number_dangxinh=obj_dangxinh.length > 0 ? obj_dangxinh[0].totalAvailable : 0;
+		// number_dangxinh=number_dangxinh > 9 ? number_dangxinh : `0${number_dangxinh}`;
 
 		var obj_camxuc=rewardExchange.filter(v=>v.eventCode==="CAMXUC");
-		var number_camxuc=obj_camxuc.length > 0 ? obj_camxuc[0].totalAvailable : '0';
-		number_camxuc=number_camxuc > 9 ? number_camxuc : `0${number_camxuc}`;
+		var number_camxuc=obj_camxuc.length > 0 ? obj_camxuc[0].totalAvailable : 0;
+		// number_camxuc=number_camxuc > 9 ? number_camxuc : `0${number_camxuc}`;
 
 		var obj_catinh=rewardExchange.filter(v=>v.eventCode==="CATINH");
-		var number_catinh=obj_catinh.length > 0 ? obj_catinh[0].totalAvailable : '0';
-		number_catinh=number_catinh > 9 ? number_catinh : `0${number_catinh}`;
+		var number_catinh=obj_catinh.length > 0 ? obj_catinh[0].totalAvailable : 0;
+		// number_catinh=number_catinh > 9 ? number_catinh : `0${number_catinh}`;
 
 		var obj_luayeu=rewardExchange.filter(v=>v.eventCode==="LUAYEU");
-		var number_luayeu=obj_luayeu.length > 0 ? obj_luayeu[0].totalAvailable : '0';
-		number_luayeu=number_luayeu > 9 ? number_luayeu : `0${number_luayeu}`;
+		var number_luayeu=obj_luayeu.length > 0 ? obj_luayeu[0].totalAvailable : 0;
+		// number_luayeu=number_luayeu > 9 ? number_luayeu : `0${number_luayeu}`;
 
 		var obj_chatphieu=rewardExchange.filter(v=>v.eventCode==="CHATPHIEU");
-		var number_chatphieu=obj_chatphieu.length > 0 ? obj_chatphieu[0].totalAvailable : '0';
-		number_chatphieu=number_chatphieu > 9 ? number_chatphieu : `0${number_chatphieu}`;
+		var number_chatphieu=obj_chatphieu.length > 0 ? obj_chatphieu[0].totalAvailable : 0;
+		// number_chatphieu=number_chatphieu > 9 ? number_chatphieu : `0${number_chatphieu}`;
 
 		listRewards.push({id:'DANGXINH', value:number_dangxinh}, {id:'CAMXUC', value:number_camxuc}, 
 		{id:'CATINH', value:number_catinh}, {id:'LUAYEU', value:number_luayeu}, {id:'CHATPHIEU', value:number_chatphieu});
@@ -181,7 +185,7 @@ const game_client = {
 		if(vtcmAuth.isLogin()){
 			vtcmEvent.rollup(modeId, roomId,objectParamsReturn, this.handlingRollup, this.notificationErrRollup)
 		}else{
-			game_client.notification("Bạn chưa đăng nhập.", 'pop__mission')
+			game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, 'pop__mission')
         }
 	},
 
@@ -189,17 +193,27 @@ const game_client = {
 		$('#pop__mission').modal('hide');
 		if(objectParamsReturn.roomId===10168){
 			if(response.data.code >= 0){
+				game_client.pointAvailable=game_client.pointAvailable+1;
+				game_client.updatePoint();
 				game_client.notification("Điểm danh thành công. Bạn nhận được 1 lượt chơi.",'')
 			}else{
 				game_client.notification(response.data.message, '')
 			}
 		}else if(objectParamsReturn.roomId===10169){
 			if(response.data.code >= 0){
+				game_client.pointAvailable=game_client.pointAvailable+1;
+				game_client.updatePoint();
 				game_client.notification("Chia sẻ thành công. Bạn nhận được 1 lượt chơi.",'')
 			}else{
 				game_client.notification(response.data.message, '')
 			}
 		}
+	},
+
+	updatePoint(){
+		var list=[];
+		list.push({id:'sdk_numberpoint', value:game_client.pointAvailable})
+		common_sdk.setInfoUser(list);
 	},
 	
 
@@ -213,7 +227,10 @@ const game_client = {
 		}
 		var e = document.getElementsByClassName(key);
 		var f=e.item(0);
-		f.innerHTML=''
+		f.innerHTML='';
+		// var i = document.getElementsByClassName('album_rewards');
+		// var h=i.item(0);
+		// $(h).removeClass(game_client.oldClass);
         if(!game_client.isPlay){
             game_client.isPlay=true;
             if(vtcmAuth.isLogin()){
@@ -223,7 +240,7 @@ const game_client = {
                 var e = document.getElementsByClassName(key);
 				for (let j = 0; j < e.length; j++) {
 					var f=e.item(0);
-					f.innerHTML= "Bạn chưa đăng nhập";
+					f.innerHTML= `Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`;
 				}
             }
         }
@@ -236,6 +253,9 @@ const game_client = {
         
 		if(response.data.code>=0){
 			var className=game_client.getAlbum(response.data.data.rewards[0])
+			game_client.updateAlbum(response.data.data.rewards[0])
+			game_client.pointAvailable=game_client.pointAvailable-1;
+			game_client.updatePoint();
 			var e = document.getElementsByClassName(objectParamsReturn.key);
 			var f=e.item(0);
 			f.innerHTML=`<p>Chúc mừng bạn nhận được album:</p>
@@ -245,6 +265,7 @@ const game_client = {
 			var i = document.getElementsByClassName('album_rewards');
 			var h=i.item(0);
 			$(h).addClass(imgReward);
+			game_client.oldClass=imgReward
 
 		}else{
 			// var e = document.getElementsByClassName(objectParamsReturn.key);
@@ -316,6 +337,35 @@ const game_client = {
 		return className;
 	},
 
+	updateAlbum(item){
+		switch (item.eventCode) {
+			case "DANGXINH":
+				var pos = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('DANGXINH');
+				game_client.listAlbum[pos].value=game_client.listAlbum[pos].value + 1;
+				break;
+			case "CAMXUC":
+				var pos = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('CAMXUC');
+				game_client.listAlbum[pos].value=game_client.listAlbum[pos].value + 1;
+				break;
+			case "CATINH":
+				var pos = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('CATINH');
+				game_client.listAlbum[pos].value=game_client.listAlbum[pos].value + 1;
+				break;
+			case "LUAYEU":
+				var pos = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('LUAYEU');
+				game_client.listAlbum[pos].value=game_client.listAlbum[pos].value + 1;
+				break;
+			case "CHATPHIEU":
+				var pos = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('CHATPHIEU');
+				game_client.listAlbum[pos].value=game_client.listAlbum[pos].value + 1;
+				break;
+			default:
+				var pos = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('DANGXINH');
+				game_client.listAlbum[pos].value=game_client.listAlbum[pos].value + 1;
+				break;
+		}
+	},
+
 	getAlbumReward(item){
 		var className=''
 		switch (item.eventCode) {
@@ -340,6 +390,138 @@ const game_client = {
 		}
 		return className;
 	},
+
+	getListAlbumReward(id){
+		switch (id) {
+			case "listAbum--1":
+				// var a= document.querySelector('.listAbum--1 > .item--1');
+				// a.style.filter = 'grayscale(0)'
+				game_client.checkReward1();
+				break;
+			case "listAbum--2":
+				game_client.checkReward2();
+				break;
+			case "listAbum--3":
+				game_client.checkReward3();
+				break;
+			case "listAbum--4":
+				game_client.checkReward4();
+				break;
+			case "listAbum--5":
+				game_client.checkReward5();
+				break;
+			default:
+				game_client.checkReward1();
+				break;
+		}
+	},
+
+	checkReward1(){
+		var x = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('DANGXINH');
+		var y = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('CAMXUC');
+		if(game_client.listAlbum[x].value > 0){
+			var a= document.querySelector('.listAbum--1 > .item--1');
+			a.style.filter = 'grayscale(0)'
+		}
+
+		if(game_client.listAlbum[y].value > 0){
+			var b= document.querySelector('.listAbum--1 > .item--2');
+			b.style.filter = 'grayscale(0)'
+		}
+				
+	},
+
+
+	checkReward2(){
+		var x = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('CATINH');
+		var y = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('LUAYEU');
+		if(game_client.listAlbum[x].value > 0){
+			var a= document.querySelector('.listAbum--2 > .item--3');
+			a.style.filter = 'grayscale(0)'
+		}
+
+		if(game_client.listAlbum[y].value > 0){
+			var b= document.querySelector('.listAbum--2 > .item--4');
+			b.style.filter = 'grayscale(0)'
+		}
+				
+	},
+
+	checkReward3(){
+		var x = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('DANGXINH');
+		var y = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('CAMXUC');
+		var z = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('CATINH');
+		if(game_client.listAlbum[x].value > 0){
+			var a= document.querySelector('.listAbum--3 > .item--1');
+			a.style.filter = 'grayscale(0)'
+		}
+
+		if(game_client.listAlbum[y].value > 0){
+			var b= document.querySelector('.listAbum--3 > .item--2');
+			b.style.filter = 'grayscale(0)'
+		}
+
+		if(game_client.listAlbum[y].value > 0){
+			var c= document.querySelector('.listAbum--3 > .item--3');
+			c.style.filter = 'grayscale(0)'
+		}
+				
+	},
+
+	checkReward4(){
+		var x = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('CATINH');
+		var y = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('LUAYEU');
+		var z = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('CHATPHIEU');
+		if(game_client.listAlbum[x].value > 0){
+			var a= document.querySelector('.listAbum--4 > .item--3');
+			a.style.filter = 'grayscale(0)'
+		}
+
+		if(game_client.listAlbum[y].value > 0){
+			var b= document.querySelector('.listAbum--4 > .item--4');
+			b.style.filter = 'grayscale(0)'
+		}
+
+		if(game_client.listAlbum[y].value > 0){
+			var c= document.querySelector('.listAbum--4 > .item--5');
+			c.style.filter = 'grayscale(0)'
+		}
+				
+	},
+
+	checkReward5(){
+		var x = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('DANGXINH');
+		var y = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('CAMXUC');
+		var z = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('CATINH');
+		var h = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('LUAYEU');
+		var g = game_client.listAlbum.map(function(e) { return e.id; }).indexOf('CHATPHIEU');
+		if(game_client.listAlbum[x].value > 0){
+			var a= document.querySelector('.listAbum--5 > .item--1');
+			a.style.filter = 'grayscale(0)'
+		}
+
+		if(game_client.listAlbum[y].value > 0){
+			var b= document.querySelector('.listAbum--5 > .item--2');
+			b.style.filter = 'grayscale(0)'
+		}
+
+		if(game_client.listAlbum[y].value > 0){
+			var c= document.querySelector('.listAbum--5 > .item--3');
+			c.style.filter = 'grayscale(0)'
+		}
+
+		if(game_client.listAlbum[y].value > 0){
+			var d= document.querySelector('.listAbum--5 > .item--4');
+			d.style.filter = 'grayscale(0)'
+		}
+
+		if(game_client.listAlbum[y].value > 0){
+			var e= document.querySelector('.listAbum--5 > .item--5');
+			e.style.filter = 'grayscale(0)'
+		}
+				
+	},
+
 
 	
 	
@@ -393,25 +575,25 @@ const game_client = {
         game_client.getHistory(game_client.page+1, game_client.modeId_history, game_client.rewardType)
     },
 
-	exchangeRewards(modeId, value, key, message, id_popup, id_popup_result){
+	exchangeRewards(modeId, value, key, message, id_popup, id_popup_result, id_listalbum){
 		var objectParamsReturn={
 			modeId:modeId,
 			value:value,
 			key:key, 
-			message:message
+			message:message,
+			id_popup_result:id_popup_result
 		}
 		var e = document.getElementsByClassName(key);
 		var f=e.item(0);
 		f.innerHTML='';
 		$(`#${id_popup}`).modal('hide'); 
         if(vtcmAuth.isLogin()){
-            vtcmEvent.exchangeRewards(modeId, value,objectParamsReturn, this.handlingExchangeRewards, this.notificationErr)
+            vtcmEvent.exchangeRewards(modeId, value,objectParamsReturn, this.handlingExchangeRewards, this.notificationErr);
         } else{
 			setTimeout(()=>{
 				$(`#${id_popup_result}`).modal('hide'); 
 			},1)
-			
-			game_client.notification("Bạn chưa đăng nhập");
+			game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, '')
         }
     },
 
@@ -422,9 +604,13 @@ const game_client = {
 			f.innerHTML=response.data.data.rewards[0].rewardCode;
 			game_client.contentGiftcode=response.data.data.rewards[0].rewardCode;
 		}else{
-			var e = document.getElementsByClassName(objectParamsReturn.key);
-			var f=e.item(0);
-			f.innerHTML=response.data.message;
+			// setTimeout(()=>{
+			// 	$(`#${id_popup_result}`).modal('hide'); 
+			// },1)
+			game_client.notification(response.data.message,objectParamsReturn.id_popup_result)
+			// var e = document.getElementsByClassName(objectParamsReturn.key);
+			// var f=e.item(0);
+			// f.innerHTML=response.data.message;
 		}
 	},
 
@@ -437,7 +623,8 @@ const game_client = {
 		if(vtcmAuth.isLogin()){
             vtcmEvent.getLinkShare(modeId, roomId, 'pop__mission', this.handlingGetLinkShare, this.notification)
         } else{
-            game_client.notification("Bạn chưa đăng nhập",'pop__mission')
+            // game_client.notification("Bạn chưa đăng nhập",'pop__mission')
+			game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, 'pop__mission')
         }
 	},
 
@@ -456,7 +643,7 @@ const game_client = {
 			if(vtcmAuth.isLogin()){
 				vtcmEvent.sendLinkShare(modeId, roomId, inviden, this.handlingSendLinkShare, this.notification)
 			} else{
-				game_client.notification("Bạn chưa đăng nhập",'')
+				game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, '')
 			}
 		}
 	},
@@ -490,7 +677,7 @@ const game_client = {
 		textField.focus(); 
 		document.execCommand('copy');
 		textField.remove();
-		ajax-error.focus(); 
+		// ajax-error.focus(); 
 	},
 
 
