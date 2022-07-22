@@ -38,7 +38,6 @@ const game_client = {
 			vtcmApp.getAppSetting(game_client.setDataToUI);
             document.getElementById("logout").style.display = "none";
             document.getElementById("login").style.display = "block";
-          
         }
 		// $('.copyGc').copyOnClick({copyMode:"val",confirmClass:"copy-confirmation",});
 		
@@ -225,13 +224,14 @@ const game_client = {
 			key:key, 
 			message:message
 		}
-		var e = document.getElementsByClassName(key);
-		var f=e.item(0);
-		f.innerHTML='';
+		
 		// var i = document.getElementsByClassName('album_rewards');
 		// var h=i.item(0);
 		// $(h).removeClass(game_client.oldClass);
         if(!game_client.isPlay){
+			var e = document.getElementsByClassName(key);
+			var f=e.item(0);
+			f.innerHTML='';
             game_client.isPlay=true;
             if(vtcmAuth.isLogin()){
 				vtcmEvent.playGame(modeId, numPlayed, objectParamsReturn, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
@@ -249,7 +249,7 @@ const game_client = {
 	handlingPlayGame(objectParamsReturn, response){
         setTimeout(()=>{
             game_client.isPlay=false;
-        },1000)
+        },3000)
         
 		if(response.data.code>=0){
 			var className=game_client.getAlbum(response.data.data.rewards[0])
@@ -461,7 +461,7 @@ const game_client = {
 			b.style.filter = 'grayscale(0)'
 		}
 
-		if(game_client.listAlbum[y].value > 0){
+		if(game_client.listAlbum[z].value > 0){
 			var c= document.querySelector('.listAbum--3 > .item--3');
 			c.style.filter = 'grayscale(0)'
 		}
@@ -482,7 +482,7 @@ const game_client = {
 			b.style.filter = 'grayscale(0)'
 		}
 
-		if(game_client.listAlbum[y].value > 0){
+		if(game_client.listAlbum[z].value > 0){
 			var c= document.querySelector('.listAbum--4 > .item--5');
 			c.style.filter = 'grayscale(0)'
 		}
@@ -505,17 +505,17 @@ const game_client = {
 			b.style.filter = 'grayscale(0)'
 		}
 
-		if(game_client.listAlbum[y].value > 0){
+		if(game_client.listAlbum[z].value > 0){
 			var c= document.querySelector('.listAbum--5 > .item--3');
 			c.style.filter = 'grayscale(0)'
 		}
 
-		if(game_client.listAlbum[y].value > 0){
+		if(game_client.listAlbum[h].value > 0){
 			var d= document.querySelector('.listAbum--5 > .item--4');
 			d.style.filter = 'grayscale(0)'
 		}
 
-		if(game_client.listAlbum[y].value > 0){
+		if(game_client.listAlbum[g].value > 0){
 			var e= document.querySelector('.listAbum--5 > .item--5');
 			e.style.filter = 'grayscale(0)'
 		}
@@ -639,11 +639,18 @@ const game_client = {
 
 	sendLinkShare(modeId, roomId){
 		var inviden = common_sdk.parse_query_string("inviden", window.location.href);
-		if(inviden!==null){
-			if(vtcmAuth.isLogin()){
-				vtcmEvent.sendLinkShare(modeId, roomId, inviden, this.handlingSendLinkShare, this.notification)
-			} else{
-				game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, '')
+		var local_inviden=localStorage.getItem("inviden");
+		if (local_inviden != null) {
+			vtcmEvent.sendLinkShare(modeId, roomId, local_inviden, this.handlingSendLinkShare, this.notification);
+			localStorage.removeItem('inviden');
+		}else{
+			if(inviden!==null){
+				if(vtcmAuth.isLogin()){
+					vtcmEvent.sendLinkShare(modeId, roomId, inviden, this.handlingSendLinkShare, this.notification)
+				} else{
+					localStorage.setItem("inviden", inviden);
+					game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, '')
+				}
 			}
 		}
 	},
