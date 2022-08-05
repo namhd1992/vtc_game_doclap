@@ -32,7 +32,7 @@
                                    <tr>
                                        <td style="width:23%"> Tốc độ: </td>
                                        <td style="width:20%">
-                                           <select id="slTocDo2" style="padding: 1px 1px 1px 23px; height: 40px; width: 100%; border-radius: 6px;">
+                                           <select id="slTocDo2" style="padding: 1px 1px 1px 23px; height: 40px; width: 100%; border-radius: 6px;" onchange="game_client.changeSpeed()">
                                                 <option value="3">3</option>
                                                 <option value="5">5</option>
                                                 <option value="8">8</option>
@@ -52,7 +52,7 @@
                                    <tr>
                                        <td style="width: 80px;"> Số lượng: </td>
                                        <td>
-                                           <input type="text" value="1" id="SoLuongToiDa2" placeholder="(Tối đa 100 số)" onkeypress="return integerJsInputControl(event);">
+                                           <input type="text" value="1" id="SoLuongToiDa2" placeholder="(Tối đa 100 số)">
                                        </td>
                                    </tr>
                                </tbody>
@@ -61,7 +61,7 @@
                    </div>
                    
                    <div class="frm-group" style="padding-top:15px">
-                       <a style="cursor:pointer;width: 100%;  border-radius: 4px; color: white; background-image: -webkit-linear-gradient( 90deg, #2f2f2f 0%, #000000 100%, rgb(0 0 0) 100%);" class="cmn-btn" id="aQuay" onclick="quay()">
+                       <a style="cursor:pointer;width: 100%;  border-radius: 4px; color: white; background-image: -webkit-linear-gradient( 90deg, #2f2f2f 0%, #000000 100%, rgb(0 0 0) 100%);" class="cmn-btn" id="aQuay" onclick="game_client.randomPhone_Test()">
                            Quay Số
                        </a>
                    </div>
@@ -73,6 +73,7 @@
            </div>
         </div>
      </section>
+     <script src="./jquery.min.js"></script>
      <script src="./index.js"></script>
 </body>
 </html>
