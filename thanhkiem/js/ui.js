@@ -12,6 +12,8 @@ const game_client = {
     modeId_history:0,
     totalPage:1,
 	rewardType:-1,
+	pointAvailable:0,
+	event_rewards:[],
 	
 	initApp(rawConfig = {}){
 		if (typeof rawConfig !== 'object') {
@@ -57,7 +59,7 @@ const game_client = {
         var obj_link_android=data.filter(v =>v.code===contants.EVT_LINK_ANDROID);
         var obj_link_ios=data.filter(v =>v.code===contants.EVT_LINK_IOS);
         var obj_link_desktop=data.filter(v =>v.code===contants.EVT_LINK_DESKTOP);
-
+		var obj_total_register=data.filter(v =>v.code===contants.EVT_TOTAL_REGISTER);
 
 		var obj_evt_guide=data.filter(v =>v.code===contants.EVT_GUIDE);
 		var obj_evt_rollup=data.filter(v =>v.code===contants.EVT_ROLLUP_CONTENT);
@@ -87,7 +89,9 @@ const game_client = {
         {id:'sdk_content_evt_rollup', value:obj_evt_rollup[0] ? obj_evt_rollup[0].value : ''},
         {id:'sdk_content_rewards', value:obj_rewards[0] ? obj_rewards[0].value : ''},
         {id:'rollup_points', value:obj_rollup_points[0] ? obj_rollup_points[0].value : ''}, 
-        {id:'content_moruong', value:obj_moruong[0] ? obj_moruong[0].value : '' }]
+        {id:'content_moruong', value:obj_moruong[0] ? obj_moruong[0].value : '' },
+		{id:'sdk_total_register', value:obj_total_register[0] ? obj_total_register[0].value : '' }];
+		
 
 		var list_item_meta=[{id:"og-title", value:obj_meta_title[0] ? obj_meta_title[0].value : ''},
         {id:'og-description', value:obj_meta_desc[0] ? obj_meta_desc[0].value : ''}, 
@@ -104,6 +108,7 @@ const game_client = {
 		var rewardExchange=response.data.data.rewardExchange;
 		var number_play=response.data.data.playSummary[0] ? response.data.data.playSummary[0].playerCount : 0;
         var list=[];
+		game_client.pointAvailable=user.pointAvailable;
         list.push({id:'sdk_account_user', value:user.userName}, {id:'sdk_my_number_goal', value:user.pointAvailable})
         var event_rewards=this.config_.arr_event_change_rewards;
         for (let i = 0; i < event_rewards.length; i++) {
@@ -140,21 +145,33 @@ const game_client = {
 	},
 
 	rollup(modeId, roomId){
+		var objectParamsReturn={
+			modeId:modeId,
+			roomId:roomId, 
+		}
 		if(vtcmAuth.isLogin()){
-			vtcmEvent.rollup(modeId, roomId, this.handlingRollup, this.notificationErrRollup)
+			vtcmEvent.rollup(modeId, roomId,objectParamsReturn, this.handlingRollup, this.notificationErrRollup)
 		}else{
-            $('#modal-warning-login').modal('show'); 
+            game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, 'pop__mission')
         }
 	},
 
-	handlingRollup(roomId, response){
+	handlingRollup(objectParamsReturn, response){
 		if(response.data.code >= 0){
-			alert('Điểm danh thành công. Bạn nhận được 1 lượt chơi')
+			game_client.pointAvailable=game_client.pointAvailable+1;
+			game_client.updatePoint();
+			game_client.notification("Điểm danh thành công. Bạn nhận được 1 lượt chơi.",'')
 		}else{
-			alert('Điểm danh thất bại.')
+			game_client.notification(response.data.message, '')
 		}
 	},
 	
+
+	updatePoint(){
+		var list=[];
+		list.push({id:'sdk_my_number_goal', value:game_client.pointAvailable})
+		common_sdk.setInfoUser(list);
+	},
 
 
 	playGame(modeId, numPlayed, key, message){
@@ -173,7 +190,7 @@ const game_client = {
 				vtcmEvent.playGame(modeId, numPlayed, objectParamsReturn, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
             }else{
                 game_client.isPlay=false;
-                $('#modal-warning-login').modal('show');
+				game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, 'pop__mission')
             }
         }
     },
@@ -185,6 +202,8 @@ const game_client = {
         },1000)
         
 		if(response.data.code>=0){
+			game_client.pointAvailable=game_client.pointAvailable-1;
+			game_client.updatePoint();
 			var e = document.getElementsByClassName(objectParamsReturn.key);
 			var f=e.item(0);
 			f.innerHTML=objectParamsReturn.message.replace('$', response.data.data.rewards[0].name);
@@ -261,7 +280,7 @@ const game_client = {
         if(vtcmAuth.isLogin()){
             vtcmEvent.exchangeRewards(modeId, value,objectParamsReturn, this.handlingExchangeRewards, this.notificationErr)
         } else{
-            alert('Bạn chưa đăng nhập')
+			game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, 'pop__mission')
         }
     },
 
@@ -289,7 +308,7 @@ const game_client = {
         if(vtcmAuth.isLogin()){
             vtcmEvent.exchangeRewardsWithMilestones(modeId, value, this.handlingExchangeRewardsWithMilestones, this.notificationErr)
         } else{
-            $('#modal-warning-login').modal('show'); 
+            game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, 'pop__mission')
         }
     },
 
@@ -342,16 +361,20 @@ const game_client = {
 		game_client.isPlayPickup=false;
 	},
 
-	notificationErrRollup(roomId, error){
-		if(roomId!==0){
-			$('#modal-diem-danh').modal('hide'); 
-		}else{
-			$('#modal-nhan-vang').modal('hide'); 
+	notificationErrRollup(objectParamsReturn, error){
+		game_client.notification(error.response.data.message,'')
+	},
+
+	notification(message, id_popup){
+		if(id_popup!==''){
+			setTimeout(()=>{
+				$(`#${id_popup}`).modal('hide'); 
+			},1)
 		}
-		
-		$('#modal-notify').modal('show'); 
-		var e = document.getElementById('content_notify');
-		e.innerText=error.response.data.message;
+		$('#sdk_pop__notify').modal('show'); 
+		var e = document.getElementsByClassName('sdk_text_notify');
+		var f=e.item(0);
+		f.innerHTML= message;
 	},
 
 	timeConvert(time){

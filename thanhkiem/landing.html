@@ -16,13 +16,14 @@
     <link rel="stylesheet" href="css/aos.css">
     <link rel="stylesheet" href="css/image.css">
     <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="http://static.gf.splay.vn/gf-sdk/v2.0/css/index.css">
     <meta name="og-title" property="og:title" content="Thánh Kiếm Luân Hồi" />
 	<meta name="og-description" property="og:description" content="Thánh Kiếm Luân Hồi" />
 	<meta name="og-image" property="og:image" content="https://oss.vtcmobile.vn/service-1/20220504101927-w10.png" />
 </head>
 
 <body>
-    <div class="main" id="main">
+    <div class="main sdk_page" id="main">
         <div class="navTop">
             <div class="navInner">
                 <div class="textNotify">CHÍNH THỨC RA MẮT: 10:00 NGÀY 12/05/2022</div>
@@ -70,7 +71,7 @@
         <section class="page page--2">
             <div class="pageInner" data-aos="zoom-in" data-aos-delay="50">
                 <div class="registration">
-                    <p>Đã có : <span class="num">10000</span> lượt đăng ký trước</p>
+                    <p>Đã có : <span class="num sdk_total_register">0</span> lượt đăng ký trước</p>
                 </div>
                 <div class="slogan slogan--2"></div>
                 <div class="loading">
@@ -338,6 +339,18 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="sdk_pop__notify" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="cnt pop__group pop__group--notify">
+            <a href="javascript:void(0);" class="closeModal btn__close" data-dismiss="modal"></a>
+            <h2 class="pop__title pop__title--notify">Thông Báo</h2>
+            <div class="pop__inner pop__inner--notify scrollbar scrollbar--custom">
+                <!-- <p class="text__notify sdk_content_result_vq">Bạn nhận được xxx điểm</p> -->
+                <p class="text__notify sdk_text_notify"></p>
+            </div>
+        </div>
+    </div>
+
     <div class="modal" id="pop__notifyBox" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="cnt pop__group pop__group--notifyBox">
             <a href="javascript:void(0);" class="closeModal btn__close btn__close--notifyBox" data-dismiss="modal"></a>
@@ -369,15 +382,22 @@
     <script src="js/lazysizes.min.js"></script>
     <script src="js/swiper-bundle.js"></script>
     <script src="js/aos.js"></script>
-    <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/axios.min.js?v=1"></script>
+    <script src="js/ui.js"></script>
+    <!-- <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/axios.min.js?v=1"></script> -->
     <!-- <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/jquery.min.js?v=1"></script> -->
-    <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/moment-with-locales.min.js?v=1"></script>
+    <!-- <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/moment-with-locales.min.js?v=1"></script> -->
     <script src="js/landing.js"></script>
-    <script src="../sdk/v2/app.js"></script>
+    <!-- <script src="../sdk/v2/app.js"></script>
     <script src="../sdk/v2/auth.js"></script>
     <script src="../sdk/v2/common.js"></script>
-    <script src="../sdk/v2/event.js"></script>
-    <script src="../sdk/v2/ui.js"></script>
+    <script src="../sdk/v2/event.js"></script> -->
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/vendor/axios.min.js?v=1"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/vendor/moment-with-locales.min.js?v=1"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/app.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/auth.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/common.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/event.js"></script>
+    
     <script type="text/javascript">
          const vtcmAppConfig = {
             gameId:100072,

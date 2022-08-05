@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="quay" style="height: auto !important;">
+        <div class="accordion cmn-accordion element-hungnh" id="accordionExample" style="height: auto !important;">
+           <div class="select-number-area" style="height: auto !important;">
+              <h3 class="title">CHỌN SỐ NGẪU NHIÊN</h3>
+               <span>Nhập số</span>
+               <div class="cmn-form login-form">
+                   <div id="div2O" style="display: block; padding-top: 2%; padding-bottom: 2%;">
+                       <div class="frm-group">
+                           <table>
+                               <tbody>
+                                   <tr>
+                                       <td style="width: 80px;"> Nhập vào: </td>
+                                       <td>
+                                           <textarea id="txtareadayso" placeholder="Các số cách nhau dấu phẩy. VD: 01,34,78,89,90" style="resize:none; font-size: 13.5px;width: 90%;"></textarea>
+                                       </td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                       <div class="frm-group" style="padding-bottom:20px">
+                           <table>
+                               <tbody>
+                                   <tr>
+                                       <td style="width:23%"> Tốc độ: </td>
+                                       <td style="width:20%">
+                                           <select id="slTocDo2" style="padding: 1px 1px 1px 23px; height: 40px; width: 100%; border-radius: 6px;">
+                                                <option value="3">3</option>
+                                                <option value="5">5</option>
+                                                <option value="8">8</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                       </td>
+                                       <td>
+                                           &nbsp;giây
+                                       </td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                       <div class="frm-group" style="display:none">
+                           <table>
+                               <tbody>
+                                   <tr>
+                                       <td style="width: 80px;"> Số lượng: </td>
+                                       <td>
+                                           <input type="text" value="1" id="SoLuongToiDa2" placeholder="(Tối đa 100 số)" onkeypress="return integerJsInputControl(event);">
+                                       </td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
+                   
+                   <div class="frm-group" style="padding-top:15px">
+                       <a style="cursor:pointer;width: 100%;  border-radius: 4px; color: white; background-image: -webkit-linear-gradient( 90deg, #2f2f2f 0%, #000000 100%, rgb(0 0 0) 100%);" class="cmn-btn" id="aQuay" onclick="quay()">
+                           Quay Số
+                       </a>
+                   </div>
+               </div>
+
+               <div class="alert alert-success text-center hide" role="alert" id="loadingnha" style="font-weight: bold;background-color: #ffffff;color: red;height: 100%;font-size: 65px;margin-top: 15px; padding:0px">
+               00
+           </div>
+           </div>
+        </div>
+     </section>
+     <script src="./index.js"></script>
+</body>
+</html>
