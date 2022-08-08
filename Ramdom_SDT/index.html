@@ -7,12 +7,24 @@
     <title>Document</title>
 </head>
 <body>
-    <section id="quay" style="height: auto !important;">
+    <div id="quay" style="height: auto !important;">
         <div class="accordion cmn-accordion element-hungnh" id="accordionExample" style="height: auto !important;">
            <div class="select-number-area" style="height: auto !important;">
-              <h3 class="title">CHỌN SỐ NGẪU NHIÊN</h3>
-               <span>Nhập số</span>
-               <div class="cmn-form login-form">
+                <h3 class="title">CHỌN SỐ NGẪU NHIÊN</h3>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: bold;">
+                                <input type="radio" id="phonenumber"  onchange="game_client.random_one()">&nbsp;Phone number
+                            </td>
+                            <td style="text-align: left; font-weight: bold; padding-left: 30px;"> 
+                                <input type="radio" id="one_to_hundred" onchange="game_client.random_two()">&nbsp;Từ 0->100
+                            </td>
+                            
+                        </tr>
+                    </tbody>
+                 </table>
+                <div class="cmn-form login-form">
                    <div id="div2O" style="display: block; padding-top: 2%; padding-bottom: 2%;">
                        <div class="frm-group">
                            <table>
@@ -20,7 +32,7 @@
                                    <tr>
                                        <td style="width: 80px;"> Nhập vào: </td>
                                        <td>
-                                           <textarea id="txtareadayso" placeholder="Các số cách nhau dấu phẩy. VD: 01,34,78,89,90" style="resize:none; font-size: 13.5px;width: 90%;"></textarea>
+                                           <textarea id="txtareadayso" placeholder="Các số cách nhau dấu phẩy. VD: 01,34,78,89,90" style="resize:none; font-size: 13.5px;width: 300px;"></textarea>
                                        </td>
                                    </tr>
                                </tbody>
@@ -61,19 +73,22 @@
                    </div>
                    
                    <div class="frm-group" style="padding-top:15px">
-                       <a style="cursor:pointer;width: 100%;  border-radius: 4px; color: white; background-image: -webkit-linear-gradient( 90deg, #2f2f2f 0%, #000000 100%, rgb(0 0 0) 100%);" class="cmn-btn" id="aQuay" onclick="game_client.randomPhone_Test()">
-                           Quay Số
-                       </a>
+                       <div style="cursor:pointer; width: 50px; height: 20px; float: left; color: white; background-image: -webkit-linear-gradient( 90deg, #2f2f2f 0%, #000000 100%, rgb(0 0 0) 100%);" onclick="game_client.randomPhone_Test()">
+                           
+                       </div>
+                       <div style="cursor:pointer; width: 60px; height: 20px; float: left; text-align: center; color: white; background-image: -webkit-linear-gradient( 90deg, #2f2f2f 0%, #000000 100%, rgb(0 0 0) 100%);"  onclick="game_client.randomPhone_Test()"> Quay Số </div>
+                       <div style="cursor:pointer; width: 50px; height: 20px; float: left; color: white; background-image: -webkit-linear-gradient( 90deg, #2f2f2f 0%, #000000 100%, rgb(0 0 0) 100%);" onclick="game_client.randomPhone_Live()">
+                            
+                        </div>
                    </div>
                </div>
 
-               <div class="alert alert-success text-center hide" role="alert" id="loadingnha" style="font-weight: bold;background-color: #ffffff;color: red;height: 100%;font-size: 65px;margin-top: 15px; padding:0px">
-               00
-           </div>
-           </div>
+               <div class="alert alert-success text-center hide" role="alert" id="loadingnha" style="font-weight: bold;background-color: #ffffff;color: red;height: 100%;font-size: 65px;margin-top: 15px; padding:0px"></div>
+            </div>
         </div>
-     </section>
+    </div>
      <script src="./jquery.min.js"></script>
      <script src="./index.js"></script>
+     <script src="./data.js"></script>
 </body>
 </html>
