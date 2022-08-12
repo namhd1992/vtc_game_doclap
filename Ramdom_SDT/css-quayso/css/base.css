@@ -1,0 +1,356 @@
+@charset "utf-8";
+/* CSS Document */
+*,
+.box_sizing_border_box {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body,html{padding:0;margin:0;background:#0c0a0b}
+
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a:link, a:hover {
+	text-decoration: none;
+}
+
+@font-face {
+  font-family: 'UTM-Swiss';
+  src: url("../font/UTM Swiss Condensed.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.f-UTM-Swiss {
+  font-family: 'UTM-Swiss';
+}
+@font-face {
+  font-family: 'roboto_medium';
+  src: url("../font/Roboto-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.f-roboto-medium {
+  font-family: 'roboto_medium';
+}
+.content-container{
+    max-width: 680px;
+    position: relative;
+    margin: 0 auto;
+}
+/* --------------------Frame 1---------------------------------------- */
+#frame1 {
+    position: relative;
+}
+.frame1 {
+    background: url(../images/bg.jpg) top center no-repeat;
+	min-height:930px;
+}
+.content{
+	position: absolute;
+	z-index: 1;
+	margin: 58% 0 0 0;
+}
+.chose{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 0 0 2% 3%;
+}
+.chose-1 {
+	width: 300px;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+	margin-left: 10%;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+	color: #ffffff;
+}
+
+/* Hide the browser's default checkbox */
+.chose-1 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #724000;
+	border: 1px solid #ffffff
+}
+
+/* On mouse-over, add a grey background color */
+.chose-1:hover input ~ .checkmark {
+  background-color:none;
+	border: 1px solid #ffffff
+}
+
+/* When the checkbox is checked, add a blue background */
+.chose-1 input:checked ~ .checkmark {
+  background-color: #724000;
+	border: 1px solid #ffffff
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.chose-1 input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.chose-1 .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.box-input-sdt{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 0 0 2% 0;
+}
+.box-input-sdt .box1{
+	width: 30%;
+	text-align: right;
+	margin: 10% 10% 0 0;
+	color: #ffffff;
+	font-size: 26px;
+}
+.box-input-sdt .box2{
+	width: 70%;	
+}
+.box-input-sdt .box2 textarea{
+	width: 100%;
+	height: 150px;
+	background: #ffffff;
+	border-radius: 10px;
+	border: 1px solid #ff0000;
+	padding: 10px;
+}
+.box-bt-sdt{
+	width: 100%;
+	display: flex;
+	flex-direction: center;
+	align-items: center;
+	margin: 0 0 3% 0;
+}
+.bt1 {
+	width:67%;
+}
+.bt1 a{
+	display: block;
+	width: 447px;
+	height: 85px;
+	background: url("../images/bt-quayso1.png") top center no-repeat;
+}
+.bt2 {
+	width: 30%;
+}
+.bt2 a{
+	display: block;
+	width: 220px;
+	height: 85px;
+	background: url("../images/bt-quayso2.png") top center no-repeat;
+}
+.box-sdt{
+	width: 70%;
+	height: 60px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	background: #ffffff;
+	border-radius: 10px;
+	border: 1px solid #ff0000;
+	padding: 10px;
+	text-align: center;
+	vertical-align: middle;
+	margin: 0 15% 0 15%;
+	font-size: 40px;
+	color: #FF0004
+}
+/*----------------------------FOOTER---------------------------------*/
+#footer{
+    background: #000000;
+}
+#footer-content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 20px;
+	padding-bottom:0px;
+}
+.vtc-logo{
+    margin: 0 auto;
+    width: 40%;
+}
+.vtc-logo img{
+    display: block;
+    margin: 0 auto;
+}
+.footer-text{
+    padding: 15px;
+    color: #c6cad9;
+	line-height: 22px;
+}
+.footer-text a{
+    color: #c6cad9;
+}
+@media only screen and (min-width : 1200px) {
+	#footer-content {
+        display: flex;
+        flex-direction: row;
+        text-align: left;
+        justify-content: center;
+        align-items: center;
+        width: 73%;
+        margin: 0 auto;
+		padding-bottom: 0px;
+    }
+}
+
+/*==============================POPUP===================================*/
+.popup {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+}
+.popup .content-popup {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.popup .wrapper-popup1{
+  width: 320px;
+  height: 159px;
+  background: url(../images/pop.png) no-repeat center center;
+  background-size: 100% 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media only screen and (min-width: 1000px) {
+	.popup .wrapper-popup1{
+	    width:800px;
+	    height:429px;
+	}
+}
+
+.popup .content-new-detail1 {
+	height:450px;
+	margin:0 150px 0 150px;
+	color: #feeec4;
+}
+
+.popup .content-new-detail1 .text{
+	margin-top:80px;
+	line-height: 18px;
+	font-weight: 500;
+	font-size: 12px;
+}
+.popup .content-new-detail1 .text p{
+	padding: 5px 0 5px 0;
+}
+.popup .content-new-detail1 .text span{
+	font-size: 20px;
+	color: #ec3927;
+}
+
+/*---- close----*/
+.popup .close-content {
+  	position: absolute;
+  	background: url(../images/close.png) no-repeat center top;
+  	background-size: contain;
+  	width:20px;
+    height:20px;
+    bottom:-25px;
+    right:45%;
+  	cursor: pointer;
+  	z-index: 999;
+}
+
+@media only screen and (min-width: 992px) {
+  .popup .close-content {
+  	width:37px;
+    height: 37px;
+    top:30px;
+    right:30px;
+  }
+}
+/*------------dang ky thong tin-----------*/
+.regis-box{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	margin: 2% 0 0 0;
+	font-size: 26px;
+	color: #ec3927;
+	text-transform: uppercase;
+}
+.regis-box .input{
+	width: 80%;
+	height: 60px;
+	color: #000000;
+	background: #ffffff;
+	border: 1px solid #b6342d;
+	border-radius: 10px;
+	margin:10% 10% 0 10%;
+	padding: 15px 10px 10px 10px;
+}
+
+.regis-box span{
+	text-decoration-line: line-through;
+}
+.regis-box t{
+	color: #f82f08;
+	font-weight: bold;
+}
+.regis-box .bt-dong {
+	display:block;
+	width: 252px;
+	height: 72px;
+	background: url("../images/bt-close.png") no-repeat left top;
+	background-size: contain;
+	margin:10% 0 0 25%;
+}
+.regis-box .bt-dong:hover{
+	filter: brightness(0.8);
+	text-decoration: none;
+}

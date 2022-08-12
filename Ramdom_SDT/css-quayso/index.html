@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+	<title>Long Chiến Truyền Kỳ VTC</title>
+      
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/reset.css">
+	
+	<!--popup code-->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/vendor.css" />
+</head>
+
+<body>
+	<section>
+		<div class="content-container">
+			<div class="content">
+				<div class="chose f-roboto-medium">
+					<label class="chose-1">Số điện thoại
+					  <input type="checkbox" id="phonenumber" onchange="game_client.random_one()">
+					  <span class="checkmark" ></span>
+					</label>
+					<label class="chose-1">Số may mắn
+					  <input type="checkbox" id="one_to_hundred" onchange="game_client.random_two()">
+					  <span class="checkmark"></span>
+					</label>
+				</div>
+				<div class="box-input-sdt f-roboto-medium">
+					<div class="box1">Nhập vào:</div>
+					<div class="box2">
+						<textarea rows="4" cols="50" id="txtareadayso" placeholder="Nhập dãy số vào đây."></textarea>
+					</div>
+				</div>
+				<div class="box-bt-sdt">
+					<div class="bt1" onclick="game_client.randomPhone_Test()"><a class="show-sdt"></a></div>
+					<div class="bt2" onclick="game_client.randomPhone_Live()"><a></a></div>
+				</div>
+				<div id="loadingnha" class="box-sdt f-roboto-medium" ></div>	
+			</div>
+		</div>
+		<div class="frame1 w-100"></div>
+	</section>
+	<section class="wrapper1">   
+        <div id="footer">
+            <div class="container">
+                <div id="footer-content">
+                    <div class="vtc-logo">
+                        <img src="images/logovtc.png" class="img-responsive" alt="">
+                    </div>
+                    <div class="footer-text f-roboto-medium">
+						Công ty cổ phần VTC Dịch vụ di động - Tầng 11, Tòa nhà VTC Online<br>
+						Số 18 Tam Trinh phường Minh Khai, quận Hai Bà Trưng, Hà Nội<br>
+						SĐT : (84-4).39877470 | Email : vtcmobile@vtc.vn<br>
+						Người chịu trách nhiệm quản lý nội dung: Ông Nguyễn Viết Quang Minh.<br>
+						Giấy phép phê duyệt nội dung kịch bản trò chơi điện tử trên mạng số 99/QĐ-BTTT<br>
+						<a href="http://longchientruyenky.vn/huong-dan-cai-dat-go-bo.html" target="_blank">Hướng dẫn cài đặt</a> | <a href="http://longchientruyenky.vn/dieu-khoan-su-dung.html" target="_blank">Điều khoản</a><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	<!-- Popup SDT trung thuong -->
+    <div class="popup popup-detail" id="popup-sdt" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup1">
+                <div class="content-new-detail1 f-roboto-medium">
+					<div class="text f-roboto-medium">
+						<div class="regis-box" style="margin-top:10%">
+							<p>Chúc Mừng SĐT Đã Trúng thưởng</p>
+							<div id="result_popup_phone" class="input"></div>
+						</div>
+						<div class="regis-box" onclick="game_client.closePopupPhone()">
+							<a class="bt-dong" style="margin-top: 3%"></a>
+					</div>
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	
+	<!-- Popup so may man trung thuong -->
+    <div class="popup popup-detail" id="popup-smm" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup1">
+                <div class="content-new-detail1 f-roboto-medium">
+					<div class="text f-roboto-medium">
+						<div class="regis-box" style="margin-top:10%">
+							<p>Chúc Mừng số may mắn</p>
+							<p>đã trúng thưởng</p>
+							<div id="result_popup_number" class="input"></div>
+						</div>
+						<div class="regis-box" onclick="game_client.closePopupNumber()">
+							<a class="bt-dong" style="margin-top: 3%" ></a>
+					</div>
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	
+	<!-- popup--->
+	<script type="text/javascript" src="js/bootstrap.min.js?v=1.2.6"></script>
+	<script type="text/javascript" src="js/vendor.js"></script>
+	<script src="./js/index.js"></script>
+	<script src="./js/data.js"></script>
+	
+	<script>
+        $(document).ready(function() {
+            $('.close-content').click(function() {
+                $('.popup').fadeOut();
+            });
+
+			// $('.show-smm').click(function() {
+            //     $('#popup-smm').fadeIn();
+            // });
+            // scroll 
+            jQuery(document).ready(function() {
+                jQuery('.content-new-detail1').scrollbar();
+
+            });
+        });
+    </script>
+</body>
+</html>
