@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<link rel="stylesheet" href="http://static.gf.splay.vn/gf-sdk/v2.0/css/index.css">
 <title>Ta Là Đạo Sĩ Xuất Quan VTC - Đại Yến Tam Nguyệt</title>
 <meta name="description" content="Đại Yến Tam Nguyệt - Mừng 3 tháng phát hành">
 <meta name="keywords" content="dao si,thần,linh,sư,nhap vai,môn phái,huyền thoại,thây ma,3d,game hay vtc,vtc,vng,funtap,soha,gamota,dang ky truoc">
@@ -32,7 +33,7 @@
 <link rel="stylesheet" href="css/vendor.css" />
 	
 <script type="text/javascript" src="js/jquery.countdown.js"></script>	
-<script>
+<!-- <script>
 		$(document).ready(function() {
 			$('[data-countdown]').each(function() {
 				var $this = $(this), finalDate = $(this).data('countdown');
@@ -41,20 +42,19 @@
 				});
 			});
 		})
-</script>
+</script> -->
 </head>
 
 <body onload="init();">
 	<div class="header-menu-m d-block d-lg-none">
-					
                     <div class="menu-cover">
-						<a class="menu-item1" href="https://www.facebook.com/daosixuatquan.vn" target="_blank">
+						<a class="menu-item1 sdk_fanpage_fb" href="https://www.facebook.com/daosixuatquan.vn" target="_blank">
                            <img src="images/ic-fb.png" class="img-responsive" alt="">
                         </a>
-						<a class="menu-item1" href="https://www.facebook.com/groups/daosixuatquan.vn" target="_blank">
+						<a class="menu-item1 sdk_group_fb" href="https://www.facebook.com/groups/daosixuatquan.vn" target="_blank">
                            <img src="images/ic-group.png" class="img-responsive" alt="">
                         </a>
-						<a class="menu-item1" href="https://zalo.me/3469056939873642335" target="_blank">
+						<a class="menu-item1 sdk_zalo" href="https://zalo.me/3469056939873642335" target="_blank">
                            <img src="images/ic-zalo.png" class="img-responsive" alt="">
                         </a>
 						<a class="menu-item1" href="https://daosixuatquan.splay.vn/shop/" target="_blank">
@@ -68,7 +68,7 @@
                         </a>-->
                     </div>
     </div>
-	<div id="wrapper" class="wrapper floatingDesktopTopLeft">
+	<div id="wrapper" class="wrapper floatingDesktopTopLeft sdk_page">
 	  <section id="frame1" class="section section--frame1 frame1">
 		<div class="section__background"> 
 		  <img src="images/bg1-m.jpg" class="d-block d-lg-none" alt=""> 
@@ -78,24 +78,24 @@
 		  <div class="content-container2">
 			  <a class="logo"><img src="./images/logo.png" class="img-responsive" alt=""></a>
 			  <div class="header-menu d-none d-lg-block">
-						<a href="https://www.facebook.com/daosixuatquan.vn" target="_blank" class="menu fb">
+						<a href="https://www.facebook.com/daosixuatquan.vn" target="_blank" class="menu fb sdk_fanpage_fb">
 							<img src="./images/ic-fb.png" class="img-responsive" alt="">
 						</a>
-						<a href="https://www.facebook.com/groups/daosixuatquan.vn" target="_blank" class="menu group">
+						<a href="https://www.facebook.com/groups/daosixuatquan.vn" target="_blank" class="menu group sdk_group_fb">
 							<img src="./images/ic-group.png" class="img-responsive" alt="">
 						</a>
-						<a href="https://zalo.me/3469056939873642335" target="_blank" class="menu zalo">
+						<a href="https://zalo.me/3469056939873642335" target="_blank" class="menu zalo sdk_zalo">
 							<img src="./images/ic-zalo.png" class="img-responsive" alt="">
 						</a>
 						<a href="https://daosixuatquan.splay.vn/shop/" target="_blank" class="menu card1">
 							<img src="./images/ic-card.png" class="img-responsive" alt="">
 						</a>
-						<a href="https://scoin.vn/" class="log login" target="_blank">
+						<a class="log login" target="_blank" id="login" onclick="vtcmAuth.login()">
 							<img src="./images/bt-log.png" class="img-responsive" alt="">
 						</a>
-						<!--<a href="#" class="dn no-bg f-roboto-light">
-							<span>Xin chào, Admin | Thoát</span>
-						</a>-->
+						<a class="dn no-bg f-roboto-light" id="logout" onclick="vtcmAuth.logout()">
+							<span>Xin chào, <span id="username"></span> | Thoát</span>
+						</a>
 			  </div>
 			    <!---but tai game---->
 				<div class="menu1">
@@ -159,11 +159,11 @@
 		  	  <div class="frame3-title"><img src="images/title3.png" alt="Hắc Bạch so kèo"></div>
 			  <div class="frame3-content">
 				  <div class="vs"><img src="images/vs.png" alt="VS"></div>
-			  	  <div class="black change-black">
+			  	  <div class="black">
 				  	  <img class="d-none d-lg-block" src="images/black.png" alt="Hắc">
 					  <img class="d-block d-lg-none" src="images/black-m.png" alt="Hắc">
 				  </div>
-				  <div class="white">
+				  <div  class="white">
 				  	  <img class="d-none d-lg-block" src="images/white.png" alt="Bạch">
 					  <img class="d-block d-lg-none" src="images/white-m.png" alt="Bạch">
 				  </div>
@@ -171,8 +171,8 @@
 			  <a href="javascript:void(0)" class="bt-chonphe show-chonphe" title="Chọn phe"></a>
 			  <div class="f3-point f-roboto-medium">
 			  	  <ul>
-					  <li>Số điểm: 1000</li>
-					  <li>Số điểm: 1000</li>
+					  <li>Số điểm: <span>1000</span></li>
+					  <li>Số điểm: <span>1000</span></li>
 				  </ul>
 			  </div>
 			  <a href="javascript:void(0)" class="bt-nhanphieu show-thelesk" title="Nhận phiếu bầu"></a>
@@ -195,23 +195,23 @@
 			  </div>
 			  <div class="f4-button2 f-UTMAlterGothic">
 			  	  <ul>
-				  	  <a href="javascript:void(0)" class="show-lichsu" title="Lịch Sử"><li>Lịch Sử</li></a>
-					  <a href="javascript:void(0)" class="show-thele" title="Thể Lệ"><li >Thể Lệ</li></a>
+				  	  <a class="show-lichsu" title="Lịch Sử" style="cursor: pointer;"><li>Lịch Sử</li></a>
+					  <a class="show-thele" title="Thể Lệ" style="cursor: pointer;"><li >Thể Lệ</li></a>
 				  </ul>
 			  </div>
 			  <div class="subscriptions">				
 							<div class="label-point">
 								<div class="relative-content">
 									<div class="background-label f-roboto-light">
-										Đạo sĩ còn <span class="f-roboto-medium">003</span> Lượt</div>
+										Đạo sĩ còn <span class="f-roboto-medium sdk_numberpoint">0</span> Lượt</div>
 									<img src="./images/bg-count2.png" class="img-responsive center-align" alt="">	
 								</div>
 							</div>
 			  </div>
 			  <div class="f4-button f-UTMAlterGothic">
 			  	  <ul>
-				  	  <a href="javascript:void(0)" class="show-nhanqua" title="Quay 1 lần"><li>Quay 1 lần</li></a>
-					  <a href="javascript:void(0)" class="show-nhanqua10" title="Quay 10 lần"><li>Quay 10 lần</li></a>
+				  	  <a class="show-nhanqua" title="Quay 1 lần" style="cursor: pointer;" onclick="game_client.playGame(10195,1,'popup-error')"><li>Quay 1 lần</li></a>
+					  <a class="show-nhanqua10" title="Quay 10 lần" style="cursor: pointer;" onclick="game_client.playGame(10195,10,'popup-error')"><li>Quay 10 lần</li></a>
 					  <a href="https://scoin.vn/nap-vao-game?GameId=330425" title="Nhận lượt" target="_blank"><li>Nhận lượt</li></a>
 				  </ul>
 			  </div>
@@ -279,10 +279,9 @@
 							
 					</div>
 					<div class="box-scoin">
-						<a href="" class="bt-gui f-Fzup">Cập nhật</a>
+						<span class="bt-gui f-Fzup" style="cursor:pointer">Cập nhật</span>
 					</div>
                 </div>
-                <a class="close-content"></a>
             </div>
         </div>
     </div>
@@ -296,6 +295,7 @@
                 </div>
                 <div class="content-new-detail1 scrollbar-inner">
 					<div class="text f-roboto-medium">
+						<!-- <p class="sdk_content_evt_guide"></p> -->
 						<p><span >Xin chào các Đạo Sĩ, hãy chọn ngay Phe bạn yêu thích và cùng tăng điểm số cho Phe mình để khi sự kiện kết thúc sẽ nhận được quà lớn nhé!</span></p>
 
 						<p><span>Thời gian:</span> từ 10h00 18/08 đến 10h00 - 29/08/2022
@@ -580,9 +580,28 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
                 <div class="content-new-detail2">
 					<div class="phe">
 						<ul>
-							<li><a href=""><img src="images/phe-black.png" class="img-responsive" alt="" /></a></li>
-							<li><a href=""><img src="images/phe-white.png" class="img-responsive" alt="" /></a></li>
+							<li><img src="images/phe-black.png" class="img-responsive" alt="" style="cursor:pointer;" onclick="game_client.chonphe('black')"/></li>
+							<li><img src="images/phe-white.png" class="img-responsive" alt="" style="cursor:pointer;" onclick="game_client.chonphe('white')"/></li>
 						</ul>
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+
+	<!-- Popup Error -->
+    <div class="popup popup-detail" id="popup-error" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup">
+				<div class="title-detail text-center f-UTMAlterGothic">
+                     Thông Báo
+                </div>
+                <div class="content-new-detail1 f-roboto-bold">
+					<div class="text">
+						<div class="regis-box">
+								<p></p>
+						</div>
 					</div>
                 </div>
                 <a class="close-content"></a>
@@ -641,9 +660,35 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+	<script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/axios.min.js?v=1"></script>
+    <!-- <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/jquery.min.js?v=1"></script> -->
+    <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/moment-with-locales.min.js?v=1"></script>
+    <script src="./sdk/v2/app.js"></script>
+    <script src="./sdk/v2/auth.js"></script>
+    <script src="./sdk/v2/common.js"></script>
+    <script src="./sdk/v2/event.js"></script>
+    <!-- <script src="./sdk/v2/ui.js"></script> -->
 
     <script src="./Winwheel.min.js"></script>
-    <script src="./script.js"></script>
-	
+    <!-- <script src="./script.js"></script> -->
+	<script src="./js/ui.js"></script>
+	<script type="text/javascript">
+        const vtcmAppConfig = {
+            gameId:100073,
+            apiBaseUrl: 'http://api.gf.splay.vn',
+            // apiBaseUrl:'http://171.244.11.133:8088',
+            client_id: "GF_EVENTS_WEB",
+            client_secret: "aP6k2Ql68arPH8l",
+
+            // arr_event_change_rewards:[{name:'DIEM', classname: 'sdk_event_change_point'},{name:'HOA_MAI', classname: 'sdk_event_change_hoamai'}],
+            // url_return:`http://tramtien.splay.vn/mungdoclap`,
+            // path:'/mungdoclap'
+            url_return:`http://127.0.0.1:5500/index.html`,
+            path:'/index.html',
+            // url_return:`http://autop.vn/teaser`,
+            // path:'/teaser'
+       };
+       game_client.initApp(vtcmAppConfig);
+   </script>
 </body>
 </html>
