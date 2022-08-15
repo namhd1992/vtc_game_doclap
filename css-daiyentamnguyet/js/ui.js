@@ -12,13 +12,19 @@ const game_client = {
     modeId_history:0,
     totalPage:1,
 	rewardType:-1,
-	currentNameAlbum:'DANGXINH',
 	listAlbum:[],
-	linkShare:'',
 	contentGiftcode:'',
 	oldClass:'',
 	pointAvailable:0,
 	theWheel:{},
+	totalPointBlack:0,
+	totalPointWhite:0,
+	isBlack:false,
+	historyItems:[],
+	city:'',
+	district:'',
+	phuong:'',
+	
 	
 	
 	initApp(rawConfig = {}){
@@ -28,10 +34,12 @@ const game_client = {
 		game_client.winwheel();
 		this.config_ = rawConfig;
 		vtcmApp.initApp(rawConfig);
-		game_client.sendLinkShare(10198, 10167);
         if(vtcmAuth.isLogin()){
 			vtcmApp.getAppSetting(game_client.cbwithtoken);
+			game_client.rollup(10206, 10177)
+			game_client.getCity();
 			// $('#popup-chose').fadeIn();
+			// $('#popup-dknt').fadeIn();
             document.getElementById("username").innerHTML = vtcmAuth.getUserName();
             document.getElementById("login").style.display = "none";
             document.getElementById("logout").style.display = "block";
@@ -104,6 +112,7 @@ const game_client = {
 
 
 		var obj_evt_guide=data.filter(v =>v.code===contants.EVT_GUIDE);
+		var obj_evt_guide_sokeo=data.filter(v =>v.code===contants.EVT_GUIDE_SO_KEO);
 		var obj_evt_rollup=data.filter(v =>v.code===contants.EVT_ROLLUP_CONTENT);
 		var obj_rewards=data.filter(v =>v.code===contants.EVT_REWARDS);
 		var obj_meta_title=data.filter(v =>v.code===contants.EVT_META_TITLE);
@@ -132,6 +141,7 @@ const game_client = {
 
 
 		var list_item_content=[{id:"sdk_content_evt_guide", value:obj_evt_guide[0] ? obj_evt_guide[0].value : ''},
+		{id:'sdk_content_thelesk', value:obj_evt_guide_sokeo[0] ? obj_evt_guide_sokeo[0].value : ''},
         {id:'sdk_content_evt_rollup', value:obj_evt_rollup[0] ? obj_evt_rollup[0].value : ''},
         {id:'sdk_content_rewards', value:obj_rewards[0] ? obj_rewards[0].value : ''},
 		{id:'sdk_welfare', value:obj_welfare[0] ? obj_welfare[0].value : ''},
@@ -161,6 +171,82 @@ const game_client = {
 		// var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}, {id:'number_play_vq', value:number_play}, {id:'number_bocbanh', value:number_bocbanh}, {id:'number_hoamai', value:number_hoamai}, {id:'number_hoadao', value:number_hoadao}, {id:'number_key', value:number_key}]
 		common_sdk.setInfoUser(list);
 	},
+
+	getCity(){
+		var requestOptions = {
+			method: 'GET',
+			redirect: 'follow'
+		};
+
+		fetch("https://api.splay.vn/scoinagency/get-provinces-by-region?region=B", requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				var data = "";
+				$('#quan1').empty();
+				$("#quan1").append(' <option value="" id="">Chọn quận huyện</option>');
+				$('#phuong').empty();
+				$("#phuong").append(' <option value="" id="">Chọn phường xã</option>');
+				for (var i = 0; i < result.length; i++) {
+					data += "<option value = '" + result[i].Province + " '>" + result[i].Province + " </option>";
+				}
+				$("#tinh1").append(data);
+			})
+			.catch(error => console.log('error', error));
+
+	},
+
+	onchangeCity(){
+		var x = document.getElementById("tinh1").value;
+		var requestOptions = {
+			method: 'GET',
+			redirect: 'follow'
+		};
+		city=x;
+		district='';
+
+		fetch("https://api.splay.vn/scoinagency/get-districts-by-province?province="+x, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				var data = "";
+				$('#quan1').empty();
+				$("#quan1").append(' <option value="" id="">Chọn quận huyện</option>');
+				$('#phuong').empty();
+				$("#phuong").append(' <option value="" id="">Chọn phường xã</option>');
+				for (var i = 0; i < result.length; i++) {
+					data += "<option value = '" + result[i].District + " '>" + result[i].District + " </option>";
+				}
+				$("#quan1").append(data);
+			})
+			.catch(error => console.log('error', error));
+	},
+
+	onchangeDistrict(){
+		var x = document.getElementById("city").value;
+		var requestOptions = {
+			method: 'GET',
+			redirect: 'follow'
+		};
+		city=x;
+		district='';
+
+		fetch("https://api.splay.vn/scoinagency/get-districts-by-province?province="+x, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				var data = "";
+				$('#phuong').empty();
+				$("#phuong").append(' <option value="" id="">Chọn phường xã</option>');
+				for (var i = 0; i < result.length; i++) {
+					data += "<option value = '" + result[i].District + " '>" + result[i].District + " </option>";
+				}
+				$("#phuong").append(data);
+			})
+			.catch(error => console.log('error', error));
+	},
+
+	onchangePhuong(){
+
+	},
+
 	
 	getConfig() {   
         return this.config_;
@@ -182,29 +268,19 @@ const game_client = {
 		if(vtcmAuth.isLogin()){
 			vtcmEvent.rollup(modeId, roomId,objectParamsReturn, this.handlingRollup, this.notificationErrRollup)
 		}else{
-			game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, 'pop__mission')
+			// game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, 'pop__mission')
+			game_client.showLogin();
         }
 	},
 
 	handlingRollup(objectParamsReturn, response){
-		$('#pop__mission').modal('hide');
-		if(objectParamsReturn.roomId===10168){
-			if(response.data.code >= 0){
-				game_client.pointAvailable=game_client.pointAvailable+1;
-				game_client.updatePoint();
-				game_client.notification("Điểm danh thành công. Bạn nhận được 1 lượt chơi.",'')
-			}else{
-				game_client.notification(response.data.message, '')
-			}
-		}else if(objectParamsReturn.roomId===10169){
-			if(response.data.code >= 0){
-				game_client.pointAvailable=game_client.pointAvailable+1;
-				game_client.updatePoint();
-				game_client.notification("Chia sẻ thành công. Bạn nhận được 1 lượt chơi.",'')
-			}else{
-				game_client.notification(response.data.message, '')
-			}
+		if(response.data.code >= 0){
+			game_client.pointAvailable=game_client.pointAvailable+3;
+			game_client.updatePoint();
 		}
+		// else{
+		// 	game_client.notification(response.data.message, '')
+		// }
 	},
 
 	updatePoint(){
@@ -216,6 +292,7 @@ const game_client = {
 
 
 	playGame(modeId, numPlayed, key){
+		// game_client.shoppe()
 		var objectParamsReturn={
 			type:numPlayed,
 			modeId:modeId,
@@ -228,10 +305,15 @@ const game_client = {
 				game_client.theWheel.startAnimation();
 				vtcmEvent.playGame(modeId, numPlayed, objectParamsReturn, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
             }else{
+				game_client.showLogin();
                 game_client.isPlay=false;
             }
         }
     },
+
+	shoppe(){
+		console.log(data.data.sections[0].data.item)
+	},
 
 	handlingPlayGame(objectParamsReturn, response){
         setTimeout(()=>{
@@ -240,12 +322,40 @@ const game_client = {
         },3000)
         
 		if(response.data.code>=0){
+			game_client.pointAvailable=game_client.pointAvailable-objectParamsReturn.type;
+			var data=response.data.data.rewards;
+			var box1= document.querySelector('.content-new-detail > .gift');
+			var box10= document.querySelector('.content-new-detail > .gift10');
+			box1.innerHTML='';
+			box10.innerHTML='';
+			for (let i = 0; i < data.length; i++) {
+				if(data[i].rewardType===15){
+					if(game_client.isBlack){
+						game_client.totalPointBlack=game_client.totalPointBlack+data[i].rewardAmount;
+					}else{
+						game_client.totalPointWhite=game_client.totalPointWhite+data[i].rewardAmount;
+					}
+
+				}
+				if(objectParamsReturn.type===1){
+					$(box1).append(`<img src="images/item-code.png" class="img-responsive" alt="" />`);
+					$('#popup-nhanqua').fadeIn(); 
+				}else{
+					$(box10).append(`<img src="images/item-code.png" class="img-responsive" alt="" />`);
+					$('#popup-nhanqua10').fadeIn(); 
+				}
+			}
+			game_client.updatePointBlack();
+			game_client.updatePointWhite();
+			game_client.updatePoint()
 			// response.data.data.rewards[0]
 
 		}else{
-			var e = document.getElementsByClassName(objectParamsReturn.key);
-			var f=e.item(0);
-			f.innerHTML=response.data.message;
+			// var e = document.getElementsByClassName(objectParamsReturn.key);
+			// var f=e.item(0);
+			// f.innerHTML=response.data.message;
+
+			game_client.notification(response.data.message,'')
 		}
 	},
 	
@@ -263,19 +373,21 @@ const game_client = {
                 vtcmEvent.getHistory(page, modeId, rewardType, this.handlingGetHistory, this.notificationErr)
             }
         } else{
-            $('#modal-warning-login').modal('show'); 
+            game_client.showLogin();
         }
     },
 
 	handlingGetHistory(page, modeId,rewardType, response){
 		if(response.data.code >=0){
 			const items=response.data.data.items;
+			game_client.historyItems=items;
 			if(items.length>0){
 				game_client.totalPage=response.data.data.totalPage;
 				var tb = document.getElementById('tb_history');
 				tb.innerHTML='';
 				for (let i = 0; i < items.length; i++) {
-					if(items[i].rewardType===13){
+					// console.log(items[i])
+					if(items[i].rewardType===15){
 						$(tb).append(`<tr>
 						<th class="text-primary" scope="row">${i+1 + (page*10)}</th>
 						<td class="text-start">${items[i].description}</td>
@@ -287,31 +399,33 @@ const game_client = {
 						<th class="text-primary" scope="row">${i+1 + (page*10)}</th>
 						<td class="text-start">${items[i].description}</td>
 						<td class="text-primary text-nowrap">${game_client.timeConvert(items[i].createdTime)}</td>
-						<td class="text-blue" style="cursor: pointer;" onclick="game_client.showPopupGiftcode(${items[i]})">ĐÃ NHẬN</td>
+						<td class="text-blue" style="cursor: pointer;" onclick="game_client.showPopupGiftcode(${items[i].id})">XEM</td>
 					  </tr>`);
 					}else if(items[i].rewardType===52){
 						$(tb).append(`<tr>
 						<th class="text-primary" scope="row">${i+1 + (page*10)}</th>
 						<td class="text-start">${items[i].description}</td>
 						<td class="text-primary text-nowrap">${game_client.timeConvert(items[i].createdTime)}</td>
-						<td class="text-blue" style="cursor: pointer;" onclick="game_client.showPopupDoiThuong(${items[i]})">ĐỔI NGAY</td>
+						<td class="text-blue" style="cursor: pointer;" onclick="game_client.showPopupDoiThuong(${items[i].id})">ĐỔI NGAY</td>
 					  </tr>`);
 					}
 					
 				}
 				game_client.page=page;
 				game_client.modeId_history=modeId;
-				$('#modal-lich-su').modal('show'); 
+				$('#popup-lichsu').fadeIn();
 			}else{
-				$('#modal-notify').modal('show'); 
-				var e = document.getElementById('content_notify');
-				e.innerText='Bạn chưa có dữ liệu chơi.';
+				$('#popup-error').fadeIn(); 
+				var e = document.getElementsByClassName('sdk_text_notify');
+				var f=e.item(0);
+				f.innerHTML= 'Dánh sách trống.';
 			}
 			
 		}else{
-			$('#modal-notify').modal('show'); 
-			var e = document.getElementById('content_notify');
-			e.innerText=response.data.message;
+			$('#popup-error').fadeIn(); 
+			var e = document.getElementsByClassName('sdk_text_notify');
+			var f=e.item(0);
+			f.innerHTML= response.data.message;
 		}
 	},
 
@@ -323,12 +437,18 @@ const game_client = {
         game_client.getHistory(game_client.page+1, game_client.modeId_history)
     },
 
-	showPopupGiftcode(item){
-
+	showPopupGiftcode(type){
+		var item=game_client.historyItems.filter(v => v.id===type);
+		var e = document.getElementsByClassName('sdk_content_giftcode');
+		var f=e.item(0);
+		f.innerHTML= item[0].description;
+		$('#popup-giftcode').fadeIn();
+		console.log(item)
 	},
 
-	showPopupDoiThuong(item){
-
+	showPopupDoiThuong(type){
+		var item=game_client.historyItems.filter(v => v.id===type);
+		$('#popup-dknt').fadeIn();
 	},
 
 	exchangeRewards(modeId, value, key, message, id_popup, id_popup_result, id_listalbum){
@@ -370,130 +490,14 @@ const game_client = {
 		}
 	},
 
-	share(modeId, roomId){
-		window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`)
-		game_client.rollup(modeId, roomId)
-	},
 
-	getLinkShare(modeId, roomId){
+	showModalChonPhe(){
 		if(vtcmAuth.isLogin()){
-            vtcmEvent.getLinkShare(modeId, roomId, 'pop__mission', this.handlingGetLinkShare, this.notification)
-        } else{
-            // game_client.notification("Bạn chưa đăng nhập",'pop__mission')
-			game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, 'pop__mission')
-        }
-	},
-
-	handlingGetLinkShare(response){
-		if(response.data.code>=0){
-			var link=window.location.href +'?inviden=' + response.data.data.inviteCode;
-			game_client.linkShare=link;
+			$('#popup-chonphe').fadeIn();
 		}else{
-
+			game_client.showLogin();
 		}
 	},
-
-	sendLinkShare(modeId, roomId){
-		var inviden = common_sdk.parse_query_string("inviden", window.location.href);
-		var local_inviden=localStorage.getItem("inviden");
-		if (local_inviden != null) {
-			vtcmEvent.sendLinkShare(modeId, roomId, local_inviden, this.handlingSendLinkShare, this.notification);
-			localStorage.removeItem('inviden');
-		}else{
-			if(inviden!==null){
-				if(vtcmAuth.isLogin()){
-					vtcmEvent.sendLinkShare(modeId, roomId, inviden, this.handlingSendLinkShare, this.notification)
-				} else{
-					localStorage.setItem("inviden", inviden);
-					game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, '')
-				}
-			}
-		}
-	},
-
-	handlingSendLinkShare(response){
-		if(response.data.code>=0){
-			console.log('thành công')
-			// game_client.notification("",'')
-		}else{
-			console.log('thất bại')
-			// game_client.notification("",'')
-		}
-	},
-
-	copyLink(){
-		// navigator.clipboard.writeText(game_client.linkShare);
-		game_client.copyToClipboard(game_client.linkShare)
-	},
-
-	copyGiftcode(){
-		// $('.copyGc').copyOnClick({copyMode:"val",confirmClass:"copy-confirmation",});
-		game_client.copyToClipboard(game_client.contentGiftcode)
-		// navigator.clipboard.writeText(game_client.contentGiftcode);
-	},
-
-	copyToClipboard(text) {
-		var textField = document.createElement('textarea');
-		textField.innerText = text;
-		document.body.appendChild(textField);
-		textField.select();
-		textField.focus(); 
-		document.execCommand('copy');
-		textField.remove();
-		// ajax-error.focus(); 
-	},
-
-
-	bocbanh(number, key){
-		var n=number > 16 ? 16 : number;
-        for (let i = 1; i <= n; i++) {
-            var e = document.getElementById(key + i);
-            e.classList.add("hide");
-        }
-    },
-
-	exchangeRewardsWithMilestones(modeId, value){
-        if(vtcmAuth.isLogin()){
-            vtcmEvent.exchangeRewardsWithMilestones(modeId, value, this.handlingExchangeRewardsWithMilestones, this.notificationErr)
-        } else{
-            $('#modal-warning-login').modal('show'); 
-        }
-    },
-
-	handlingExchangeRewardsWithMilestones(response){
-		if(response.data.code >= 0){
-			$('#modal-nhan-code').modal('show'); 
-			document.getElementById('modal-form-code').value=response.data.data.rewards[0].rewardCode;
-		}else{
-			$('#modal-notify').modal('show'); 
-			var e = document.getElementById('content_notify');
-			e.innerText=response.data.message;
-		}
-	},
-
-
-	getBXHLiXi(){
-        vtcmEvent.getBXHLiXi(this.handlingGetBXHLiXi, this.notificationErr);
-    },
-
-	handlingGetBXHLiXi(response){
-		if(response.data.code>=0){
-			var tb = document.getElementById('tb_modal_bxh');
-			var list=response.data.data;
-			for (let i = 0; i < list.length; i++) {
-				$(tb).append(`<tr>
-				<th class="text-primary" scope="row">${list[i].order}</th>
-				<th>${list[i].userName}</th>
-				<td>${list[i].totalAmount}</td>
-			</tr>`);
-			}
-			$('#modal-bxh').modal('show');
-		}else{
-			$('#modal-notify').modal('show'); 
-			var e = document.getElementById('content_notify');
-			e.innerText=response.data.message;
-		}
-	}, 
 
 	chonphe(type){
 		if(type=='black'){
@@ -514,10 +518,23 @@ const game_client = {
 		a.style.filter = 'grayscale(1)'
 	},
 
-	notificationErr(objectParamsReturn, error){
-		var e = document.getElementsByClassName(objectParamsReturn.key);
+	updatePointBlack(){
+		var e = document.getElementsByClassName('sdk_point_black');
 		var f=e.item(0);
-		f.innerHTML=error.response.data.message;
+		f.innerHTML= game_client.totalPointBlack;
+	},
+
+	updatePointWhite(){
+		var e = document.getElementsByClassName('sdk_point_white');
+		var f=e.item(0);
+		f.innerHTML= game_client.totalPointWhite;
+	},
+
+	notificationErr(objectParamsReturn, error){
+		// var e = document.getElementsByClassName(objectParamsReturn.key);
+		// var f=e.item(0);
+		// f.innerHTML=error.response.data.message;
+		game_client.notification(error.response.data.message, '')
 	},
 
 	setStatusVQ(){
@@ -529,22 +546,21 @@ const game_client = {
 	},
 
 	notificationErrRollup(objectParamsReturn, error){
-		$('#pop__notify').modal('show'); 
+		$('#popup-error').fadeIn(); 
 		var e = document.getElementsByClassName('sdk_text_notify');
 		var f=e.item(0);
 		f.innerHTML= error.response.data.message;
 	},
 
 	notification(message, id_popup){
-		if(id_popup!==''){
-			setTimeout(()=>{
-				$(`#${id_popup}`).modal('hide'); 
-			},1)
-		}
-		$('#pop__notify').modal('show'); 
+		$('#popup-error').fadeIn(); 
 		var e = document.getElementsByClassName('sdk_text_notify');
 		var f=e.item(0);
 		f.innerHTML= message;
+	},
+
+	showLogin(){
+		$('#popup-login').fadeIn(); 
 	},
 
 	timeConvert(time){
@@ -558,22 +574,3 @@ const game_client = {
 		return s;
     },
 };
-
-// const MODE_ID_LIXI=100007;
-// const MODE_ID_VQ=100007;
-
-// $(document).ready(function(){
-// 	'use strict';
-//     const vtcmAppConfig = {
-//         host: "http://abc.com",
-// 		gameId:100004,
-// 		apiBaseUrl: 'http://api.gf.splay.vn',
-// 		client_id: "GF_EVENTS_WEB",
-// 		client_secret: "aP6k2Ql68arPH8l",
-// 		// url_return:`http://tramtien.splay.vn/mungdoclap`,
-// 		// path:'/mungdoclap'
-// 		url_return:`http://127.0.0.1:5500/doclap/tramtien/index.html`,
-// 		path:'/doclap/tramtien/index.html'
-//     };
-//     game_client.initApp(vtcmAppConfig);
-// });

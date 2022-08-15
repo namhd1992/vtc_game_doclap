@@ -48,13 +48,13 @@
 <body onload="init();">
 	<div class="header-menu-m d-block d-lg-none">
                     <div class="menu-cover">
-						<a class="menu-item1 sdk_fanpage_fb" href="https://www.facebook.com/daosixuatquan.vn" target="_blank">
+						<a class="menu-item1 sdk_fanpage_fb" target="_blank">
                            <img src="images/ic-fb.png" class="img-responsive" alt="">
                         </a>
-						<a class="menu-item1 sdk_group_fb" href="https://www.facebook.com/groups/daosixuatquan.vn" target="_blank">
+						<a class="menu-item1 sdk_group_fb" target="_blank">
                            <img src="images/ic-group.png" class="img-responsive" alt="">
                         </a>
-						<a class="menu-item1 sdk_zalo" href="https://zalo.me/3469056939873642335" target="_blank">
+						<a class="menu-item1 sdk_zalo"  target="_blank">
                            <img src="images/ic-zalo.png" class="img-responsive" alt="">
                         </a>
 						<a class="menu-item1" href="https://daosixuatquan.splay.vn/shop/" target="_blank">
@@ -78,13 +78,13 @@
 		  <div class="content-container2">
 			  <a class="logo"><img src="./images/logo.png" class="img-responsive" alt=""></a>
 			  <div class="header-menu d-none d-lg-block">
-						<a href="https://www.facebook.com/daosixuatquan.vn" target="_blank" class="menu fb sdk_fanpage_fb">
+						<a target="_blank" class="menu fb sdk_fanpage_fb">
 							<img src="./images/ic-fb.png" class="img-responsive" alt="">
 						</a>
-						<a href="https://www.facebook.com/groups/daosixuatquan.vn" target="_blank" class="menu group sdk_group_fb">
+						<a target="_blank" class="menu group sdk_group_fb">
 							<img src="./images/ic-group.png" class="img-responsive" alt="">
 						</a>
-						<a href="https://zalo.me/3469056939873642335" target="_blank" class="menu zalo sdk_zalo">
+						<a target="_blank" class="menu zalo sdk_zalo">
 							<img src="./images/ic-zalo.png" class="img-responsive" alt="">
 						</a>
 						<a href="https://daosixuatquan.splay.vn/shop/" target="_blank" class="menu card1">
@@ -168,11 +168,11 @@
 					  <img class="d-block d-lg-none" src="images/white-m.png" alt="Bạch">
 				  </div>
 			  </div>
-			  <a href="javascript:void(0)" class="bt-chonphe show-chonphe" title="Chọn phe"></a>
+			  <a href="javascript:void(0)" class="bt-chonphe show-chonphe" title="Chọn phe" onclick="game_client.showModalChonPhe()"></a>
 			  <div class="f3-point f-roboto-medium">
 			  	  <ul>
-					  <li>Số điểm: <span>1000</span></li>
-					  <li>Số điểm: <span>1000</span></li>
+					  <li>Số điểm: <span class="sdk_point_black">0</span></li>
+					  <li>Số điểm: <span class="sdk_point_white">0</span></li>
 				  </ul>
 			  </div>
 			  <a href="javascript:void(0)" class="bt-nhanphieu show-thelesk" title="Nhận phiếu bầu"></a>
@@ -195,7 +195,7 @@
 			  </div>
 			  <div class="f4-button2 f-UTMAlterGothic">
 			  	  <ul>
-				  	  <a class="show-lichsu" title="Lịch Sử" style="cursor: pointer;"><li>Lịch Sử</li></a>
+				  	  <a class="show-lichsu" title="Lịch Sử" style="cursor: pointer;" onclick="game_client.getHistory(0,10205,0)"><li>Lịch Sử</li></a>
 					  <a class="show-thele" title="Thể Lệ" style="cursor: pointer;"><li >Thể Lệ</li></a>
 				  </ul>
 			  </div>
@@ -210,8 +210,8 @@
 			  </div>
 			  <div class="f4-button f-UTMAlterGothic">
 			  	  <ul>
-				  	  <a class="show-nhanqua" title="Quay 1 lần" style="cursor: pointer;" onclick="game_client.playGame(10195,1,'popup-error')"><li>Quay 1 lần</li></a>
-					  <a class="show-nhanqua10" title="Quay 10 lần" style="cursor: pointer;" onclick="game_client.playGame(10195,10,'popup-error')"><li>Quay 10 lần</li></a>
+				  	  <a class="show-nhanqua" title="Quay 1 lần" style="cursor: pointer;" onclick="game_client.playGame(10205,1,'popup-error')"><li>Quay 1 lần</li></a>
+					  <a class="show-nhanqua10" title="Quay 10 lần" style="cursor: pointer;" onclick="game_client.playGame(10205,10,'popup-error')"><li>Quay 10 lần</li></a>
 					  <a href="https://scoin.vn/nap-vao-game?GameId=330425" title="Nhận lượt" target="_blank"><li>Nhận lượt</li></a>
 				  </ul>
 			  </div>
@@ -295,8 +295,8 @@
                 </div>
                 <div class="content-new-detail1 scrollbar-inner">
 					<div class="text f-roboto-medium">
-						<!-- <p class="sdk_content_evt_guide"></p> -->
-						<p><span >Xin chào các Đạo Sĩ, hãy chọn ngay Phe bạn yêu thích và cùng tăng điểm số cho Phe mình để khi sự kiện kết thúc sẽ nhận được quà lớn nhé!</span></p>
+						<p class="sdk_content_thelesk"></p>
+						<!-- <p><span >Xin chào các Đạo Sĩ, hãy chọn ngay Phe bạn yêu thích và cùng tăng điểm số cho Phe mình để khi sự kiện kết thúc sẽ nhận được quà lớn nhé!</span></p>
 
 						<p><span>Thời gian:</span> từ 10h00 18/08 đến 10h00 - 29/08/2022
 						<p><span>Lưu ý:</span> Mỗi tài khoản chỉ có thể chọn phe được 1 lần duy nhất. Hãy chọn đúng phe mình muốn thật kỹ nhé.</p>
@@ -311,7 +311,7 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 - Kỳ Trân Dị Bảo x1<br>
 - Kỳ Trân Dị Bảo x1<br>
 - Kỳ Trân Dị Bảo x1<br>
-- Kỳ Trân Dị Bảo x1
+- Kỳ Trân Dị Bảo x1 -->
 					</div>
                 </div>
                 <a class="close-content"></a>
@@ -328,7 +328,8 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
                 </div>
                 <div class="content-new-detail1 scrollbar-inner">
 					<div class="text f-roboto-medium">
-						<p class="center-align"><span >Xin chào các Đạo Sĩ!</span></p>
+						<p class="sdk_content_evt_guide"></p>
+						<!-- <p class="center-align"><span >Xin chào các Đạo Sĩ!</span></p>
 <p>Để hiểu rõ hơn về Vòng Quay Âm Dương, Đạo Sĩ hãy đọc các thông tin sau và cùng tham gia quay thưởng để nhận những phần quà đặc biệt nhé!</p>
 
 <p><span >CÁCH THỨC THAM GIA:</span></p>
@@ -347,7 +348,7 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 
 						<p><span >QUY TẮC TRAO THƯỞNG: </span></p>
 <p>▪️ Quà ingame: Sẽ được quy đổi thanh Mã Giftcode. Đạo sĩ có thể xem lại tại phần Lịch Sử.<br>
-▪️ Quà hiện vật: Vào phần Lịch sử và chọn Đổi Ngay để điền các thông tin nhận quà."</p>
+▪️ Quà hiện vật: Vào phần Lịch sử và chọn Đổi Ngay để điền các thông tin nhận quà."</p> -->
 						
 					</div>
                 </div>
@@ -376,14 +377,14 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 											<th>Nhận thưởng</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
+									<tbody id="tb_history">
+										<!-- <tr>
 											<th>1</th>
 											<td>Mark***</td>
 											<td>30/04/2021 04:50</td>
 											<td class="f-roboto-bold"><t><a href="javascript:void(0)" class="show-giftcode">ĐÃ NHẬN</a></t></td>
-										</tr>
-										<tr>
+										</tr> -->
+										<!-- <tr>
 											<th>2</th>
 											<td>Mark***</td>
 											<td>30/04/2021 04:50</td>
@@ -436,7 +437,7 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 											<td>Mark***</td>
 											<td>30/04/2021 04:50</td>
 											<td class="f-roboto-bold"><t><a href="javascript:void(0)" class="show-giftcode">ĐÃ NHẬN</a></t></td>
-										</tr>
+										</tr> -->
 									</tbody>
 								</table>
 							</div>
@@ -444,6 +445,16 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 						
 					</div>
                 </div>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination pagination-simple mb-0">
+					  <li class="page-item" style="cursor: pointer;">
+						<a class="page-link" onclick="game_client.previous()">Previous</a>
+					  </li>
+					  <li class="page-item" style="cursor: pointer;">
+						<a class="page-link" onclick="game_client.next()">Next</a>
+					  </li>
+					</ul>
+				  </nav>
                 <a class="close-content"></a>
             </div>
         </div>
@@ -461,32 +472,18 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 							<div class="input1"><input type="text" name="hoten1" id="hoten1" placeholder="Họ và tên"></div>
 							<div class="input1"><input type="text" name="sdt1" id="sdt1" placeholder="Số điện thoại"></div>
 							<label for="favcity">
-								<select id="tinh1" name="select">
-									<option value="0">Chọn tỉnh thành</option>
-									<option value="1">TP.Hồ Chí Minh</option>
-									<option value="2">Đồng Nai</option>
-									<option value="3">Tây Ninh</option>
-									<option value="4">Tiền Giang</option>
-									<option value="5">Long An</option>
-									<option value="5">Đồng Tháp</option>
+								<select id="tinh1" name="select" onchange="game_client.onchangeCity()">
+									<option value="">Chọn tỉnh thành</option>
 								</select>
 							</label>
 							<label for="favcity">
-								<select id="quan1" name="select">
-									<option value="0">Chọn quận huyện</option>
-									<option value="1">Quận 1</option>
-									<option value="2">Quận 2</option>
-									<option value="3">Quận 3</option>
-									<option value="4">Quận 4</option>
+								<select id="quan1" name="select" onchange="game_client.onchangeDistrict()">
+									<option value="">Chọn quận huyện</option>
 								</select>
 							</label>
 							<label for="favcity">
-								<select id="phuong" name="select">
-									<option value="0">Chọn phường xã</option>
-									<option value="1">Phường 1</option>
-									<option value="2">Phường 2</option>
-									<option value="3">Phường 3</option>
-									<option value="4">Phường 4</option>
+								<select id="phuong" name="select" onchange="game_client.onchangePhuong()">
+									<option value="">Chọn phường xã</option>
 								</select>
 							</label>
 							<div class="textarea"><textarea class="textarea" type="text" placeholder="Số nhà tên đường"></textarea></div>
@@ -512,7 +509,7 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 								<p>Mã Giftcode của bạn là</p>
 						</div>
 						<div class="gift">
-							<t>DAOSIXUATQUANVTC</t>	
+							<t class="sdk_content_giftcode"></t>	
 						</div>
 					</div>
                 </div>
@@ -600,7 +597,7 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
                 <div class="content-new-detail1 f-roboto-bold">
 					<div class="text">
 						<div class="regis-box">
-								<p></p>
+								<p class="sdk_text_notify"></p>
 						</div>
 					</div>
                 </div>
@@ -608,6 +605,50 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
             </div>
         </div>
     </div>
+
+	<!-- Popup thong bao dang nhap -->
+	<div class="popup popup-detail" id="popup-login" style="display: none;">
+		<div class="content-popup">
+			<div class="wrapper-popup1">
+				<div class="title-detail text-center f-SFU_Helvetica">
+					THÔNG BÁO
+				</div>
+				<div class="content-new-detail1 scrollbar-inner">
+					<div class="text f-roboto-medium">
+						<div class="regis-box" style="margin-top:6%">
+							<p>Bạn vui lòng đăng nhập để tham gia sự kiện!</p>
+						</div>
+						<div class="regis-box">
+							<a href="@ViewBag.login_url" class="bt-dnn" style="margin-top: 3%"></a>
+						</div>
+					</div>
+					<div class="box-scoin">
+						<a class="bt-gui f-Fzup" style="color: #981d01; cursor: pointer;" onclick="vtcmAuth.login()">Đăng nhập</a>
+					</div>
+				</div>
+				<a class="close-content"></a>
+			</div>
+		</div>
+	</div>
+
+	<!-- Popup Login -->
+    <!-- <div class="popup popup-detail" id="popup-login" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup">
+				<div class="title-detail text-center f-UTMAlterGothic">
+                     Thông Báo
+                </div>
+                <div class="content-new-detail1 f-roboto-bold">
+					<div class="text">
+						<div class="regis-box">
+								<p class="sdk_text_notify"></p>
+						</div>
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div> -->
 	
 	<!-- popup--->
 	<script type="text/javascript" src="js/bootstrap.min.js?v=1.2.6"></script>
@@ -624,9 +665,9 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 			$('.show-thele').click(function() {
                 $('#popup-thele').fadeIn();
             });
-			$('.show-lichsu').click(function() {
-                $('#popup-lichsu').fadeIn();
-            });
+			// $('.show-lichsu').click(function() {
+            //     $('#popup-lichsu').fadeIn();
+            // });
 			$('.show-dknt').click(function() {
                 $('#popup-dknt').fadeIn();
             });
@@ -642,9 +683,9 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 			$('.show-chose').click(function() {
                 $('#popup-chose').fadeIn();
             });
-			$('.show-chonphe').click(function() {
-                $('#popup-chonphe').fadeIn();
-            });
+			// $('.show-chonphe').click(function() {
+            //     $('#popup-chonphe').fadeIn();
+            // });
             // scroll 
             jQuery(document).ready(function() {
                 jQuery('.content-new-detail1').scrollbar();
@@ -674,7 +715,7 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 	<script src="./js/ui.js"></script>
 	<script type="text/javascript">
         const vtcmAppConfig = {
-            gameId:100073,
+            gameId:100074,
             apiBaseUrl: 'http://api.gf.splay.vn',
             // apiBaseUrl:'http://171.244.11.133:8088',
             client_id: "GF_EVENTS_WEB",
