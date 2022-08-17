@@ -379,4 +379,75 @@ const vtcmEvent = {
         })
     },
 
+    getUserData(listParams, handlingGetUserData, notification){
+        console.log(listParams)
+        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/account/get-user-data'
+        var header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${vtcmAuth.getToken()}`
+            }
+        }
+        var data= {...info, ...listParams};
+        common_sdk.ui.showLoading();
+        
+        axios.post(url,data,header)
+        .then(function (response) {
+            handlingGetUserData(response)
+            common_sdk.ui.hideLoading();
+        })
+        .catch(function (err) {
+            if(err.response){
+                if(err.response.status===401){
+                    vtcmAuth.logout();
+                }else{
+                    // notification(error.response.data.message)
+                    common_sdk.ui.hideLoading();
+                }
+            }else if (err.request) {
+                $('body').html('');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+            }else{
+                console.log('Error', err.message);
+            }
+            
+        })
+    },
+
+    updateUserData(listParams, objectParamsReturn, handlingUpdateUserData, notification){
+        console.log(listParams)
+        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/account/save-user-data'
+        var header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${vtcmAuth.getToken()}`
+            }
+        }
+        var data= {...info, ...listParams};
+        common_sdk.ui.showLoading();
+        
+        axios.post(url,data,header)
+        .then(function (response) {
+            handlingUpdateUserData(response, objectParamsReturn)
+            common_sdk.ui.hideLoading();
+        })
+        .catch(function (err) {
+            if(err.response){
+                if(err.response.status===401){
+                    vtcmAuth.logout();
+                }else{
+                    // notification(error.response.data.message)
+                    common_sdk.ui.hideLoading();
+                }
+            }else if (err.request) {
+                $('body').html('');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+            }else{
+                console.log('Error', err.message);
+            }
+            
+        })
+    },
+
+
 }

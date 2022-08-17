@@ -60,9 +60,17 @@
 						<a class="menu-item1" href="https://daosixuatquan.splay.vn/shop/" target="_blank">
                            <img src="images/ic-card.png" class="img-responsive" alt="">
                         </a>
-						<a class="menu-item2" href="https://scoin.vn/" target="_blank">
+						<!-- <a class="menu-item2" href="https://scoin.vn/" target="_blank">
                            <img src="images/bt-log.png" class="img-responsive" alt="">
-                        </a>
+                        </a> -->
+
+						<a class="menu-item2" style="cursor: pointer;" target="_blank" id="login_m" onclick="vtcmAuth.login()">
+							<img src="./images/bt-log.png" class="img-responsive" alt="">
+						</a>
+						<a class="log login dn f-roboto-light" style="background: rgba(0, 0, 0,.5) !important; background-size: contain; height: 50px; color: #fff; font-size:15px; line-height: 25px; padding-left: 10px; cursor: pointer;" id="logout_m" onclick="vtcmAuth.logout()">
+							<p>Xin chào, <span class="username"></span> | Thoát</p>
+							<p><span class="server_game"></span> - <span class="nhanvat_game_m"></span></p>
+						</a>
 						<!--<a class="menu-item2 f-roboto-medium" href="" target="_blank">
                            <span>Xin chào Admin, Thoát</span>
                         </a>-->
@@ -90,11 +98,12 @@
 						<a href="https://daosixuatquan.splay.vn/shop/" target="_blank" class="menu card1">
 							<img src="./images/ic-card.png" class="img-responsive" alt="">
 						</a>
-						<a class="log login" target="_blank" id="login" onclick="vtcmAuth.login()">
+						<a class="log login" style="cursor: pointer;" target="_blank" id="login" onclick="vtcmAuth.login()">
 							<img src="./images/bt-log.png" class="img-responsive" alt="">
 						</a>
-						<a class="dn no-bg f-roboto-light" id="logout" onclick="vtcmAuth.logout()">
-							<span>Xin chào, <span id="username"></span> | Thoát</span>
+						<a class="log login dn f-roboto-light" style="background: rgba(0, 0, 0,.5) !important; background-size: contain; height: 50px; color: #fff; font-size:15px; line-height: 25px; padding-left: 10px; cursor: pointer;" id="logout" onclick="vtcmAuth.logout()">
+							<p>Xin chào, <span class="username"></span> | Thoát</p>
+							<p><span class="server_game"></span> - <span class="nhanvat_game"></span></p>
 						</a>
 			  </div>
 			    <!---but tai game---->
@@ -279,7 +288,7 @@
 							
 					</div>
 					<div class="box-scoin">
-						<span class="bt-gui f-Fzup" style="cursor:pointer">Cập nhật</span>
+						<span class="bt-gui f-Fzup" style="cursor:pointer" onclick="game_client.sendInfoGame()">Cập nhật</span>
 					</div>
                 </div>
             </div>
@@ -378,83 +387,24 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 										</tr>
 									</thead>
 									<tbody id="tb_history">
-										<!-- <tr>
-											<th>1</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td class="f-roboto-bold"><t><a href="javascript:void(0)" class="show-giftcode">ĐÃ NHẬN</a></t></td>
-										</tr> -->
-										<!-- <tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td class="f-roboto-bold"><t><a href="javascript:void(0)" class="show-giftcode">ĐÃ NHẬN</a></t></td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td class="f-roboto-bold"><a href="javascript:void(0)" class="show-dknt">ĐỔI NGAY</a></td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td class="f-roboto-bold"><a href="javascript:void(0)" class="show-dknt">ĐỔI NGAY</a></td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td class="f-roboto-bold"><a href="javascript:void(0)" class="show-dknt">ĐỔI NGAY</a></td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td class="f-roboto-bold"><t><a href="javascript:void(0)" class="show-giftcode">ĐÃ NHẬN</a></t></td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td class="f-roboto-bold"><t><a href="javascript:void(0)" class="show-giftcode">ĐÃ NHẬN</a></t></td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td class="f-roboto-bold"><t><a href="javascript:void(0)" class="show-giftcode">ĐÃ NHẬN</a></t></td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td class="f-roboto-bold"><t><a href="javascript:void(0)" class="show-giftcode">ĐÃ NHẬN</a></t></td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td class="f-roboto-bold"><t><a href="javascript:void(0)" class="show-giftcode">ĐÃ NHẬN</a></t></td>
-										</tr> -->
+										
 									</tbody>
 								</table>
 							</div>
 						</div>
-						
+					</div>
+					<div aria-label="Page navigation example" style="margin-left:40%">
+						<ul class="pagination pagination-simple mb-0">
+						  <li class="page-item" style="cursor: pointer;">
+							<a class="page-link" onclick="game_client.previous()">Previous</a>
+						  </li>
+						  <li class="page-item" style="cursor: pointer;">
+							<a class="page-link" onclick="game_client.next()">Next</a>
+						  </li>
+						</ul>
 					</div>
                 </div>
-				<nav aria-label="Page navigation example">
-					<ul class="pagination pagination-simple mb-0">
-					  <li class="page-item" style="cursor: pointer;">
-						<a class="page-link" onclick="game_client.previous()">Previous</a>
-					  </li>
-					  <li class="page-item" style="cursor: pointer;">
-						<a class="page-link" onclick="game_client.next()">Next</a>
-					  </li>
-					</ul>
-				  </nav>
+				
                 <a class="close-content"></a>
             </div>
         </div>
@@ -470,7 +420,7 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
                 <div class="content-new-detail2">
 					<div class="regis-box f-roboto-light">
 							<div class="input1"><input type="text" name="hoten1" id="hoten1" placeholder="Họ và tên"></div>
-							<div class="input1"><input type="text" name="sdt1" id="sdt1" placeholder="Số điện thoại"></div>
+							<div class="input1"><input type="number" name="sdt1" id="sdt1" placeholder="Số điện thoại"></div>
 							<label for="favcity">
 								<select id="tinh1" name="select" onchange="game_client.onchangeCity()">
 									<option value="">Chọn tỉnh thành</option>
@@ -484,12 +434,15 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 							<label for="favcity">
 								<select id="phuong" name="select" onchange="game_client.onchangePhuong()">
 									<option value="">Chọn phường xã</option>
+									<option value="1">TP.Hồ Chí Minh</option>
+									<option value="2">Đồng Nai</option>
+									<option value="3">Tây Ninh</option>
 								</select>
 							</label>
-							<div class="textarea"><textarea class="textarea" type="text" placeholder="Số nhà tên đường"></textarea></div>
+							<div class="textarea"><textarea id="address" class="textarea" type="text" placeholder="Số nhà tên đường"></textarea></div>
 						</div>
 						<div class="regis-box f-roboto-bold">
-							<a href="" class="bt-gui">Gửi</a>
+							<a  class="bt-gui" onclick="game_client.sendFormDK()">Gửi</a>
 						</div>
                 </div>
                 <a class="close-content"></a>
@@ -527,10 +480,10 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
                 </div>
                 <div class="content-new-detail">
 					<div class="gift">
-						<img src="images/item-code.png" class="img-responsive" alt="" />	
+						<!-- <img src="images/item-code.png" class="img-responsive" alt="" />	 -->
 					</div>
 					<div class="regis-box">
-							<a href="javascript:void(0)" class="bt-nhanqua show-giftcode"></a>
+							<a href="javascript:void(0)" class="bt-nhanqua" onclick="game_client.hidePopupNhanqua()"></a>
 					</div>
                 </div>
                 <a class="close-content"></a>
@@ -547,6 +500,7 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
                 </div>
                 <div class="content-new-detail">
 					<div class="gift10">
+						<!-- <img src="images/item-code.png" class="img-responsive" alt="" />
 						<img src="images/item-code.png" class="img-responsive" alt="" />
 						<img src="images/item-code.png" class="img-responsive" alt="" />
 						<img src="images/item-code.png" class="img-responsive" alt="" />
@@ -555,11 +509,10 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 						<img src="images/item-code.png" class="img-responsive" alt="" />
 						<img src="images/item-code.png" class="img-responsive" alt="" />
 						<img src="images/item-code.png" class="img-responsive" alt="" />
-						<img src="images/item-code.png" class="img-responsive" alt="" />
-						<img src="images/item-code.png" class="img-responsive" alt="" />
+						<img src="images/item-code.png" class="img-responsive" alt="" /> -->
 					</div>
 					<div class="regis-box">
-							<a href="javascript:void(0)" class="bt-nhanqua show-giftcode"></a>
+							<a href="javascript:void(0)" class="bt-nhanqua" onclick="game_client.hidePopupNhanqua10()"></a>
 					</div>
                 </div>
                 <a class="close-content"></a>
@@ -659,6 +612,7 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
             $('.close-content').click(function() {
                 $('.popup').fadeOut();
             });
+			
       		$('.show-thelesk').click(function() {
                 $('#popup-thelesk').fadeIn();
             });
