@@ -264,31 +264,13 @@
                 <div class="content-new-detail">
 					<div class="regis-box f-roboto-light">
 							<label for="favcity">
-								<select id="server" name="select">
-									<option value="0">Chọn Server</option>
-									<option value="1">TP.Hồ Chí Minh</option>
-									<option value="2">Đồng Nai</option>
-									<option value="3">Tây Ninh</option>
-									<option value="4">Tiền Giang</option>
-									<option value="5">Long An</option>
-									<option value="5">Đồng Tháp</option>
-								</select>
-							</label>
-							<label for="favcity">
 								<select id="nhanvat" name="select">
-									<option value="0">Chọn Nhân vật</option>
-									<option value="1">TP.Hồ Chí Minh</option>
-									<option value="2">Đồng Nai</option>
-									<option value="3">Tây Ninh</option>
-									<option value="4">Tiền Giang</option>
-									<option value="5">Long An</option>
-									<option value="5">Đồng Tháp</option>
+									<option value="">Chọn Nhân vật</option>
 								</select>
 							</label>
-							
 					</div>
 					<div class="box-scoin">
-						<span class="bt-gui f-Fzup" style="cursor:pointer" onclick="game_client.sendInfoGame()">Cập nhật</span>
+						<a class="bt-gui f-Fzup" style="cursor:pointer" onclick="game_client.sendInfoGame()">Cập nhật</a>
 					</div>
                 </div>
             </div>
@@ -432,7 +414,7 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 								</select>
 							</label>
 							<label for="favcity">
-								<select id="phuong" name="select" onchange="game_client.onchangePhuong()">
+								<select id="phuong" name="select">
 									<option value="">Chọn phường xã</option>
 									<option value="1">TP.Hồ Chí Minh</option>
 									<option value="2">Đồng Nai</option>
@@ -549,12 +531,31 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
                 </div>
                 <div class="content-new-detail1 f-roboto-bold">
 					<div class="text">
-						<div class="regis-box">
+						<div class="regis-box" style="margin-top: 100px;">
 								<p class="sdk_text_notify"></p>
 						</div>
 					</div>
                 </div>
                 <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+
+	<!-- Popup Error -->
+    <div class="popup popup-detail" id="popup-error-server" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup">
+				<div class="title-detail text-center f-UTMAlterGothic">
+                     Thông Báo
+                </div>
+                <div class="content-new-detail1 f-roboto-bold">
+					<div class="text">
+						<div class="regis-box" style="margin-top: 100px;">
+								<p class="sdk_text_notify_server"></p>
+						</div>
+					</div>
+                </div>
+				<a class="close-content"></a>
             </div>
         </div>
     </div>
@@ -655,13 +656,17 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
-	<script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/axios.min.js?v=1"></script>
+	<script src="http://static.gf.splay.vn/gf-sdk/v2.0/vendor/axios.min.js?v=1"></script>
     <!-- <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/jquery.min.js?v=1"></script> -->
-    <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/moment-with-locales.min.js?v=1"></script>
-    <script src="./sdk/v2/app.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/vendor/moment-with-locales.min.js?v=1"></script>
+	<script src="http://static.gf.splay.vn/gf-sdk/v2.0/app.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/auth.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/common.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/event.js"></script>
+    <!-- <script src="./sdk/v2/app.js"></script>
     <script src="./sdk/v2/auth.js"></script>
     <script src="./sdk/v2/common.js"></script>
-    <script src="./sdk/v2/event.js"></script>
+    <script src="./sdk/v2/event.js"></script> -->
     <!-- <script src="./sdk/v2/ui.js"></script> -->
 
     <script src="./Winwheel.min.js"></script>
@@ -680,8 +685,8 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
             // path:'/mungdoclap'
             url_return:`http://127.0.0.1:5500/index.html`,
             path:'/index.html',
-            // url_return:`http://autop.vn/teaser`,
-            // path:'/teaser'
+            // url_return:`https://daosixuatquan.splay.vn/dai-yen`,
+            // path:'/dai-yen'
        };
        game_client.initApp(vtcmAppConfig);
    </script>

@@ -380,7 +380,6 @@ const vtcmEvent = {
     },
 
     getUserData(listParams, handlingGetUserData, notification){
-        console.log(listParams)
         var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/account/get-user-data'
         var header = {
             headers: {
@@ -401,7 +400,7 @@ const vtcmEvent = {
                 if(err.response.status===401){
                     vtcmAuth.logout();
                 }else{
-                    // notification(error.response.data.message)
+                    notification(error.response.data.message)
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {
@@ -414,8 +413,75 @@ const vtcmEvent = {
         })
     },
 
-    updateUserData(listParams, objectParamsReturn, handlingUpdateUserData, notification){
-        console.log(listParams)
+    updateDataServerCharacter(listParams, objectParamsReturn, handlingUpdateDataServerCharacter, notification){
+        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/account/save-user-game-data'
+        var header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${vtcmAuth.getToken()}`
+            }
+        }
+        var data= {...info, ...listParams};
+        common_sdk.ui.showLoading();
+        
+        axios.post(url,data,header)
+        .then(function (response) {
+            handlingUpdateDataServerCharacter(response, objectParamsReturn)
+            common_sdk.ui.hideLoading();
+        })
+        .catch(function (err) {
+            if(err.response){
+                if(err.response.status===401){
+                    vtcmAuth.logout();
+                }else{
+                    notification(error.response.data.message)
+                    common_sdk.ui.hideLoading();
+                }
+            }else if (err.request) {
+                $('body').html('');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+            }else{
+                console.log('Error', err.message);
+            }
+            
+        })
+    },
+
+    updateChonPhe(listParams, objectParamsReturn, handlingUpdateChonPhe, notification){
+        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/account/save-vote-data'
+        var header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${vtcmAuth.getToken()}`
+            }
+        }
+        var data= {...info, ...listParams};
+        common_sdk.ui.showLoading();
+        
+        axios.post(url,data,header)
+        .then(function (response) {
+            handlingUpdateChonPhe(response, objectParamsReturn)
+            common_sdk.ui.hideLoading();
+        })
+        .catch(function (err) {
+            if(err.response){
+                if(err.response.status===401){
+                    vtcmAuth.logout();
+                }else{
+                    notification(error.response.data.message)
+                    common_sdk.ui.hideLoading();
+                }
+            }else if (err.request) {
+                $('body').html('');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+            }else{
+                console.log('Error', err.message);
+            }
+            
+        })
+    },
+
+    updateFormDK(listParams, objectParamsReturn, handlingUpdateFormDK, notification){
         var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/account/save-user-data'
         var header = {
             headers: {
@@ -428,7 +494,7 @@ const vtcmEvent = {
         
         axios.post(url,data,header)
         .then(function (response) {
-            handlingUpdateUserData(response, objectParamsReturn)
+            handlingUpdateFormDK(response, objectParamsReturn)
             common_sdk.ui.hideLoading();
         })
         .catch(function (err) {
@@ -436,7 +502,7 @@ const vtcmEvent = {
                 if(err.response.status===401){
                     vtcmAuth.logout();
                 }else{
-                    // notification(error.response.data.message)
+                    notification(error.response.data.message)
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {
@@ -449,5 +515,139 @@ const vtcmEvent = {
         })
     },
 
+    getUserLocation(listParams, objectParamsReturn, handlingGetUserLocation, notification){
+        console.log(listParams)
+        var url=vtcmApp.config_.apiBaseUrl+'/catalog/api/v1/setting/get-location'
+        var header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${vtcmAuth.getToken()}`
+            }
+        }
+        var data= {...info, ...listParams};
+        common_sdk.ui.showLoading();
+        
+        axios.post(url,data,header)
+        .then(function (response) {
+            handlingGetUserLocation(response, objectParamsReturn)
+            common_sdk.ui.hideLoading();
+        })
+        .catch(function (err) {
+            if(err.response){
+                if(err.response.status===401){
+                    vtcmAuth.logout();
+                }else{
+                    notification(error.response.data.message)
+                    common_sdk.ui.hideLoading();
+                }
+            }else if (err.request) {
+                $('body').html('');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+            }else{
+                console.log('Error', err.message);
+            }
+            
+        })
+    },
+
+    getListServer(handlingGetListServer, notification){
+        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/account/get-server-list'
+        var header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${vtcmAuth.getToken()}`
+            }
+        }
+        common_sdk.ui.showLoading();
+        
+        var data= {...info};
+        axios.post(url,data,header)
+        .then(function (response) {
+            handlingGetListServer(response)
+            common_sdk.ui.hideLoading();
+        })
+        .catch(function (err) {
+            if(err.response){
+                if(err.response.status===401){
+                    vtcmAuth.logout();
+                }else{
+                    notification(error.response.data.message)
+                    common_sdk.ui.hideLoading();
+                }
+            }else if (err.request) {
+                $('body').html('');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+            }else{
+                console.log('Error', err.message);
+            }
+            
+        })
+    },
+
+    getListCharacter(handlingGetListCharacter, notification){
+        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/account/get-character-list'
+        var header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${vtcmAuth.getToken()}`
+            }
+        }
+        common_sdk.ui.showLoading();
+        var data= {...info};
+        axios.post(url, data, header)
+        .then(function (response) {
+            handlingGetListCharacter(response)
+            common_sdk.ui.hideLoading();
+        })
+        .catch(function (err) {
+            if(err.response){
+                if(err.response.status===401){
+                    vtcmAuth.logout();
+                }else{
+                    notification(error.response.data.message)
+                    common_sdk.ui.hideLoading();
+                }
+            }else if (err.request) {
+                $('body').html('');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+            }else{
+                console.log('Error', err.message);
+            }
+            
+        })
+    },
+
+    getRewards(listParams, handlingGetRewards, notification){
+        var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/rewards/get-rewards'
+        var header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${vtcmAuth.getToken()}`
+            }
+        }
+        common_sdk.ui.showLoading();
+        var data= {...info, ...listParams};
+        axios.post(url, data, header)
+        .then(function (response) {
+            handlingGetRewards(response)
+            common_sdk.ui.hideLoading();
+        })
+        .catch(function (err) {
+            if(err.response){
+                if(err.response.status===401){
+                    vtcmAuth.logout();
+                }else{
+                    notification(error.response.data.message)
+                    common_sdk.ui.hideLoading();
+                }
+            }else if (err.request) {
+                $('body').html('');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+            }else{
+                console.log('Error', err.message);
+            }
+            
+        })
+    },
 
 }

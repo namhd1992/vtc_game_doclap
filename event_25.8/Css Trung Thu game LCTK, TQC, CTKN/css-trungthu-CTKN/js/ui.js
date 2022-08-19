@@ -36,7 +36,6 @@ const game_client = {
         if(vtcmAuth.isLogin()){
 			vtcmApp.getAppSetting(game_client.cbwithtoken);
 			game_client.rollup(10206, 10177)
-			game_client.getCity();
 			game_client.getUserData();
 			// $('#popup-chose').fadeIn();
 			// $('#popup-dknt').fadeIn();
@@ -141,77 +140,6 @@ const game_client = {
 		common_sdk.setInfoUser(list);
 	},
 
-
-	getCity(){
-		var requestOptions = {
-			method: 'GET',
-			redirect: 'follow'
-		};
-
-		fetch("https://api.splay.vn/scoinagency/get-provinces-by-region?region=B", requestOptions)
-			.then(response => response.json())
-			.then(result => {
-				var data = "";
-				$('#quan1').empty();
-				$("#quan1").append(' <option value="" id="">Chọn quận huyện</option>');
-				$('#phuong').empty();
-				$("#phuong").append(' <option value="" id="">Chọn phường xã</option>');
-				for (var i = 0; i < result.length; i++) {
-					data += "<option value = '" + result[i].Province + " '>" + result[i].Province + " </option>";
-				}
-				$("#tinh1").append(data);
-			})
-			.catch(error => console.log('error', error));
-
-	},
-
-	onchangeCity(){
-		var x = document.getElementById("tinh1").value;
-		var requestOptions = {
-			method: 'GET',
-			redirect: 'follow'
-		};
-		city=x;
-		district='';
-
-		fetch("https://api.splay.vn/scoinagency/get-districts-by-province?province="+x, requestOptions)
-			.then(response => response.json())
-			.then(result => {
-				var data = "";
-				$('#quan1').empty();
-				$("#quan1").append(' <option value="" id="">Chọn quận huyện</option>');
-				$('#phuong').empty();
-				$("#phuong").append(' <option value="" id="">Chọn phường xã</option>');
-				for (var i = 0; i < result.length; i++) {
-					data += "<option value = '" + result[i].District + " '>" + result[i].District + " </option>";
-				}
-				$("#quan1").append(data);
-			})
-			.catch(error => console.log('error', error));
-	},
-
-	onchangeDistrict(){
-		var x = document.getElementById("tinh1").value;
-		var requestOptions = {
-			method: 'GET',
-			redirect: 'follow'
-		};
-		city=x;
-		district='';
-
-		fetch("https://api.splay.vn/scoinagency/get-districts-by-province?province="+x, requestOptions)
-			.then(response => response.json())
-			.then(result => {
-				var data = "";
-				$('#phuong').empty();
-				$("#phuong").append(' <option value="" id="">Chọn phường xã</option>');
-				for (var i = 0; i < result.length; i++) {
-					data += "<option value = '" + result[i].District + " '>" + result[i].District + " </option>";
-				}
-				$("#phuong").append(data);
-			})
-			.catch(error => console.log('error', error));
-	},
 
 	onchangePhuong(){
 
@@ -572,7 +500,7 @@ const game_client = {
 
 	choseBonus(type){
 
-	}
+	},
 
 	notificationErr(objectParamsReturn, error){
 		// var e = document.getElementsByClassName(objectParamsReturn.key);
