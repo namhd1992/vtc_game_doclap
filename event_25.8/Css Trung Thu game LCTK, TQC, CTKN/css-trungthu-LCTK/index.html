@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<link rel="stylesheet" href="http://static.gf.splay.vn/gf-sdk/v2.0/css/index.css">
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/base.css">
 <title>Long Chiến Truyền Kỳ VTC - Vui Trung Thu Quà Đầy Tủ</title>
 <meta name="author" content="VTC" />
 <meta name="description" content="Long Chiến Truyền Kỳ VTC - Vui Trung Thu Quà Đầy Tủ">
@@ -14,13 +20,7 @@
 <meta property="og:title" content="Ngự Kim Long - Đoạt Vàng Ròng">
 <meta property="og:description" content=""/>
 <meta property="og:image:type" content="image/jpeg"/>
-<meta property="og:image" content="https://longchientruyenky.splay.vn/trungthu/sharefb.jpg/"/>        
-	
-<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/base.css">
+<meta property="og:image" content="https://longchientruyenky.splay.vn/trungthu/sharefb.jpg/"/>   
 <!-- tab---->	
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="js/news_bf4d32d.js"></script>
@@ -32,7 +32,7 @@
 
 <body>
 	
-	<div id="wrapper" class="wrapper floatingDesktopTopLeft">
+	<div id="wrapper" class="wrapper floatingDesktopTopLeft sdk_page">
 		
 		<section id="frame1" class="section section--frame1 frame1">
 			<div class="section__background"> 
@@ -42,25 +42,34 @@
 			
 			<div class="section__content">
 				<div class="content-container1">
-					<div class="logo"><img src="images/logo.png" class="img-responsive" alt="" /></div>
 					<div class="header-menu">
-						<a href="https://longchientruyenky.splay.vn/" target="_blank" class="menu home">
+						<a href="https://chienthan.splay.vn/" target="_blank" class="menu home">
 							<img src="./images/ic-home.png" class="img-responsive" alt="Home">
 						</a>
-						<a href="https://www.facebook.com/longchientruyenky.vn" target="_blank" class="menu fanpage">
+						<a target="_blank" class="menu fanpage sdk_fanpage_fb">
 							<img src="./images/ic-fb.png" class="img-responsive" alt="Fanpage">
 						</a>
-						<a href="https://www.facebook.com/groups/longchientruyenky.vn" target="_blank" class="menu group">
+						<a target="_blank" class="menu group sdk_group_fb">
 							<img src="./images/ic-group.png" class="img-responsive" alt="Group">
 						</a>
-						<a href="javascript:void(0)" class="login dn show-server">
+
+
+						<a class="login dn" style="cursor: pointer;" target="_blank" id="login" onclick="vtcmAuth.login()">
 							<img src="./images/ic-log.png" class="img-responsive" alt="Đăng nhập">
 						</a>
+						<a class="log login dn f-roboto-light" style="width: 20%; background: rgba(0, 0, 0,.5) !important; background-size: contain; height: 50px; color: #fff; font-size:15px; line-height: 25px; padding-left: 10px; cursor: pointer;" id="logout" onclick="vtcmAuth.logout()">
+							<p>Xin chào, <span class="username"></span> | Thoát</p>
+							<p>Lượt quay: <span class="sdk_numberpoint"></span></p>
+						</a>
+
+						<!-- <a href="javascript:void(0)" class="login dn show-server">
+							<img src="./images/ic-log.png" class="img-responsive" alt="Đăng nhập">
+						</a> -->
 						<!--<a class="menu-item no-bg f-roboto-light" href="#">
 							<span>Xin chào, Admin | Thoát</span>
 						</a>-->
 					</div>
-					<a href="https://longchien.onelink.me/vPg1/teaser" class="content-bt taigame-bt" target="_blank"><img src="images/bt-tai.png" class="img-responsive" alt="Tải game ngay"></a>	
+					<a href="https://chienthan.onelink.me/nPiK/teaser" class="content-bt taigame-bt" target="_blank"><img src="images/bt-tai.png" class="img-responsive" alt="Tải game ngay"></a>	
 				</div>
 			</div>
 		</section>
@@ -79,7 +88,7 @@
 							<li><a href="javascript:void(0)" class="show-themluot"><img src="images/bt-themluot.png" alt="Thêm lượt"></a></li>
 						</ul>
 					</div>
-					<a href="javascript:void(0)" class="gift-bt nhanqua-bt show-nhanvp"><img src="images/bt-nhanqua.png" class="img-responsive" alt="Nhận quà ngay"></a>		
+					<a href="javascript:void(0)" class="gift-bt nhanqua-bt show-nhanvp" onclick="game_client.playGame(10209,1,'popup-error')"><img src="images/bt-nhanqua.png" class="img-responsive" alt="Nhận quà ngay"></a>		
 				</div>
 			</div>
 		</section>
@@ -96,12 +105,12 @@
 						<div class="news_box">
 							<div class="news-nav">
 								<ul>
-									<li name="goi1" class="nav-news1 active"></li>
-									<li name="goi2" class="nav-news2"></li>
-									<li name="goi3" class="nav-news3"></li>
-									<li name="goi4" class="nav-news4"></li>
-									<li name="goi5" class="nav-news5"></li>
-									<li name="goi6" class="nav-news6"></li>
+									<li name="goi1" class="nav-news1 active" onclick="game_client.choseBonus(1)"></li>
+									<li name="goi2" class="nav-news2" onclick="game_client.choseBonus(2)"></li>
+									<li name="goi3" class="nav-news3" onclick="game_client.choseBonus(3)"></li>
+									<li name="goi4" class="nav-news4" onclick="game_client.choseBonus(4)"></li>
+									<li name="goi5" class="nav-news5" onclick="game_client.choseBonus(5)"></li>
+									<li name="goi6" class="nav-news6" onclick="game_client.choseBonus(6)"></li>
 								</ul>	
 							</div>
 
@@ -110,58 +119,58 @@
 									<!-----------------------------TAB1------------------------------------->
 									<div class="news-tab" name="goi1" style="display: block;">
 										<div class="tab-content">
-											<img src="images/gift-goi1.png" alt="Qùa gói 1">
-											<a href="javascript:void(0)" class="bt-doiqua show-xndt"></a>
+											<img src="images/goi-1.png" alt="Qùa gói 1">
+											<a href="javascript:void(0)" class="bt-doiqua" onclick="game_client.changeBonus(10213, 1)"></a>
 										</div>
 									</div>
 
 									<!-----------------------------TAB2------------------------------------->
 									<div class="news-tab" name="goi2" style="display: none;">
 										<div class="tab-content">
-											<img src="images/gift-goi1.png" alt="Qùa gói 1">
-											<a href="javascript:void(0)" class="bt-doiqua show-dqtc"></a>
+											<img src="images/goi-2.png" alt="Qùa gói 2">
+											<a href="javascript:void(0)" class="bt-doiqua" onclick="game_client.changeBonus(10214, 2)"></a>
 										</div>
 									</div>
 								
 									<!-----------------------------TAB3------------------------------------->
 									<div class="news-tab" name="goi3" style="display: none;">
 										<div class="tab-content">
-											<img src="images/gift-goi1.png" alt="Qùa gói 1">
-											<a href="javascript:void(0)" class="bt-doiqua show-thieuvp"></a>
+											<img src="images/goi-3.png" alt="Qùa gói 3">
+											<a href="javascript:void(0)" class="bt-doiqua" onclick="game_client.changeBonus(10215, 3)"></a>
 										</div>
 									</div>
 								
 									<!-----------------------------TAB4------------------------------------->
 									<div class="news-tab" name="goi4" style="display: none;">
 										<div class="tab-content">
-											<img src="images/gift-goi1.png" alt="Qùa gói 1">
-											<a href="javascript:void(0)" class="bt-doiqua show-xndt"></a>
+											<img src="images/goi-4.png" alt="Qùa gói 4">
+											<a href="javascript:void(0)" class="bt-doiqua" onclick="game_client.changeBonus(10216, 4)"></a>
 										</div>
 									</div>
 								
 									<!-----------------------------TAB5------------------------------------->
 									<div class="news-tab" name="goi5" style="display: none;">
 										<div class="tab-content">
-											<img src="images/gift-goi1.png" alt="Qùa gói 1">
-											<a href="javascript:void(0)" class="bt-doiqua show-xndt"></a>
+											<img src="images/goi-5.png" alt="Qùa gói 5">
+											<a href="javascript:void(0)" class="bt-doiqua" onclick="game_client.changeBonus(10217, 5)"></a>
 										</div>
 									</div>
 								
 									<!-----------------------------TAB6------------------------------------->
 									<div class="news-tab" name="goi6" style="display: none;">
 										<div class="tab-content">
-											<img src="images/gift-goi1.png" alt="Qùa gói 1">
-											<a href="javascript:void(0)" class="bt-doiqua show-xndt"></a>
+											<img src="images/goi-6.png" alt="Qùa gói 6">
+											<a href="javascript:void(0)" class="bt-doiqua show-xndt" onclick="game_client.changeBonus(10218, 6)"></a>
 										</div>
 									</div>
 							</div>	
 						</div>
 						<div class="vatpham f-roboto-bold">
 							<ul>
-								<li>Số lượng: 10</li>
-								<li>Số lượng: 10</li>
-								<li>Số lượng: 10</li>
-								<li>Số lượng: 10</li>
+								<li>Số lượng: <span class="sdk_banh_xanh">0</span></li>
+								<li>Số lượng: <span class="sdk_banh_vang">0</span></li>
+								<li>Số lượng: <span class="sdk_banh_trang">0</span></li>
+								<li>Số lượng: <span class="sdk_banh_do">0</span></li>
 							</ul>
 						
 						</div>
@@ -180,12 +189,12 @@
 				<div class="content-container1">
 					<div class="bt-group">
 						<ul>
-							<li><a href=""><img class="img1" src="images/top2.png" alt=""></a></li>
-							<li><a href=""><img class="img2" src="images/top1.png" alt=""></a></li>
-							<li><a href=""><img class="img3" src="images/top3.png" alt=""></a></li>
+							<li><a href="javascript:void(0)" class="show-top2"><img class="img1" src="images/BXH-2.png" alt=""></a></li>
+							<li><a href="javascript:void(0)" class="show-top1"><img class="img2" src="images/BXH-1.png" alt=""></a></li>
+							<li><a href="javascript:void(0)" class="show-top3"><img class="img3" src="images/BXH-3.png" alt=""></a></li>
 						</ul>
 					  </div>
-					<a href="javascript:void(0)" class="bt-bxh show-bxh"></a>
+					<a href="javascript:void(0)" class="bt-bxh show-bxh" onclick="game_client.getBXH()"></a>
 				</div>
 			</div>
 		</section>
@@ -201,7 +210,7 @@
 					  Số 18 Tam Trinh phường Minh Khai, quận Hai Bà Trưng, Hà Nội<br>
 					  SĐT : (84-4).39877470 | Email : vtcmobile@vtc.vn<br>
 					  Người chịu trách nhiệm quản lý nội dung: Ông Nguyễn Viết Quang Minh.<br>
-					  Giấy phép phê duyệt nội dung kịch bản trò chơi điện tử trên mạng số 99/QD-BTTTT<br>
+					  Giấy phép phê duyệt nội dung kịch bản trò chơi điện tử trên mạng số 2236/QD-BTTT<br>
 					  <a href="https://chienthankynguyen.vn/huong-dan-cai-dat-go-bo.html" target="_blank">Hướng dẫn cài đặt</a> | <a href="https://chienthankynguyen.vn/dieu-khoan-su-dung.html" target="_blank">Điều khoản</a><br>
 					</div>
 				  </div>
@@ -267,19 +276,19 @@
 								<tbody>
 									<tr>
 										<td style="width: 60%; text-align: left">- Nạp mỗi 10k scoin vào game nhận 1 lượt</td>
-										<td style="width: 40%"><a href="https://longchientruyenky.splay.vn/nap" class="bt-nhan f-roboto-bold"><span>Nạp Ngay</span></a></td>
+										<td style="width: 40%; cursor: pointer;"><a class="bt-nhan f-roboto-bold" onclick="game_client.evt_rollup(0,0)"><span>Tham Gia</span></a></td>
 									</tr>
 									<tr>
 										<td style="width: 60%; text-align: left">- Đăng nhập nhận 1 lượt</td>
-										<td style="width: 40%"><a href="#" class="bt-nhan f-roboto-bold"><span>Tham Gia</span></a></td>
+										<td style="width: 40%; cursor: pointer;"><a class="bt-nhan f-roboto-bold" onclick="game_client.evt_rollup(10210, 10180)"><span>Tham Gia</span></a></td>
 									</tr>
 									<tr>
 										<td style="width: 60%; text-align: left">- Tham gia group nhận 1 lượt</td>
-										<td style="width: 40%"><a href="https://www.facebook.com/groups/longchientruyenky.vn" class="bt-nhan f-roboto-bold"><span>Tham Gia</span></a></td>
+										<td style="width: 40%; cursor: pointer;"><a class="bt-nhan f-roboto-bold" onclick="game_client.evt_rollup(10212, 10181)"><span>Tham Gia</span></a></td>
 									</tr>
 									<tr>
 										<td style="width: 60%; text-align: left">- Like page nhận 1 lượt</td>
-										<td style="width: 40%"><a href="https://www.facebook.com/longchientruyenky.vn" class="bt-nhan f-roboto-bold"><span>Tham Gia</span></a></td>
+										<td style="width: 40%; cursor: pointer;"><a class="bt-nhan f-roboto-bold" onclick="game_client.evt_rollup(10211, 10182)"><span>Tham Gia</span></a></td>
 									</tr>	
 								</tbody>
 							</table>
@@ -302,24 +311,41 @@
                 </div>
                 <div class="content-new-detail1 scrollbar-inner">
 					<div class="text f-roboto-medium">
-						<p class="center-align"><span >Xin chào các Anh Hùng!</span></p>
-<p>Trung Thu đã đến cùng Long Chiến Truyền Kỳ tham gia sự kiện để nhận thật nhiều quà tặng mùa Trung Thu nhé.</p>
+						<p class="sdk_content_evt_guide"></p>
+						<!-- <p class="center-align"><span >Xin chào các Đạo Sĩ!</span></p>
+<p>Để hiểu rõ hơn về Thỉnh Bùa Đọ Nhân Phẩm, Đạo Sĩ xem thêm thông tin dưới để có cơ hội nhận các phần quà đặt biệt.</p>
 
 <p><span >CÁCH THỨC THAM GIA:</span></p>
  
 <p>▪️  Bước 1: Đăng nhập tài khoản (ScoinID, Facebook, Google)<br>
 
-▪️  Bước 2: Để có lượt Nhận Quà cần hoàn thành các nhiệm vụ ở [Thêm lượt]. <br>
+▪️  Bước 2: Để có lượt thỉnh bùa cần hoàn thành các nhiệm vụ ở [Nhận lượt]. 
 
-▪️  Bước 3: Tiến hành Nhận Quà để nhận các item cà dùng các item để đổi thật nhiều quà code giá trị.<br>
+▪️  Bước 3: Tiến hành Thỉnh Bùa bằng cách click vào lá bùa để nhận phần thưởng hấp dẫn với phần quà đặt biệt là iPhone 13 Pro<br>
 
-▪️  Bước 4: Sau khi đổi thưởng nhập code ngay tại: https://longchientruyenky.splay.vn/code</p>
+▪️  Bước 4: Sau khi may mắn và nhận được thưởng, vào phần [Lịch sử] để kiểm tra</p>
 
 						<p><span >➢ Lưu ý:</span></p>
-<p>- Mỗi gói quà chỉ đổi được 1 lần cho 1 tài khoản. Và mỗi nhân vật chỉ nhập được 1 lần cho mỗi loại code.<br>
-</p>
+<p>- Đối với phần thưởng là hiện vật (Áo thun, Set POSM), khi quay trúng vui lòng mở [Lịch sử] và nhấn [Đổi thưởng] để điền thông tin nhận quà.<br>
+- Đối với phần thưởng là các item trong game, quà sẽ được quy đổi thành giftcode và được lưu lại trong [Lịch sử]</p>
 						
-	
+						<p>Để hiểu rõ hơn về Thỉnh Bùa Đọ Nhân Phẩm, Đạo Sĩ xem thêm thông tin dưới để có cơ hội nhận các phần quà đặt biệt.</p>
+
+<p><span >CÁCH THỨC THAM GIA:</span></p>
+ 
+<p>▪️  Bước 1: Đăng nhập tài khoản (ScoinID, Facebook, Google)<br>
+
+▪️  Bước 2: Để có lượt thỉnh bùa cần hoàn thành các nhiệm vụ ở [Nhận lượt]. 
+
+▪️  Bước 3: Tiến hành Thỉnh Bùa bằng cách click vào lá bùa để nhận phần thưởng hấp dẫn với phần quà đặt biệt là iPhone 13 Pro<br>
+
+▪️  Bước 4: Sau khi may mắn và nhận được thưởng, vào phần [Lịch sử] để kiểm tra</p>
+
+						<p><span >➢ Lưu ý:</span></p>
+<p>- Đối với phần thưởng là hiện vật (Áo thun, Set POSM), khi quay trúng vui lòng mở [Lịch sử] và nhấn [Đổi thưởng] để điền thông tin nhận quà.<br>
+- Đối với phần thưởng là các item trong game, quà sẽ được quy đổi thành giftcode và được lưu lại trong [Lịch sử]</p> -->
+						
+						
 					</div>
                 </div>
                 <a class="close-content"></a>
@@ -340,9 +366,7 @@
 								<p>Chúc mừng bạn nhận được vật phẩm:</p>
 						</div>
 						<div class="dt-box">
-							<div class="box1">
-								<div class="t-vp p-a">Số lượng: 10</div>
-								<img src="images/item.png" class="img-responsive p-r" alt="">
+							<div class="box1 sdk_img_bonus">
 							</div>
 						</div>
 					</div>
@@ -365,7 +389,7 @@
 							<p>Bạn vui lòng đăng nhập để tham gia sự kiện nhận quà nhé!</p>
 						</div>
 						<div class="dt-box">
-							<a href="javascript:void(0)" class="bt-dnn"></a>
+							<a href="javascript:void(0)" class="bt-dnn" onclick="vtcmAuth.login()"></a>
 						</div>
 					</div>
                 </div>
@@ -451,28 +475,28 @@
                 <div class="content-new-detail1 f-roboto-bold">
 					<div class="text1">
 						<div class="dt-box">
-								<p>Xác nhận đổi thưởng gói xx cần tiêu:</p>
+								<p>Xác nhận đổi thưởng gói <span class="sdk_goixxx"></span> cần tiêu:</p>
+						</div>
+						<div class="dt-box sdk_list_items_bonus">
+							<!-- <div class="box1">
+								<div class="t-vp p-a">Số lượng: 10</div>
+								<img src="images/item.png" class="img-responsive p-r" alt="">
+							</div>
+							<div class="box1">
+								<div class="t-vp p-a">Số lượng: 10</div>
+								<img src="images/item.png" class="img-responsive p-r" alt="">
+							</div>
+							<div class="box1">
+								<div class="t-vp p-a">Số lượng: 10</div>
+								<img src="images/item.png" class="img-responsive p-r" alt="">
+							</div>
+							<div class="box1">
+								<div class="t-vp p-a">Số lượng: 10</div>
+								<img src="images/item.png" class="img-responsive p-r" alt="">
+							</div> -->
 						</div>
 						<div class="dt-box">
-							<div class="box1">
-								<div class="t-vp p-a">Số lượng: 10</div>
-								<img src="images/item.png" class="img-responsive p-r" alt="">
-							</div>
-							<div class="box1">
-								<div class="t-vp p-a">Số lượng: 10</div>
-								<img src="images/item.png" class="img-responsive p-r" alt="">
-							</div>
-							<div class="box1">
-								<div class="t-vp p-a">Số lượng: 10</div>
-								<img src="images/item.png" class="img-responsive p-r" alt="">
-							</div>
-							<div class="box1">
-								<div class="t-vp p-a">Số lượng: 10</div>
-								<img src="images/item.png" class="img-responsive p-r" alt="">
-							</div>
-						</div>
-						<div class="dt-box">
-							<a href="javascript:void(0)" class="bt-xacnhan"></a>
+							<a href="javascript:void(0)" class="bt-xacnhan" onclick="game_client.exchangeRewards()"></a>
 						</div>
 					</div>
                 </div>
@@ -500,57 +524,8 @@
 											<th>SỐ LƯỢT NHẬN BÁNH</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<th>1</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-										</tr>
+									<tbody id="tb_modal_bxh">
+										
 									</tbody>
 								</table>
 							</div>
@@ -562,24 +537,37 @@
             </div>
         </div>
     </div>
-	
-	<!-- Popup doi qua thanh cong -->
-    <div class="popup popup-detail" id="popup-doiquatc" style="display: none;">
-        <div class="content-popup">
-            <div class="wrapper-popup2">
+
+	<!-- Popup  Error -->
+	<div class="popup popup-detail" id="popup-error" style="display: none;">
+		<div class="content-popup">
+			<div class="wrapper-popup5">
 				<div class="title-detail text-center f-SVNBira">
-                    Đổi Quà Thành Công
+					Thông Báo
+				</div>
+				<div class="content-new-detail1 f-roboto-bold">
+					<div class="text1">
+						<div class="dt-box">
+							<p class="sdk_text_notify"></p>
+						</div>
+					</div>
+				</div>
+				<a class="close-content"></a>
+			</div>
+		</div>
+	</div>
+
+	<!-- Popup load list server Error -->
+    <div class="popup popup-detail" id="popup-error-server" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup5">
+				<div class="title-detail text-center f-SVNBira">
+                    Thông Báo
                 </div>
                 <div class="content-new-detail1 f-roboto-bold">
 					<div class="text1">
 						<div class="dt-box">
-							<p>Chúc mừng bạn đổi quà thành công!<br>Quà code của bạn:</p>
-						</div>
-						<div class="dt-box">
-							<div class="box-code">11234567899</div>
-						</div>
-						<div class="dt-box">
-							<a href="https://longchientruyenky.splay.vn/code" target="_blank" class="bt-nhapcode"></a>
+							<p class="sdk_text_notify_server"></p>
 						</div>
 					</div>
                 </div>
@@ -591,6 +579,14 @@
 	<!-- popup--->
 	<script type="text/javascript" src="js/bootstrap.min.js?v=1.2.6"></script>
 	<script type="text/javascript" src="js/vendor.js"></script>
+	<script src="./js/ui.js"></script>
+	<script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/axios.min.js?v=1"></script>
+    <!-- <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/jquery.min.js?v=1"></script> -->
+    <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/moment-with-locales.min.js?v=1"></script>
+    <script src="./sdk/v2/app.js"></script>
+    <script src="./sdk/v2/auth.js"></script>
+    <script src="./sdk/v2/common.js"></script>
+    <script src="./sdk/v2/event.js"></script>
 	
 	<script>
         $(document).ready(function() {
@@ -606,9 +602,9 @@
 			$('.show-themluot').click(function() {
                 $('#popup-themluot').fadeIn();
             });
-			$('.show-nhanvp').click(function() {
-                $('#popup-nhanvp').fadeIn();
-            });
+			// $('.show-nhanvp').click(function() {
+            //     $('#popup-nhanvp').fadeIn();
+            // });
 			$('.show-log').click(function() {
                 $('#popup-log').fadeIn();
             });
@@ -627,14 +623,31 @@
 			$('.show-bxh').click(function() {
                 $('#popup-bxh').fadeIn();
             });
-			$('.show-doiquatc').click(function() {
-                $('#popup-doiquatc').fadeIn();
-            });
             // scroll 
             jQuery(document).ready(function() {
                 jQuery('.content-new-detail1').scrollbar();
             });
         });
     </script>
+	<script src="./js/ui.js"></script>
+	<script type="text/javascript">
+		const vtcmAppConfig = {
+			gameId:100075,
+			apiBaseUrl: 'http://api.gf.splay.vn',
+			// apiBaseUrl:'http://171.244.11.133:8088',
+			client_id: "GF_EVENTS_WEB",
+			client_secret: "aP6k2Ql68arPH8l",
+
+			// arr_event_change_rewards:[{name:'DIEM', classname: 'sdk_event_change_point'},{name:'HOA_MAI', classname: 'sdk_event_change_hoamai'}],
+			// url_return:`http://tramtien.splay.vn/mungdoclap`,
+			// path:'/mungdoclap'
+			url_return:`http://127.0.0.1:5500/index.html`,
+			path:'/index.html',
+			// url_return:`http://autop.vn/teaser`,
+			// path:'/teaser'
+		};
+		game_client.initApp(vtcmAppConfig);
+	</script>
+	
 </body>
 </html>
