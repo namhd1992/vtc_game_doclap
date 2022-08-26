@@ -30,7 +30,8 @@ const game_client = {
 	list_data_goi5:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'30'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'40'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'40'},{key:'BANHDO', img:'./images/banh-do.png', value:'15'}],
 	list_data_goi6:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'40'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'50'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'50'},{key:'BANHDO', img:'./images/banh-do.png', value:'30'}],
 	modeId_change_bonus:'',
-	value_change_bonus:0,
+	value_change_bonus:1,
+	list_data_server_character:[],
 	
 	
 	
@@ -183,11 +184,100 @@ const game_client = {
 	},
 
 	handlingGetUserData(res){
-		// if(res.data.code >= 0){
-		// 	game_client.userData=res.data.data;
-		// 	game_client.setInfoGame();
+		if(res.data.code >= 0){
+			game_client.userData=res.data.data;
+			if(res.data.data.serverId===0){
+				var param={};
+				game_client.getListServerAndCharacter(param);
+				// $('#popup-server').fadeIn();
+			}
+			
+		}else{
+			game_client.notification(response.data.message, '')
+		}
+	},
+
+	getListServerAndCharacter(data){
+		if(game_client.isEmpty(data)){
+			vtcmEvent.getListServerAndCharacter(data, this.handlingGetListServerAndCharacter, this.notification)
+		}else{
+			vtcmEvent.getListServerAndCharacter(data, this.setDataCharacter, this.notification)
+		}
+		
+	},
+
+	isEmpty(obj) {
+		return Object.keys(obj).length === 0;
+	},
+
+	handlingGetListServerAndCharacter(res){
+		if(res.data.code >= 0){
+			var result=res.data.data;
+			if(result.length>0){
+				$('#popup-server').fadeIn();
+				game_client.setDataListServer(res);
+			}else{
+				game_client.notification('Tài khoản chưa có nhân vật, vui lòng tạo nhân vật để tham gia sự kiện!', '')
+			}
+			// console.log(res.data.data);
+		}else{
+			game_client.notification(response.data.message, '')
+		}
+	},
+
+	setDataListServer(res){
+		if(res.data.code >= 0){
+			var result=res.data.data;
+			game_client.list_data_server_character=result;
+			var data = "";
+				for (var i = 0; i < result.length; i++) {
+					data += "<option value = '" + result[i].serverId + "'>" + result[i].serverName + " </option>";
+				}
+				$("#sdk_server").append(data);
+		}
+	},
+
+	onchangeServer(){
+		game_client.getListDataCharacter()
+	},
+
+	getListDataCharacter(){
+		var data={};
+		var input_server=document.getElementById('sdk_server');
+		var server=input_server.value;
+		data.serverId=server;
+		game_client.getListServerAndCharacter(data)
+
+		// var data=game_client.list_data_server_character.filter(v=>v.serverId===server);
+		// if(data.length >= 0){
+		// 	var result=res.data.data;
+		// 	var data = "";
+		// 		for (var i = 0; i < result.length; i++) {
+		// 			data += "<option value = '" + result[i].id + "'>" + result[i].name + " </option>";
+		// 		}
+		// 		$("#sdk_nhanvat").append(data);
 		// }
 	},
+
+	setDataCharacter(res){
+		if(res.data.code >= 0){
+			var result=res.data.data;
+			if(result.length>0){
+				var data = "";
+				for (var i = 0; i < result.length; i++) {
+					data += "<option value = '" + result[i].characterId + "'>" + result[i].characterName + " </option>";
+				}
+				$("#sdk_nhanvat").append(data);
+			}else{
+				$('#popup-server').fadeOut();
+				game_client.notification('Tài khoản chưa có nhân vật, vui lòng tạo nhân vật để tham gia sự kiện!', '')
+			}
+			// game_client.list_data_server_character=result;
+		
+		}
+	},
+
+
 
 	setInfoGame(){
 		var data=game_client.userData;
@@ -197,8 +287,8 @@ const game_client = {
 	},
 
 	sendInfoGame(){
-		var input_server=document.getElementById('tinh1');
-		var input_nhanvat=document.getElementById('quan1');
+		var input_server=document.getElementById('sdk_server');
+		var input_nhanvat=document.getElementById('sdk_nhanvat');
 
 		var server=input_server.value;
 		var nhanvat=input_nhanvat.value;
@@ -226,13 +316,15 @@ const game_client = {
 
 	updateUserData(data){
 		var objectParamsReturn=data;
-		vtcmEvent.updateUserData(data, objectParamsReturn, this.handlingUpdateUserData, this.notification)
+		vtcmEvent.updateDataServerCharacter(data, objectParamsReturn, this.handlingUpdateUserData, this.notification)
 	},
 
 	handlingUpdateUserData(res, objectParamsReturn){
 		if(res.data.code >= 0){
-			game_client.userData=res.data.data;
-			game_client.setInfoGame();
+			$('#popup-server').fadeOut();
+			game_client.notification('Thành Công', '')
+			// game_client.userData=res.data.data;
+			// game_client.setInfoGame();
 		}
 	},
 
@@ -273,12 +365,27 @@ const game_client = {
 
 	handlingRollup(objectParamsReturn, response){
 		if(response.data.code >= 0){
-			game_client.pointAvailable=game_client.pointAvailable+3;
+			game_client.pointAvailable=game_client.pointAvailable+1;
 			game_client.updatePoint();
+			switch (objectParamsReturn.modeId) {
+				case 10210:
+					game_client.notification('Điểm danh thành công.', '')
+					break;
+				case 10212:
+					game_client.notification('Thành công.', '')
+					break;
+				case 10211:
+					game_client.notification('Thành công.', '')
+					break;
+				default:
+
+					break;
+			}
+			
+		}else{
+			game_client.notification(response.data.message, '')
 		}
-		// else{
-		// 	game_client.notification(response.data.message, '')
-		// }
+		$('#popup-themluot').fadeOut();
 	},
 
 	updatePoint(){
@@ -295,21 +402,25 @@ const game_client = {
 
 	playGame(modeId, numPlayed, key){
 		// game_client.shoppe()
-		var objectParamsReturn={
-			type:numPlayed,
-			modeId:modeId,
-			key:key
-		}
+		if(game_client.userData.serverId!==0){
+			var objectParamsReturn={
+				type:numPlayed,
+				modeId:modeId,
+				key:key
+			}
 
-        if(!game_client.isPlay){
-            game_client.isPlay=true;
-            if(vtcmAuth.isLogin()){
-				vtcmEvent.playGame(modeId, numPlayed, objectParamsReturn, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
-            }else{
-				game_client.showLogin();
-                game_client.isPlay=false;
-            }
-        }
+			if(!game_client.isPlay){
+				game_client.isPlay=true;
+				if(vtcmAuth.isLogin()){
+					vtcmEvent.playGame(modeId, numPlayed, objectParamsReturn, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
+				}else{
+					game_client.showLogin();
+					game_client.isPlay=false;
+				}
+			}
+		}else{
+			game_client.notification('Tài khoản chưa có nhân vật, vui lòng tạo nhân vật để tham gia sự kiện!', '')
+		}
     },
 
 
@@ -483,26 +594,33 @@ const game_client = {
 	},
 
 	exchangeRewards(){
-		var modeId=game_client.modeId_change_bonus;
-		var value=game_client.value_change_bonus;
-		var objectParamsReturn={
-			modeId:modeId,
-			value:value,
-		}
+		if(game_client.userData.serverId!==0){
+			var modeId=game_client.modeId_change_bonus;
+			var value=game_client.value_change_bonus;
+			var objectParamsReturn={
+				modeId:modeId,
+				value:value,
+			}
 
-        if(vtcmAuth.isLogin()){
-            vtcmEvent.exchangeRewards(modeId, value,objectParamsReturn, this.handlingExchangeRewards, this.notificationErr);
-        } else{
-			game_client.showLogin();
-        }
+			if(vtcmAuth.isLogin()){
+				vtcmEvent.exchangeRewards(modeId, value,objectParamsReturn, this.handlingExchangeRewards, this.notificationErr);
+			} else{
+				game_client.showLogin();
+			}
+		}else{
+			$('#popup-xndt').fadeOut();
+			game_client.notification('Tài khoản chưa có nhân vật, vui lòng tạo nhân vật để tham gia sự kiện!', '')
+		}
+		
     },
 
 	handlingExchangeRewards(objectParamsReturn, response){
 		if(response.data.code >= 0){
-			var e = document.getElementsByClassName(objectParamsReturn.key);
-			var f=e.item(0);
-			f.innerHTML=response.data.data.rewards[0].rewardCode;
-			game_client.contentGiftcode=response.data.data.rewards[0].rewardCode;
+			// var e = document.getElementsByClassName(objectParamsReturn.key);
+			// var f=e.item(0);
+			// f.innerHTML=response.data.data.rewards[0].rewardCode;
+			// game_client.contentGiftcode=response.data.data.rewards[0].rewardCode;
+			$("popup-dqtc").fadeIn();
 		}else{
 			game_client.notification(response.data.message,'')
 		}
@@ -534,8 +652,8 @@ const game_client = {
 	},
 
 
-	getBXH(){
-        vtcmEvent.getBXHLiXi(this.handlingGetBXH, this.notificationErr);
+	getBXH(modeId){
+        vtcmEvent.getBXH(modeId,this.handlingGetBXH, this.notificationErr);
     },
 
 	handlingGetBXH(response){
@@ -548,7 +666,7 @@ const game_client = {
 					$(tb).append(`<tr>
 					<th class="text-primary" scope="row">${list[i].order}</th>
 					<th>${list[i].userName}</th>
-					<td>${list[i].totalAmount}</td>
+					<td>${list[i].total}</td>
 				</tr>`);
 				}
 			}else{

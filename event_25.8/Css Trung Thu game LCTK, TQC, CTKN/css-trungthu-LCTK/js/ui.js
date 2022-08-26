@@ -23,14 +23,14 @@ const game_client = {
 	link_group_fb:'',
 	userData:{},
 	base_url_img:'',
-	list_data_goi1:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'2'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'5'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'5'},{key:'BANHDO', img:'./images/banh-do.png', value:'1'}],
-	list_data_goi2:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'5'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'10'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'10'},{key:'BANHDO', img:'./images/banh-do.png', value:'2'}],
-	list_data_goi3:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'10'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'20'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'20'},{key:'BANHDO', img:'./images/banh-do.png', value:'4'}],
-	list_data_goi4:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'20'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'30'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'30'},{key:'BANHDO', img:'./images/banh-do.png', value:'8'}],
-	list_data_goi5:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'30'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'40'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'40'},{key:'BANHDO', img:'./images/banh-do.png', value:'15'}],
-	list_data_goi6:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'40'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'50'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'50'},{key:'BANHDO', img:'./images/banh-do.png', value:'30'}],
+	list_data_goi1:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'3'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'5'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'6'},{key:'BANHDO', img:'./images/banh-do.png', value:'1'}],
+	list_data_goi2:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'5'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'15'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'10'},{key:'BANHDO', img:'./images/banh-do.png', value:'3'}],
+	list_data_goi3:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'10'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'15'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'20'},{key:'BANHDO', img:'./images/banh-do.png', value:'5'}],
+	list_data_goi4:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'15'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'30'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'30'},{key:'BANHDO', img:'./images/banh-do.png', value:'10'}],
+	list_data_goi5:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'25'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'50'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'50'},{key:'BANHDO', img:'./images/banh-do.png', value:'20'}],
+	list_data_goi6:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'80'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'100'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'100'},{key:'BANHDO', img:'./images/banh-do.png', value:'50'}],
 	modeId_change_bonus:'',
-	value_change_bonus:0,
+	value_change_bonus:1,
 	
 	
 	
@@ -43,7 +43,7 @@ const game_client = {
         if(vtcmAuth.isLogin()){
 			vtcmApp.getAppSetting(game_client.cbwithtoken);
 			// game_client.rollup(10206, 10177)
-			game_client.getUserData();
+			// game_client.getUserData();
 			// $('#popup-chose').fadeIn();
 			// $('#popup-dknt').fadeIn();
             document.getElementById("login").style.display = "none";
@@ -240,7 +240,7 @@ const game_client = {
 		if(vtcmAuth.isLogin()){
 			switch (modeId) {
 				case 0:
-					window.open(`https://chienthankynguyen.vn/nap`, "_blank");
+					window.open(`https://longchientruyenky.splay.vn/nap`, "_blank");
 					break;
 				case 10210:
 					game_client.rollup(modeId, roomId);
@@ -273,7 +273,7 @@ const game_client = {
 
 	handlingRollup(objectParamsReturn, response){
 		if(response.data.code >= 0){
-			game_client.pointAvailable=game_client.pointAvailable+3;
+			game_client.pointAvailable=game_client.pointAvailable+1;
 			game_client.updatePoint();
 		}
 		// else{
@@ -499,10 +499,11 @@ const game_client = {
 
 	handlingExchangeRewards(objectParamsReturn, response){
 		if(response.data.code >= 0){
-			var e = document.getElementsByClassName(objectParamsReturn.key);
+			var e = document.getElementsByClassName('box-code');
 			var f=e.item(0);
 			f.innerHTML=response.data.data.rewards[0].rewardCode;
 			game_client.contentGiftcode=response.data.data.rewards[0].rewardCode;
+			$('#popup-doiquatc').fadeIn();
 		}else{
 			game_client.notification(response.data.message,'')
 		}
@@ -535,7 +536,7 @@ const game_client = {
 
 
 	getBXH(){
-        vtcmEvent.getBXHLiXi(this.handlingGetBXH, this.notificationErr);
+        vtcmEvent.getBXH(this.handlingGetBXH, this.notificationErr);
     },
 
 	handlingGetBXH(response){
@@ -548,7 +549,7 @@ const game_client = {
 					$(tb).append(`<tr>
 					<th class="text-primary" scope="row">${list[i].order}</th>
 					<th>${list[i].userName}</th>
-					<td>${list[i].totalAmount}</td>
+					<td>${list[i].total}</td>
 				</tr>`);
 				}
 			}else{

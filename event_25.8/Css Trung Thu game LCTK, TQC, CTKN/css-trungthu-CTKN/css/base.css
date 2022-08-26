@@ -1605,6 +1605,16 @@ ul {
 	background-size: contain;
 	margin:2% 0 0 2%;
 }
+
+.dt-box .bt-update {
+	display:block;
+	width: 117px;
+	height: 66px;
+	background: url("../images/update.png") no-repeat left top;
+	background-size: contain;
+	margin:2% 0 0 2%;
+}
+
 .dt-box .bt-napngay {
 	display:block;
 	width: 117px;
@@ -1613,10 +1623,22 @@ ul {
 	background-size: contain;
 	margin:2% 0 0 2%;
 }
-.dt-box .bt-xacnhan:hover, .dt-box .bt-dnn:hover, .dt-box .bt-napngay:hover {
+.dt-box .bt-xacnhan:hover, .dt-box .bt-dnn:hover, .dt-box .bt-update:hover, .dt-box .bt-napngay:hover {
 	filter: brightness(0.8);
 	text-decoration: none;
 }
+
+.btn_update_server{
+	width: 30%;
+	display:flex;
+	justify-content: center;
+	min-width: 200px;
+	font-size:22px;
+	text-align: center;
+	align-items:center;
+	margin:2% 0 0 35%;
+}
+
 @media only screen and (min-width: 480px) {
 	.t-vp{
 		width: 75px;
@@ -1625,7 +1647,7 @@ ul {
 		margin: 19% 0 0 3.8%;
 		font-size:10px;
 	}
-	.dt-box .bt-xacnhan, .dt-box .bt-dnn, .dt-box .bt-napngay {
+	.dt-box .bt-xacnhan, .dt-box .bt-dnn, .bt-update, .dt-box .bt-napngay {
 		width: 167px;
 		height: 76px;
 		margin:2% 0 0 2%;
@@ -1639,7 +1661,7 @@ ul {
 		margin: 19% 0 0 3.8%;
 		font-size:13px;
 	}
-	.dt-box .bt-xacnhan, .dt-box .bt-dnn, .dt-box .bt-napngay {
+	.dt-box .bt-xacnhan, .dt-box .bt-dnn, .dt-box .bt-update, .dt-box .bt-napngay {
 		width: 197px;
 		height: 76px;
 		margin:2% 0 0 2%;
@@ -1653,7 +1675,7 @@ ul {
 		margin: 19% 0 0 3.8%;
 		font-size:18px;
 	}
-	.dt-box .bt-xacnhan, .dt-box .bt-dnn, .dt-box .bt-napngay {
+	.dt-box .bt-xacnhan, .dt-box .bt-dnn, .dt-box .bt-update, .dt-box .bt-napngay {
 		width: 426px;
 		height: 75px;
 		margin:2% 0 0 20%;

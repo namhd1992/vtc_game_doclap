@@ -194,7 +194,7 @@
 							<li><a href="javascript:void(0)" class="show-top3"><img class="img3" src="images/BXH-3.png" alt=""></a></li>
 						</ul>
 					  </div>
-					<a href="javascript:void(0)" class="bt-bxh show-bxh" onclick="game_client.getBXH()"></a>
+					<a href="javascript:void(0)" class="bt-bxh show-bxh" onclick="game_client.getBXH(10209)"></a>
 				</div>
 			</div>
 		</section>
@@ -233,31 +233,26 @@
                 <div class="content-new-detail1">
 					<div class="regis-box f-roboto-medium">
 							<label for="favcity">
-								<select id="server" name="select">
-									<option value="0">Chọn Server</option>
-									<option value="1">TP.Hồ Chí Minh</option>
-									<option value="2">Đồng Nai</option>
-									<option value="3">Tây Ninh</option>
-									<option value="4">Tiền Giang</option>
-									<option value="5">Long An</option>
-									<option value="5">Đồng Tháp</option>
+								<select id="sdk_server" name="select" onchange="game_client.onchangeServer()">
+									<option value="">Chọn Server</option>
 								</select>
 							</label>
 							<label for="favcity">
-								<select id="nhanvat" name="select">
-									<option value="0">Chọn Nhân Vật</option>
-									<option value="1">TP.Hồ Chí Minh</option>
-									<option value="2">Đồng Nai</option>
-									<option value="3">Tây Ninh</option>
-									<option value="4">Tiền Giang</option>
-									<option value="5">Long An</option>
-									<option value="5">Đồng Tháp</option>
+								<select id="sdk_nhanvat" name="select">
+									<option value="">Chọn Nhân Vật</option>
 								</select>
 							</label>
-							
+							<div class="dt-box">
+								<a href="javascript:void(0)" class="bt-update" onclick="game_client.sendInfoGame()"></a>
+							</div>
+							<!-- <div class="box-scoin">
+								<img src="images/update.png" class="btn_update_server img-responsive p-r" alt="" style="cursor: pointer;" onclick="game_client.sendInfoGame()">
+								<a class="bt-gui f-Fzup" style="cursor:pointer" onclick="game_client.sendInfoGame()">Cập nhật</a>
+							</div> -->
 					</div>
+					
                 </div>
-                <a class="close-content"></a>
+                <!-- <a class="close-content"></a> -->
             </div>
         </div>
     </div>
@@ -641,10 +636,10 @@
 			// arr_event_change_rewards:[{name:'DIEM', classname: 'sdk_event_change_point'},{name:'HOA_MAI', classname: 'sdk_event_change_hoamai'}],
 			// url_return:`http://tramtien.splay.vn/mungdoclap`,
 			// path:'/mungdoclap'
-			url_return:`http://127.0.0.1:5500/index.html`,
-			path:'/index.html',
-			// url_return:`http://autop.vn/teaser`,
-			// path:'/teaser'
+			// url_return:`http://127.0.0.1:5500/index.html`,
+			// path:'/index.html',
+			url_return:`https://chienthan.splay.vn/trungthu2022`,
+			path:'/trungthu2022'
 		};
 		game_client.initApp(vtcmAppConfig);
 	</script>
