@@ -242,14 +242,14 @@ const game_client = {
 				case 0:
 					window.open(`https://tamquocchi.vn/nap`, "_blank");
 					break;
-				case 10210:
+				case 10224:
 					game_client.rollup(modeId, roomId);
 					break;
-				case 10212:
+				case 10226:
 					window.open(game_client.link_group_fb, '_blank')
 					game_client.rollup(modeId, roomId);
 					break;
-				case 10211:
+				case 10225:
 					window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`, '_blank')
 					game_client.rollup(modeId, roomId);
 					break;
@@ -535,11 +535,12 @@ const game_client = {
 	},
 
 
-	getBXH(){
-        vtcmEvent.getBXH(this.handlingGetBXH, this.notificationErr);
+	getBXH(modeId){
+        vtcmEvent.getBXH(modeId, this.handlingGetBXH, this.notificationErr);
     },
 
 	handlingGetBXH(response){
+		alert('ok')
 		if(response.data.code>=0){
 			var tb = document.getElementById('tb_modal_bxh');
 			tb.innerHTML='';

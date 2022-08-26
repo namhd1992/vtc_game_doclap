@@ -242,14 +242,14 @@ const game_client = {
 				case 0:
 					window.open(`https://longchientruyenky.splay.vn/nap`, "_blank");
 					break;
-				case 10210:
+				case 10235:
 					game_client.rollup(modeId, roomId);
 					break;
-				case 10212:
+				case 10237:
 					window.open(game_client.link_group_fb, '_blank')
 					game_client.rollup(modeId, roomId);
 					break;
-				case 10211:
+				case 10236:
 					window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`, '_blank')
 					game_client.rollup(modeId, roomId);
 					break;
@@ -535,8 +535,8 @@ const game_client = {
 	},
 
 
-	getBXH(){
-        vtcmEvent.getBXH(this.handlingGetBXH, this.notificationErr);
+	getBXH(modeId){
+        vtcmEvent.getBXH(modeId, this.handlingGetBXH, this.notificationErr);
     },
 
 	handlingGetBXH(response){
