@@ -21,6 +21,7 @@ const game_client = {
 	number_banhdo:0,
 	historyItems:[],
 	link_group_fb:'',
+	link_page_fb:'',
 	userData:{},
 	base_url_img:'',
 	list_data_goi1:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'3'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'5'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'6'},{key:'BANHDO', img:'./images/banh-do.png', value:'1'}],
@@ -105,6 +106,7 @@ const game_client = {
 		var obj_title=data.filter(v =>v.code===contants.EVT_NAME);
 		document.title=obj_title[0] ? obj_title[0].value : '';
 		game_client.link_group_fb=obj_group_fb[0] ? obj_group_fb[0].value : '';
+		game_client.link_page_fb=obj_fanpage_fb[0] ? obj_fanpage_fb[0].value : '';
 		var list_item_link=[{id:"sdk_fanpage_fb", value:obj_fanpage_fb[0] ? obj_fanpage_fb[0].value : ''},
         {id:'sdk_group_fb', value:obj_group_fb[0] ? obj_group_fb[0].value : ''},
         {id:'sdk_website_url', value:obj_website_url[0] ? obj_website_url[0].value : ''},
@@ -250,7 +252,7 @@ const game_client = {
 					game_client.rollup(modeId, roomId);
 					break;
 				case 10225:
-					window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`, '_blank')
+					window.open(game_client.link_page_fb, '_blank')
 					game_client.rollup(modeId, roomId);
 					break;
 				default:
@@ -272,13 +274,16 @@ const game_client = {
 	},
 
 	handlingRollup(objectParamsReturn, response){
+		$('#popup-themluot').fadeOut();
 		if(response.data.code >= 0){
 			game_client.pointAvailable=game_client.pointAvailable+1;
 			game_client.updatePoint();
+			game_client.notification('Bạn được cộng thêm 1 lượt.', '')
 		}
-		// else{
-		// 	game_client.notification(response.data.message, '')
-		// }
+		else{
+			
+			game_client.notification(response.data.message, '')
+		}
 	},
 
 	updatePoint(){
@@ -316,7 +321,7 @@ const game_client = {
 	handlingPlayGame(objectParamsReturn, response){
         setTimeout(()=>{
             game_client.isPlay=false;
-        },3000)
+        },2000)
         
 		if(response.data.code>=0){
 			game_client.pointAvailable=game_client.pointAvailable-1;
@@ -503,6 +508,7 @@ const game_client = {
 			var f=e.item(0);
 			f.innerHTML=response.data.data.rewards[0].rewardCode;
 			game_client.contentGiftcode=response.data.data.rewards[0].rewardCode;
+			$('#popup-xndt').fadeOut();
 			$('#popup-doiquatc').fadeIn();
 		}else{
 			game_client.notification(response.data.message,'')
