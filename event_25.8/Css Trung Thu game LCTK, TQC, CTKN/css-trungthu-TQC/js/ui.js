@@ -32,6 +32,7 @@ const game_client = {
 	list_data_goi6:[{key:'BANHXANH', img:'./images/banh-xanh.png', value:'80'},{key:'BANHVANG', img:'./images/banh-vang.png', value:'100'},{key:'BANHTRANG', img:'./images/banh-trang.png', value:'100'},{key:'BANHDO', img:'./images/banh-do.png', value:'50'}],
 	modeId_change_bonus:'',
 	value_change_bonus:1,
+	goi_change:[],
 	
 	
 	
@@ -321,7 +322,7 @@ const game_client = {
 	handlingPlayGame(objectParamsReturn, response){
         setTimeout(()=>{
             game_client.isPlay=false;
-        },2000)
+        },3000)
         
 		if(response.data.code>=0){
 			game_client.pointAvailable=game_client.pointAvailable-1;
@@ -434,7 +435,7 @@ const game_client = {
 		var f=e.item(0);
 		f.innerHTML= item[0].description;
 		$('#popup-giftcode').fadeIn();
-		console.log(item)
+		// console.log(item)
 	},
 
 	showPopupDoiThuong(type){
@@ -474,7 +475,7 @@ const game_client = {
 					data=game_client.list_data_goi1;
 					break;
 			}
-
+			game_client.goi_change=data;
 			for (let i = 0; i < data.length; i++) {
 				$(img_bonus).append(`<div class="box1">
 					<div class="t-vp p-a">Số lượng: ${data[i].value}</div>
@@ -508,6 +509,27 @@ const game_client = {
 			var f=e.item(0);
 			f.innerHTML=response.data.data.rewards[0].rewardCode;
 			game_client.contentGiftcode=response.data.data.rewards[0].rewardCode;
+			var data=game_client.goi_change;
+			for (let i = 0; i < data.length; i++) {
+				switch (data[i].key) {
+					case "BANHXANH":
+						game_client.number_banhxanh=game_client.number_banhxanh-data[i].value;
+						break;
+					case "BANHVANG":
+						game_client.number_banhvang=game_client.number_banhvang-data[i].value;
+						break;
+					case "BANHTRANG":
+						game_client.number_banhtrang=game_client.number_banhtrang-data[i].value;
+						break;
+					case "BANHDO":
+						game_client.number_banhdo=game_client.number_banhdo-data[i].value;
+						break;
+					default:
+						game_client.number_banhxanh=game_client.number_banhxanh-data[i].value;
+						break;
+				}
+			}
+			game_client.updateNumberBanh();
 			$('#popup-xndt').fadeOut();
 			$('#popup-doiquatc').fadeIn();
 		}else{
@@ -546,7 +568,6 @@ const game_client = {
     },
 
 	handlingGetBXH(response){
-		alert('ok')
 		if(response.data.code>=0){
 			var tb = document.getElementById('tb_modal_bxh');
 			tb.innerHTML='';

@@ -88,13 +88,22 @@ const vtcmEvent = {
                     notificationErr(objectParamsReturn,err)
                 }
             }else if (err.request) {
+                vtcmEvent.scrollTop();
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;font-size:25px">Bạn đang chơi quá nhanh. Vui lòng quay chậm lại.</div>');
             }else{
                 console.log('Error', err.message);
             }
             
         })
+    },
+
+    scrollTop(){
+        window.onload = function() {
+            setTimeout(function() {
+                $(document.body).scrollTop(0);
+            }, 15);
+        };
     },
 
 
@@ -517,7 +526,7 @@ const vtcmEvent = {
     },
 
     getUserLocation(listParams, objectParamsReturn, handlingGetUserLocation, notification){
-        console.log(listParams)
+        // console.log(listParams)
         var url=vtcmApp.config_.apiBaseUrl+'/catalog/api/v1/setting/get-location'
         var header = {
             headers: {
