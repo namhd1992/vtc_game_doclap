@@ -88,6 +88,7 @@ const vtcmEvent = {
                     notificationErr(objectParamsReturn,err)
                 }
             }else if (err.request) {
+                vtcmEvent.scrollTop();
                 $('body').html('');
                 $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;font-size:20px">Bạn đang chơi quá nhanh. Vui lòng quay chậm lại.</div>');
             }else{
@@ -97,6 +98,9 @@ const vtcmEvent = {
         })
     },
 
+    scrollTop(){
+        window.scrollTo(0, 0);
+    },
 
     getHistory(page, modeId, rewardType, handlingGetHistory, notificationErr){
         var header = {

@@ -322,7 +322,7 @@ const game_client = {
 	handlingPlayGame(objectParamsReturn, response){
         setTimeout(()=>{
             game_client.isPlay=false;
-        },3000)
+        },3300)
         
 		if(response.data.code>=0){
 			game_client.pointAvailable=game_client.pointAvailable-1;
@@ -354,7 +354,11 @@ const game_client = {
 			// response.data.data.rewards[0]
 
 		}else{
-			game_client.notification(response.data.message,'')
+			if(response.data.code===-302){
+				game_client.notification('Số lượt nhận bánh không đủ để chơi!','')
+			}else{
+				game_client.notification(response.data.message,'')
+			}
 		}
 	},
 

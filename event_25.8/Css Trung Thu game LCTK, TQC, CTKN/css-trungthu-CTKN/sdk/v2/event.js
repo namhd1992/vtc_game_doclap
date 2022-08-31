@@ -99,11 +99,7 @@ const vtcmEvent = {
     },
 
     scrollTop(){
-        window.onload = function() {
-            setTimeout(function() {
-                $(document.body).scrollTop(0);
-            }, 15);
-        };
+        window.scrollTo(0, 0);
     },
 
 
