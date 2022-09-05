@@ -12,6 +12,13 @@ const game_client = {
     modeId_history:0,
     totalPage:1,
 	rewardType:-1,
+	_number_goal:0,
+	_number_play_vq:0,
+	_number_bocbanh:0,
+	_number_hoamai:0,
+	_number_hoadao:0,
+	_number_key:0,
+
 	
 	initApp(rawConfig = {}){
 		if (typeof rawConfig !== 'object') {
@@ -212,6 +219,7 @@ const game_client = {
 		return this.config_.userId;
 	},
 
+
 	rollup(modeId, roomId){
 		if(vtcmAuth.isLogin()){
 			vtcmEvent.rollup(modeId, roomId, this.handlingRollup, this.notificationErrRollup)
@@ -219,6 +227,21 @@ const game_client = {
             $('#modal-warning-login').modal('show'); 
         }
 	},
+
+	updatePage1(){
+		var list=[];
+		list.push({id:'my_number_goal', value:game_client._number_goal}, {id:'number_play_vq', value:game_client._number_play_vq}, {id:'number_bocbanh', value:game_client._number_bocbanh})
+		common_sdk.setInfoUser(list);
+	},
+
+	updatePage2(){
+		var list=[];
+		list.push({id:'number_hoamai', value:game_client._number_hoamai}, {id:'number_hoadao', value:game_client._number_hoadao})
+		common_sdk.setInfoUser(list);
+	},
+
+
+
 
 	handlingRollup(roomId, response){
 		if(response.data.code >= 0){
