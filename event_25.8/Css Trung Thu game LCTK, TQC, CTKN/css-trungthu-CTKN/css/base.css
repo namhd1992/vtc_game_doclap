@@ -246,6 +246,27 @@ ul {
     margin-top: 0px
   }
 }
+
+/*****************/
+.logo{
+	width: 100%;
+	position: absolute;
+	margin:5% 0 0 5%; 
+	z-index: 8;
+}
+.logo .img-responsive{
+	width: 15%;
+}
+@media only screen and (min-width : 992px) {
+	.logo{
+		margin:3.5% 0 0 30%; 
+	}
+	.logo .img-responsive{
+		width:10%;
+	}
+}
+
+
 .header-menu{
     position: absolute;
     width:100%;
@@ -503,6 +524,53 @@ ul {
 		max-width: 100%;
 	}
 }
+
+.frame2-bt2{
+    width: 100%;
+    position: absolute;
+	margin: 0 auto;
+	z-index: 2;
+	top: 0;
+	text-align: center;
+}
+.frame2-bt2 ul{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-top:46.5%;
+	margin-left:0%;
+}
+.frame2-bt2 ul li{
+    width: 100%;
+	margin:-1% 0 0 0;
+}
+.frame2-bt2 ul li a:hover{
+    filter: grayscale(60%);
+}
+.frame2-bt2 ul li a img{
+    max-width: 32%;
+}
+@media only screen and (min-width : 992px) {
+	.frame2-bt2{
+		width: 100%;
+		margin: 0 auto;
+	}
+	.frame2-bt2 ul{
+		width: 100%;
+		flex-direction:column;
+		margin-top:35%;	
+		margin-left:25%;
+	}
+	.frame2-bt2 ul li{
+		width: 51%;	
+		margin: 0 5% 0 0;
+	}
+	.frame2-bt2 ul li a img{
+		max-width: 100%;
+	}
+}
+
 .gift-bt{
     position: absolute;
 	z-index: 2;
@@ -1575,6 +1643,27 @@ ul {
 .box1{
 	width: 25%;
 }
+
+.gift10{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	text-align: center;
+	justify-content: center;
+}
+.gift10 p{
+	width: 100%;
+	text-align: center;
+	color: #ffed8e;
+	font-size: 24px;
+}
+.gift10 img{
+	width:16%;
+	padding: 10px;
+	text-align: center;
+	margin:0% 0.5% 0 0.5%;
+}
+
 .t-vp{
 	position: absolute;
 	z-index: 2;

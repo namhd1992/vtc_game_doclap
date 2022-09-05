@@ -326,30 +326,44 @@ const game_client = {
         
 		if(response.data.code>=0){
 			game_client.pointAvailable=game_client.pointAvailable-1;
-			var data=response.data.data.rewards[0];
-			var src=game_client.base_url_img+data.rewardImageUrl;
-			var img_bonus= document.querySelector('.sdk_img_bonus');
-			img_bonus.innerHTML='';
-			$(img_bonus).append(`<img src=${src} class="img-responsive p-r" alt="" />`);
-			game_client.updatePoint()
-			switch (data.eventCode) {
-				case "BANHXANH":
-					game_client.number_banhxanh=game_client.number_banhxanh+1;
-					break;
-				case "BANHVANG":
-					game_client.number_banhvang=game_client.number_banhvang+1;
-					break;
-				case "BANHTRANG":
-					game_client.number_banhtrang=game_client.number_banhtrang+1;
-					break;
-				case "BANHDO":
-					game_client.number_banhdo=game_client.number_banhdo+1;
-					break;
-				default:
-					game_client.number_banhxanh=game_client.number_banhxanh+1;
-					break;
+			var data=response.data.data.rewards;
+			var box1= document.querySelector('.sdk_img_bonus_1');
+			var box10= document.querySelector('.sdk_img_bonus_10');
+			box1.innerHTML='';
+			box10.innerHTML='';
+
+			for (let i = 0; i < data.length; i++) {
+				var src=game_client.base_url_img+data[i].rewardImageUrl;
+
+				if(objectParamsReturn.type===1){
+					$(box1).append(`<img src=${src} class="img-responsive p-r" alt="" />`);
+				}else{
+					$(box10).append(`<img src=${src} class="img-responsive p-r" alt="" />`);
+				}
+				game_client.updatePoint()
+				switch (data[i].eventCode) {
+					case "BANHXANH":
+						game_client.number_banhxanh=game_client.number_banhxanh+1;
+						break;
+					case "BANHVANG":
+						game_client.number_banhvang=game_client.number_banhvang+1;
+						break;
+					case "BANHTRANG":
+						game_client.number_banhtrang=game_client.number_banhtrang+1;
+						break;
+					case "BANHDO":
+						game_client.number_banhdo=game_client.number_banhdo+1;
+						break;
+					default:
+						game_client.number_banhxanh=game_client.number_banhxanh+1;
+						break;
+				}
 			}
-			$('#popup-nhanvp').fadeIn();
+			if(objectParamsReturn.type===1){
+				$('#popup-nhanvp').fadeIn();
+			}else{
+				$('#popup-nhanvp10').fadeIn();
+			}
 			game_client.updateNumberBanh();
 			// response.data.data.rewards[0]
 
@@ -359,7 +373,6 @@ const game_client = {
 			}else{
 				game_client.notification(response.data.message,'')
 			}
-			
 		}
 	},
 
