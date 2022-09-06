@@ -434,11 +434,8 @@ const game_client = {
         },3300)
         
 		if(response.data.code>=0){
-			game_client.pointAvailable=game_client.pointAvailable-1;
 			var data=response.data.data.rewards;
-			
-			// var img_bonus= document.querySelector('.sdk_img_bonus');
-			// img_bonus.innerHTML='';
+			game_client.pointAvailable=game_client.pointAvailable-data.length;
 
 			var box1= document.querySelector('.sdk_img_bonus_1');
 			var box10= document.querySelector('.sdk_img_bonus_10');

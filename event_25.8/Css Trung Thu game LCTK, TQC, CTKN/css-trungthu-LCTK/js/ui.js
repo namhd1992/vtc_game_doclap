@@ -325,8 +325,8 @@ const game_client = {
         },3300)
         
 		if(response.data.code>=0){
-			game_client.pointAvailable=game_client.pointAvailable-1;
 			var data=response.data.data.rewards;
+			game_client.pointAvailable=game_client.pointAvailable-data.length;
 			var box1= document.querySelector('.sdk_img_bonus_1');
 			var box10= document.querySelector('.sdk_img_bonus_10');
 			box1.innerHTML='';

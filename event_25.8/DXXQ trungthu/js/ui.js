@@ -28,6 +28,7 @@ const game_client = {
 	base_url_img:'',
 	infoBlack:{},
 	infoWhite:{},
+	list_server:[],
 	
 	
 	
@@ -40,7 +41,7 @@ const game_client = {
 		vtcmApp.initApp(rawConfig);
         if(vtcmAuth.isLogin()){
 			vtcmApp.getAppSetting(game_client.cbwithtoken);
-			game_client.rollup(10206, 10177)
+			game_client.rollup(10293, 10312)
 			game_client.getRewards();
 			game_client.getUserData();
 			// $('#popup-chose').fadeIn();
@@ -186,7 +187,7 @@ const game_client = {
 
 	getRewards(){
 		var data={};
-        data.roomId=10178;
+        data.roomId=10313;
 		vtcmEvent.getRewards(data, this.handlingGetRewards, this.notification)
 	},
 
@@ -194,7 +195,7 @@ const game_client = {
 		if(res.data.code >= 0){
 			var data=res.data.data;
 			for (let i = 0; i < data.length; i++) {
-				if(data[i].id===10139){
+				if(data[i].id===10377){
 					game_client.infoBlack=data[i];
 					game_client.totalPointBlack=data[i].quantity;
 					game_client.updatePointBlack();
@@ -299,7 +300,7 @@ const game_client = {
 		if(game_client.userData.voteId!==0){
 			var a= document.querySelector('.bt-chonphe');
 			a.style.filter = 'grayscale(1)';
-			if(game_client.userData.voteId===10139){
+			if(game_client.userData.voteId===10377){
 				game_client.grayBlack();
 			}else{
 				game_client.grayWhite();
@@ -348,7 +349,8 @@ const game_client = {
 
 
 	getListServer(){
-		vtcmEvent.getListServer(this.handlingGetListServer, this.notification)
+		var data={};
+		vtcmEvent.getListServerAndCharacter(data,this.handlingGetListServer, this.notification)
 	},
 
 	handlingGetListServer(res){
@@ -369,15 +371,17 @@ const game_client = {
 	setDataCharacter(res){
 		if(res.data.code >= 0){
 			var result=res.data.data;
+			game_client.list_server=result;
 			var data = "";
 				for (var i = 0; i < result.length; i++) {
-					data += "<option value = '" + result[i].id + " '>" + result[i].name + " </option>";
+					data += "<option value = '" + result[i].serverId + " '>" + result[i].serverName+'-'+result[i].characterName + " </option>";
 				}
 				$("#nhanvat").append(data);
 			
 			
 		}
 	},
+
 
 	// getListCharacter(){
 	// 	vtcmEvent.getListCharacter(this.handlingGetListCharacter, this.notification)
@@ -399,21 +403,18 @@ const game_client = {
 
 	sendInfoGame(){
 		var input_nhanvat=document.getElementById('nhanvat');
-		var nhanvat=input_nhanvat.value;
-		var txt_nhanvat=input_nhanvat.options[input_nhanvat.selectedIndex].text;
-
-		var list_data=nhanvat.split('|');
-		var name_server=txt_nhanvat.split(' -')
+		var id=input_nhanvat.value;
+		var item=game_client.list_server.filter(v=>+v.serverId==id)
 		
-		if(nhanvat!==''){
+		if(item.length>0){
 			var data={};
 			data.userId=vtcmAuth.getUserId();
 			data.userName=vtcmAuth.getUserName();
 			data.gameId=vtcmApp.config_.gameId;
-			data.serverId=list_data[0];
-			data.serverName=name_server[0];
-			data.characterId=list_data[1];
-			data.characterName=list_data[2];
+			data.serverId=item[0].serverId;
+			data.serverName=item[0].serverName;
+			data.characterId=item[0].characterId;
+			data.characterName=item[0].characterName;
 			game_client.updateDataServerCharacter(data);
 			$('#popup-chose').fadeOut();
 		}else{
@@ -526,16 +527,16 @@ const game_client = {
         },3000)
         
 		if(response.data.code>=0){
-			game_client.pointAvailable=game_client.pointAvailable-objectParamsReturn.type;
 			var data=response.data.data.rewards;
+			game_client.pointAvailable=game_client.pointAvailable-data.length;
 			var box1= document.querySelector('.content-new-detail > .gift');
 			var box10= document.querySelector('.content-new-detail > .gift10');
 			box1.innerHTML='';
 			box10.innerHTML='';
 			for (let i = 0; i < data.length; i++) {
 				var src=game_client.base_url_img+data[i].rewardImageUrl;
-				if(data[i].rewardType===15){
-					if(game_client.userData.voteId===10139){
+				if(data[i].rewardType===62){
+					if(game_client.userData.voteId===10377){
 						game_client.totalPointBlack=game_client.totalPointBlack+data[i].rewardAmount;
 					}else{
 						game_client.totalPointWhite=game_client.totalPointWhite+data[i].rewardAmount;
@@ -544,11 +545,14 @@ const game_client = {
 				}
 				if(objectParamsReturn.type===1){
 					$(box1).append(`<img src=${src} class="img-responsive" alt="" />`);
-					$('#popup-nhanqua').fadeIn(); 
 				}else{
 					$(box10).append(`<img src=${src} alt="" />`);
-					$('#popup-nhanqua10').fadeIn(); 
 				}
+			}
+			if(objectParamsReturn.type===1){
+				$('#popup-nhanqua').fadeIn(); 
+			}else{
+				$('#popup-nhanqua10').fadeIn(); 
 			}
 			game_client.updatePointBlack();
 			game_client.updatePointWhite();

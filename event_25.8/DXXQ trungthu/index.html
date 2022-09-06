@@ -204,7 +204,7 @@
 			  </div>
 			  <div class="f4-button2 f-UTMAlterGothic">
 			  	  <ul>
-				  	  <a class="show-lichsu" title="Lịch Sử" style="cursor: pointer;" onclick="game_client.getHistory(0,10205,0)"><li>Lịch Sử</li></a>
+				  	  <a class="show-lichsu" title="Lịch Sử" style="cursor: pointer;" onclick="game_client.getHistory(0,10292,0)"><li>Lịch Sử</li></a>
 					  <a class="show-thele" title="Thể Lệ" style="cursor: pointer;"><li >Thể Lệ</li></a>
 				  </ul>
 			  </div>
@@ -219,8 +219,8 @@
 			  </div>
 			  <div class="f4-button f-UTMAlterGothic">
 			  	  <ul>
-				  	  <a class="show-nhanqua" title="Quay 1 lần" style="cursor: pointer;" onclick="game_client.playGame(10205,1,'popup-error')"><li>Quay 1 lần</li></a>
-					  <a class="show-nhanqua10" title="Quay 10 lần" style="cursor: pointer;" onclick="game_client.playGame(10205,10,'popup-error')"><li>Quay 10 lần</li></a>
+				  	  <a class="show-nhanqua" title="Quay 1 lần" style="cursor: pointer;" onclick="game_client.playGame(10292,1,'popup-error')"><li>Quay 1 lần</li></a>
+					  <a class="show-nhanqua10" title="Quay 10 lần" style="cursor: pointer;" onclick="game_client.playGame(10292,10,'popup-error')"><li>Quay 10 lần</li></a>
 					  <a href="https://scoin.vn/nap-vao-game?GameId=330425" title="Nhận lượt" target="_blank"><li>Nhận lượt</li></a>
 				  </ul>
 			  </div>
@@ -659,22 +659,22 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
 	<script src="http://static.gf.splay.vn/gf-sdk/v2.0/vendor/axios.min.js?v=1"></script>
     <!-- <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/jquery.min.js?v=1"></script> -->
     <script src="http://static.gf.splay.vn/gf-sdk/v2.0/vendor/moment-with-locales.min.js?v=1"></script>
-	<script src="http://static.gf.splay.vn/gf-sdk/v2.0/app.js"></script>
+	<!-- <script src="http://static.gf.splay.vn/gf-sdk/v2.0/app.js"></script>
     <script src="http://static.gf.splay.vn/gf-sdk/v2.0/auth.js"></script>
     <script src="http://static.gf.splay.vn/gf-sdk/v2.0/common.js"></script>
-    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/event.js"></script>
-    <!-- <script src="./sdk/v2/app.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/event.js"></script> -->
+
+	<script src="./sdk/v2/app.js"></script>
     <script src="./sdk/v2/auth.js"></script>
     <script src="./sdk/v2/common.js"></script>
-    <script src="./sdk/v2/event.js"></script> -->
-    <!-- <script src="./sdk/v2/ui.js"></script> -->
+    <script src="./sdk/v2/event.js"></script>
 
     <script src="./Winwheel.min.js"></script>
     <!-- <script src="./script.js"></script> -->
 	<script src="./js/ui.js"></script>
 	<script type="text/javascript">
         const vtcmAppConfig = {
-            gameId:100074,
+            gameId:100082,
             apiBaseUrl: 'http://api.gf.splay.vn',
             // apiBaseUrl:'http://171.244.11.133:8088',
             client_id: "GF_EVENTS_WEB",
@@ -683,10 +683,10 @@ Toàn bộ tài khoản ở Phe thắng sau khi sự kiện kết thúc sẽ nh�
             // arr_event_change_rewards:[{name:'DIEM', classname: 'sdk_event_change_point'},{name:'HOA_MAI', classname: 'sdk_event_change_hoamai'}],
             // url_return:`http://tramtien.splay.vn/mungdoclap`,
             // path:'/mungdoclap'
-            url_return:`http://127.0.0.1:5500/index.html`,
-            path:'/index.html',
-            // url_return:`https://daosixuatquan.splay.vn/dai-yen`,
-            // path:'/dai-yen'
+            // url_return:`http://127.0.0.1:5500/index.html`,
+            // path:'/index.html',
+            url_return:`https://daosixuatquan.splay.vn/dai-yen`,
+            path:'/dai-yen'
        };
        game_client.initApp(vtcmAppConfig);
    </script>
