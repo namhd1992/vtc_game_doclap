@@ -42,11 +42,11 @@ const game_client = {
 
 
 		$("#btn-du-xuan-1").click(function(e) {
-			game_client.playGame(1,16,'item_vq_')
+			game_client.playGame(10003,1,16,'item_vq_')
 		});
 
 		$("#btn-du-xuan-10").click(function(e) {
-			game_client.playGame(10,16,'item_vq_')
+			game_client.playGame(10003, 10,16,'item_vq_')
 		});
 
 		$(".btn-lich-su-du-xuan").click(function(e) {
@@ -80,11 +80,11 @@ const game_client = {
 		$(".flipbox-item").click(function(e) {
 			var id=e.currentTarget.getAttribute('id')
 			var content=e.currentTarget.getAttribute('content')
-			game_client.playFlipCard(1, id, content)
+			game_client.playFlipCard(10010, 1, id, content)
 		});
 
 		$(".btn-lat-10-the").click(function(e) {
-			game_client.playFlipCard(10, 'card_', 'content_card_')
+			game_client.playFlipCard(10010, 10, 'card_', 'content_card_')
 		});
 
 		$(".btn-lich-su").click(function(e) {
@@ -205,6 +205,11 @@ const game_client = {
 		var number_key=obj_key.length > 0 ? obj_key[0].totalAvailable : 0;
 		var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}, {id:'number_play_vq', value:number_play}, {id:'number_bocbanh', value:number_bocbanh}, {id:'number_hoamai', value:number_hoamai}, {id:'number_hoadao', value:number_hoadao}, {id:'number_key', value:number_key}]
 		common_sdk.setInfoUser(list);
+		game_client._number_goal=user.pointAvailable;
+		game_client._number_bocbanh=number_bocbanh;
+		game_client._number_play_vq=number_play;
+		game_client._number_hoamai=number_hoamai;
+		game_client._number_hoadao=number_hoadao;
 	},
 	
 	getConfig() {   
@@ -228,15 +233,9 @@ const game_client = {
         }
 	},
 
-	updatePage1(){
+	updatePage(){
 		var list=[];
-		list.push({id:'my_number_goal', value:game_client._number_goal}, {id:'number_play_vq', value:game_client._number_play_vq}, {id:'number_bocbanh', value:game_client._number_bocbanh})
-		common_sdk.setInfoUser(list);
-	},
-
-	updatePage2(){
-		var list=[];
-		list.push({id:'number_hoamai', value:game_client._number_hoamai}, {id:'number_hoadao', value:game_client._number_hoadao})
+		list.push({id:'my_number_goal', value:game_client._number_goal}, {id:'number_play_vq', value:game_client._number_play_vq}, {id:'number_bocbanh', value:game_client._number_bocbanh}, {id:'number_hoamai', value:game_client._number_hoamai}, {id:'number_hoadao', value:game_client._number_hoadao})
 		common_sdk.setInfoUser(list);
 	},
 
@@ -268,11 +267,11 @@ const game_client = {
 	},
 	
 
-	playGame(type, value, key){
+	playGame(modeId, type, value, key){
         if(!game_client.isPlay){
             game_client.isPlay=true;
             if(vtcmAuth.isLogin()){
-				vtcmEvent.playGame(type, value, key, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
+				vtcmEvent.playGame(modeId, type, value, key, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
             }else{
                 game_client.isPlay=false;
                 $('#modal-warning-login').modal('show');
@@ -293,6 +292,16 @@ const game_client = {
 
 	abc(type, value, key, data){
         var n=Math.floor(Math.random() * 16);
+		for (let i = 0; i < data.length; i++) {
+			if(data[i].rewardType===13){
+				game_client._number_goal=game_client._number_goal + data[i].rewardAmount;
+			}
+			if(data[i].rewardType===15){
+				game_client._number_bocbanh=game_client._number_bocbanh + data[i].rewardAmount;
+			}
+		}
+		game_client._number_play_vq=game_client._number_play_vq + data.length;
+		game_client._number_goal=game_client._number_goal - data.length*100;
         if(type===1){
             var tb = document.getElementById('tb_content_result_vq');
             var result = document.getElementById('content_result_vq');
@@ -324,6 +333,7 @@ const game_client = {
             e1.classList.remove("active");
             game_client.n=1;
         },(n+value)*100);
+		game_client.updatePage();
     },
 
     animation(key, value){
@@ -455,10 +465,10 @@ const game_client = {
 		}
 	},
 
-	playFlipCard(value, key, content){
+	playFlipCard(modeId, value, key, content){
         if(!game_client.isPlayPickup){
             if(vtcmAuth.isLogin()){
-                vtcmEvent.playFlipCard(value, key, content, this.handlingPlayFlipCard, this.notificationErr, this.setStatusLatThe)
+                vtcmEvent.playFlipCard(modeId, value, key, content, this.handlingPlayFlipCard, this.notificationErr, this.setStatusLatThe)
             }else{
                 $('#modal-warning-login').modal('show'); 
                 game_client.isPlayPickup=false;
@@ -468,13 +478,25 @@ const game_client = {
     },
 
 	handlingPlayFlipCard(value, key, content, response){
+		var data=response.data.data.rewards;
 		if(response.data.code>=0){
+			for (let i = 0; i < data.length; i++) {
+				if(data[i].eventCode==='HOA_MAI'){
+					game_client._number_hoamai=game_client._number_hoamai + data[i].rewardAmount;
+				}
+				if(data[i].eventCode==='HOA_DAO'){
+					game_client._number_hoadao=game_client._number_hoadao + data[i].rewardAmount;
+				}
+			}
+			game_client._number_goal=game_client._number_goal - data.length*100;
+
 			game_client.pick_up(value, key, content, response.data.data.rewards)
 		}else{
 			$('#modal-notify').modal('show'); 
 			var e = document.getElementById('content_notify');
 			e.innerText=response.data.message;
 		}
+		game_client.updatePage();
 	},
 
 	pick_up(value, key, content, data){

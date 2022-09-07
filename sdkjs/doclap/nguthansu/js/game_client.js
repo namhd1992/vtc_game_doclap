@@ -1,3 +1,4 @@
+// rewardType=5
 const game_client = {
 	config_: null,	
 	version_: "1.0.0",
@@ -10,6 +11,14 @@ const game_client = {
     page:0,
     modeId_history:0,
     totalPage:1,
+	rewardType:-1,
+	_number_goal:0,
+	_number_play_vq:0,
+	_number_bocbanh:0,
+	_number_hoamai:0,
+	_number_hoadao:0,
+	_number_key:0,
+
 	
 	initApp(rawConfig = {}){
 		if (typeof rawConfig !== 'object') {
@@ -33,58 +42,63 @@ const game_client = {
 
 
 		$("#btn-du-xuan-1").click(function(e) {
-			game_client.playGame(1,16,'item_vq_')
+			game_client.playGame(10244,1,16,'item_vq_')
 		});
 
 		$("#btn-du-xuan-10").click(function(e) {
-			game_client.playGame(10,16,'item_vq_')
+			game_client.playGame(10244, 10,16,'item_vq_')
 		});
 
 		$(".btn-lich-su-du-xuan").click(function(e) {
-			game_client.getHistory(0, 10003)
+			game_client.getHistory(0, 10244, -1)
 		});
+
+		$(".btn-diem-danh").click(function(e) {
+			game_client.getHistory(0, -1, 5)
+		});
+
 
 		$(".timeline-item").click(function(e) {
 			var value=e.currentTarget.getAttribute('value')
-			game_client.exchangeRewardsWithMilestones(10004, value)
+			game_client.exchangeRewardsWithMilestones(10245, value)
 		});
 
 		$(".btn-nhan-khoa").click(function(e) {
-			game_client.exchangeRewards(10006, 1, '')
+			game_client.exchangeRewards(10247, 1)
 		});
 
 		$(".btn-nhan-khoa-2").click(function(e) {
-			game_client.exchangeRewards(10006, 1, '')
+			game_client.exchangeRewards(10247, 1)
 		});
 		
 
 		$(".btn-nhan-giftcode").click(function(e) {
 			var value=e.currentTarget.getAttribute('value')
-			game_client.exchangeRewards(10005, value, 'bb-item_')
+			game_client.exchangeRewards(10246, value)
 		});
 
 		$(".flipbox-item").click(function(e) {
 			var id=e.currentTarget.getAttribute('id')
 			var content=e.currentTarget.getAttribute('content')
-			game_client.playFlipCard(1, id, content)
+			game_client.playFlipCard(10248, 1, id, content)
 		});
 
 		$(".btn-lat-10-the").click(function(e) {
-			game_client.playFlipCard(10, 'card_', 'content_card_')
+			game_client.playFlipCard(10248, 10, 'card_', 'content_card_')
 		});
 
 		$(".btn-lich-su").click(function(e) {
-			game_client.getHistory(0, 10010)
+			game_client.getHistory(0, 10248, -1)
 		});
 
 		$(".btn-doi-thuong").click(function(e) {
 			var modeId=e.currentTarget.getAttribute('modeId')
 			var value=e.currentTarget.getAttribute('value')
-			game_client.exchangeRewards(modeId, value,'')
+			game_client.exchangeRewards(modeId, value)
 		});
 
 		$(".btn-mo-ruong").click(function(e) {
-			game_client.exchangeRewards(10023, 1, '')
+			game_client.exchangeRewards(10259, 1)
 		});
 
 		$(".btn-bxh-circle").click(function(e) {
@@ -99,7 +113,7 @@ const game_client = {
 
 		$(".modal-btn-1").click(function(e) {
 			var roomId=e.currentTarget.getAttribute('roomId')
-			game_client.rollup(10013, roomId)
+			game_client.rollup(10251, roomId)
 		});
 
 		$(".modal-btn-2").click(function(e) {
@@ -112,6 +126,7 @@ const game_client = {
 		game_client.setDataToUI(response)
 		game_client.setDataUser(response)
 		game_client.uiLine(response);
+		game_client.uiBocbanh(response);
 	},
 	
 	setDataToUI(response){
@@ -167,7 +182,13 @@ const game_client = {
 		}else{
 		  console.log('chưa đủ lượt chơi')
 		}
-	   
+	},
+
+	uiBocbanh(response){
+		var rewardExchange=response.data.data.rewardExchange;
+		var obj_bocbanh=rewardExchange.filter(v=>v.eventCode==="BANH_TRUNG");
+		var number_bocbanh=obj_bocbanh.length > 0 ? obj_bocbanh[0].totalAvailable : 0;
+		game_client.bocbanh(number_bocbanh,'bb-item_')
 	},
 
 	setDataUser(response){
@@ -184,6 +205,11 @@ const game_client = {
 		var number_key=obj_key.length > 0 ? obj_key[0].totalAvailable : 0;
 		var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}, {id:'number_play_vq', value:number_play}, {id:'number_bocbanh', value:number_bocbanh}, {id:'number_hoamai', value:number_hoamai}, {id:'number_hoadao', value:number_hoadao}, {id:'number_key', value:number_key}]
 		common_sdk.setInfoUser(list);
+		game_client._number_goal=user.pointAvailable;
+		game_client._number_bocbanh=number_bocbanh;
+		game_client._number_play_vq=number_play;
+		game_client._number_hoamai=number_hoamai;
+		game_client._number_hoadao=number_hoadao;
 	},
 	
 	getConfig() {   
@@ -198,6 +224,7 @@ const game_client = {
 		return this.config_.userId;
 	},
 
+
 	rollup(modeId, roomId){
 		if(vtcmAuth.isLogin()){
 			vtcmEvent.rollup(modeId, roomId, this.handlingRollup, this.notificationErrRollup)
@@ -205,6 +232,15 @@ const game_client = {
             $('#modal-warning-login').modal('show'); 
         }
 	},
+
+	updatePage(){
+		var list=[];
+		list.push({id:'my_number_goal', value:game_client._number_goal}, {id:'number_play_vq', value:game_client._number_play_vq}, {id:'number_bocbanh', value:game_client._number_bocbanh}, {id:'number_hoamai', value:game_client._number_hoamai}, {id:'number_hoadao', value:game_client._number_hoadao})
+		common_sdk.setInfoUser(list);
+	},
+
+
+
 
 	handlingRollup(roomId, response){
 		if(response.data.code >= 0){
@@ -231,11 +267,11 @@ const game_client = {
 	},
 	
 
-	playGame(type, value, key){
+	playGame(modeId, type, value, key){
         if(!game_client.isPlay){
             game_client.isPlay=true;
             if(vtcmAuth.isLogin()){
-				vtcmEvent.playGame(type, value, key, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
+				vtcmEvent.playGame(modeId, type, value, key, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
             }else{
                 game_client.isPlay=false;
                 $('#modal-warning-login').modal('show');
@@ -256,6 +292,16 @@ const game_client = {
 
 	abc(type, value, key, data){
         var n=Math.floor(Math.random() * 16);
+		for (let i = 0; i < data.length; i++) {
+			if(data[i].rewardType===13){
+				game_client._number_goal=game_client._number_goal + data[i].rewardAmount;
+			}
+			if(data[i].rewardType===15){
+				game_client._number_bocbanh=game_client._number_bocbanh + data[i].rewardAmount;
+			}
+		}
+		game_client._number_play_vq=game_client._number_play_vq + data.length;
+		game_client._number_goal=game_client._number_goal - data.length*100;
         if(type===1){
             var tb = document.getElementById('tb_content_result_vq');
             var result = document.getElementById('content_result_vq');
@@ -287,6 +333,7 @@ const game_client = {
             e1.classList.remove("active");
             game_client.n=1;
         },(n+value)*100);
+		game_client.updatePage();
     },
 
     animation(key, value){
@@ -312,17 +359,17 @@ const game_client = {
         
     },
 	
-	getHistory(page, modeId){
+	getHistory(page, modeId, rewardType){
         if(vtcmAuth.isLogin()){
             if(game_client.totalPage>page && page>=0){
-                vtcmEvent.getHistory(page, modeId, this.handlingGetHistory, this.notificationErr)
+                vtcmEvent.getHistory(page, modeId, rewardType, this.handlingGetHistory, this.notificationErr)
             }
         } else{
             $('#modal-warning-login').modal('show'); 
         }
     },
 
-	handlingGetHistory(page, modeId, response){
+	handlingGetHistory(page, modeId,rewardType, response){
 		if(response.data.code >=0){
 			const items=response.data.data.items;
 			if(items.length>0){
@@ -339,6 +386,7 @@ const game_client = {
 				}
 				game_client.page=page;
 				game_client.modeId_history=modeId;
+				game_client.rewardType=rewardType;
 				$('#modal-lich-su').modal('show'); 
 			}else{
 				$('#modal-notify').modal('show'); 
@@ -354,29 +402,28 @@ const game_client = {
 	},
 
     previous(){
-        game_client.getHistory(game_client.page-1, game_client.modeId_history)
+        game_client.getHistory(game_client.page-1, game_client.modeId_history, game_client.rewardType)
     },
 
     next(){
-        game_client.getHistory(game_client.page+1, game_client.modeId_history)
+        game_client.getHistory(game_client.page+1, game_client.modeId_history, game_client.rewardType)
     },
 
-	exchangeRewards(modeId, value, key){
+	exchangeRewards(modeId, value){
         if(vtcmAuth.isLogin()){
-            vtcmEvent.exchangeRewards(modeId, value, key, this.handlingExchangeRewards, this.notificationErr)
+            vtcmEvent.exchangeRewards(modeId, value, this.handlingExchangeRewards, this.notificationErr)
         } else{
             $('#modal-warning-login').modal('show'); 
         }
     },
 
-	handlingExchangeRewards(modeId, value, key, response){
+	handlingExchangeRewards(modeId, value, response){
 		if(response.data.code >= 0){
 			if(modeId===10006){
 				$('#modal-notify').modal('show'); 
 				var e = document.getElementById('content_notify');
 				e.innerText='Nhận khóa thành công';
 			}else if(modeId===10005){
-				game_client.bocbanh(value, key);
 				$('#modal-nhan-code').modal('show'); 
 				document.getElementById('modal-form-code').value=response.data.data.rewards[0].rewardCode;
 			}else {
@@ -392,8 +439,9 @@ const game_client = {
 	},
 
 	bocbanh(number, key){
-        for (let i = 0; i < number; i++) {
-            var e = document.getElementById(key+(i+1));
+		var n=number > 16 ? 16 : number;
+        for (let i = 1; i <= n; i++) {
+            var e = document.getElementById(key + i);
             e.classList.add("hide");
         }
     },
@@ -417,10 +465,10 @@ const game_client = {
 		}
 	},
 
-	playFlipCard(value, key, content){
+	playFlipCard(modeId, value, key, content){
         if(!game_client.isPlayPickup){
             if(vtcmAuth.isLogin()){
-                vtcmEvent.playFlipCard(value, key, content, this.handlingPlayFlipCard, this.notificationErr, this.setStatusLatThe)
+                vtcmEvent.playFlipCard(modeId, value, key, content, this.handlingPlayFlipCard, this.notificationErr, this.setStatusLatThe)
             }else{
                 $('#modal-warning-login').modal('show'); 
                 game_client.isPlayPickup=false;
@@ -430,13 +478,25 @@ const game_client = {
     },
 
 	handlingPlayFlipCard(value, key, content, response){
+		var data=response.data.data.rewards;
 		if(response.data.code>=0){
+			for (let i = 0; i < data.length; i++) {
+				if(data[i].eventCode==='HOA_MAI'){
+					game_client._number_hoamai=game_client._number_hoamai + data[i].rewardAmount;
+				}
+				if(data[i].eventCode==='HOA_DAO'){
+					game_client._number_hoadao=game_client._number_hoadao + data[i].rewardAmount;
+				}
+			}
+			game_client._number_goal=game_client._number_goal - data.length*100;
+
 			game_client.pick_up(value, key, content, response.data.data.rewards)
 		}else{
 			$('#modal-notify').modal('show'); 
 			var e = document.getElementById('content_notify');
 			e.innerText=response.data.message;
 		}
+		game_client.updatePage();
 	},
 
 	pick_up(value, key, content, data){
@@ -540,13 +600,14 @@ $(document).ready(function(){
 	'use strict';
     const vtcmAppConfig = {
         host: "http://abc.com",
-		gameId:100004,
+		gameId:100078,
 		apiBaseUrl: 'http://api.gf.splay.vn',
 		client_id: "GF_EVENTS_WEB",
 		client_secret: "aP6k2Ql68arPH8l",
-		url_return:`http://nguthansu.splay.vn/mungdoclap`,
-    	path:'/mungdoclap'
+		// url_return:`http://nguthansu.splay.vn/mungdoclap`,
+		// path:'/mungdoclap'
+		url_return:`http://127.0.0.1:5500/doclap/nguthansu/index.html`,
+		path:'/doclap/nguthansu/index.html'
     };
     game_client.initApp(vtcmAppConfig);
-    
 });
