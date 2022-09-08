@@ -1,0 +1,657 @@
+.webp .stageItem {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/moc.webp");
+}
+
+.no-webp .stageItem {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/moc.png");
+}
+
+.webp .pop__group {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/pop.webp");
+}
+
+.no-webp .pop__group {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/pop.png");
+}
+
+@for $i from 1 through 4 {
+    .webp .art--#{$i} {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/artn#{$i}.webp");
+    }
+    .no-webp .art--#{$i} {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/artn#{$i}.png");
+    }
+    .webp .artt--#{$i} {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/artnu#{$i}.webp");
+    }
+    .no-webp .artt--#{$i} {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/artnu#{$i}.png");
+    }
+    .webp .artt--4 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/artnu41.webp");
+    }
+    .no-webp .artt--4 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/artnu41.png");
+    }
+}
+
+@media(min-width:961px) {
+    @for $i from 1 through 6 {
+        .webp .page--#{$i} {
+            background-image: url("https://cdn.smobgame.com/template/au/images/landing/bg-page#{$i}.webp");
+        }
+        .no-webp .page--#{$i} {
+            background-image: url("https://cdn.smobgame.com/template/au/images/landing/bg-page#{$i}.jpg");
+        }
+    }
+    .webp .page--4 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bg-page41.webp");
+    }
+    .no-webp .page--4 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bg-page41.jpg");
+    }
+    @for $i from 1 through 6 {
+        .webp .slogan--#{$i} {
+            background-image: url("https://cdn.smobgame.com/template/au/images/landing/slogan#{$i}.webp");
+        }
+        .no-webp .slogan--#{$i} {
+            background-image: url("https://cdn.smobgame.com/template/au/images/landing/slogan#{$i}.png");
+        }
+    }
+    .webp .logoImage {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/loglo.webp");
+    }
+    .no-webp .logoImage {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/loglo.png");
+    }
+    .webp .btnRegister {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btndk.webp");
+    }
+    .no-webp .btnRegister {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btndk.png");
+    }
+    .btnRegister:hover {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btndk1.png");
+    }
+    .webp .btnVideo {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/play.webp");
+    }
+    .no-webp .btnVideo {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/play.png");
+    }
+    .webp .progre {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bgx.webp");
+    }
+    .no-webp .progre {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bgx.png");
+    }
+    .webp .itemAward {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bang2.webp");
+    }
+    .no-webp .itemAward {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bang2.png");
+    }
+    .webp .awardRight {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bang1.webp");
+    }
+    .no-webp .awardRight {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bang1.png");
+    }
+    .webp .frames {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bangvideo.webp");
+    }
+    .no-webp .frames {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bangvideo.png");
+    }
+    .webp .itemVip--1 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/item3.webp");
+    }
+    .no-webp .itemVip--1 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/item3.png");
+    }
+    .webp .itemVip--2 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/item2.webp");
+    }
+    .no-webp .itemVip--2 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/item2.png");
+    }
+    .webp .itemVip--3 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/item1.webp");
+    }
+    .no-webp .itemVip--3 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/item1.png");
+    }
+    .webp .btnVipG {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpage5.webp");
+    }
+    .no-webp .btnVipG {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpage5.png");
+    }
+    .btnVipG:hover {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpage51.png");
+    }
+    .webp .btnOff {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpage5.webp");
+    }
+    .no-webp .btnOff {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpage5.png");
+    }
+    .webp .miniGame {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bgdia.webp");
+    }
+    .no-webp .miniGame {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bgdia.png");
+    }
+    .webp .play {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/start.webp");
+    }
+    .no-webp .play {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/start.png");
+    }
+    .play:hover {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/start1.png");
+    }
+    @for $i from 1 through 4 {
+        .webp .itemImage--#{$i} {
+            background-image: url("https://cdn.smobgame.com/template/au/images/landing/item2#{$i}.webp");
+        }
+        .no-webp .itemImage--#{$i} {
+            background-image: url("https://cdn.smobgame.com/template/au/images/landing/item2#{$i}.png");
+        }
+    }
+}
+
+.webp .btnRegister2 {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/btndk2.webp");
+}
+
+.no-webp .btnRegister2 {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/btndk2.png");
+}
+
+.btnRegister2:hover {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/btndk21.png");
+}
+
+.webp .btn__ms {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpop.webp");
+}
+
+.no-webp .btn__ms {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpop.png");
+}
+
+.btn__ms:hover {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpop1.png");
+}
+
+.scrollbar--custom::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px #ccc;
+    background-color: #ccc;
+}
+
+.scrollbar--custom::-webkit-scrollbar {
+    width: 3px;
+    background-color: #ccc;
+    -webkit-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    margin-right: -20px;
+}
+
+.scrollbar--custom::-webkit-scrollbar-thumb {
+    background-color: #2c0444;
+    border-radius: 10px;
+}
+
+@keyframes showpopup {
+    0% {
+        top: 60%;
+    }
+    100% {
+        top: 50%;
+    }
+}
+
+@media(max-width:1024px) and (min-width:961px) {
+    .pageInner {
+        transform: scale(0.8);
+        position: relative;
+        top: -40px;
+        &--6 {
+            top: -100px !important;
+        }
+    }
+    .main .page .artLeft {
+        left: -120px;
+    }
+    .main .page .artRight {
+        right: -208px;
+    }
+    .main .page {
+        background-size: 1500px;
+        max-width: 1500px;
+        height: 844px !important;
+        overflow: hidden;
+        margin-top: -2px;
+        &--1 {
+            height: 874px !important;
+        }
+        &--2 {
+            height: 844px !important;
+        }
+        &--6 {
+            background-size: 1600px;
+            max-width: 1600px;
+            height: 920px !important;
+        }
+    }
+    .main .page .artPage2 {
+        left: -393px !important;
+    }
+    .main .page .artAbum {
+        display: none;
+    }
+}
+
+.webp .abum {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dia1.webp");
+}
+
+.no-webp .abum {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dia1.png");
+}
+
+@for $i from 1 through 5 {
+    .webp .abum--#{$i} {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dia#{$i}.webp");
+    }
+    .no-webp .abum--#{$i} {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dia#{$i}.png");
+    }
+}
+
+@for $i from 1 through 5 {
+    .webp .item--#{$i} {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dia#{$i}.webp");
+    }
+    .no-webp .item--#{$i} {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dia#{$i}.png");
+    }
+    .webp .albumImage--#{$i} {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dia#{$i}.webp");
+    }
+    .no-webp .albumImage--#{$i} {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/update/dia#{$i}.png");
+    }
+}
+
+.webp .btnAward {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpop.webp");
+}
+
+.no-webp .btnAward {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpop.png");
+}
+
+.btnAward:hover {
+    background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpop1.png");
+}
+
+@keyframes fadeLeft {
+    0% {
+        transform: translateX(150px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@media(max-width:960px) {
+    @keyframes fadeLeft {
+        0% {
+            transform: translateX(80px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateX(0px);
+            opacity: 1;
+        }
+    }
+    @for $i from 1 through 6 {
+        .webp .slogan--#{$i} {
+            background-image: url("https://cdn.smobgame.com/template/au/images/landing/slogan#{$i}mb.webp");
+        }
+        .no-webp .slogan--#{$i} {
+            background-image: url("https://cdn.smobgame.com/template/au/images/landing/slogan#{$i}mb.png");
+        }
+    }
+    .webp .main {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bgmb1.webp");
+    }
+    .no-webp .main {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bgmb1.jpg");
+    }
+    .webp .logoImage {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/loglomb.webp");
+    }
+    .no-webp .logoImage {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/loglomb.png");
+    }
+    .webp .btnRegister {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btndkmb.webp");
+    }
+    .no-webp .btnRegister {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btndkmb.png");
+    }
+    .webp .progre {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bgxmb.webp");
+    }
+    .no-webp .progre {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bgxmb.png");
+    }
+    .webp .itemAward {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bang2mb.webp");
+    }
+    .no-webp .itemAward {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bang2mb.png");
+    }
+    .webp .awardRight {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bang1mb.webp");
+    }
+    .no-webp .awardRight {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bang1mb.png");
+    }
+    .webp .frames {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bangvideomb.webp");
+    }
+    .no-webp .frames {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bangvideomb.png");
+    }
+    .webp .itemVip--1 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/item3mb.webp");
+    }
+    .no-webp .itemVip--1 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/item3mb.png");
+    }
+    .webp .itemVip--2 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/item2mb.webp");
+    }
+    .no-webp .itemVip--2 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/item2mb.png");
+    }
+    .webp .itemVip--3 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/item1mb.webp");
+    }
+    .no-webp .itemVip--3 {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/item1mb.png");
+    }
+    .webp .btnVipG {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpage5mb.webp");
+    }
+    .no-webp .btnVipG {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpage5mb.png");
+    }
+    .webp .btnOff {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpage5mb.webp");
+    }
+    .no-webp .btnOff {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/btnpage5mb.png");
+    }
+    .webp .miniGame {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bgdiamb.webp");
+    }
+    .no-webp .miniGame {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/bgdiamb.png");
+    }
+    .webp .play {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/startmb.webp");
+    }
+    .no-webp .play {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/startmb.png");
+    }
+    .webp .btnItem {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/startmb.webp");
+    }
+    .no-webp .btnItem {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/startmb.png");
+    }
+    .webp .btnVideo {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/playmb.webp");
+    }
+    .no-webp .btnVideo {
+        background-image: url("https://cdn.smobgame.com/template/au/images/landing/playmb.png");
+    }
+    @for $i from 1 through 4 {
+        .webp .itemImage--#{$i} {
+            background-image: url("https://cdn.smobgame.com/template/au/images/landing/item2#{$i}mb.webp");
+        }
+        .no-webp .itemImage--#{$i} {
+            background-image: url("https://cdn.smobgame.com/template/au/images/landing/item2#{$i}mb.png");
+        }
+    }
+}
+
+.activev {
+    -webkit-animation: startt 0.8s ease-in-out forwards;
+    animation: startt 0.8s ease-in-out forwards;
+}
+
+.activeRorate {
+    -webkit-animation: turn1 2s linear forwards;
+    animation: turn1 2s linear forwards;
+}
+
+@keyframes turn1 {
+    0% {
+        -webkit-transform: rotate(720deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+@keyframes codemove {
+    from {
+        top: 26vw;
+    }
+    to {
+        top: 33vw;
+    }
+}
+
+@keyframes startt {
+    from {
+        transform: rotate(-20deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@-webkit-keyframes an-projector {
+    0% {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        -webkit-transform: rotate(45deg) scale(1.5);
+        transform: rotate(45deg) scale(1.5);
+    }
+}
+
+@-moz-keyframes an-projector {
+    0% {
+        -moz-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        -moz-transform: rotate(45deg) scale(1.5);
+        transform: rotate(45deg) scale(1.5);
+    }
+}
+
+@-o-keyframes an-projector {
+    0% {
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        -o-transform: rotate(45deg) scale(1.5);
+        transform: rotate(45deg) scale(1.5);
+    }
+}
+
+@keyframes an-projector {
+    0% {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        -webkit-transform: rotate(45deg) scale(1.5);
+        -moz-transform: rotate(45deg) scale(1.5);
+        -o-transform: rotate(45deg) scale(1.5);
+        transform: rotate(45deg) scale(1.5);
+    }
+}
+
+@-webkit-keyframes an-projector2 {
+    0% {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        -webkit-transform: rotate(-45deg) scale(1.5);
+        transform: rotate(-45deg) scale(1.5);
+    }
+}
+
+@-moz-keyframes an-projector2 {
+    0% {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        -webkit-transform: rotate(-45deg) scale(1.5);
+        transform: rotate(-45deg) scale(1.5);
+    }
+}
+
+@-o-keyframes an-projector2 {
+    0% {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        -webkit-transform: rotate(-45deg) scale(1.5);
+        transform: rotate(-45deg) scale(1.5);
+    }
+}
+
+@keyframes an-projector2 {
+    0% {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        -webkit-transform: rotate(-45deg) scale(1.5);
+        transform: rotate(-45deg) scale(1.5);
+    }
+}
+
+@-webkit-keyframes guidCircle {
+    0%,
+    20% {
+        opacity: 0;
+        -webkit-transform: scale(0, 0);
+        transform: scale(0, 0);
+    }
+    50%,
+    80% {
+        opacity: 1;
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes guidCircle {
+    0%,
+    20% {
+        opacity: 0;
+        -webkit-transform: scale(0, 0);
+        transform: scale(0, 0);
+    }
+    50%,
+    80% {
+        opacity: 1;
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+}
+
+@-webkit-keyframes shou {
+    0%,
+    100%,
+    25%,
+    50% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    12.5%,
+    37.5% {
+        -webkit-transform: translateY(0.3125rem);
+        transform: translateY(0.3125rem);
+    }
+}
+
+@keyframes shou {
+    0%,
+    100%,
+    25%,
+    50% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    12.5%,
+    37.5% {
+        -webkit-transform: translateY(0.3125rem);
+        transform: translateY(0.3125rem);
+    }
+}

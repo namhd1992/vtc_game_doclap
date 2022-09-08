@@ -249,6 +249,8 @@ const game_client = {
 				$('#modal-nhan-code').modal('show'); 
 				document.getElementById('modal-form-code').value=response.data.data.rewards[0].rewardCode;
 			}else{
+				game_client._number_goal=game_client._number_goal + response.data.data.rewards[0].rewardAmount;
+				game_client.updatePage();
 				$('#modal-nhan-vang').modal('hide'); 
 				$('#modal-notify').modal('show'); 
 				var e = document.getElementById('content_notify');
@@ -604,10 +606,10 @@ $(document).ready(function(){
 		apiBaseUrl: 'http://api.gf.splay.vn',
 		client_id: "GF_EVENTS_WEB",
 		client_secret: "aP6k2Ql68arPH8l",
-		// url_return:`http://tramtien.splay.vn/mungdoclap`,
-		// path:'/mungdoclap'
-		url_return:`http://127.0.0.1:5500/doclap/tramtien/index.html`,
-		path:'/doclap/tramtien/index.html'
+		url_return:`http://tramtien.splay.vn/mungdoclap`,
+		path:'/mungdoclap'
+		// url_return:`http://127.0.0.1:5500/doclap/tramtien/index.html`,
+		// path:'/doclap/tramtien/index.html'
     };
     game_client.initApp(vtcmAppConfig);
 });
