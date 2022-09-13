@@ -2832,3 +2832,201 @@ body {
         margin-top: 343px;
     }
 }
+
+
+/*-----footer-----*/
+
+footer {
+    width: 100%;
+    padding: 5px 15px 5px 11px;
+    text-align: center;
+    color: #fff;
+    background: #0b0415;
+    position: relative;
+    z-index: 2;
+    @media(max-width: 1200px) {
+        padding: 20px 15px 20px 11px;
+    }
+    .footerInner {
+        color: #fff;
+        font-size: 15px;
+        text-align: center;
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+        font-family: unset;
+        @include screen('mobile') {
+            font-size: 13px;
+        }
+        a.bs {
+            color: #fff;
+            display: inline-block;
+            margin: 0 10px
+        }
+        a:hover {
+            color: #ff9500;
+        }
+        p {
+            margin-bottom: 6px;
+            @include screen('mobile') {
+                margin-bottom: 8px;
+            }
+        }
+        .textright {
+            font-size: 13px;
+            margin-bottom: 10px !important;
+        }
+        .logo2 {
+            display: block;
+            text-indent: -999em;
+            background: url("https://cdn.smobgame.com/template/au/images/home/logob.png") 0 0 no-repeat;
+            width: 186px;
+            height: 63px;
+            margin: 5px auto 10px auto;
+            @include screen('tablet') {}
+            span {
+                text-indent: -9999px;
+                display: block;
+            }
+        }
+        .partnerG {
+            position: absolute;
+            width: 942px;
+            left: -20px;
+            top: 74px;
+            display: flex;
+            justify-content: space-between;
+            @include screen('tablet') {
+                position: relative;
+                width: 218px;
+                left: unset;
+                top: unset;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                margin: 0 auto 0 auto;
+            }
+            .partnerItem {
+                background-repeat: no-repeat;
+                display: block;
+                width: 200px;
+                height: 60px;
+                margin-bottom: 10px;
+                @include screen('tablet') {
+                    width: 100px;
+                    height: 30px;
+                    background-size: 100px;
+                }
+                &--1 {
+                    background-image: url("https://cdn.smobgame.com/template/CP37/images/update/btn1.png");
+                }
+                &--2 {
+                    background-image: url("https://cdn.smobgame.com/template/CP37/images/update/btn2.png");
+                    position: relative;
+                    left: 88px;
+                    top: 45px;
+                    @include screen('tablet') {
+                        position: unset;
+                        left: unset;
+                        top: unset;
+                    }
+                }
+                &--3 {
+                    background-image: url("https://cdn.smobgame.com/template/CP37/images/update/btn3.png");
+                    position: absolute;
+                    top: 75px;
+                    @include screen('tablet') {
+                        position: unset;
+                        left: unset;
+                        top: unset;
+                    }
+                }
+            }
+        }
+        .footer-logo {
+            @include screen('tablet') {
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        .logo_hh {
+            display: block;
+            background: url(https://cdn.smobgame.com/templates/longtochuyentuong/images/landing/logo-hh.png) no-repeat 0/100%;
+            width: 70px;
+            height: 70px;
+            margin: auto;
+            @include screen('tablet') {
+                margin: 0;
+            }
+            span {
+                text-indent: -9999px;
+                display: block;
+            }
+        }
+        .logo-webzen {
+            display: block;
+            background: url(https://cdn.smobgame.com/template/CP28/images/home/img-webzen.png) no-repeat 0/100%;
+            width: 60px;
+            height: 53px;
+            margin: 3px auto 10px;
+            @include screen('tablet') {
+                margin: 0 20px;
+            }
+        }
+        .logo-hh {
+            display: block;
+            background: url(https://cdn.smobgame.com/template/CP28/images/home/logo-hh.png) no-repeat 0/100%;
+            width: 70px;
+            height: 70px;
+            margin: auto;
+            @include screen('tablet') {
+                margin: 0;
+            }
+        }
+        .ghdt {
+            position: absolute;
+            right: 63px;
+            top: 12px;
+        }
+        .ghdt1 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 10;
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .logo2,
+    .footer .ghdt,
+    .logo_hh {
+        position: static !important;
+        margin: 0 auto 15px;
+    }
+}
+
+.footerInfo {
+    @extend %CSS--between;
+    width: 385px;
+    margin: 0 auto;
+    @include screen('mobile') {
+        width: 340px;
+        font-size: 13px;
+    }
+}
+
+.auto-height {
+    height: auto !important;
+}
+
+.fcolor {
+    color: #0d92ad !important;
+    transition: .3s ease-in-out;
+}
+
+.fcolor:hover {
+    color: #ffc219 !important;
+}
