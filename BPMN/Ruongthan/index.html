@@ -7,24 +7,26 @@
   <meta name="viewport" content="width=device-width initial-scale=1">
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <link rel="stylesheet" href="http://static.gf.splay.vn/gf-sdk/v2.0/css/index.css">
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body class="" style="padding-right: 0px;">
-  <div class="page">
+  <div class="page sdk_page">
     <header class="header headroom headroom--not-top headroom--unpinned headroom--bottom" id="header" style="right: 0px; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
       <div class="container">
-        <a class="btn-bg btn-fanpage header-btn" href="https://www.facebook.com/tramtienquyet.vn" role="button" target="_blank">
+        <a class="btn-bg btn-fanpage header-btn sdk_fanpage_fb" href="https://www.facebook.com/tramtienquyet.vn" role="button" target="_blank">
           <span class="visually-hidden">Fanpage</span>
         </a>
-        <a class="btn-bg btn-group header-btn" href="https://www.facebook.com/groups/tramtienquyet" role="button" target="_blank">
+        <a class="btn-bg btn-group header-btn sdk_group_fb" href="https://www.facebook.com/groups/tramtienquyet" role="button" target="_blank">
           <span class="visually-hidden">Group</span>
         </a>
-        <a class="btn-bg btn-dang-nhap header-btn" href="#" role="button" target="_blank">
+        <a class="btn-bg btn-dang-nhap header-btn" style="cursor: pointer;" role="button" id="login" onclick="vtcmAuth.login()">
           <span class="visually-hidden">Đăng Nhập</span>
         </a>
-        <span class="header-acc">Xin chào, Admin | <a href="#">Thoát</a>
-
+        <span class="header-acc" style="cursor: pointer; padding: 0.25rem 0.875rem;" id="logout" onclick="vtcmAuth.logout()">
+          <p style="margin: 2px;">Xin chào, <span class="username"></span> | Thoát</p>
+          <p style="margin: 2px;">Scoin: <span class="sdk_numberscoin"></span></p>
         </span>
         <img class="img-fluid header-age-rating" src="images/age-rating.jpg" alt="">
       </div>
@@ -40,19 +42,19 @@
             <button class="btn-bg btn-phan-thuong" type="button" data-bs-target="#modal-phan-thuong" data-bs-toggle="modal">
               <span class="visually-hidden">Phần thưởng</span>
             </button>
-            <button class="btn-bg btn-mua-khoa" type="button" data-bs-target="#modal-shop-khoa" data-bs-toggle="modal">
+            <button class="btn-bg btn-mua-khoa" type="button" style="cursor: pointer;" onclick="game_client.showModalChangeScoin()">
               <span class="visually-hidden">Mua khoá</span>
             </button>
             <button class="btn-bg btn-lich-su" type="button" data-bs-target="#modal-lsmr" data-bs-toggle="modal">
               <span class="visually-hidden">Lịch sử</span>
             </button>
           </div>
-          <p class="section-text" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">Số điểm hiện có: 9999</p>
+          <p class="section-text" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">Số điểm hiện có: <span class="sdk_numberpoint"></span></p>
           <div class="treasure">
             <div class="treasure-item">
               <img class="treasure-item-img" src="images/home/s1/ruong-thuong.png" alt="" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
               <div class="treasure-item-btns">
-                <button class="btn-bg btn-mo-free" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+                <button class="btn-bg btn-mo-free" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);" onclick="game_client.purchases(10379)">
                   <span class="visually-hidden">Mở Free (1 ngày 1 lần)</span>
                 </button>
                 
@@ -64,7 +66,7 @@
               <div class="treasure-item-btns">
                 
                 
-                <button class="btn-bg btn-mo-10-ruong-vip" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+                <button class="btn-bg btn-mo-10-ruong-vip" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);" onclick="game_client.purchases(10380)">
                   <span class="visually-hidden">Mở 10 rương (tốn 10 chìa khóa)</span>
                 </button>
               </div>
@@ -84,37 +86,37 @@
             <div class="dq-group" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
               <div class="dq">
                 <img class="img-block dq-img" src="images/home/s2/doi-qua/items.png" alt="">
-                <button class="btn-bg btn-doi-qua-1 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua">
+                <button class="btn-bg btn-doi-qua-1 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10381)">
                   <span class="visually-hidden">Đổi quà (tốn 200 điểm)</span>
                 </button>
               </div>
               <div class="dq">
                 <img class="img-block dq-img" src="images/home/s2/doi-qua/items.png" alt="">
-                <button class="btn-bg btn-doi-qua-2 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua">
+                <button class="btn-bg btn-doi-qua-2 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10382)">
                   <span class="visually-hidden">Đổi quà (tốn 1000 điểm)</span>
                 </button>
               </div>
               <div class="dq">
                 <img class="img-block dq-img" src="images/home/s2/doi-qua/items.png" alt="">
-                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua">
+                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10383)">
                   <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
                 </button>
               </div>
               <div class="dq">
                 <img class="img-block dq-img" src="images/home/s2/doi-qua/items.png" alt="">
-                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua">
+                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10384)">
                   <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
                 </button>
               </div>
               <div class="dq">
                 <img class="img-block dq-img" src="images/home/s2/doi-qua/items.png" alt="">
-                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua">
+                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10385)">
                   <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
                 </button>
               </div>
               <div class="dq">
                 <img class="img-block dq-img" src="images/home/s2/doi-qua/items.png" alt="">
-                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua">
+                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10386)">
                   <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
                 </button>
               </div>
@@ -138,21 +140,21 @@
             <div class="boxtop boxtop-2" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
               <h3 class="boxtop-title visually-hidden">Top 2</h3>
               <img class="boxtop-img" src="images/home/s3/top-2-items.png" alt="">
-              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" data-bs-target="#modal-qua-top-2" data-bs-toggle="modal">
+              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" data-bs-target="#modal-qua-top-2" data-bs-toggle="modal" onclick="game_client.exchangeRewardsWithMilestones(10296, 10319, 2)">
                 <span class="visually-hidden">Nhận Thưởng</span>
               </button>
             </div>
             <div class="boxtop boxtop-1" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
               <h3 class="boxtop-title visually-hidden">Top 1</h3>
               <img class="boxtop-img" src="images/home/s3/top-1-items.png" alt="">
-              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" data-bs-target="#modal-qua-top-1" data-bs-toggle="modal">
+              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" data-bs-target="#modal-qua-top-1" data-bs-toggle="modal" onclick="game_client.exchangeRewardsWithMilestones(10296, 10318, 1)">
                 <span class="visually-hidden">Nhận Thưởng</span>
               </button>
             </div>
             <div class="boxtop boxtop-3" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
               <h3 class="boxtop-title visually-hidden">Top 3</h3>
               <img class="boxtop-img" src="images/home/s3/top-3-items.png" alt="">
-              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" data-bs-target="#modal-qua-top-3" data-bs-toggle="modal">
+              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" data-bs-target="#modal-qua-top-3" data-bs-toggle="modal" onclick="game_client.exchangeRewardsWithMilestones(10296, 10320, 3)">
                 <span class="visually-hidden">Nhận Thưởng</span>
               </button>
             </div>
@@ -184,7 +186,8 @@
       <div class="modal-content">
         <div class="perfect-scrollbar ps" data-plugin="perfect-scrollbar">
           <h2 class="modal-title" data-text="Thể Lệ">Thể Lệ</h2>
-          <p>
+          <p class="sdk_content_evt_guide"></p>
+          <!-- <p>
             <span class="text-secondary">*Thời gian:</span> từ 2/11/2021 đến 2/12/2021
             <br>
             <span class="text-secondary">*Cách tham gia:</span>
@@ -196,7 +199,7 @@
             <br>-Bước 1
             <br>-Bước 2
             <br>-Bước 3
-          </p>
+          </p> -->
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -207,7 +210,8 @@
       <div class="modal-content">
         <div class="perfect-scrollbar ps" data-plugin="perfect-scrollbar">
           <h2 class="modal-title" data-text="Phần thưởng">Phần thưởng</h2>
-          <p>
+          <p class="sdk_content_rewards"></p>
+          <!-- <p>
             <span class="text-secondary">*Rèn Scoin: có thể rèn ra các phần thưởng</span>
             <br>-Thẻ Scoin: 10.000 Scoin, 20.000 Scoin, 50.000 Scoin, 100.000 Scoin, 200.000 Scoin, 500.000 Scoin
             <br>
@@ -220,7 +224,7 @@
             <span class="text-secondary">-Code Vàng:</span>
             <br>+ 999 tên vật phẩm
             <br>+ 999 tên vật phẩm
-          </p>
+          </p> -->
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -233,12 +237,12 @@
         <form class="modal-form">
           <div class="modal-form-grid">
             <label class="col-form-label" for="modal-sk-form-sl">Số lượng</label>
-            <input class="form-control" id="modal-sk-form-sl" type="text" placeholder="Nhập số lượng">
+            <input class="form-control" id="modal-sk-form-sl" type="number" placeholder="Nhập số lượng" onkeyup="game_client.changeScoin()">
             <label class="col-form-label" for="modal-sk-form-tg">Tổng Scoin</label>
-            <input class="form-control" id="modal-sk-form-tg" type="text">
+            <input class="form-control" id="modal-sk-form-tg" type="text" disabled>
           </div>
           <p class="text-center">(Đơn giá 1 Điểm = 1 SCoin)</p>
-          <button class="btn-img btn-xac-nhan-mua mx-auto" type="button">
+          <button class="btn-img btn-xac-nhan-mua mx-auto" type="button" onclick="game_client.topupsScoinToPoint()">
             <span class="visually-hidden">Xác nhận mua</span>
             <img src="images/modals/btn-xac-nhan-mua.png" alt="Xác nhận mua">
           </button>
@@ -265,57 +269,12 @@
               </th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
+          <tbody id="tb_history">
+            <!-- <tr>
               <th scope="row">1</th>
               <td>99999 Điểm</td>
               <td>1234567890abcdegfjskfj</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>99999 Điểm</td>
-              <td>1234567890abcdegfjskfj</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>99999 Điểm</td>
-              <td>1234567890abcdegfjskfj</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>99999 Điểm</td>
-              <td>1234567890abcdegfjskfj</td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>99999 Điểm</td>
-              <td>1234567890abcdegfjskfj</td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>99999 Điểm</td>
-              <td>1234567890abcdegfjskfj</td>
-            </tr>
-            <tr>
-              <th scope="row">7</th>
-              <td>99999 Điểm</td>
-              <td>1234567890abcdegfjskfj</td>
-            </tr>
-            <tr>
-              <th scope="row">8</th>
-              <td>99999 Điểm</td>
-              <td>1234567890abcdegfjskfj</td>
-            </tr>
-            <tr>
-              <th scope="row">9</th>
-              <td>99999 Điểm</td>
-              <td>1234567890abcdegfjskfj</td>
-            </tr>
-            <tr>
-              <th scope="row">10</th>
-              <td>99999 Điểm</td>
-              <td>1234567890abcdegfjskfj</td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
         <nav class="pagination" aria-label="Page navigation example">
@@ -329,331 +288,21 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="modal-mo-1-ruong" tabindex="-1" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content justify-content-center">
-        <h2 class="modal-title" data-text="Chúc mừng bạn đã trúng">Chúc mừng bạn đã trúng</h2>
-        <div class="nl-group">
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-diem-20.png" alt="">
-          </div>
-        </div>
-        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="modal-mo-10-ruong" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content justify-content-center">
-        <h2 class="modal-title" data-text="Chúc mừng bạn đã trúng">Chúc mừng bạn đã trúng</h2>
-        <div class="nl-group">
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-diem-10.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-diem-2.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-diem-50.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-lua.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-diem-3.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-tp-thuong.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-tp-xin.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-bua.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-diem-20.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-diem-5.png" alt="">
-          </div>
-        </div>
-        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="modal-mo-1-ruong-vip" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content justify-content-center">
-        <h2 class="modal-title" data-text="Chúc mừng bạn đã trúng">Chúc mừng bạn đã trúng</h2>
-        <div class="nl-group">
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-diem-30.png" alt="">
-          </div>
-        </div>
-        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="modal-mo-10-ruong-vip" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content justify-content-center">
-        <h2 class="modal-title" data-text="Chúc mừng bạn đã trúng">Chúc mừng bạn đã trúng</h2>
-        <div class="nl-group">
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-diem-15.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-diem-30.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-diem-50.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-nuoc.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-lua.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-tp-vip.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-tp-svip.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-giay.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-diem-100.png" alt="">
-          </div>
-          <div class="nl">
-            <img class="img-block nl-img" src="images/modals/items/item-bua-2.png" alt="">
-          </div>
-        </div>
-        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    </div>
-  </div>
+
+  
+  
   <div class="modal modal-light fade" id="modal-nhan-qua" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content justify-content-center">
         <h2 class="modal-title" data-text="Quà Của Bạn">Quà Của Bạn</h2>
         <label class="form-label visually-hidden" for="modal-form-code">Code</label>
-        <input class="form-control form-control-code" id="modal-form-code" type="text" value="1234567890abcdegfjskfj">
+        <input class="form-control form-control-code" id="modal-form-code" type="text" class="sdk_content_giftcode" value="1234567890abcdegfjskfj">
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     </div>
   </div>
-  <div class="modal modal-light fade" id="modal-shop-da-ren" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content justify-content-center">
-        <h2 class="modal-title" data-text="Shop Đá Rèn">Shop Đá Rèn</h2>
-        <form class="modal-form">
-          <div class="modal-form-grid">
-            <label class="col-form-label" for="modal-sdr-form-sl">Số lượng</label>
-            <input class="form-control" id="modal-sdr-form-sl" type="text" placeholder="Nhập số lượng">
-            <label class="col-form-label" for="modal-sdr-form-tg">Tổng giá</label>
-            <input class="form-control" id="modal-sdr-form-tg" type="text">
-          </div>
-          <p class="text-center">(Đơn giá 20 Vàng/1 đạo cụ)</p>
-          <button class="btn-img btn-xac-nhan-mua mx-auto" type="button">
-            <span class="visually-hidden">Xác nhận mua</span>
-            <img src="images/modals/btn-xac-nhan-mua.png" alt="Xác nhận mua">
-          </button>
-        </form>
-        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    </div>
-  </div>
-  <div class="modal modal-light fade" id="modal-shop-ve-ren" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content justify-content-center">
-        <h2 class="modal-title" data-text="Shop Vé Rèn">Shop Vé Rèn</h2>
-        <form class="modal-form">
-          <div class="modal-form-grid">
-            <label class="col-form-label" for="modal-svr-form-sl">Số lượng</label>
-            <input class="form-control" id="modal-svr-form-sl" type="text" placeholder="Nhập số lượng">
-            <label class="col-form-label" for="modal-svr-form-tg">Tổng giá</label>
-            <input class="form-control" id="modal-svr-form-tg" type="text">
-          </div>
-          <p class="text-center">(Đơn giá 20 Vàng/1 đạo cụ)</p>
-          <button class="btn-img btn-xac-nhan-mua mx-auto" type="button">
-            <span class="visually-hidden">Xác nhận mua</span>
-            <img src="images/modals/btn-xac-nhan-mua.png" alt="Xác nhận mua">
-          </button>
-        </form>
-        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    </div>
-  </div>
-  <div class="modal modal-light fade" id="modal-ren-thanh-cong" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="perfect-scrollbar ps" data-plugin="perfect-scrollbar">
-          <h2 class="modal-title" data-text="Rèn Thành Công">Rèn Thành Công</h2>
-          <div class="modal-text-ptcb">
-            <span class="visually-hidden">Phần thưởng của bạn</span>
-            <img src="images/modals/text-phan-thuong-cua-ban.png" alt="">
-          </div>
-          <table class="table-2 table table-bordered mb-0">
-            <thead>
-              <tr>
-                <th scope="col">
-                  <span>Tên phần thưởng</span>
-                </th>
-                <th scope="col">
-                  <span>Loại phần thưởng</span>
-                </th>
-                <th scope="col">
-                  <span>Phần thưởng</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Rèn code</td>
-                <td>Code Ruby</td>
-                <td>abcdefghijkmnlo</td>
-              </tr>
-            </tbody>
-          </table>
-        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
-        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    </div>
-  </div>
-  <div class="modal modal-light fade" id="modal-ren-that-bai" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="perfect-scrollbar ps" data-plugin="perfect-scrollbar">
-          <h2 class="modal-title" data-text="Rèn Thất Bại">Rèn Thất Bại</h2>
-          <img class="img-block modal-meme" src="images/modals/meme.png" alt="">
-        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
-        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    </div>
-  </div>
-  <div class="modal-ls-ren modal modal-light-lg fade" id="modal-lich-su-ren" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <h2 class="modal-title" data-text="Lịch Sử Rèn">Lịch Sử Rèn</h2>
-        <div class="table-responsive table-responsive-flush">
-          <div class="table-responsive-inner">
-            <table class="table-1 table table-borderless table-pe-0">
-              <thead>
-                <tr>
-                  <th scope="col">
-                    <span>STT</span>
-                  </th>
-                  <th scope="col">
-                    <span>Loại Rèn</span>
-                  </th>
-                  <th scope="col">
-                    <span>Thông Tin</span>
-                  </th>
-                  <th scope="col">
-                    <span>Phần Thưởng</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Rèn Code</td>
-                  <td>Thất bại</td>
-                  <td>...</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Rèn Thẻ Scoin</td>
-                  <td>Thành công</td>
-                  <td>Mã thẻ: 1234567890 Seri: 123456789</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Rèn Code</td>
-                  <td>Thành công</td>
-                  <td>abcdefjfmnaigidbf</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Rèn Code</td>
-                  <td>Thất bại</td>
-                  <td>...</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Rèn Thẻ Scoin</td>
-                  <td>Thành công</td>
-                  <td>Mã thẻ: 1234567890 Seri: 123456789</td>
-                </tr>
-                <tr>
-                  <th scope="row">6</th>
-                  <td>Rèn Code</td>
-                  <td>Thất bại</td>
-                  <td>...</td>
-                </tr>
-                <tr>
-                  <th scope="row">7</th>
-                  <td>Rèn Thẻ Scoin</td>
-                  <td>Thành công</td>
-                  <td>Mã thẻ: 1234567890 Seri: 123456789</td>
-                </tr>
-                <tr>
-                  <th scope="row">8</th>
-                  <td>Rèn Code</td>
-                  <td>Thành công</td>
-                  <td>abcdefjfmnaigidbf</td>
-                </tr>
-                <tr>
-                  <th scope="row">9</th>
-                  <td>Rèn Code</td>
-                  <td>Thất bại</td>
-                  <td>...</td>
-                </tr>
-                <tr>
-                  <th scope="row">10</th>
-                  <td>Rèn Thẻ Scoin</td>
-                  <td>Thành công</td>
-                  <td>Mã thẻ: 1234567890 Seri: 123456789</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <nav class="pagination" aria-label="Page navigation example">
-          <span class="page-link">Trang</span>
-          <a class="page-link" href="#">1</a>
-          <a class="page-link" href="#">2</a>
-          <a class="page-link" href="#">3</a>
-          <span class="page-link">...</span>
-        </nav>
-        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    </div>
-  </div>
-  <div class="modal modal-light fade" id="modal-huong-dan-ren" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="perfect-scrollbar ps" data-plugin="perfect-scrollbar">
-          <h2 class="modal-title" data-text="Hướng Dẫn Rèn">Hướng Dẫn Rèn</h2>
-          <p>
-            <span class="text-secondary">*Bước 1: Chọn loại vật phẩm muốn rèn</span>
-            <br>
-            <span class="text-secondary">*Bước 2: Nhấn vào dấu + để chọn nguyên liệu rèn của vật phẩm đó</span>
-            <br>
-            <span class="text-secondary">*Bước 3: Nhấn “Rèn” để bắt đầu quá trình rèn vật phẩm</span>
-            <br>
-            <span class="text-secondary">CHÚ Ý:</span>
-            <br>-Rèn có tỉ lệ thất bại (không phải cứ rèn là thành công 100%)
-            <br>- Vật phẩm càng giá trị tỉ lệ thành công càng thấp
-          </p>
-        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
-        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    </div>
-  </div>
+
+  
   <div class="modal-qua-top modal fade" id="modal-qua-top-1" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content justify-content-center">
@@ -718,92 +367,25 @@
               <td>Ngự Thần Sư *****</td>
               <td>1000</td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Ngự Thần Sư *****</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Ngự Thần Sư *****</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Ngự Thần Sư *****</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Ngự Thần Sư *****</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>Ngự Thần Sư *****</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <th scope="row">7</th>
-              <td>Ngự Thần Sư *****</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <th scope="row">8</th>
-              <td>Ngự Thần Sư *****</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <th scope="row">9</th>
-              <td>Ngự Thần Sư *****</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <th scope="row">10</th>
-              <td>Ngự Thần Sư *****</td>
-              <td>1000</td>
-            </tr>
           </tbody>
         </table>
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     </div>
   </div>
-  <div class="modal-nhan-vang modal modal-light fade" id="modal-nhan-vang" tabindex="-1" aria-hidden="true" style="display: none;">
+
+  <div class="modal-qua-top modal fade" id="popup-error" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <h2 class="modal-title" data-text="Cách Nhận Vàng">Cách Nhận Vàng</h2>
-        <p>HƯỚNG DẪN NHẬN VÀNG
-          <br>-Một Tài khoản mỗi ngày sẽ nhận được 1 lần mở rương thường
-          <br>-Share sự kiện nhận 1 lần mở rương VIP ( Tối đa 1 lần )
-          <br>VTC Mobile chuẩn bị ra mắt game mới , hãy like/group để nhận thêm lượt và theo dõi thêm thông tin
-          <br>
-          <span class="text-primary">-THAM GIA GROUP NGỰ THẦN SƯ</span>
-          <span class="text-secondary">NHẬN 50 VÀNG</span>
-          <br>(TỐI ĐA 1 LẦN DUY NHẤT )
-          <br>
-          <span class="text-primary">-LIKE PAGE NGỰ THẦN SƯ</span>
-          <span class="text-secondary">NHẬN 50 VÀNG</span>
-          <br>(TỐI ĐA 1 LẦN DUY NHẤT )
-        </p>
-        <div class="modal-btns">
-          <a class="btn-bg btn-like-page" href="#" role="button" target="_blank">
-            <span class="visually-hidden">Like Page</span>
-          </a>
-          <a class="btn-bg btn-vao-group" href="#" role="button" target="_blank">
-            <span class="visually-hidden">Vào Group</span>
-          </a>
-          <a class="btn-bg btn-nap-game" href="#" role="button" target="_blank">
-            <span class="visually-hidden">Nạp Game</span>
-          </a>
-          <a class="btn-bg btn-mua-the" href="#" role="button" target="_blank">
-            <span class="visually-hidden">Mua Thẻ</span>
-          </a>
+      <div class="modal-content justify-content-center">
+        <h2 class="modal-title">Thông Báo</h2>
+        <div class="modal-text-top">
+          <p class="sdk_text_notify"></p>
         </div>
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     </div>
   </div>
+ 
   <div class="loader" id="loader" style="opacity: 0; visibility: hidden; display: none;">
     <div class="loader-spinner">
       <div class="sk-circle-fade">
@@ -830,5 +412,33 @@
   <script src="js/vendor/perfect-scrollbar.min.js"></script>
   <script src="js/vendor/headroom.min.js"></script>
   <script src="js/main.js"></script>
+
+  <script src="http://static.gf.splay.vn/gf-sdk/v2.0/vendor/axios.min.js?v=1"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/jquery.min.js?v=1"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/vendor/moment-with-locales.min.js?v=1"></script>
+	<!-- <script src="http://static.gf.splay.vn/gf-sdk/v2.0/app.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/auth.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/common.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/event.js"></script> -->
+
+	<script src="./sdk/v2/app.js"></script>
+  <script src="./sdk/v2/auth.js"></script>
+  <script src="./sdk/v2/common.js"></script>
+  <script src="./sdk/v2/event.js"></script>
+    <!-- <script src="./script.js"></script> -->
+	<script src="./js/ui.js"></script>
+	<script type="text/javascript">
+        const vtcmAppConfig = {
+            gameId:100083,
+            apiBaseUrl: 'http://api.gf.splay.vn',
+            client_id: "GF_EVENTS_WEB",
+            client_secret: "aP6k2Ql68arPH8l",
+            url_return:`http://127.0.0.1:5500/index.html`,
+            path:'/index.html',
+            // url_return:`https://tramtien.splay.vn/ruongthanbi`,
+            // path:'/ruongthanbi'
+       };
+       game_client.initApp(vtcmAppConfig);
+   </script>
 
 </body></html>
