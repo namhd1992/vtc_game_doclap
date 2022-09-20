@@ -94,6 +94,14 @@ const game_client = {
 		var obj_meta_desc=data.filter(v =>v.code===contants.EVT_META_DESC);
 		var obj_meta_img=data.filter(v =>v.code===contants.EVT_IMAGE_URL);
 		var obj_welfare=data.filter(v =>v.code===contants.EVT_WELFARE);
+
+		var obj_goi1=data.filter(v =>v.code===contants.EVT_IMG_GOI_1);
+		var obj_goi2=data.filter(v =>v.code===contants.EVT_IMG_GOI_2);
+		var obj_goi3=data.filter(v =>v.code===contants.EVT_IMG_GOI_3);
+		var obj_goi4=data.filter(v =>v.code===contants.EVT_IMG_GOI_4);
+		var obj_goi5=data.filter(v =>v.code===contants.EVT_IMG_GOI_5);
+		var obj_goi6=data.filter(v =>v.code===contants.EVT_IMG_GOI_6);
+
 	  
 		var obj_rollup_points=data.filter(v =>v.code===contants.EVT_ROLLUP_POINTS);
 		var obj_recharge_url=data.filter(v =>v.code===contants.EVT_RECHARGE_URL);
@@ -106,6 +114,14 @@ const game_client = {
 		document.title=obj_title[0] ? obj_title[0].value : '';
 		game_client.link_group_fb=obj_group_fb[0] ? obj_group_fb[0].value : '';
 		game_client.link_page_fb=obj_fanpage_fb[0] ? obj_fanpage_fb[0].value : '';
+
+		var list_src_img=[{id:"sdk_goi_1", value:obj_goi1[0] ? obj_goi1[0].value : ''},
+        {id:'sdk_goi_2', value:obj_goi2[0] ? obj_goi2[0].value : ''},
+        {id:'sdk_goi_3', value:obj_goi3[0] ? obj_goi3[0].value : ''},
+		{id:'sdk_goi_4', value:obj_goi4[0] ? obj_goi4[0].value : ''},
+        {id:'sdk_goi_5', value:obj_goi5[0] ? obj_goi5[0].value : ''},
+		{id:'sdk_goi_6', value:obj_goi6[0] ? obj_goi6[0].value : ''}];
+
 		var list_item_link=[{id:"sdk_fanpage_fb", value:obj_fanpage_fb[0] ? obj_fanpage_fb[0].value : ''},
         {id:'sdk_group_fb', value:obj_group_fb[0] ? obj_group_fb[0].value : ''},
         {id:'sdk_website_url', value:obj_website_url[0] ? obj_website_url[0].value : ''},
@@ -133,6 +149,7 @@ const game_client = {
         {id:'description', value:obj_meta_desc[0] ? obj_meta_desc[0].value : ''}, 
         {id:'og-image', value:obj_meta_img[0] ? obj_meta_img[0].value : ''}];
 
+		common_sdk.setSrcToImg(list_src_img);
 		common_sdk.setLinkToItem(list_item_link);
 		common_sdk.setContentToItem(list_item_content);
 		common_sdk.setContentMeta(list_item_meta);
@@ -173,6 +190,7 @@ const game_client = {
 	handlingGetUserData(res){
 		if(res.data.code >= 0){
 			game_client._numberScoin=res.data.data.balance;
+			game_client.updatePoint()
 		}
 	},
 
@@ -247,12 +265,12 @@ const game_client = {
 					$(tb).append(`<tr>
 						<th class="text-primary" scope="row">${i+1 + (page*10)}</th>
 						<td class="text-start">${items[i].description}</td>
-						<td class="text-primary text-nowrap">${game_client.timeConvert(items[i].createdTime)}</td>
+						<td class="text-primary text-nowrap">${items[i].rewardCode}</td>
 					  </tr>`);
 				}
 				game_client.page=page;
 				game_client.modeId_history=modeId;
-				$('#popup-lichsu').modal('show');
+				$('#modal-lsmr').modal('show');
 			}else{
 				$('#popup-error').modal('show'); 
 				var e = document.getElementsByClassName('sdk_text_notify');
@@ -289,7 +307,8 @@ const game_client = {
 
 	topupsScoinToPoint(){
 		var data={};
-        data.totalAmount=game_client._numberScoinToPoint;
+        data.totalAmount=+this.removeZero(game_client._numberScoinToPoint);
+
 		if(vtcmAuth.isLogin()){
             vtcmEvent.topupsScoinToPoint(data, this.handlingTopupsScoinToPoint, this.notificationErr)
         } else{
@@ -299,6 +318,9 @@ const game_client = {
 
 	handlingTopupsScoinToPoint(res){
 		if(res.data.code >= 0){
+			game_client._numberScoin=game_client._numberScoin- (+game_client._numberScoinToPoint);
+			game_client.pointAvailable=game_client.pointAvailable + (+game_client._numberScoinToPoint);
+			game_client.updatePoint();
 			const point = document.getElementById('modal-sk-form-sl');
 			const scoin = document.getElementById('modal-sk-form-tg');
 			scoin.value='';
@@ -308,6 +330,12 @@ const game_client = {
 		}
 	},
 
+	removeZero(v) {
+		if ( v.charAt(0) == 0 ) {
+			return v.slice(1);
+		}
+		return v;
+	},
 
 	purchases(itemId){
 		var data={};
@@ -369,16 +397,33 @@ const game_client = {
 	},
 
 	exchangeRewardsWithMilestones(modeId, roomId, value){
+		var objectParamsReturn={
+			roomId:roomId,
+			modeId:modeId,
+			value:1,
+		}
         if(vtcmAuth.isLogin()){
-            vtcmEvent.exchangeRewardsWithMilestones(modeId, roomId, value, this.handlingExchangeRewardsWithMilestones, this.notificationErr)
+            vtcmEvent.exchangeRewardsWithMilestones(modeId, roomId, value, objectParamsReturn, this.handlingExchangeRewardsWithMilestones, this.notificationErr)
         } else{
             game_client.showLogin();
         }
     },
 
-	handlingExchangeRewardsWithMilestones(response){
+	handlingExchangeRewardsWithMilestones(response, objectParamsReturn){
 		if(response.data.code >= 0){
-			$('#modal-nhan-code').modal('show'); 
+			switch (objectParamsReturn.value) {
+				case 1:
+					$('#modal-qua-top-1').modal('show'); 
+					break;
+				case 2:
+					$('#modal-qua-top-2').modal('show'); 
+					break;
+				case 3:
+					$('#modal-qua-top-3').modal('show'); 
+					break;
+				default:
+					break;
+			}
 			document.getElementById('modal-form-code').value=response.data.data.rewards[0].rewardCode;
 		}else{
 			game_client.notification(response.data.message,'')
@@ -394,16 +439,17 @@ const game_client = {
 	},
 
 
-	getBXH(modeId){
-        vtcmEvent.getBXH(modeId, this.handlingGetBXH, this.notificationErr);
+	getBXHPayment(){
+        vtcmEvent.getBXHPayment(this.handlingGetBXHPayment, this.notificationErr);
     },
 
-	handlingGetBXH(response){
+	handlingGetBXHPayment(response){
 		if(response.data.code>=0){
 			var tb = document.getElementById('tb_modal_bxh');
 			tb.innerHTML='';
 			var list=response.data.data;
 			if(list.length>0){
+				$('#modal-bxh').modal('show');
 				for (let i = 0; i < list.length; i++) {
 					$(tb).append(`<tr>
 					<th class="text-primary" scope="row">${list[i].order}</th>
@@ -412,6 +458,7 @@ const game_client = {
 				</tr>`);
 				}
 			}else{
+
 				game_client.notification(`Danh sách trống.`, '')
 			}
 		}else{

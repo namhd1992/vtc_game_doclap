@@ -189,7 +189,7 @@ const vtcmEvent = {
         })
     },
 
-    exchangeRewardsWithMilestones(modeId,roomId, value, handlingExchangeRewardsWithMilestones, notificationErr){
+    exchangeRewardsWithMilestones(modeId,roomId, value, objectParamsReturn, handlingExchangeRewardsWithMilestones, notificationErr){
         var url=vtcmApp.config_.apiBaseUrl+ '/luckyrandom/api/v1/rewards/receive-event-milestones';
         var header = {
             headers: {
@@ -209,7 +209,7 @@ const vtcmEvent = {
 
         axios.post(url,data,header)
         .then(function (response) {
-            handlingExchangeRewardsWithMilestones(response)
+            handlingExchangeRewardsWithMilestones(response, objectParamsReturn)
             common_sdk.ui.hideLoading();
         })
         .catch(function (err) {
@@ -217,7 +217,7 @@ const vtcmEvent = {
                 if(err.response.status===401){
                     vtcmAuth.logout();
                 }else{
-                    notificationErr(err)
+                    notificationErr(objectParamsReturn, err)
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {
@@ -272,7 +272,7 @@ const vtcmEvent = {
                 })
     },
 
-    getBXHLiXi(handlingGetBXHLiXi, notificationErr){
+    getBXHPayment(handlingGetBXHPayment, notificationErr){
         var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/games/payment-leaderboard'
         var header = {
             headers: {
@@ -286,7 +286,7 @@ const vtcmEvent = {
         
         axios.post(url,data,header)
         .then(function (response) {
-            handlingGetBXHLiXi(response)
+            handlingGetBXHPayment(response)
             common_sdk.ui.hideLoading();
         })
         .catch(function (err) {

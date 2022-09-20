@@ -45,7 +45,7 @@
             <button class="btn-bg btn-mua-khoa" type="button" style="cursor: pointer;" onclick="game_client.showModalChangeScoin()">
               <span class="visually-hidden">Mua khoá</span>
             </button>
-            <button class="btn-bg btn-lich-su" type="button" data-bs-target="#modal-lsmr" data-bs-toggle="modal">
+            <button class="btn-bg btn-lich-su" type="button" style="cursor: pointer;" onclick="game_client.getHistory(0,0,0)">
               <span class="visually-hidden">Lịch sử</span>
             </button>
           </div>
@@ -85,37 +85,37 @@
             
             <div class="dq-group" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
               <div class="dq">
-                <img class="img-block dq-img" src="images/home/s2/doi-qua/items.png" alt="">
+                <img class="img-block dq-img sdk_goi_1" src="images/home/s2/doi-qua/items.png" alt="">
                 <button class="btn-bg btn-doi-qua-1 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10381)">
                   <span class="visually-hidden">Đổi quà (tốn 200 điểm)</span>
                 </button>
               </div>
               <div class="dq">
-                <img class="img-block dq-img" src="images/home/s2/doi-qua/items.png" alt="">
+                <img class="img-block dq-img sdk_goi_2" src="images/home/s2/doi-qua/items.png" alt="">
                 <button class="btn-bg btn-doi-qua-2 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10382)">
                   <span class="visually-hidden">Đổi quà (tốn 1000 điểm)</span>
                 </button>
               </div>
               <div class="dq">
-                <img class="img-block dq-img" src="images/home/s2/doi-qua/items.png" alt="">
+                <img class="img-block dq-img sdk_goi_3" src="images/home/s2/doi-qua/items.png" alt="">
                 <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10383)">
                   <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
                 </button>
               </div>
               <div class="dq">
-                <img class="img-block dq-img" src="images/home/s2/doi-qua/items.png" alt="">
+                <img class="img-block dq-img sdk_goi_4" src="images/home/s2/doi-qua/items.png" alt="">
                 <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10384)">
                   <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
                 </button>
               </div>
               <div class="dq">
-                <img class="img-block dq-img" src="images/home/s2/doi-qua/items.png" alt="">
+                <img class="img-block dq-img sdk_goi_5" src="images/home/s2/doi-qua/items.png" alt="">
                 <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10385)">
                   <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
                 </button>
               </div>
               <div class="dq">
-                <img class="img-block dq-img" src="images/home/s2/doi-qua/items.png" alt="">
+                <img class="img-block dq-img sdk_goi_6" src="images/home/s2/doi-qua/items.png" alt="">
                 <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10386)">
                   <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
                 </button>
@@ -132,7 +132,7 @@
             <span class="visually-hidden">Bảng xếp hạng</span>
             <img class="img-block" src="images/home/s3/title.png" alt="Bảng xếp hạng">
           </h2>
-          <button class="btn-img btn-bxh" type="button" href="#modal-bxh" data-bs-toggle="modal" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+          <button class="btn-img btn-bxh" type="button" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px); cursor: pointer;" onclick="game_client.getBXHPayment()">
             <span class="visually-hidden">Xem bảng xếp hạng</span>
             <img src="images/home/s3/btn-bxh.png" alt="Xem bảng xếp hạng">
           </button>
@@ -140,21 +140,21 @@
             <div class="boxtop boxtop-2" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
               <h3 class="boxtop-title visually-hidden">Top 2</h3>
               <img class="boxtop-img" src="images/home/s3/top-2-items.png" alt="">
-              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" data-bs-target="#modal-qua-top-2" data-bs-toggle="modal" onclick="game_client.exchangeRewardsWithMilestones(10296, 10319, 2)">
+              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" style="cursor: pointer;" onclick="game_client.exchangeRewardsWithMilestones(10296, 10319, 2)">
                 <span class="visually-hidden">Nhận Thưởng</span>
               </button>
             </div>
             <div class="boxtop boxtop-1" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
               <h3 class="boxtop-title visually-hidden">Top 1</h3>
               <img class="boxtop-img" src="images/home/s3/top-1-items.png" alt="">
-              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" data-bs-target="#modal-qua-top-1" data-bs-toggle="modal" onclick="game_client.exchangeRewardsWithMilestones(10296, 10318, 1)">
+              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" style="cursor: pointer;" onclick="game_client.exchangeRewardsWithMilestones(10296, 10318, 1)">
                 <span class="visually-hidden">Nhận Thưởng</span>
               </button>
             </div>
             <div class="boxtop boxtop-3" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
               <h3 class="boxtop-title visually-hidden">Top 3</h3>
               <img class="boxtop-img" src="images/home/s3/top-3-items.png" alt="">
-              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" data-bs-target="#modal-qua-top-3" data-bs-toggle="modal" onclick="game_client.exchangeRewardsWithMilestones(10296, 10320, 3)">
+              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" style="cursor: pointer;" onclick="game_client.exchangeRewardsWithMilestones(10296, 10320, 3)">
                 <span class="visually-hidden">Nhận Thưởng</span>
               </button>
             </div>
@@ -361,7 +361,7 @@
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tb_modal_bxh">
             <tr>
               <th scope="row">1</th>
               <td>Ngự Thần Sư *****</td>

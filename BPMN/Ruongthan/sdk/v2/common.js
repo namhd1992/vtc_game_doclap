@@ -13,6 +13,18 @@ const common_sdk = {
         }
        
     },
+
+    setSrcToImg(data){
+        for (let i = 0; i < data.length; i++) {
+            var e = document.getElementsByClassName(data[i].id);
+            for (let j = 0; j < e.length; j++) {
+                var f=e.item(j);
+                f.setAttribute("src", data[i].value);
+            }
+        }
+       
+    },
+
     setContentToItem(data){
         for (let i = 0; i < data.length; i++) {
             var e = document.getElementsByClassName(data[i].id);
