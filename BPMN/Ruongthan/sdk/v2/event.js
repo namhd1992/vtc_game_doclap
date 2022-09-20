@@ -795,7 +795,7 @@ const vtcmEvent = {
         })
     },
 
-    purchases(listParams, handlingPurchases, notification){
+    purchases(listParams, objectParamsReturn, handlingPurchases, notification){
         var url=vtcmApp.config_.apiBaseUrl+'/payment/api/v1/wallet/purchases'
         var header = {
             headers: {
@@ -808,7 +808,7 @@ const vtcmEvent = {
         var data= {...info, ...listParams};
         axios.post(url,data,header)
         .then(function (response) {
-            handlingPurchases(response)
+            handlingPurchases(response, objectParamsReturn)
             common_sdk.ui.hideLoading();
         })
         .catch(function (err) {

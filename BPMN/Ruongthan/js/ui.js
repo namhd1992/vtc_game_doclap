@@ -35,6 +35,15 @@ const game_client = {
 	goi_change:[],
 	_numberScoin:0,
 	_numberScoinToPoint:0,
+	goi_1:0,
+	goi_2:20000,
+	goi_3:50000,
+	goi_4:100000,
+	goi_5:200000,
+	goi_6:500000,
+	goi_thuong:999999,
+	goi_vip:1999999,
+
 	
 	
 	
@@ -337,20 +346,56 @@ const game_client = {
 		return v;
 	},
 
-	purchases(itemId){
+	purchases(itemId, level){
+		var objectParamsReturn={
+			level:level
+		}
 		var data={};
         data.total=1;
 		data.itemId=itemId;
 		if(vtcmAuth.isLogin()){
-            vtcmEvent.purchases(data, this.handlingPurchases, this.notificationErr)
+            vtcmEvent.purchases(data, objectParamsReturn, this.handlingPurchases, this.notificationErr)
         } else{
             game_client.showLogin();
         }
 	},
 
-	handlingPurchases(res){
+	handlingPurchases(res, objectParamsReturn){
 		if(res.data.code >= 0){
+			$("#modal-nhan-qua").modal("show")
+			switch (objectParamsReturn.level) {
+				case 1:
+					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_1;
+					break;
+				case 2:
+					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_2;
+					break;
+				case 3:
+					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_3;
+					break;
+				case 4:
+					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_4;
+					break;
+				case 5:
+					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_5;
+					break;
+				case 6:
+					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_6;
+					break;
+				case 7:
+					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_7;
+					break;
+				case 8:
+					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_8;
+					break;
 			
+				default:
+					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_1;
+					break;
+			}
+			game_client.updatePoint()
+		}else{
+			game_client.notification(res.data.message,'')
 		}
 	},
 
@@ -500,7 +545,7 @@ const game_client = {
 	},
 
 	showLogin(){
-		$('#popup-log').fadeIn(); 
+		$('#popup-log').modal('show'); 
 	},
 
 	timeConvert(time){

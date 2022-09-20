@@ -54,7 +54,7 @@
             <div class="treasure-item">
               <img class="treasure-item-img" src="images/home/s1/ruong-thuong.png" alt="" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
               <div class="treasure-item-btns">
-                <button class="btn-bg btn-mo-free" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);" onclick="game_client.purchases(10379)">
+                <button class="btn-bg btn-mo-free" type="button" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);" onclick="game_client.purchases(10379,7)">
                   <span class="visually-hidden">Mở Free (1 ngày 1 lần)</span>
                 </button>
                 
@@ -66,7 +66,7 @@
               <div class="treasure-item-btns">
                 
                 
-                <button class="btn-bg btn-mo-10-ruong-vip" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);" onclick="game_client.purchases(10380)">
+                <button class="btn-bg btn-mo-10-ruong-vip" type="button" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);" onclick="game_client.purchases(10380,8)">
                   <span class="visually-hidden">Mở 10 rương (tốn 10 chìa khóa)</span>
                 </button>
               </div>
@@ -86,37 +86,37 @@
             <div class="dq-group" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
               <div class="dq">
                 <img class="img-block dq-img sdk_goi_1" src="images/home/s2/doi-qua/items.png" alt="">
-                <button class="btn-bg btn-doi-qua-1 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10381)">
+                <button class="btn-bg btn-doi-qua-1 dq-btn" type="button"  onclick="game_client.purchases(10381,1)">
                   <span class="visually-hidden">Đổi quà (tốn 200 điểm)</span>
                 </button>
               </div>
               <div class="dq">
                 <img class="img-block dq-img sdk_goi_2" src="images/home/s2/doi-qua/items.png" alt="">
-                <button class="btn-bg btn-doi-qua-2 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10382)">
+                <button class="btn-bg btn-doi-qua-2 dq-btn" type="button" onclick="game_client.purchases(10382,2)">
                   <span class="visually-hidden">Đổi quà (tốn 1000 điểm)</span>
                 </button>
               </div>
               <div class="dq">
                 <img class="img-block dq-img sdk_goi_3" src="images/home/s2/doi-qua/items.png" alt="">
-                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10383)">
+                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" onclick="game_client.purchases(10383,3)">
                   <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
                 </button>
               </div>
               <div class="dq">
                 <img class="img-block dq-img sdk_goi_4" src="images/home/s2/doi-qua/items.png" alt="">
-                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10384)">
+                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" onclick="game_client.purchases(10384,4)">
                   <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
                 </button>
               </div>
               <div class="dq">
                 <img class="img-block dq-img sdk_goi_5" src="images/home/s2/doi-qua/items.png" alt="">
-                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10385)">
+                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button"  onclick="game_client.purchases(10385,5)">
                   <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
                 </button>
               </div>
               <div class="dq">
                 <img class="img-block dq-img sdk_goi_6" src="images/home/s2/doi-qua/items.png" alt="">
-                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-nhan-qua" onclick="game_client.purchases(10386)">
+                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" onclick="game_client.purchases(10386,6)">
                   <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
                 </button>
               </div>
@@ -381,6 +381,19 @@
         <div class="modal-text-top">
           <p class="sdk_text_notify"></p>
         </div>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-qua-top modal fade" id="popup-log" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content justify-content-center">
+        <h2 class="modal-title">Thông Báo</h2>
+        <div class="modal-text-top">
+          <p>Bạn vui lòng đăng nhập để tham gia sự kiện nhé!</p>
+        </div>
+        <p class="modal-text-top" style="cursor: pointer;" onclick="vtcmAuth.login()">Đăng Nhập</p>
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     </div>
