@@ -393,6 +393,7 @@ const game_client = {
 					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_1;
 					break;
 			}
+			this.showPopupGiftcode(res.data.data.rewards[0].rewardCode);
 			game_client.updatePoint()
 		}else{
 			game_client.notification(res.data.message,'')
@@ -401,13 +402,9 @@ const game_client = {
 
 
 
-	showPopupGiftcode(type){
-		var item=game_client.historyItems.filter(v => v.id===type);
-		var e = document.getElementsByClassName('sdk_content_giftcode');
-		var f=e.item(0);
-		f.innerHTML= item[0].description;
-		$('#popup-giftcode').fadeIn();
-		// console.log(item)
+	showPopupGiftcode(giftcode){
+		const ip_code = document.getElementById('sdk_content_giftcode');
+		ip_code.value=giftcode;
 	},
 
 	showPopupDoiThuong(type){
