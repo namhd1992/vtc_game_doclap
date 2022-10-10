@@ -383,17 +383,18 @@ const game_client = {
 					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_6;
 					break;
 				case 7:
-					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_7;
+					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_thuong;
 					break;
 				case 8:
-					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_8;
+					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_vip;
 					break;
 			
 				default:
 					game_client.pointAvailable=game_client.pointAvailable-game_client.goi_1;
 					break;
 			}
-			this.showPopupGiftcode(res.data.data.rewards[0].rewardCode);
+			console.log(game_client.pointAvailable)
+			game_client.showPopupGiftcode(res.data.data.rewards[0].rewardCode);
 			game_client.updatePoint()
 		}else{
 			game_client.notification(res.data.message,'')
@@ -482,10 +483,10 @@ const game_client = {
 
 
 	getBXHPayment(){
-        vtcmEvent.getBXHPayment(this.handlingGetBXHPayment, this.notificationErr);
+        vtcmEvent.getBXHRecharge(this.handlingGetBXHRecharge, this.notificationErr);
     },
 
-	handlingGetBXHPayment(response){
+	handlingGetBXHRecharge(response){
 		if(response.data.code>=0){
 			var tb = document.getElementById('tb_modal_bxh');
 			tb.innerHTML='';
@@ -496,7 +497,7 @@ const game_client = {
 					$(tb).append(`<tr>
 					<th class="text-primary" scope="row">${list[i].order}</th>
 					<th>${list[i].userName}</th>
-					<td>${list[i].total}</td>
+					<td>${list[i].totalAmount}</td>
 				</tr>`);
 				}
 			}else{

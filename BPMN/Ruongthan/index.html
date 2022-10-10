@@ -10,6 +10,14 @@
   <link rel="stylesheet" href="http://static.gf.splay.vn/gf-sdk/v2.0/css/index.css">
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/style.min.css">
+
+  <meta property="og:site_name" content="Rương Thần Bí"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://tramtien.splay.vn/ruongthanbi"/>
+  <meta property="og:title" content="Rương Thần Bí"/>
+  <meta property="og:description" content="Trảm Tiên Quyết  VTC - Tuyệt Tác Tu Ma - 10 Năm Có 1"/>
+  <meta property="og:image:type" content="image/jpeg"/>
+  <meta property="og:image" content="https://tramtien.splay.vn/ruongthanbi/sharefb.jpg"/>
 </head>
 <body class="" style="padding-right: 0px;">
   <div class="page sdk_page">
@@ -49,7 +57,7 @@
               <span class="visually-hidden">Lịch sử</span>
             </button>
           </div>
-          <p class="section-text" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">Số điểm hiện có: <span class="sdk_numberpoint"></span></p>
+          <p class="section-text" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">Số điểm hiện có: <span class="sdk_numberpoint">0</span></p>
           <div class="treasure">
             <div class="treasure-item">
               <img class="treasure-item-img" src="images/home/s1/ruong-thuong.png" alt="" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
@@ -277,13 +285,18 @@
             </tr> -->
           </tbody>
         </table>
-        <nav class="pagination" aria-label="Page navigation example">
-          <span class="page-link">Trang</span>
-          <a class="page-link" href="#">1</a>
-          <a class="page-link" href="#">2</a>
-          <a class="page-link" href="#">3</a>
-          <span class="page-link">...</span>
-        </nav>
+        <div aria-label="Page navigation example" style="margin-left:40%">
+          <a class="page-link" style="cursor: pointer; border: 1px solid; padding: 5px; border-radius: 3px; margin-right: 3px; width: 50px;" onclick="game_client.previous()">Previous</a>
+          <a class="page-link" style="cursor: pointer; border: 1px solid; padding: 5px; border-radius: 3px; width: 50px;" onclick="game_client.next()">Next</a>
+          <!-- <ul class="pagination pagination-simple mb-0">
+            <li class="page-item" style="cursor: pointer;">
+           
+            </li>
+            <li class="page-item" style="cursor: pointer;">
+            
+            </li>
+          </ul> -->
+        </div>
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     </div>
