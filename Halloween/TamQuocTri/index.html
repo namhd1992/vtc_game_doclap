@@ -47,10 +47,10 @@
 						<a href="http://tamquocchi.splay.vn/" target="_blank" class="menu home">
 							<img src="./images/ic-home.png" class="img-responsive" alt="Home">
 						</a>
-						<a href="https://www.facebook.com/tamquocchi.vtc.vn" target="_blank" class="menu fanpage">
+						<a target="_blank" class="menu fanpage sdk_fanpage_fb">
 							<img src="./images/ic-fb.png" class="img-responsive" alt="Fanpage">
 						</a>
-						<a href="https://www.facebook.com/groups/hoiquantamquocchivtc" target="_blank" class="menu group">
+						<a target="_blank" class="menu group sdk_group_fb">
 							<img src="./images/ic-group.png" class="img-responsive" alt="Group">
 						</a>
 						<a class="login dn show-log" id="login" onclick="vtcmAuth.login()">
@@ -106,7 +106,7 @@
 							<canvas width="400" height="1000" class="img-responsive" ></canvas>
 							<img src="./images/bt-nhanngay.png" class="preloader" alt="">
 						</div></a>
-						<div class="frame2-text f-roboto-bold">HIỆN CÓ: XX</div>
+						<div class="frame2-text f-roboto-bold">HIỆN CÓ: <span class="sdk_tieubao">0</span></div>
 					</div>		
 				</div>
 			</div>
@@ -163,13 +163,13 @@
 					<div class="f4-content">
 						<div class="f4-box">
 							<div class="f4-box1">
-								<div class="slq f-roboto-bold">Số Lượt Quay: xx</div>
+								<div class="slq f-roboto-bold">Số Lượt Quay: <span class="number_play_vq">0</span></div>
 							</div>
 							<div class="f4-box1">
-								<div class="slq f-roboto-bold">Điểm hiện có: xxxx</div>
+								<div class="slq f-roboto-bold">Điểm hiện có: <span class="sdk_numberpoint">0</span></div>
 							</div>
 							<div class="f4-box1">
-								<a href="javascript:void(0)" class="slq f-roboto-bold show-lichsu">Lịch Sử</a>
+								<a href="javascript:void(0)" class="slq f-roboto-bold show-lichsu" onclick="game_client.getHistory(0,10292,0)">Lịch Sử</a>
 							</div>
 						</div>
 						  <div id="wheel-container">
@@ -177,8 +177,8 @@
 									<canvas width="1030" height="1030" class="img-responsive" id="wheel"></canvas>
 									<img src="./images/arrow.png" class="img-responsive absolute-item pointer" alt="">
 									<div class="bt-but absolute-item">
-										<img src="./images/bt-quay1.png" class="img-responsive  bt-spin" alt="">
-										<img src="./images/bt-quay10.png" class="img-responsive  bt-spin" alt="">
+										<img src="./images/bt-quay1.png" class="img-responsive  bt-spin" alt="" onclick="game_client.playGame(10002,1,'popup-error')">
+										<img src="./images/bt-quay10.png" class="img-responsive  bt-spin" alt="" onclick="game_client.playGame(10002,10,'popup-error')">
 									</div>
 										
 								</div>
@@ -298,38 +298,7 @@
                 </div>
                 <div class="content-new-detail1 scrollbar-inner">
 					<div class="text f-roboto-medium">
-						<p class="center-align"><span >Xin chào các Đạo Sĩ!</span></p>
-<p>Để hiểu rõ hơn về Thỉnh Bùa Đọ Nhân Phẩm, Đạo Sĩ xem thêm thông tin dưới để có cơ hội nhận các phần quà đặt biệt.</p>
-
-<p><span >CÁCH THỨC THAM GIA:</span></p>
- 
-<p>▪️  Bước 1: Đăng nhập tài khoản (ScoinID, Facebook, Google)<br>
-
-▪️  Bước 2: Để có lượt thỉnh bùa cần hoàn thành các nhiệm vụ ở [Nhận lượt]. 
-
-▪️  Bước 3: Tiến hành Thỉnh Bùa bằng cách click vào lá bùa để nhận phần thưởng hấp dẫn với phần quà đặt biệt là iPhone 13 Pro<br>
-
-▪️  Bước 4: Sau khi may mắn và nhận được thưởng, vào phần [Lịch sử] để kiểm tra</p>
-
-						<p><span >➢ Lưu ý:</span></p>
-<p>- Đối với phần thưởng là hiện vật (Áo thun, Set POSM), khi quay trúng vui lòng mở [Lịch sử] và nhấn [Đổi thưởng] để điền thông tin nhận quà.<br>
-- Đối với phần thưởng là các item trong game, quà sẽ được quy đổi thành giftcode và được lưu lại trong [Lịch sử]</p>
-						
-						<p>Để hiểu rõ hơn về Thỉnh Bùa Đọ Nhân Phẩm, Đạo Sĩ xem thêm thông tin dưới để có cơ hội nhận các phần quà đặt biệt.</p>
-
-<p><span >CÁCH THỨC THAM GIA:</span></p>
- 
-<p>▪️  Bước 1: Đăng nhập tài khoản (ScoinID, Facebook, Google)<br>
-
-▪️  Bước 2: Để có lượt thỉnh bùa cần hoàn thành các nhiệm vụ ở [Nhận lượt]. 
-
-▪️  Bước 3: Tiến hành Thỉnh Bùa bằng cách click vào lá bùa để nhận phần thưởng hấp dẫn với phần quà đặt biệt là iPhone 13 Pro<br>
-
-▪️  Bước 4: Sau khi may mắn và nhận được thưởng, vào phần [Lịch sử] để kiểm tra</p>
-
-						<p><span >➢ Lưu ý:</span></p>
-<p>- Đối với phần thưởng là hiện vật (Áo thun, Set POSM), khi quay trúng vui lòng mở [Lịch sử] và nhấn [Đổi thưởng] để điền thông tin nhận quà.<br>
-- Đối với phần thưởng là các item trong game, quà sẽ được quy đổi thành giftcode và được lưu lại trong [Lịch sử]</p>	
+						<p class="sdk_content_evt_guide"></p>
 					</div>
                 </div>
                 <a class="close-content"></a>
@@ -478,38 +447,7 @@
                 </div>
                 <div class="content-new-detail1 scrollbar-inner">
 					<div class="text f-roboto-medium">
-						<p class="center-align"><span >Xin chào các Đạo Sĩ!</span></p>
-<p>Để hiểu rõ hơn về Thỉnh Bùa Đọ Nhân Phẩm, Đạo Sĩ xem thêm thông tin dưới để có cơ hội nhận các phần quà đặt biệt.</p>
-
-<p><span >CÁCH THỨC THAM GIA:</span></p>
- 
-<p>▪️  Bước 1: Đăng nhập tài khoản (ScoinID, Facebook, Google)<br>
-
-▪️  Bước 2: Để có lượt thỉnh bùa cần hoàn thành các nhiệm vụ ở [Nhận lượt]. 
-
-▪️  Bước 3: Tiến hành Thỉnh Bùa bằng cách click vào lá bùa để nhận phần thưởng hấp dẫn với phần quà đặt biệt là iPhone 13 Pro<br>
-
-▪️  Bước 4: Sau khi may mắn và nhận được thưởng, vào phần [Lịch sử] để kiểm tra</p>
-
-						<p><span >➢ Lưu ý:</span></p>
-<p>- Đối với phần thưởng là hiện vật (Áo thun, Set POSM), khi quay trúng vui lòng mở [Lịch sử] và nhấn [Đổi thưởng] để điền thông tin nhận quà.<br>
-- Đối với phần thưởng là các item trong game, quà sẽ được quy đổi thành giftcode và được lưu lại trong [Lịch sử]</p>
-						
-						<p>Để hiểu rõ hơn về Thỉnh Bùa Đọ Nhân Phẩm, Đạo Sĩ xem thêm thông tin dưới để có cơ hội nhận các phần quà đặt biệt.</p>
-
-<p><span >CÁCH THỨC THAM GIA:</span></p>
- 
-<p>▪️  Bước 1: Đăng nhập tài khoản (ScoinID, Facebook, Google)<br>
-
-▪️  Bước 2: Để có lượt thỉnh bùa cần hoàn thành các nhiệm vụ ở [Nhận lượt]. 
-
-▪️  Bước 3: Tiến hành Thỉnh Bùa bằng cách click vào lá bùa để nhận phần thưởng hấp dẫn với phần quà đặt biệt là iPhone 13 Pro<br>
-
-▪️  Bước 4: Sau khi may mắn và nhận được thưởng, vào phần [Lịch sử] để kiểm tra</p>
-
-						<p><span >➢ Lưu ý:</span></p>
-<p>- Đối với phần thưởng là hiện vật (Áo thun, Set POSM), khi quay trúng vui lòng mở [Lịch sử] và nhấn [Đổi thưởng] để điền thông tin nhận quà.<br>
-- Đối với phần thưởng là các item trong game, quà sẽ được quy đổi thành giftcode và được lưu lại trong [Lịch sử]</p>	
+						<p class="sdk_content_evt_guide_vq"></p>
 					</div>
                 </div>
                 <a class="close-content"></a>
@@ -544,60 +482,7 @@
 											<td>30/04/2021 04:50</td>
 											<td>123456789</td>
 										</tr>
-										<tr>
-											<th>1</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td>123456789</td>
-										</tr>
-										<tr>
-											<th>1</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td>123456789</td>
-										</tr>
-										<tr>
-											<th>1</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td>123456789</td>
-										</tr>
-										<tr>
-											<th>1</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td>123456789</td>
-										</tr>
-										<tr>
-											<th>1</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td>123456789</td>
-										</tr>
-										<tr>
-											<th>1</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td>123456789</td>
-										</tr>
-										<tr>
-											<th>1</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td>123456789</td>
-										</tr>
-										<tr>
-											<th>1</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td>123456789</td>
-										</tr>
-										<tr>
-											<th>1</th>
-											<td>Mark***</td>
-											<td>30/04/2021 04:50</td>
-											<td>123456789</td>
-										</tr>
+										
 									</tbody>
 								</table>
 							</div>
