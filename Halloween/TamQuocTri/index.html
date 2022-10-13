@@ -32,7 +32,7 @@
 
 <body>
 	
-	<div id="wrapper" class="wrapper floatingDesktopTopLeft">
+	<div id="wrapper" class="wrapper floatingDesktopTopLeft sdk_page">
 		
 		<section id="frame1" class="section section--frame1 frame1">
 			<div class="section__background"> 
@@ -53,7 +53,7 @@
 						<a target="_blank" class="menu group sdk_group_fb">
 							<img src="./images/ic-group.png" class="img-responsive" alt="Group">
 						</a>
-						<a class="login dn show-log" id="login" onclick="vtcmAuth.login()">
+						<a class="login dn" id="login" onclick="vtcmAuth.login()">
 							<img src="./images/ic-log.png" class="img-responsive" alt="Đăng nhập">
 						</a>
 						<a class="log login dn f-roboto-light" style="background: rgba(0, 0, 0,.5) !important; background-size: contain; height: 50px; line-height: 50px; color: #fff; font-size:15px; padding-left: 10px; cursor: pointer;" id="logout" onclick="vtcmAuth.logout()">
@@ -106,7 +106,7 @@
 							<canvas width="400" height="1000" class="img-responsive" ></canvas>
 							<img src="./images/bt-nhanngay.png" class="preloader" alt="">
 						</div></a>
-						<div class="frame2-text f-roboto-bold">HIỆN CÓ: <span class="sdk_tieubao">0</span></div>
+						<div class="frame2-text f-roboto-bold">HIỆN CÓ: <span class="sdk_tieuquy">0</span></div>
 					</div>		
 				</div>
 			</div>
@@ -124,27 +124,27 @@
 						<div class="f3-day1">
 							<div class="f3-text f-roboto-bold">Ngày 1</div>
 							<img src="images/f3-img-hover.png" alt=""> 
-							<a href="javascript:void(0)" class="bt-diemdanh show-diemdanh1"></a>
+							<a class="bt-diemdanh" onclick="game_client.rollup(10000, 10005)"></a>
 						</div>
 						<div class="f3-day1">
 							<div class="f3-text f-roboto-bold">Ngày 2</div>
 							<img src="images/f3-img.png" alt=""> 
-							<a href="javascript:void(0)" class="bt-diemdanh-gray show-diemdanh2"></a>
+							<a class="bt-diemdanh-gray" onclick="game_client.rollup(10000, 10006)"></a>
 						</div>
 						<div class="f3-day1">
 							<div class="f3-text f-roboto-bold">Ngày 3</div>
 							<img src="images/f3-img.png" alt=""> 
-							<a href="javascript:void(0)" class="bt-diemdanh-gray show-diemdanh3"></a>
+							<a class="bt-diemdanh-gray" onclick="game_client.rollup(10000, 10007)"></a>
 						</div>
 						<div class="f3-day1">
 							<div class="f3-text f-roboto-bold">Ngày 4</div>
 							<img src="images/f3-img.png" alt=""> 
-							<a href="javascript:void(0)" class="bt-diemdanh-gray show-diemdanh4"></a>
+							<a class="bt-diemdanh-gray" onclick="game_client.rollup(10000, 10008)"></a>
 						</div>
 						<div class="f3-day1">
 							<div class="f3-text f-roboto-bold">Ngày 5</div>
 							<img src="images/f3-img.png" alt=""> 
-							<a href="javascript:void(0)" class="bt-diemdanh-gray show-diemdanh5"></a>
+							<a class="bt-diemdanh-gray" onclick="game_client.rollup(10000, 10009)"></a>
 						</div>
 					</div>
 				</div>
@@ -169,7 +169,7 @@
 								<div class="slq f-roboto-bold">Điểm hiện có: <span class="sdk_numberpoint">0</span></div>
 							</div>
 							<div class="f4-box1">
-								<a href="javascript:void(0)" class="slq f-roboto-bold show-lichsu" onclick="game_client.getHistory(0,10292,0)">Lịch Sử</a>
+								<a href="javascript:void(0)" class="slq f-roboto-bold show-lichsu" onclick="game_client.getHistory(0,10002,0)">Lịch Sử</a>
 							</div>
 						</div>
 						  <div id="wheel-container">
@@ -200,19 +200,19 @@
 					<div class="f5-content">
 						<div class="f5-box">
 							<img src="images/f5-img1.png" class="img-responsive" alt="">
-							<a class="bt-500 show-diemkhongdu" href="javascript:void(0)"></a>
+							<a class="bt-500" onclick="game_client.exchangeRewards(10003,10010)"></a>
 						</div>
 						<div class="f5-box">
 							<img src="images/f5-img2.png" class="img-responsive" alt=""> 
-							<a class="bt-5000 show-code" href="javascript:void(0)"></a>
+							<a class="bt-5000" onclick="game_client.exchangeRewards(10003,10011)"></a>
 						</div>
 						<div class="f5-box">
 							<img src="images/f5-img3.png" class="img-responsive" alt="">
-							<a class="bt-15000 show-diemkhongdu" href="javascript:void(0)"></a>
+							<a class="bt-15000" onclick="game_client.exchangeRewards(10003,10012)"></a>
 						</div>
 						<div class="f5-box">
 							<img src="images/f5-img4.png" class="img-responsive" alt=""> 
-							<a class="bt-30000 show-code" href="javascript:void(0)"></a>
+							<a class="bt-30000" onclick="game_client.exchangeRewards(10003,10013)"></a>
 						</div>
 					</div>
 				</div>
@@ -277,10 +277,10 @@
 							<p>Quà code của bạn:</p>
 						</div>
 						<div class="dt-text">
-							<p>LONGCHIENTRUYENKYVTC</p>
+							<p class="box-code"></p>
 						</div>
 						<div class="dt-box">
-							<a href="javascript:void(0)" class="bt-dnn f-UTMPacific">Copy Code</a><a href="javascript:void(0)" class="bt-dnn f-UTMPacific">Nhận Code Ngay</a>
+							<a href="javascript:void(0)" class="bt-dnn f-UTMPacific" onclick="game_client.copyGiftcode()">Copy Code</a><a href="javascript:void(0)" class="bt-dnn f-UTMPacific" onclick="game_client.reciveGiftcode()">Nhận Code Ngay</a>
 						</div>
 					</div>
                 </div>
@@ -475,16 +475,20 @@
 											<th>NHẬN THƯỞNG</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
+									<tbody id="tb_history">
+										<!-- <tr>
 											<th>1</th>
 											<td>Mark***</td>
 											<td>30/04/2021 04:50</td>
 											<td>123456789</td>
-										</tr>
+										</tr> -->
 										
 									</tbody>
 								</table>
+								<div aria-label="Page navigation example" style="margin-left:40%">
+									<a style="cursor: pointer; border: 1px solid; padding: 5px; border-radius: 3px; margin-right: 3px; width: 50px;" onclick="game_client.previous()">Previous</a>
+									<a style="cursor: pointer; border: 1px solid; padding: 5px; border-radius: 3px; width: 50px;" onclick="game_client.next()">Next</a>
+								  </div>
 							</div>
 						</div>
 						
@@ -505,9 +509,9 @@
                 <div class="content-new-detail1 f-roboto-bold">
 					<div class="text1">
 						<div class="dt-box">
-							<p>Chúc mừng bạn nhận được XX điểm</p>
+							<p>Chúc mừng bạn nhận được <span class="vq_point"></span> điểm và <span class="vq_tieuquy"></span> tiểu quỷ</p>
 						</div>
-						<div class="dt-box">
+						<div class="dt-box gift10">
 							<img src="images/item1.png" class="img-responsive" alt=""> 
 							<img src="images/item1.png" class="img-responsive" alt="">
 							<img src="images/item1.png" class="img-responsive" alt="">
@@ -561,6 +565,25 @@
 						</div>
 						<div class="dt-box">
 							<a href="" class="bt-dnn f-UTMPacific">Nhận Điểm</a>
+						</div>
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+
+	<!-- Popup error -->
+    <div class="popup popup-detail" id="popup-error" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup2">
+				<div class="title-detail text-center f-SVNBira">
+                    Thông Báo
+                </div>
+                <div class="content-new-detail1 f-roboto-bold">
+					<div class="text1">
+						<div class="dt-box" style="margin-top: 50px;">
+							<p class="sdk_text_notify"></p>
 						</div>
 					</div>
                 </div>
