@@ -511,4 +511,15 @@ const game_client = {
         var s = `${hour}H${min}  -  ${date} - ${month}`;
 		return s;
     },
+
+	checkTime(time){
+        var a = new Date(time);
+        var m=a.getMonth()+1;
+        var month =m > 9 ? m : `0${m}`;
+        var date = a.getDate();
+        var hour = a.getHours() > 9 ? a.getHours() : `0${a.getHours()}`;
+		var min = a.getMinutes() > 9 ? a.getMinutes() : `0${a.getMinutes()}`;
+        var s = `${hour}H${min}  -  ${date} - ${month}`;
+		return s;
+    },
 };
