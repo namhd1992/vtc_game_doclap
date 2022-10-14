@@ -92,6 +92,19 @@ const game_client = {
 		game_client.setDataUser(response)
 		game_client.uiLine(response);
 	},
+
+	uiLine(response){
+		console.log(response.data.data.siteInfo)
+		var day=game_client.checkTime(response.data.data.siteInfo.startSiteMsTimeStamp) + 1;
+		if(day!==-1 && day < 6){
+			$(`div.css_day${day} > a`).removeClass("bt-diemdanh-gray")
+			$(`div.css_day${day} > a`).addClass("bt-diemdanh")
+
+			$(`div.css_day${day} > img`).attr("src","images/f3-img-hover.png");
+			console.log(day)
+		}
+		
+	},
 	
 	setDataToUI(response){
 		vtcmApp.data_setting=response.data.data;
@@ -429,6 +442,34 @@ const game_client = {
 		}
 	},
 
+	exchangeRewardsWithMilestones(modeId, roomId, value){
+		var objectParamsReturn={
+			roomId:roomId,
+			modeId:modeId,
+			value:value,
+		}
+
+        if(vtcmAuth.isLogin()){
+            vtcmEvent.exchangeRewardsWithMilestones(modeId,roomId, value ,objectParamsReturn, this.handlingExchangeRewardsWithMilestones, this.notificationErr);
+        } else{
+			game_client.showLogin();
+        }
+    },
+
+	handlingExchangeRewardsWithMilestones(response, objectParamsReturn){
+		if(response.data.code >= 0){
+			var e = document.getElementsByClassName('box-code');
+			var f=e.item(0);
+			f.innerHTML=response.data.data.rewards[0].rewardCode;
+			game_client.contentGiftcode=response.data.data.rewards[0].rewardCode;
+			$('#popup-code').fadeIn();
+		}else{
+			game_client.notification(response.data.message,'')
+		}
+	},
+
+	
+
 	copyGiftcode(){
 		game_client.copyToClipboard(game_client.contentGiftcode);
 	},
@@ -445,7 +486,7 @@ const game_client = {
 	},
 
 	reciveGiftcode(){
-
+		window.open(`https://scoin.vn/nhap-code?GameId=330409`, "_blank");
 	},
 
 	hidePopupNhanqua(){
@@ -497,9 +538,9 @@ const game_client = {
 		f.innerHTML= message;
 	},
 
-	showLogin(){
-		$('#popup-login').fadeIn(); 
-	},
+	// showLogin(){
+	// 	$('#popup-login').fadeIn(); 
+	// },
 
 	timeConvert(time){
         var a = new Date(time);
@@ -513,13 +554,31 @@ const game_client = {
     },
 
 	checkTime(time){
-        var a = new Date(time);
-        var m=a.getMonth()+1;
-        var month =m > 9 ? m : `0${m}`;
-        var date = a.getDate();
-        var hour = a.getHours() > 9 ? a.getHours() : `0${a.getHours()}`;
-		var min = a.getMinutes() > 9 ? a.getMinutes() : `0${a.getMinutes()}`;
-        var s = `${hour}H${min}  -  ${date} - ${month}`;
-		return s;
+		if(Date.now() > time){
+			var a = new Date(time);
+			var b = new Date();
+			var m=a.getMonth()+1;
+			var y=a.getFullYear();
+			var day_a = a.getDate();
+			var day_b = b.getDate();
+			if(day_b > day_a){
+				return day_b-day_a;
+			}else{
+				var day_b=day_b+game_client.daysInMonth(m,y);
+				return day_b-day_a;
+			}
+		}else{
+			return -1;
+		}
+
+        // var a = new Date(time);
+        // var m=a.getMonth()+1;
+        // var month =m > 9 ? m : `0${m}`;
+        // var date = a.getDate();
+		// return s;
     },
+
+	daysInMonth (month, year) {
+		return new Date(year, month, 0).getDate();
+	}
 };

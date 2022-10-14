@@ -53,7 +53,7 @@
 						<a target="_blank" class="menu group sdk_group_fb">
 							<img src="./images/ic-group.png" class="img-responsive" alt="Group">
 						</a>
-						<a class="login dn" id="login" onclick="vtcmAuth.login()">
+						<a class="login dn" id="login" style="cursor: pointer;" onclick="vtcmAuth.login()">
 							<img src="./images/ic-log.png" class="img-responsive" alt="Đăng nhập">
 						</a>
 						<a class="log dn f-roboto-light" style="background: rgba(0, 0, 0,.5) !important; background-size: contain; height: 50px; line-height: 50px; color: #fff; font-size:15px; padding-left: 10px; cursor: pointer;" id="logout" onclick="vtcmAuth.logout()">
@@ -97,7 +97,7 @@
 						<div class="item item-num-6"><img src="./images/6.png" alt="" srcset=""></div>
 						<div class="item item-num-7"><img src="./images/7.png" alt="" srcset=""></div>
 						<div class="item item-num-8"><img src="./images/8.png" alt="" srcset=""></div>
-						<div class="button-random">
+						<div class="button-random" onclick="game_client.exchangeRewards(10001,10002)">
 							<canvas width="500" height="1000" class="img-responsive" ></canvas>
 							<img src="./images/bt-tambao.png" class="preloader" alt="">
 							<img src="./images/hover.png" class="preloader" alt="">
@@ -121,30 +121,30 @@
 			<div class="section__content">
 				<div class="content-container1">
 					<div class="f3-content">
-						<div class="f3-day1">
+						<div class="f3-day1 css_day1">
 							<div class="f3-text f-roboto-bold">Ngày 1</div>
-							<img src="images/f3-img-hover.png" alt=""> 
-							<a class="bt-diemdanh" onclick="game_client.rollup(10000, 10005)"></a>
+							<img src="images/f3-img.png" alt=""> 
+							<a class="bt-diemdanh-gray" style="cursor: pointer;" onclick="game_client.rollup(10000, 10005)"></a>
 						</div>
-						<div class="f3-day1">
+						<div class="f3-day1 css_day2">
 							<div class="f3-text f-roboto-bold">Ngày 2</div>
 							<img src="images/f3-img.png" alt=""> 
-							<a class="bt-diemdanh-gray" onclick="game_client.rollup(10000, 10006)"></a>
+							<a class="bt-diemdanh-gray" style="cursor: pointer;" onclick="game_client.rollup(10000, 10006)"></a>
 						</div>
-						<div class="f3-day1">
+						<div class="f3-day1 css_day3">
 							<div class="f3-text f-roboto-bold">Ngày 3</div>
 							<img src="images/f3-img.png" alt=""> 
-							<a class="bt-diemdanh-gray" onclick="game_client.rollup(10000, 10007)"></a>
+							<a class="bt-diemdanh-gray" style="cursor: pointer;" onclick="game_client.rollup(10000, 10007)"></a>
 						</div>
-						<div class="f3-day1">
+						<div class="f3-day1 css_day4">
 							<div class="f3-text f-roboto-bold">Ngày 4</div>
 							<img src="images/f3-img.png" alt=""> 
-							<a class="bt-diemdanh-gray" onclick="game_client.rollup(10000, 10008)"></a>
+							<a class="bt-diemdanh-gray" style="cursor: pointer;" onclick="game_client.rollup(10000, 10008)"></a>
 						</div>
-						<div class="f3-day1">
+						<div class="f3-day1 css_day5">
 							<div class="f3-text f-roboto-bold">Ngày 5</div>
 							<img src="images/f3-img.png" alt=""> 
-							<a class="bt-diemdanh-gray" onclick="game_client.rollup(10000, 10009)"></a>
+							<a class="bt-diemdanh-gray" style="cursor: pointer;" onclick="game_client.rollup(10000, 10009)"></a>
 						</div>
 					</div>
 				</div>
@@ -169,7 +169,7 @@
 								<div class="slq f-roboto-bold">Điểm hiện có: <span class="sdk_numberpoint">0</span></div>
 							</div>
 							<div class="f4-box1">
-								<a href="javascript:void(0)" class="slq f-roboto-bold show-lichsu" onclick="game_client.getHistory(0,10002,0)">Lịch Sử</a>
+								<a  class="slq f-roboto-bold show-lichsu" style="cursor: pointer;" onclick="game_client.getHistory(0,10002,0)">Lịch Sử</a>
 							</div>
 						</div>
 						  <div id="wheel-container">
@@ -200,19 +200,19 @@
 					<div class="f5-content">
 						<div class="f5-box">
 							<img src="images/f5-img1.png" class="img-responsive" alt="">
-							<a class="bt-500" onclick="game_client.exchangeRewards(10003,10010)"></a>
+							<a class="bt-500" style="cursor: pointer;" onclick="game_client.exchangeRewardsWithMilestones(10003,10010, 500)"></a>
 						</div>
 						<div class="f5-box">
 							<img src="images/f5-img2.png" class="img-responsive" alt=""> 
-							<a class="bt-5000" onclick="game_client.exchangeRewards(10003,10011)"></a>
+							<a class="bt-5000" style="cursor: pointer;" onclick="game_client.exchangeRewardsWithMilestones(10003,10011, 5000)"></a>
 						</div>
 						<div class="f5-box">
 							<img src="images/f5-img3.png" class="img-responsive" alt="">
-							<a class="bt-15000" onclick="game_client.exchangeRewards(10003,10012)"></a>
+							<a class="bt-15000" style="cursor: pointer;" onclick="game_client.exchangeRewardsWithMilestones(10003,10012, 15000)"></a>
 						</div>
 						<div class="f5-box">
 							<img src="images/f5-img4.png" class="img-responsive" alt=""> 
-							<a class="bt-30000" onclick="game_client.exchangeRewards(10003,10013)"></a>
+							<a class="bt-30000" style="cursor: pointer;" onclick="game_client.exchangeRewardsWithMilestones(10003,10013, 30000)"></a>
 						</div>
 					</div>
 				</div>
@@ -296,7 +296,7 @@
 				<div class="title-detail text-center f-SVNBira">
                     Thể Lệ
                 </div>
-                <div class="content-new-detail1 scrollbar-inner">
+                <div class="content-new-detail1 scrollbar-inner" style="overflow-y: auto;">
 					<div class="text f-roboto-medium">
 						<p class="sdk_content_evt_guide"></p>
 					</div>
@@ -319,7 +319,7 @@
 							<p>Bạn vui lòng đăng nhập để tham gia sự kiện nhận quà nhé!</p>
 						</div>
 						<div class="dt-box">
-							<a href="javascript:void(0)" class="bt-dnn f-UTMPacific">Đăng Nhập Ngay</a>
+							<a class="bt-dnn f-UTMPacific" style="cursor: pointer;"  onclick="vtcmAuth.login()">Đăng Nhập Ngay</a>
 						</div>
 					</div>
                 </div>
@@ -445,7 +445,7 @@
 				<div class="title-detail text-center f-SVNBira">
                     Chi Tiết Vòng Quay
                 </div>
-                <div class="content-new-detail1 scrollbar-inner">
+                <div class="content-new-detail1 scrollbar-inner" style="overflow-y: auto;">
 					<div class="text f-roboto-medium">
 						<p class="sdk_content_evt_guide_vq"></p>
 					</div>
@@ -512,7 +512,7 @@
 							<p>Chúc mừng bạn nhận được <span class="vq_point"></span> điểm và <span class="vq_tieuquy"></span> tiểu quỷ</p>
 						</div>
 						<div class="dt-box gift10">
-							<img src="images/item1.png" class="img-responsive" alt=""> 
+							<!-- <img src="images/item1.png" class="img-responsive" alt=""> 
 							<img src="images/item1.png" class="img-responsive" alt="">
 							<img src="images/item1.png" class="img-responsive" alt="">
 							<img src="images/item1.png" class="img-responsive" alt="">
@@ -521,7 +521,7 @@
 							<img src="images/item1.png" class="img-responsive" alt="">
 							<img src="images/item1.png" class="img-responsive" alt="">
 							<img src="images/item1.png" class="img-responsive" alt="">
-							<img src="images/item1.png" class="img-responsive" alt="">
+							<img src="images/item1.png" class="img-responsive" alt=""> -->
 						</div>
 					</div>
                 </div>
@@ -580,7 +580,7 @@
 				<div class="title-detail text-center f-SVNBira">
                     Thông Báo
                 </div>
-                <div class="content-new-detail1 f-roboto-bold">
+                <div class="content-new-detail1 f-roboto-bold ">
 					<div class="text1">
 						<div class="dt-box" style="margin-top: 50px;">
 							<p class="sdk_text_notify"></p>
@@ -704,7 +704,7 @@
             doRandom(winnumber , numOfRound, items, doActive , () =>  {
                 setTimeout(() => {
                     running = false;
-                    openFancyBox();   
+                    // openFancyBox();   
                 }, 100)
                 
 
@@ -731,10 +731,10 @@
             // arr_event_change_rewards:[{name:'DIEM', classname: 'sdk_event_change_point'},{name:'HOA_MAI', classname: 'sdk_event_change_hoamai'}],
             // url_return:`http://tramtien.splay.vn/mungdoclap`,
             // path:'/mungdoclap'
-            url_return:`http://127.0.0.1:5500/index.html`,
-            path:'/index.html',
-            // url_return:`https://daosixuatquan.splay.vn/dai-yen`,
-            // path:'/dai-yen'
+            // url_return:`http://127.0.0.1:5500/index.html`,
+            // path:'/index.html',
+            url_return:`https://tamquocchi.splay.vn/halloween`,
+            path:'/halloween'
        };
        game_client.initApp(vtcmAppConfig);
    </script>
