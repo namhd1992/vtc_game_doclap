@@ -16,6 +16,8 @@ const game_client = {
 	contentGiftcode:'',
 	oldClass:'',
 	pointAvailable:0,
+	number_points:0,
+	number_tieuquy:0,
 	theWheel:{},
 	totalPointBlack:0,
 	totalPointWhite:0,
@@ -41,22 +43,13 @@ const game_client = {
 		vtcmApp.initApp(rawConfig);
         if(vtcmAuth.isLogin()){
 			vtcmApp.getAppSetting(game_client.cbwithtoken);
-			game_client.rollup(10293, 10312)
-			game_client.getRewards();
-			game_client.getUserData();
-			// $('#popup-chose').fadeIn();
-			// $('#popup-dknt').fadeIn();
             document.getElementById("login").style.display = "none";
-			document.getElementById("login_m").style.display = "none";
             document.getElementById("logout").style.display = "inline-block";
-			document.getElementById("logout_m").style.display = "inline-block";
 
         }else{
 			vtcmApp.getAppSetting(game_client.setDataToUI);
             document.getElementById("logout").style.display = "none";
-			document.getElementById("logout_m").style.display = "none";
             document.getElementById("login").style.display = "inline-block";
-			document.getElementById("login_m").style.display = "inline-block";
         }
 		// $('.copyGc').copyOnClick({copyMode:"val",confirmClass:"copy-confirmation",});
 		
@@ -92,13 +85,25 @@ const game_client = {
 		
 		// loadedImg.src = "../images/wheel.png";
 		loadedImg.src = "./images/wheel.png";
-		console.log(loadedImg)
 	},
 
 	cbwithtoken(response){
 		game_client.setDataToUI(response)
 		game_client.setDataUser(response)
 		game_client.uiLine(response);
+	},
+
+	uiLine(response){
+		console.log(response.data.data.siteInfo)
+		var day=game_client.checkTime(response.data.data.siteInfo.startSiteMsTimeStamp) + 1;
+		if(day!==-1 && day < 6){
+			$(`div.css_day${day} > a`).removeClass("bt-diemdanh-gray")
+			$(`div.css_day${day} > a`).addClass("bt-diemdanh")
+
+			$(`div.css_day${day} > img`).attr("src","images/f3-img-hover.png");
+			console.log(day)
+		}
+		
 	},
 	
 	setDataToUI(response){
@@ -123,7 +128,7 @@ const game_client = {
 
 
 		var obj_evt_guide=data.filter(v =>v.code===contants.EVT_GUIDE);
-		var obj_evt_guide_sokeo=data.filter(v =>v.code===contants.EVT_GUIDE_SO_KEO);
+		var obj_evt_guide_vq=data.filter(v =>v.code===contants.EVT_GUIDE_VQ);
 		var obj_evt_rollup=data.filter(v =>v.code===contants.EVT_ROLLUP_CONTENT);
 		var obj_rewards=data.filter(v =>v.code===contants.EVT_REWARDS);
 		var obj_meta_title=data.filter(v =>v.code===contants.EVT_META_TITLE);
@@ -155,7 +160,7 @@ const game_client = {
 
 
 		var list_item_content=[{id:"sdk_content_evt_guide", value:obj_evt_guide[0] ? obj_evt_guide[0].value : ''},
-		{id:'sdk_content_thelesk', value:obj_evt_guide_sokeo[0] ? obj_evt_guide_sokeo[0].value : ''},
+		{id:'sdk_content_evt_guide_vq', value:obj_evt_guide_vq[0] ? obj_evt_guide_vq[0].value : ''},
         {id:'sdk_content_evt_rollup', value:obj_evt_rollup[0] ? obj_evt_rollup[0].value : ''},
         {id:'sdk_content_rewards', value:obj_rewards[0] ? obj_rewards[0].value : ''},
 		{id:'sdk_welfare', value:obj_welfare[0] ? obj_welfare[0].value : ''},
@@ -176,138 +181,35 @@ const game_client = {
 	setDataUser(response){
 		var user=response.data.data.user;
 		var rewardExchange=response.data.data.rewardExchange;
+		var number_points=0;
+		var number_tieuquy=0
+		if(rewardExchange.length>0){
+			for (let i = 0; i < rewardExchange.length; i++) {
+				switch (rewardExchange[i].eventCode) {
+					case "DIEM":
+						number_points=rewardExchange[i].totalAvailable;
+						break;
+					case "TIEUQUY":
+						number_tieuquy=rewardExchange[i].totalAvailable;
+						break;
+					default:
+						number_points=rewardExchange[i].totalAvailable;
+						break;
+				}
+			}
+		}
 		var number_play=response.data.data.playSummary[0] ? response.data.data.playSummary[0].playerCount : 0;
         var list=[];
 		var listRewards=[];
 		game_client.pointAvailable=user.pointAvailable;
-        list.push({id:'username', value:user.userName}, {id:'sdk_numberpoint', value:user.pointAvailable})
+		game_client.number_points=number_points;
+		game_client.number_tieuquy=number_tieuquy;
+        list.push({id:'username', value:user.userName}, {id:'number_play_vq', value:user.pointAvailable}, {id:'sdk_numberpoint', value:number_points}, {id:'sdk_tieuquy', value:number_tieuquy})
 
 		// var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}, {id:'number_play_vq', value:number_play}, {id:'number_bocbanh', value:number_bocbanh}, {id:'number_hoamai', value:number_hoamai}, {id:'number_hoadao', value:number_hoadao}, {id:'number_key', value:number_key}]
 		common_sdk.setInfoUser(list);
 	},
 
-	getRewards(){
-		var data={};
-        data.roomId=10313;
-		vtcmEvent.getRewards(data, this.handlingGetRewards, this.notification)
-	},
-
-	handlingGetRewards(res){
-		if(res.data.code >= 0){
-			var data=res.data.data;
-			for (let i = 0; i < data.length; i++) {
-				if(data[i].id===10377){
-					game_client.infoBlack=data[i];
-					game_client.totalPointBlack=data[i].quantity;
-					game_client.updatePointBlack();
-				}else{
-					game_client.infoWhite=data[i];
-					game_client.totalPointWhite=data[i].quantity;
-					game_client.updatePointWhite();
-				}
-			}
-			var result=res.data.data;
-		}
-	},
-
-	getCity(){
-		var data={};
-        data.parentId=0;
-		data.type=2;
-		var objectParamsReturn=data;
-		vtcmEvent.getUserLocation(data,objectParamsReturn, this.setDataCity, this.notification)
-	},
-
-	onchangeCity(){
-		var x = document.getElementById("tinh1").value;
-		var data={};
-        data.parentId=+x;
-		data.type=3;
-		var objectParamsReturn=data;
-		vtcmEvent.getUserLocation(data,objectParamsReturn, this.setDataDistrict, this.notification)
-	},
-
-	onchangeDistrict(){
-		var x = document.getElementById("quan1").value;
-		var data={};
-        data.parentId=+x;
-		data.type=4;
-		var objectParamsReturn=data;
-		vtcmEvent.getUserLocation(data,objectParamsReturn, this.setDataPhuong, this.notification)
-	},
-
-
-	setDataCity(res, objectParamsReturn){
-		if(res.data.code >= 0){
-			var result=res.data.data;
-			var data = "";
-			$('#quan1').empty();
-			$("#quan1").append(' <option value="" id="">Chọn quận huyện</option>');
-			$('#phuong').empty();
-			$("#phuong").append(' <option value="" id="">Chọn phường xã</option>');
-			for (var i = 0; i < result.length; i++) {
-				data += "<option value = '" + result[i].id + "'>" + result[i].name + " </option>";
-			}
-			$("#tinh1").append(data);
-		}else{
-			game_client.notification(response.data.message, '')
-		}
-		
-	},
-
-	setDataDistrict(res, objectParamsReturn){
-		if(res.data.code >= 0){
-			var result=res.data.data;
-			var data = "";
-			$('#quan1').empty();
-			$("#quan1").append(' <option value="" id="">Chọn quận huyện</option>');
-			$('#phuong').empty();
-			$("#phuong").append(' <option value="" id="">Chọn phường xã</option>');
-			for (var i = 0; i < result.length; i++) {
-				data += "<option value = '" + result[i].id + "'>" + result[i].name + " </option>";
-			}
-			$("#quan1").append(data);
-		}
-	},
-
-
-	setDataPhuong(res, objectParamsReturn){
-		if(res.data.code >= 0){
-			var result=res.data.data;
-			var data = "";
-			$('#phuong').empty();
-			$("#phuong").append(' <option value="" id="">Chọn phường xã</option>');
-			for (var i = 0; i < result.length; i++) {
-				data += "<option value = '" + result[i].id + "'>" + result[i].name + " </option>";
-			}
-			$("#phuong").append(data);
-		}else{
-			game_client.notification(response.data.message, '')
-		}
-	},
-
-
-	handlingGetUserLocation(res, objectParamsReturn){
-		if(res.data.code >= 0){
-			console.log(res.data.data);
-		}
-	},
-
-
-
-
-
-	checkChonPhe(){
-		if(game_client.userData.voteId!==0){
-			var a= document.querySelector('.bt-chonphe');
-			a.style.filter = 'grayscale(1)';
-			if(game_client.userData.voteId===10377){
-				game_client.grayBlack();
-			}else{
-				game_client.grayWhite();
-			}
-		}
-	},
 
 	
 	getConfig() {   
@@ -322,149 +224,7 @@ const game_client = {
 		return this.config_.userId;
 	},
 
-	getUserData(){
-		var data={};
-        data.userId=vtcmAuth.getUserId();
-		data.userName=vtcmAuth.getUserName();
-        data.gameId=vtcmApp.config_.gameId;
-		vtcmEvent.getUserData(data, this.handlingGetUserData, this.notification)
-	},
-
-
-	handlingGetUserData(res){
-		if(res.data.code >= 0){
-			game_client.userData=res.data.data;
-			game_client.checkChonPhe();
-			if(res.data.data.serverId!==0){
-				game_client.setInfoGame();
-			}else{
-				game_client.getListServer();
-				// game_client.getListCharacter();
-			}
-			
-		}else{
-			game_client.notification(response.data.message, '')
-		}
-	},
-
-
-
-	getListServer(){
-		var data={};
-		vtcmEvent.getListServerAndCharacter(data,this.handlingGetListServer, this.notification)
-	},
-
-	handlingGetListServer(res){
-		if(res.data.code >= 0){
-			var result=res.data.data;
-			if(result.length>0){
-				$('#popup-chose').fadeIn();
-				game_client.setDataCharacter(res)
-			}else{
-				game_client.notificationServer('Tài khoản chưa có nhân vật, vui lòng tạo nhân vật để tham gia sự kiện!', '')
-			}
-			// console.log(res.data.data);
-		}else{
-			game_client.notification(response.data.message, '')
-		}
-	},
-
-	setDataCharacter(res){
-		if(res.data.code >= 0){
-			var result=res.data.data;
-			game_client.list_server=result;
-			var data = "";
-				for (var i = 0; i < result.length; i++) {
-					data += "<option value = '" + result[i].serverId + " '>" + result[i].serverName+'-'+result[i].characterName + " </option>";
-				}
-				$("#nhanvat").append(data);
-			
-			
-		}
-	},
-
-
-	// getListCharacter(){
-	// 	vtcmEvent.getListCharacter(this.handlingGetListCharacter, this.notification)
-	// },
-
-	// handlingGetListCharacter(res){
-	// 	if(res.data.code >= 0){
-
-	// 		console.log(res.data.data);
-	// 	}
-	// },
-
-	setInfoGame(){
-		var data=game_client.userData;
-		var list=[];
-		list.push({id:'server_game', value:data.serverName},{id:'nhanvat_game', value:data.characterName})
-		common_sdk.setInfoUser(list);
-	},
-
-	sendInfoGame(){
-		var input_nhanvat=document.getElementById('nhanvat');
-		var id=input_nhanvat.value;
-		var item=game_client.list_server.filter(v=>+v.serverId==id)
-		
-		if(item.length>0){
-			var data={};
-			data.userId=vtcmAuth.getUserId();
-			data.userName=vtcmAuth.getUserName();
-			data.gameId=vtcmApp.config_.gameId;
-			data.serverId=item[0].serverId;
-			data.serverName=item[0].serverName;
-			data.characterId=item[0].characterId;
-			data.characterName=item[0].characterName;
-			game_client.updateDataServerCharacter(data);
-			$('#popup-chose').fadeOut();
-		}else{
-			alert('Hãy nhập đầy đủ thông tin!')
-		}
-	},
-
-
-	updateDataServerCharacter(data){
-		var objectParamsReturn=data;
-		vtcmEvent.updateDataServerCharacter(data, objectParamsReturn, this.handlingUpdateDataServerCharacter, this.notification)
-	},
-
-	handlingUpdateDataServerCharacter(res, objectParamsReturn){
-		if(res.data.code >= 0){
-			game_client.userData=res.data.data;
-			game_client.setInfoGame();
-		}else{
-			game_client.notification(response.data.message, '')
-		}
-	},
-
-	updateChonPhe(data){
-		var objectParamsReturn=data;
-		vtcmEvent.updateChonPhe(data, objectParamsReturn, this.handlingUpdateChonPhe, this.notification)
-	},
-
-	handlingUpdateChonPhe(res, objectParamsReturn){
-		if(res.data.code >= 0){
-			game_client.userData=res.data.data;
-			game_client.checkChonPhe();
-		}else{
-			game_client.notification(response.data.message, '')
-		}
-	},
-
-	updateFormDK(data){
-		var objectParamsReturn=data;
-		vtcmEvent.updateFormDK(data, objectParamsReturn, this.handlingUpdateFormDK, this.notification)
-	},
-
-	handlingUpdateFormDK(res, objectParamsReturn){
-		if(res.data.code >= 0){
-			game_client.userData=res.data.data;
-			game_client.notification('Thông tin đã được ghi nhận.', '')
-		}else{
-			game_client.notification(response.data.message, '')
-		}
-	},
+	
 
 	rollup(modeId, roomId){
 		var objectParamsReturn={
@@ -481,42 +241,65 @@ const game_client = {
 
 	handlingRollup(objectParamsReturn, response){
 		if(response.data.code >= 0){
-			game_client.pointAvailable=game_client.pointAvailable+3;
+			switch (objectParamsReturn.roomId) {
+				case 10005:
+					game_client.pointAvailable=game_client.pointAvailable + 1;
+					$('#popup-diemdanh1').fadeIn(); 
+					break;
+				case 10006:
+					game_client.number_points=game_client.number_points + 100;
+					$('#popup-diemdanh2').fadeIn(); 
+					break;
+				case 10007:
+					game_client.pointAvailable=game_client.pointAvailable + 2;
+					$('#popup-diemdanh3').fadeIn(); 
+					break;
+				case 10008:
+					game_client.number_points=game_client.number_points + 200;
+					$('#popup-diemdanh4').fadeIn(); 
+					break;
+				case 10009:
+					game_client.number_tieuquy=game_client.number_tieuquy + 1;
+					$('#popup-diemdanh5').fadeIn(); 
+					break;
+				default:
+					game_client.pointAvailable=game_client.pointAvailable + 1;
+					$('#popup-diemdanh1').fadeIn(); 
+					break;
+			}
 			game_client.updatePoint();
 		}
-		// else{
-		// 	game_client.notification(response.data.message, '')
-		// }
 	},
 
 	updatePoint(){
 		var list=[];
-		list.push({id:'sdk_numberpoint', value:game_client.pointAvailable})
+		list.push({id:'number_play_vq', value:game_client.pointAvailable}, {id:'sdk_numberpoint', value:game_client.number_points}, {id:'sdk_tieuquy', value:game_client.number_tieuquy})
+		common_sdk.setInfoUser(list);
+	},
+
+	updateResultVQ(point, tieuquy){
+		var list=[];
+		list.push({id:'vq_point', value:point}, {id:'vq_tieuquy', value:tieuquy})
 		common_sdk.setInfoUser(list);
 	},
 	
 
 
-	playGame(modeId, numPlayed, key){
-		if(game_client.userData.voteId!==0){
-			var objectParamsReturn={
-				type:numPlayed,
-				modeId:modeId,
-				key:key
+	playGame(modeId, numPlayed){
+		var objectParamsReturn={
+			type:numPlayed,
+			modeId:modeId,
+		}
+
+		if(!game_client.isPlay){
+			game_client.isPlay=true;
+			if(vtcmAuth.isLogin()){
+				game_client.theWheel.startAnimation();
+				vtcmEvent.playGame(modeId, numPlayed, objectParamsReturn, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
+			}else{
+				game_client.showLogin();
+				game_client.isPlay=false;
 			}
-	
-			if(!game_client.isPlay){
-				game_client.isPlay=true;
-				if(vtcmAuth.isLogin()){
-					game_client.theWheel.startAnimation();
-					vtcmEvent.playGame(modeId, numPlayed, objectParamsReturn, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
-				}else{
-					game_client.showLogin();
-					game_client.isPlay=false;
-				}
-			}
-		}else{
-			$('#popup-chonphe').fadeIn();
 		}
     },
 
@@ -530,33 +313,24 @@ const game_client = {
 		if(response.data.code>=0){
 			var data=response.data.data.rewards;
 			game_client.pointAvailable=game_client.pointAvailable-data.length;
-			var box1= document.querySelector('.content-new-detail > .gift');
-			var box10= document.querySelector('.content-new-detail > .gift10');
-			box1.innerHTML='';
-			box10.innerHTML='';
+			var box= document.querySelector('.gift10');
+			box.innerHTML='';
+			var tieuquy=0;
+			var point=0;
+
 			for (let i = 0; i < data.length; i++) {
 				var src=game_client.base_url_img+data[i].rewardImageUrl;
-				if(data[i].rewardType===62){
-					if(game_client.userData.voteId===10377){
-						game_client.totalPointBlack=game_client.totalPointBlack+data[i].rewardAmount;
-					}else{
-						game_client.totalPointWhite=game_client.totalPointWhite+data[i].rewardAmount;
-					}
-
-				}
-				if(objectParamsReturn.type===1){
-					$(box1).append(`<img src=${src} class="img-responsive" alt="" />`);
+				if(data[i].eventCode==='DIEM'){
+					point=point+data[i].rewardAmount;
+					game_client.number_points=game_client.number_points+data[i].rewardAmount;
 				}else{
-					$(box10).append(`<img src=${src} alt="" />`);
+					tieuquy=tieuquy+data[i].rewardAmount;
+					game_client.number_tieuquy=game_client.number_tieuquy+data[i].rewardAmount;
 				}
+				$(box).append(`<img src=${src} class="img-responsive" alt="" />`);
 			}
-			if(objectParamsReturn.type===1){
-				$('#popup-nhanqua').fadeIn(); 
-			}else{
-				$('#popup-nhanqua10').fadeIn(); 
-			}
-			game_client.updatePointBlack();
-			game_client.updatePointWhite();
+			$('#popup-quaytc').fadeIn(); 
+			game_client.updateResultVQ(point,tieuquy)
 			game_client.updatePoint()
 			// response.data.data.rewards[0]
 
@@ -600,30 +374,12 @@ const game_client = {
 				var tb = document.getElementById('tb_history');
 				tb.innerHTML='';
 				for (let i = 0; i < items.length; i++) {
-					// console.log(items[i])
-					if(items[i].rewardType===62){
-						$(tb).append(`<tr>
-						<th class="text-primary" scope="row">${i+1 + (page*10)}</th>
-						<td class="text-start">${items[i].description}</td>
-						<td class="text-primary text-nowrap">${game_client.timeConvert(items[i].createdTime)}</td>
-						<td class="text-blue">ĐÃ NHẬN</td>
-					  </tr>`);
-					}else if(items[i].rewardType===5){
-						$(tb).append(`<tr>
-						<th class="text-primary" scope="row">${i+1 + (page*10)}</th>
-						<td class="text-start">${items[i].description}</td>
-						<td class="text-primary text-nowrap">${game_client.timeConvert(items[i].createdTime)}</td>
-						<td class="text-blue" style="cursor: pointer;" onclick="game_client.showPopupGiftcode(${items[i].id})">XEM</td>
-					  </tr>`);
-					}else if(items[i].rewardType===52){
-						$(tb).append(`<tr>
-						<th class="text-primary" scope="row">${i+1 + (page*10)}</th>
-						<td class="text-start">${items[i].description}</td>
-						<td class="text-primary text-nowrap">${game_client.timeConvert(items[i].createdTime)}</td>
-						<td class="text-blue" style="cursor: pointer;" onclick="game_client.showPopupDoiThuong(${items[i].id})">ĐỔI NGAY</td>
-					  </tr>`);
-					}
-					
+					$(tb).append(`<tr>
+									<th>${i+1 + (page*10)}</th>
+									<td>${vtcmAuth.getUserName()}</td>
+									<td>${game_client.timeConvert(items[i].createdTime)}</td>
+									<td>${items[i].description}</td>
+								</tr>`);
 				}
 				game_client.page=page;
 				game_client.modeId_history=modeId;
@@ -659,49 +415,78 @@ const game_client = {
 		$('#popup-giftcode').fadeIn();
 	},
 
-	showPopupDoiThuong(type){
-		var item=game_client.historyItems.filter(v => v.id===type);
-		$('#popup-dknt').fadeIn();
-		game_client.getCity();
-	},
 
-	exchangeRewards(modeId, value, key, message, id_popup, id_popup_result, id_listalbum){
+	exchangeRewards(modeId, roomId){
 		var objectParamsReturn={
+			roomId:roomId,
 			modeId:modeId,
-			value:value,
-			key:key, 
-			message:message,
-			id_popup_result:id_popup_result
+			value:1,
 		}
-		var e = document.getElementsByClassName(key);
-		var f=e.item(0);
-		f.innerHTML='';
-		$(`#${id_popup}`).modal('hide'); 
+
         if(vtcmAuth.isLogin()){
-            vtcmEvent.exchangeRewards(modeId, value,objectParamsReturn, this.handlingExchangeRewards, this.notificationErr);
+            vtcmEvent.exchangeRewards(modeId,roomId, 1,objectParamsReturn, this.handlingExchangeRewards, this.notificationErr);
         } else{
-			setTimeout(()=>{
-				$(`#${id_popup_result}`).modal('hide'); 
-			},1)
-			game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, '')
+			game_client.showLogin();
         }
     },
 
 	handlingExchangeRewards(objectParamsReturn, response){
 		if(response.data.code >= 0){
-			var e = document.getElementsByClassName(objectParamsReturn.key);
+			var e = document.getElementsByClassName('box-code');
 			var f=e.item(0);
 			f.innerHTML=response.data.data.rewards[0].rewardCode;
 			game_client.contentGiftcode=response.data.data.rewards[0].rewardCode;
+			$('#popup-code').fadeIn();
 		}else{
-			// setTimeout(()=>{
-			// 	$(`#${id_popup_result}`).modal('hide'); 
-			// },1)
-			game_client.notification(response.data.message,objectParamsReturn.id_popup_result)
-			// var e = document.getElementsByClassName(objectParamsReturn.key);
-			// var f=e.item(0);
-			// f.innerHTML=response.data.message;
+			game_client.notification(response.data.message,'')
 		}
+	},
+
+	exchangeRewardsWithMilestones(modeId, roomId, value){
+		var objectParamsReturn={
+			roomId:roomId,
+			modeId:modeId,
+			value:value,
+		}
+
+        if(vtcmAuth.isLogin()){
+            vtcmEvent.exchangeRewardsWithMilestones(modeId,roomId, value ,objectParamsReturn, this.handlingExchangeRewardsWithMilestones, this.notificationErr);
+        } else{
+			game_client.showLogin();
+        }
+    },
+
+	handlingExchangeRewardsWithMilestones(response, objectParamsReturn){
+		if(response.data.code >= 0){
+			var e = document.getElementsByClassName('box-code');
+			var f=e.item(0);
+			f.innerHTML=response.data.data.rewards[0].rewardCode;
+			game_client.contentGiftcode=response.data.data.rewards[0].rewardCode;
+			$('#popup-code').fadeIn();
+		}else{
+			game_client.notification(response.data.message,'')
+		}
+	},
+
+	
+
+	copyGiftcode(){
+		game_client.copyToClipboard(game_client.contentGiftcode);
+	},
+
+	copyToClipboard(text) {
+		var textField = document.createElement('textarea');
+		textField.innerText = text;
+		document.body.appendChild(textField);
+		textField.select();
+		textField.focus(); 
+		document.execCommand('copy');
+		textField.remove();
+		// ajax-error.focus(); 
+	},
+
+	reciveGiftcode(){
+		window.open(`https://longchientruyenky.splay.vn/code`, "_blank");
 	},
 
 	hidePopupNhanqua(){
@@ -712,102 +497,7 @@ const game_client = {
 		$('#popup-nhanqua10').fadeOut();
 	},
 
-
-	showModalChonPhe(){
-		if(vtcmAuth.isLogin()){
-			if(game_client.userData.voteId===0){
-				$('#popup-chonphe').fadeIn();
-			}
-		}else{
-			game_client.showLogin();
-		}
-	},
-
-	chonphe(type){
-		if(game_client.userData.serverId!==0){
-			var data={};
-			data.userId=vtcmAuth.getUserId();
-			data.userName=vtcmAuth.getUserName();
-			data.gameId=vtcmApp.config_.gameId;
-			if(type=='black'){
-				data.voteId=game_client.infoBlack.id;
-				data.voteinfo=game_client.infoBlack.name;
-				game_client.grayBlack();
-			}else{
-				data.voteId=game_client.infoWhite.id;
-				data.voteinfo=game_client.infoWhite.name;
-				game_client.grayWhite();
-			}
-			game_client.updateChonPhe(data);
-			$('#popup-chonphe').fadeOut();
-		}else{
-			game_client.notificationServer('Tài khoản chưa có nhân vật, vui lòng tạo nhân vật để tham gia sự kiện!', '')
-		}
-		
-	},
-
-	grayWhite(){
-		var a= document.querySelector('.frame3-content > .black');
-		a.style.filter = 'grayscale(1)';
-	},
-
-	grayBlack(){
-		var a= document.querySelector('.frame3-content > .white');
-		a.style.filter = 'grayscale(1)';
-	},
-
-	updatePointBlack(){
-		var e = document.getElementsByClassName('sdk_point_black');
-		var f=e.item(0);
-		f.innerHTML= game_client.totalPointBlack;
-	},
-
-	updatePointWhite(){
-		var e = document.getElementsByClassName('sdk_point_white');
-		var f=e.item(0);
-		f.innerHTML= game_client.totalPointWhite;
-	},
-
-	sendFormDK(){
-		var input_city=document.getElementById('tinh1');
-		var input_district=document.getElementById('quan1');
-		var input_phuong=document.getElementById('phuong');
-		var name=document.getElementById('hoten1').value;
-		var phone=document.getElementById('sdt1').value;
-		var address=document.getElementById('address').value;
-
-
-		var city=input_city.value;
-		var district=input_district.value;
-		var phuong=input_phuong.value;
-
-		var txt_city=input_city.options[input_city.selectedIndex].text;
-		var txt_district=input_district.options[input_district.selectedIndex].text;
-		var txt_phuong=input_phuong.options[input_phuong.selectedIndex].text;
-		
-		if(name!=='' && phone!=='' && city!=='' && district!=='' && phuong!=='' && address!==''){
-			var data={};
-			data.userId=vtcmAuth.getUserId();
-			data.userName=vtcmAuth.getUserName();
-			data.gameId=vtcmApp.config_.gameId;
-			data.email='';
-			data.fullName=name;
-			data.phoneNumber=phone;
-			data.address=address;
-			data.provinceId=city;
-			data.provinceName=txt_city;
-			data.disctrictId=district;
-			data.disctrictName=txt_district;
-			data.wardId=phuong;
-			data.wardName=txt_phuong;
-
-			game_client.updateFormDK(data);
-
-		}else{
-			alert('Hãy nhập đầy đủ thông tin!')
-		}
-	},
-
+	
 	notificationErr(objectParamsReturn, error){
 		// var e = document.getElementsByClassName(objectParamsReturn.key);
 		// var f=e.item(0);
@@ -821,6 +511,10 @@ const game_client = {
 
 	setStatusLatThe(){
 		game_client.isPlayPickup=false;
+	},
+
+	showLogin(){
+		$('#popup-log').fadeIn();
 	},
 
 	notificationErrRollup(objectParamsReturn, error){
@@ -844,9 +538,9 @@ const game_client = {
 		f.innerHTML= message;
 	},
 
-	showLogin(){
-		$('#popup-login').fadeIn(); 
-	},
+	// showLogin(){
+	// 	$('#popup-login').fadeIn(); 
+	// },
 
 	timeConvert(time){
         var a = new Date(time);
@@ -858,4 +552,33 @@ const game_client = {
         var s = `${hour}H${min}  -  ${date} - ${month}`;
 		return s;
     },
+
+	checkTime(time){
+		if(Date.now() > time){
+			var a = new Date(time);
+			var b = new Date();
+			var m=a.getMonth()+1;
+			var y=a.getFullYear();
+			var day_a = a.getDate();
+			var day_b = b.getDate();
+			if(day_b > day_a){
+				return day_b-day_a;
+			}else{
+				var day_b=day_b+game_client.daysInMonth(m,y);
+				return day_b-day_a;
+			}
+		}else{
+			return -1;
+		}
+
+        // var a = new Date(time);
+        // var m=a.getMonth()+1;
+        // var month =m > 9 ? m : `0${m}`;
+        // var date = a.getDate();
+		// return s;
+    },
+
+	daysInMonth (month, year) {
+		return new Date(year, month, 0).getDate();
+	}
 };
