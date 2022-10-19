@@ -141,7 +141,7 @@ const vtcmEvent = {
     },
 
 
-    exchangeRewards(modeId, value,objectParamsReturn, handlingExchangeRewards, notificationErr){
+    exchangeRewards(modeId, roomId,objectParamsReturn, handlingExchangeRewards, notificationErr){
         var url=vtcmApp.config_.apiBaseUrl+ '/luckyrandom/api/v1/rewards/exchange';
         var header = {
             headers: {
@@ -152,12 +152,12 @@ const vtcmEvent = {
         var data= {...info};
         data.modeId=modeId;
         data.gameId=vtcmApp.config_.gameId;
-        data.roomId=0;
+        data.roomId=roomId;
         data.userId=vtcmAuth.getUserId();
         data.rewardId=1;
         data.character="";
         data.server="";
-        data.milestones=value;
+        data.milestones=1;
         common_sdk.ui.showLoading();
 
         axios.post(url,data,header)

@@ -1,0 +1,734 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+	<title>Tây Hành Kỷ</title>
+		<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/mcgic.css">
+	
+	<!--popup-->
+	<link rel="stylesheet" href="css/vendor.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+
+<body>
+	<section class="wrapper">   
+        <div class="content-container">
+			<a class="logo d-none d-lg-block" href="#"><img src="images/logo.png" alt="" /></a>
+			<a class="icon d-block d-lg-none" href="#"><img src="images/icon.png" alt="" /></a>	
+			<div class="header-menu">
+                <a href="#" class="menu fanpage">
+                    <img src="./images/bt-fb.png" class="img-responsive" alt="">
+                </a>
+                <a href="#" class="menu group">
+                    <img src="./images/bt-group.png" class="img-responsive" alt="">
+                </a>
+				<a href="#" class="menu login">
+                    <img src="./images/bt-log.png" class="img-responsive" alt="">
+                </a>
+				<!--<a href="#" class="dn no-bg f-roboto-light">
+                    <span>Xin chào, Admin | Thoát</span>
+                </a>-->
+            </div>
+			<div id="wheel-container">
+            	<div class="relative-content">
+                	<canvas width="477" height="477" class="img-responsive" id="wheel"></canvas>
+                    <img src="./images/bt-spin.png" class="img-responsive absolute-item bt-spin" alt="">
+                </div>
+            </div>
+			<div class="slq">
+				<div class="label-point">
+					<div class="relative-content">
+						<span class="background-label f-roboto-medium">SỐ LƯỢT QUAY: 10</span>
+						<img src="./images/bg-slq.png" class="img-responsive center-align" alt="">
+					</div>
+				</div>
+			</div>
+			<div id="wheel-bt">
+                <a href="javascript:void(0)" class="wheel-bt-box event show-thele">
+                    <img src="./images/bt-event.png" class="img-responsive" alt="">
+                </a>
+                <a href="javascript:void(0)" class="wheel-bt-box luotquay show-nhanluotquay">
+                    <img src="./images/bt-nhanlquay.png" class="img-responsive" alt="">
+                </a>
+				<a href="javascript:void(0)" class="wheel-bt-box history show-lichsu">
+                    <img src="./images/bt-history.png" class="img-responsive" alt="">
+                </a>
+            </div>
+			<div class="bt-dkt magictime rubberBand">
+				<a href="#" target="_blank"><img src="images/bt-dkt.png" alt=""></a>			
+			</div>
+		</div>
+		<div class="frame1 w-100 d-none d-lg-block"></div>
+		<img src="images/bg1-m.jpg" class="w-100 d-block d-lg-none" alt="">	
+	</section>
+	<section class="wrapper">   
+        <div class="content-container">
+			<div class="frame2-content">
+				<div class="label-point1">
+					<div class="relative-content">
+						<span class="background-label f-roboto-medium">SỐ ĐIỂM HIỆN TẠI: 10</span>
+						<img src="./images/bg-dq.png" class="img-responsive center-align" alt="">
+					</div>
+				</div>
+				<div class="row-item">
+					<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-item">
+						<a href="javascript:void(0)" class="show-thongtinqua1"><img src="./images/item1.png" class="img-responsive center-align" alt=""></a>
+						<a href="javascript:void(0)" class="bt-nhanqua nhan show-macode"><img src="./images/bt-nhanqua.png" class="img-responsive" alt=""></a>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-item">
+						<a href="javascript:void(0)" class="show-thongtinqua2"><img src="./images/item2.png" class="img-responsive center-align" alt=""></a>
+						<a href="javascript:void(0)" class="bt-nhanqua nhan show-macode"><img src="./images/bt-nhanqua.png" class="img-responsive" alt=""></a>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-item">
+						<a href="javascript:void(0)" class="show-thongtinqua3"><img src="./images/item3.png" class="img-responsive center-align" alt=""></a>
+						<a href="javascript:void(0)" class="bt-nhanqua nhan show-macode" ><img src="./images/bt-nhanqua.png" class="img-responsive" alt=""></a>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-item">
+						<a href="javascript:void(0)" class="show-thongtinqua4"><img src="./images/item4.png" class="img-responsive center-align" alt=""></a>
+						<a href="javascript:void(0)" class="bt-nhanqua nhan show-macode" ><img src="./images/bt-nhanqua.png" class="img-responsive" alt=""></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="frame2 w-100 d-none d-lg-block"></div>
+		<img src="images/bg2-m.jpg" class="w-100 d-block d-lg-none" alt="">	
+	</section>
+	<section class="wrapper">   
+        <div class="content-container">
+			<div class="macode">
+				<div class="label-point2">
+					<div class="relative-content">
+						<span class="background-label f-roboto-medium"></span>
+						<img src="./images/bg-code.png" class="img-responsive center-align" alt="">
+					</div>
+				</div>			
+			</div>
+			<div class="mile-download">
+				<div class="mile-download-red"></div>
+				<div class="mile-download-black d-none d-lg-block"><img src="images/mile-bg.png" class="img-responsive" alt=""></div>
+				<div class="mile-download-black d-block d-lg-none"><img src="images/mile-bg-m.png" class="img-responsive" alt=""></div>
+				<div class="level1"><img src="images/line.png" class="mile-img1" alt=""></div>
+				<div class="icon1"><a href="javascript:void(0)" class="show-thongtinqua5"><img src="images/item-code1.png" class="mile-img3" alt=""></a></div>
+				<div class="level1-text"><img src="images/level1.png" class="mile-img1" alt=""></div>
+				<div class="level2"><img src="images/line.png" class="mile-img1" alt=""></div>
+				<div class="icon2"><a href="javascript:void(0)" class="show-thongtinqua6"><img src="images/item-code2.png" class="mile-img3" alt=""></a></div>
+				<div class="level2-text"><img src="images/level2.png" class="mile-img1" alt=""></div>
+				<div class="level3"><img src="images/line.png" class="mile-img1" alt=""></div>
+				<div class="icon3"><a href="javascript:void(0)" class="show-thongtinqua7"><img src="images/item-code3.png" class="mile-img3" alt=""></a></div>
+				<div class="level3-text"><img src="images/level3.png" class="mile-img1" alt=""></div>
+				<div class="level4"><img src="images/line.png" class="mile-img1" alt=""></div>
+				<div class="icon4"><a href="javascript:void(0)" class="show-thongtinqua8"><img src="images/item-code4.png" class="mile-img4" alt=""></a></div>
+				<div class="level4-text"><img src="images/level4.png" class="mile-img2" alt=""></div>
+			</div>
+			<div class="number">
+				<div class="label-point3">
+					<div class="relative-content">
+						<span class="background-label f-roboto-medium">ĐÃ CÓ <b>1000</b> NGƯỜI HẸN ƯỚC</span>
+						<img src="./images/bg-number.png" class="img-responsive center-align" alt="">
+					</div>
+				</div>			
+			</div>
+			<div class="bt-henuoc magictime rubberBand">
+				<a href="javascript:void(0)" class="show-dkhenuoc"><img src="images/bt-henuoc.png" alt=""></a>			
+			</div>
+		</div>
+		<div class="frame3 w-100 d-none d-lg-block"></div>
+		<img src="images/bg3-m.jpg" class="w-100 d-block d-lg-none" alt="">	
+	</section>
+	<section class="wrapper">   
+        <div id="footer">
+            <div class="container">
+                <div id="footer-content">
+                    <div class="vtc-logo">
+                        <img src="images/vtc.png" class="img-responsive" alt="">
+                    </div>
+                    <div class="footer-text f-roboto-light">
+						Công ty cổ phần VTC Dịch vụ di động - Tầng 11, Tòa nhà VTC Online<br>
+						Số 18 Tam Trinh phường Minh Khai, quận Hai Bà Trưng, Hà Nội<br>
+						SĐT : (84-4).39877470 | Email : vtcmobile@vtc.vn<br>
+						Người chịu trách nhiệm quản lý nội dung: Ông Nguyễn Viết Quang Minh.<br>
+						Giấy phép phê duyệt nội dung kịch bản trò chơi điện tử trên mạng số 913/QĐ-BTTT<br>
+						<a href="https://tayhanhky.vn/huong-dan-cai-dat-go-bo.html" target="_blank">Hướng dẫn cài đặt</a> | <a href="https://tayhanhky.vn/dieu-khoan-su-dung.html" target="_blank">Điều khoản</a><br>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	<!-- Popup Thể lệ -->
+    <div class="popup popup-detail" id="popup-thele" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup">
+                <div class="title-detail text-center f-ObelixPro">
+                        NỘI DUNG VÀ THỂ LỆ
+                </div>
+                <div class="content-new-detail scrollbar-inner">
+					<div class="text f-roboto-medium">
+                    	<p><span>⏰ Thời gian: Từ 23:55 23/04/2020 - 01/05/2020</span>  </p>
+<p><span>🌸 Cách tham gia:</span> <br>
+- Bước 1: Đăng nhập <br>
+- Bước 2: Nhấn nhận lượt Free  <br>
+- Bước 2: Nhấn "DU NGOẠN" tiến hành du ngoạn.  </p>
+<p><span>🌸 Thể lệ: </span><br>
+- Một Tài khoản mỗi ngày sẽ nhận được 1 lượt du ngoạn miễn phí. <br>
+- Share thông tin sự kiện sẽ nhận thêm 1 lượt du ngoạn miễn phí. - Tham gia like page sẽ nhận thêm 1 lượt du ngoạn miễn phí. <br>
+- Tham gia vào group sẽ nhận thêm 1 lượt du ngoạn miễn phí <br>
+- Nạp vào game mà bạn chơi để nhận thêm lượt. <br>
+- Nạp 100.000:  Nhận 1 du ngoạn   </p>
+<p><span>Chú ý: </span><br>
+- Quà hiện vật sẽ được gửi từ 7-15 ngày sau khi sự kiện kết thúc <br>
+- Mọi hình thức dùng phần mềm thứ 3 và gian lận trong sự kiện đều không được chấp nhận và khóa tài khoản. <br>
+- Quyết định cuối cùng là từ BTC.</p>
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	<!-- Popup cach nhan luot quay-->
+    <div class="popup popup-detail" id="popup-nhanluotquay" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup">
+                <div class="title-detail text-center  f-ObelixPro">
+                     CÁCH NHẬN LƯỢT QUAY
+                </div>
+                <div class="content-new-detail">
+					<div class="text2 f-roboto-medium">
+						<div class="luotquay-row">
+							<div class="col title">
+								1. Share Event 0/1 (chia sẻ mỗi ngày)
+							</div>
+							<div class="col but center-align">
+								<a class="bt-nhan" href="#">
+									<span>Nhận</span>
+								  </a>
+							</div>
+						</div>
+						<div class="luotquay-row">
+							<div class="col title">
+								2. Đăng ký trước: 0/1
+							</div>
+							<div class="col but center-align">
+								<a class="bt-danhan" href="#">
+									<span>Đã Nhận</span>
+								  </a>
+							</div>
+						</div>
+						<div class="luotquay-row">
+							<div class="col title">
+								3. Like page: 0/1
+							</div>
+							<div class="col but center-align">
+								<a class="bt-nhan" href="#">
+									<span>Nhận</span>
+								  </a>
+							</div>
+						</div>
+						<div class="luotquay-row">
+							<div class="col title">
+								4. Vào Group: 0/1
+							</div>
+							<div class="col but center-align">
+								<a class="bt-nhan" href="#">
+									<span>Nhận</span>
+								  </a>
+							</div>
+						</div>
+						<div class="luotquay-row">
+							<div class="col title">
+								5. Hẹn ước: 0/1
+							</div>
+							<div class="col but center-align">
+								<a class="bt-nhan" href="#">
+									<span>Nhận</span>
+								  </a>
+							</div>
+						</div>
+						
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	<!-- Popup Lịch sử quay-->
+    <div class="popup popup-detail" id="popup-history" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup">
+                <div class="title-detail text-center  f-ObelixPro">
+                     Lịch Sử Quay
+                </div>
+                <div class="content-new-detail scrollbar-inner">
+					<div class="text f-roboto-medium">
+						<table class="table table-gift table-responsive" >
+							<tr>
+								<th>STT</th>
+								<th>Phần thưởng</th>
+								<th>Thời gian</th>
+								<th>Đổi thưởng</th>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>2000 KNB</td>
+								<td>23H - 24H/11</td>
+								<td>ĐÃ NHẬN</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>2000 KNB</td>
+								<td>23H - 24H/11</td>
+								<td><a href="javascript:void(0)" class="show-thongtinnhanqua">ĐỔI NGAY</a></td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>2000 KNB</td>
+								<td>23H - 24H/11</td>
+								<td><a href="javascript:void(0)" class="show-thongtinnhanqua">ĐỔI NGAY</a></td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>2000 KNB</td>
+								<td>23H - 24H/11</td>
+								<td><a href="javascript:void(0)" class="show-thongtinnhanqua">ĐỔI NGAY</a></td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>2000 KNB</td>
+								<td>23H - 24H/11</td>
+								<td>ĐÃ NHẬN</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>2000 KNB</td>
+								<td>23H - 24H/11</td>
+								<td>ĐÃ NHẬN</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>2000 KNB</td>
+								<td>23H - 24H/11</td>
+								<td>ĐÃ NHẬN</td>
+							</tr>
+							<tr>
+								<td>8</td>
+								<td>2000 KNB</td>
+								<td>23H - 24H/11</td>
+								<td>ĐÃ NHẬN</td>
+							</tr>
+							<tr>
+								<td>9</td>
+								<td>2000 KNB</td>
+								<td>23H - 24H/11</td>
+								<td>ĐÃ NHẬN</td>
+							</tr>
+							<tr>
+								<td>10</td>
+								<td>2000 KNB</td>
+								<td>23H - 24H/11</td>
+								<td>ĐÃ NHẬN</td>
+							</tr>
+						</table>
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	
+	<!-- Popup thong tin qua-->
+    <div class="popup popup-detail" id="popup-thongtinnhanqua" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup">
+                <div class="title-detail text-center  f-ObelixPro">
+                     THÔNG TIN NHẬN QUÀ
+                </div>
+                <div class="content-new-detail scrollbar-inner">
+					<div class="text1 f-roboto-medium">
+						<div class="form-row">
+							<input class="input" type="text" placeholder="HỌ VÀ TÊN">
+							<input class="input" type="text" placeholder="SỐ ĐIỆN THOẠI">
+							<select class="input" placeholder="TỈNH/THÀNH">
+								<option>TỈNH/THÀNH</option>
+								<option>Đồng Nai</option>
+								<option>Vũng Tàu</option>
+								<option>Đắk Lắk</option>
+								<option>Bình Thuận</option>
+							</select>
+							<select class="input" placeholder="QUẬN/HUYỆN">
+								<option>QUẬN/HUYỆN</option>
+								<option>Quận 1</option>
+								<option>Quận 2</option>
+								<option>Quận 3</option>
+								<option>Quận 4</option>
+							</select>
+							<select class="input" placeholder="PHƯỜNG/XÃ">
+								<option>PHƯỜNG/XÃ</option>
+								<option>Phường 1</option>
+								<option>Phường 2</option>
+								<option>Phường 3</option>
+								<option>Phường 4</option>
+							</select>
+							<input class="input2" type="text" placeholder="SỐ NHÀ - TÊN ĐƯỜNG">
+						</div>
+						<div class="form-but">
+							<a class="bt-send" href="#">
+								<span>GỬI</span>
+								<span>
+								  <svg width="46px" height="23px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+									<g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+									  <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+									  <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+									  <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+									</g>
+								  </svg>
+								</span> 
+							  </a>
+						</div>
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	
+	<!-- Popup ma code-->
+    <div class="popup popup-detail" id="popup-macode" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup1">
+                <div class="title-detail text-center f-ObelixPro">
+                     MÃ CODE CỦA BẠN
+                </div>
+                <div class="content-new-detail">
+					<div class="text f-roboto-medium">
+						<div class="macode-row">
+							<div class="code">TAYHANHKYVTCmobile</div>				
+						</div>	
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	
+	<!-- Popup dang ky hen uoc-->
+    <div class="popup popup-detail" id="popup-dkhenuoc" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup1">
+                <div class="title-detail text-center f-ObelixPro">
+                     ĐĂNG KÝ HẸN ƯỚC
+                </div>
+                <div class="content-new-detail">
+					<div class="text1 f-roboto-medium">
+						<div class="form-row">
+							<input class="input" type="text" placeholder="Nhập Email hoặc số điện thoại của bạn">
+						</div>
+						<div class="form-but">
+							<a class="bt-send" href="#">
+								<span>GỬI</span>
+								<span>
+								  <svg width="46px" height="23px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+									<g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+									  <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+									  <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+									  <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+									</g>
+								  </svg>
+								</span> 
+							  </a>
+						</div>
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	<!-- Popup thong tin qua1-->
+    <div class="popup popup-detail" id="popup-thongtinqua1" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup1">
+                <div class="title-detail text-center f-ObelixPro">
+                     THÔNG TIN VẬT PHẨM
+                </div>
+                <div class="content-new-detail2 scrollbar-inner">
+					<div class="text f-roboto-medium">
+						<div class="vatpham-row">
+							<div class="col img">
+								<img src="images/item-code5.png" class="img-responsive" alt="">
+							</div>
+							<div class="col text ">
+								Linh thạch<br>
+								Số lượng: 200<br>
+							</div>
+						</div>
+						<div class="vatpham-row">
+Là những viên đá được hấp thu linh khí đất trời. Là tiền tệ chính sử dụng trong hầu hết các giao dịch trong Game.							
+						</div>	
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	<!-- Popup thong tin qua2-->
+    <div class="popup popup-detail" id="popup-thongtinqua2" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup1">
+                <div class="title-detail text-center f-ObelixPro">
+                     THÔNG TIN VẬT PHẨM
+                </div>
+                <div class="content-new-detail2 scrollbar-inner">
+					<div class="text f-roboto-medium">
+						<div class="vatpham-row">
+							<div class="col img">
+								<img src="images/item-code6.png" class="img-responsive" alt="">
+							</div>
+							<div class="col text ">
+								Đột Phá Đan<br>
+								Số lượng: 50<br>
+							</div>
+						</div>
+						<div class="vatpham-row">
+Truyền Thuyết từ chính Đạo Đức Thái Tôn - luyện Đan Lô, là Thần Diệu Đan Dược giúp đỡ Hồn Tướng đột phá.							
+						</div>	
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	<!-- Popup thong tin qua3-->
+    <div class="popup popup-detail" id="popup-thongtinqua3" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup1">
+                <div class="title-detail text-center f-ObelixPro">
+                     THÔNG TIN VẬT PHẨM
+                </div>
+                <div class="content-new-detail2 scrollbar-inner">
+					<div class="text f-roboto-medium">
+						<div class="vatpham-row">
+							<div class="col img">
+								<img src="images/item-code7.png" class="img-responsive" alt="">
+							</div>
+							<div class="col text ">
+								Linh Thạch<br>
+								Số lượng: 2000<br>
+							</div>
+						</div>
+						<div class="vatpham-row">
+Là những viên đá được hấp thu linh khí đất trời. Là tiền tệ chính sử dụng trong hầu hết các giao dịch trong Game.							
+						</div>	
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	<!-- Popup thong tin qua4-->
+    <div class="popup popup-detail" id="popup-thongtinqua4" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup1">
+                <div class="title-detail text-center f-ObelixPro">
+                     THÔNG TIN VẬT PHẨM
+                </div>
+                <div class="content-new-detail2 scrollbar-inner">
+					<div class="text f-roboto-medium">
+						<div class="vatpham-row">
+							<div class="col img">
+								<img src="images/item-code8.png" class="img-responsive" alt="">
+							</div>
+							<div class="col text ">
+								Phù Triệu Hoán<br>
+								Số lượng: 10<br>
+							</div>
+						</div>
+						<div class="vatpham-row">
+1 loại Thông Linh Phù Chú, dùng để kết hợp với Triệu Hoán Trận tiến hành triệu hoán Hồn Tướng.							
+						</div>	
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	<!-- Popup thong tin qua5-->
+    <div class="popup popup-detail" id="popup-thongtinqua5" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup1">
+                <div class="title-detail text-center f-ObelixPro">
+                     THÔNG TIN VẬT PHẨM
+                </div>
+                <div class="content-new-detail2 scrollbar-inner">
+					<div class="text f-roboto-medium">
+						<div class="vatpham-row">
+							<div class="col img">
+								<img src="images/item-code1.png" class="img-responsive" alt="">
+							</div>
+							<div class="col text ">
+								Tinh Lực Đan<br>
+								Số lượng: 1<br>
+							</div>
+						</div>
+						<div class="vatpham-row">
+Là một loại Đan Dược được bán ở Tiệm Dược Trường An và phương Tây gọi là "Hồng Ngưu". Dùng xong nhận ngay 25 điểm Thể Lực.							
+						</div>	
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	<!-- Popup thong tin qua6-->
+    <div class="popup popup-detail" id="popup-thongtinqua6" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup1">
+                <div class="title-detail text-center f-ObelixPro">
+                     THÔNG TIN VẬT PHẨM
+                </div>
+                <div class="content-new-detail2 scrollbar-inner">
+					<div class="text f-roboto-medium">
+						<div class="vatpham-row">
+							<div class="col img">
+								<img src="images/item-code2.png" class="img-responsive" alt="">
+							</div>
+							<div class="col text ">
+								Thể Lực Đan<br>
+								Số lượng: 1<br>
+							</div>
+						</div>
+						<div class="vatpham-row">
+Bí dược từ Yêu Quái Đại Đạo, nghe mùi hơi giống "Kê Huyết". Dùng xong tăng nhanh 10 Tinh Lực.						
+						</div>	
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	<!-- Popup thong tin qua7-->
+    <div class="popup popup-detail" id="popup-thongtinqua7" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup1">
+                <div class="title-detail text-center f-ObelixPro">
+                     THÔNG TIN VẬT PHẨM
+                </div>
+                <div class="content-new-detail2 scrollbar-inner">
+					<div class="text f-roboto-medium">
+						<div class="vatpham-row">
+							<div class="col img">
+								<img src="images/item-code3.png" class="img-responsive" alt="">
+							</div>
+							<div class="col text ">
+								Đột Phá Đan<br>
+								Số lượng: 100<br>
+							</div>
+						</div>
+						<div class="vatpham-row">
+Truyền Thuyết từ chính Đạo Đức Thái Tôn - luyện Đan Lô, là Thần Diệu Đan Dược giúp đỡ Hồn Tướng đột phá.						
+						</div>	
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	<!-- Popup thong tin qua8-->
+    <div class="popup popup-detail" id="popup-thongtinqua8" style="display: none;">
+        <div class="content-popup">
+            <div class="wrapper-popup1">
+                <div class="title-detail text-center f-ObelixPro">
+                     THÔNG TIN VẬT PHẨM
+                </div>
+                <div class="content-new-detail2 scrollbar-inner">
+					<div class="text f-roboto-medium">
+						<div class="vatpham-row">
+							<div class="col img">
+								<img src="images/item-code4.png" class="img-responsive" alt="">
+							</div>
+							<div class="col text ">
+								Nhân Sâm<br>
+								Số lượng: 5<br>
+							</div>
+						</div>
+						<div class="vatpham-row">
+Nhân Sâm trăm năm tuổi, thường mọc trên vách đá Yêu Quái Đại Đạo. Là vật phẩm tăng cấp nhân vật. Dùng tăng 5000 EXP Hồn Tướng.						
+						</div>	
+					</div>
+                </div>
+                <a class="close-content"></a>
+            </div>
+        </div>
+    </div>
+	<!-- popup--->
+	<script type="text/javascript" src="js/bootstrap.min.js?v=1.2.6"></script>
+	<script type="text/javascript" src="js/vendor.js"></script>
+	
+	<script>
+        $(document).ready(function() {
+            $('.close-content').click(function() {
+                $('.popup').fadeOut();
+            });
+            $('.show-thele').click(function() {
+                $('#popup-thele').fadeIn();
+            });
+			$('.show-lichsu').click(function() {
+                $('#popup-history').fadeIn();
+            });
+			$('.show-thongtinnhanqua').click(function() {
+                $('#popup-thongtinnhanqua').fadeIn();
+            });
+			$('.show-nhanluotquay').click(function() {
+                $('#popup-nhanluotquay').fadeIn();
+            });
+			$('.show-thongtinqua1').click(function() {
+                $('#popup-thongtinqua1').fadeIn();
+            });
+			$('.show-thongtinqua2').click(function() {
+                $('#popup-thongtinqua2').fadeIn();
+            });
+			$('.show-thongtinqua3').click(function() {
+                $('#popup-thongtinqua3').fadeIn();
+            });
+			$('.show-thongtinqua4').click(function() {
+                $('#popup-thongtinqua4').fadeIn();
+            });
+			$('.show-thongtinqua5').click(function() {
+                $('#popup-thongtinqua5').fadeIn();
+            });
+			$('.show-thongtinqua6').click(function() {
+                $('#popup-thongtinqua6').fadeIn();
+            });
+			$('.show-thongtinqua7').click(function() {
+                $('#popup-thongtinqua7').fadeIn();
+            });
+			$('.show-thongtinqua8').click(function() {
+                $('#popup-thongtinqua8').fadeIn();
+            });
+			$('.show-macode').click(function() {
+                $('#popup-macode').fadeIn();
+            });
+			$('.show-dkhenuoc').click(function() {
+                $('#popup-dkhenuoc').fadeIn();
+            });
+            // scroll 
+            jQuery(document).ready(function() {
+                jQuery('.content-new-detail').scrollbar();
+				jQuery('.content-new-detail2').scrollbar();
+            });
+        });
+    </script>
+	
+	<!-- vong quay --->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+    <script src="./Winwheel.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>

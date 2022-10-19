@@ -16,6 +16,7 @@ const game_client = {
 	contentGiftcode:'',
 	oldClass:'',
 	pointAvailable:0,
+	number_points:0,
 	theWheel:{},
 	totalPointBlack:0,
 	totalPointWhite:0,
@@ -38,6 +39,7 @@ const game_client = {
 		game_client.winwheel();
 		this.config_ = rawConfig;
 		vtcmApp.initApp(rawConfig);
+		// game_client.getBXHPayment();
         if(vtcmAuth.isLogin()){
 			vtcmApp.getAppSetting(game_client.cbwithtoken);
 			// game_client.rollup(10206, 10177)
@@ -177,8 +179,22 @@ const game_client = {
 		var number_play=response.data.data.playSummary[0] ? response.data.data.playSummary[0].playerCount : 0;
         var list=[];
 		var listRewards=[];
+		var number_points=0;
+		if(rewardExchange.length>0){
+			for (let i = 0; i < rewardExchange.length; i++) {
+				switch (rewardExchange[i].eventCode) {
+					case "DIEM":
+						number_points=rewardExchange[i].totalAvailable;
+						break;
+					default:
+						number_points=rewardExchange[i].totalAvailable;
+						break;
+				}
+			}
+		}
 		game_client.pointAvailable=user.pointAvailable;
-        list.push({id:'username', value:user.userName}, {id:'sdk_numberpoint', value:user.pointAvailable})
+		game_client.number_points=number_points;
+        list.push({id:'username', value:user.userName}, {id:'sdk_numbervq', value:user.pointAvailable}, {id:'sdk_numberpoint', value:number_points})
 
 		// var list=[{id:'account_user', value:user.userName},{id:'my_number_goal', value:user.pointAvailable}, {id:'number_play_vq', value:number_play}, {id:'number_bocbanh', value:number_bocbanh}, {id:'number_hoamai', value:number_hoamai}, {id:'number_hoadao', value:number_hoadao}, {id:'number_key', value:number_key}]
 		common_sdk.setInfoUser(list);
@@ -348,9 +364,25 @@ const game_client = {
 		// }
 	},
 
+	share(modeId, roomId){
+
+	},
+
+	likePage(modeId, roomId){
+
+	},
+
+	joinGroup(modeId, roomId){
+
+	},
+
+	napScoin(modeId, roomId){
+
+	},
+
 	updatePoint(){
 		var list=[];
-		list.push({id:'sdk_numberpoint', value:game_client.pointAvailable})
+		list.push({id:'sdk_numbervq', value:game_client.pointAvailable}, {id:'sdk_numberpoint', value:game_client.number_points})
 		common_sdk.setInfoUser(list);
 	},
 	
@@ -387,15 +419,19 @@ const game_client = {
         
 		if(response.data.code>=0){
 			game_client.pointAvailable=game_client.pointAvailable-objectParamsReturn.type;
-			var data=response.data.data.rewards;
-			var box1= document.querySelector('.content-new-detail > .gift');
-			var box10= document.querySelector('.content-new-detail > .gift10');
-			box1.innerHTML='';
-			box10.innerHTML='';
-			for (let i = 0; i < data.length; i++) {
-				var src=game_client.base_url_img+data[i].rewardImageUrl;
-				
+			
+			var data=response.data.data.rewards[0];
+			if(data.rewardType===15){
+				game_client.number_points=game_client.number_points+data.rewardAmount;
 			}
+			// var box1= document.querySelector('.content-new-detail > .gift');
+			// var box10= document.querySelector('.content-new-detail > .gift10');
+			// box1.innerHTML='';
+			// box10.innerHTML='';
+			// for (let i = 0; i < data.length; i++) {
+			// 	var src=game_client.base_url_img+data[i].rewardImageUrl;
+				
+			// }
 			game_client.updatePoint()
 			// response.data.data.rewards[0]
 
@@ -434,7 +470,30 @@ const game_client = {
 				game_client.totalPage=response.data.data.totalPage;
 				var tb = document.getElementById('tb_history');
 				tb.innerHTML='';
-				
+				for (let i = 0; i < items.length; i++) {
+					if(items[i].rewardType===62){
+						$(tb).append(`<tr>
+						<th class="text-primary" scope="row">${i+1 + (page*10)}</th>
+						<td class="text-start">${items[i].description}</td>
+						<td class="text-primary text-nowrap">${game_client.timeConvert(items[i].createdTime)}</td>
+						<td class="text-blue">ĐÃ NHẬN</td>
+					  </tr>`);
+					}else if(items[i].rewardType===5){
+						$(tb).append(`<tr>
+						<th class="text-primary" scope="row">${i+1 + (page*10)}</th>
+						<td class="text-start">${items[i].description}</td>
+						<td class="text-primary text-nowrap">${game_client.timeConvert(items[i].createdTime)}</td>
+						<td class="text-blue" style="cursor: pointer;" onclick="game_client.showPopupGiftcode(${items[i].id})">XEM</td>
+					  </tr>`);
+					}else if(items[i].rewardType===52){
+						$(tb).append(`<tr>
+						<th class="text-primary" scope="row">${i+1 + (page*10)}</th>
+						<td class="text-start">${items[i].description}</td>
+						<td class="text-primary text-nowrap">${game_client.timeConvert(items[i].createdTime)}</td>
+						<td class="text-blue" style="cursor: pointer;" onclick="game_client.showPopupDoiThuong(${items[i].id})">ĐỔI NGAY</td>
+					  </tr>`);
+					}
+				}
 				game_client.page=page;
 				game_client.modeId_history=modeId;
 				$('#popup-lichsu').fadeIn();
@@ -475,20 +534,13 @@ const game_client = {
 		game_client.getCity();
 	},
 
-	exchangeRewards(modeId, value, key, message, id_popup, id_popup_result, id_listalbum){
+	exchangeRewards(modeId, roomId){
 		var objectParamsReturn={
 			modeId:modeId,
-			value:value,
-			key:key, 
-			message:message,
-			id_popup_result:id_popup_result
+			roomId:roomId,
 		}
-		var e = document.getElementsByClassName(key);
-		var f=e.item(0);
-		f.innerHTML='';
-		$(`#${id_popup}`).modal('hide'); 
         if(vtcmAuth.isLogin()){
-            vtcmEvent.exchangeRewards(modeId, value,objectParamsReturn, this.handlingExchangeRewards, this.notificationErr);
+            vtcmEvent.exchangeRewards(modeId, roomId,objectParamsReturn, this.handlingExchangeRewards, this.notificationErr);
         } else{
 			setTimeout(()=>{
 				$(`#${id_popup_result}`).modal('hide'); 
@@ -499,15 +551,16 @@ const game_client = {
 
 	handlingExchangeRewards(objectParamsReturn, response){
 		if(response.data.code >= 0){
-			var e = document.getElementsByClassName(objectParamsReturn.key);
+			var e = document.getElementsByClassName('sdk_content_giftcode');
 			var f=e.item(0);
 			f.innerHTML=response.data.data.rewards[0].rewardCode;
+			$('#popup-macode').fadeIn();
 			game_client.contentGiftcode=response.data.data.rewards[0].rewardCode;
 		}else{
 			// setTimeout(()=>{
 			// 	$(`#${id_popup_result}`).modal('hide'); 
 			// },1)
-			game_client.notification(response.data.message,objectParamsReturn.id_popup_result)
+			// game_client.notification(response.data.message,objectParamsReturn.id_popup_result)
 			// var e = document.getElementsByClassName(objectParamsReturn.key);
 			// var f=e.item(0);
 			// f.innerHTML=response.data.message;
