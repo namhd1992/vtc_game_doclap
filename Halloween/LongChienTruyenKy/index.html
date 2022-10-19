@@ -68,7 +68,7 @@
 					<div class="content-bt">
 						<ul>
 							<li><a href="javascript:void(0)" class="show-thele"><img src="images/bt-thele.png" alt=""></a></li>	
-							<li><a href="" target="_blank"><img src="images/bt-taigame.png" alt=""></a></li>
+							<li><a href="https://longchien.onelink.me/vPg1/taigame" target="_blank"><img src="images/bt-taigame.png" alt=""></a></li>
 						</ul>
 					</div>
 					<div class="scroll">
@@ -168,7 +168,7 @@
 								<div class="slq f-roboto-bold">Điểm hiện có: <span class="sdk_numberpoint">0</span></div>
 							</div>
 							<div class="f4-box1">
-								<a  class="slq f-roboto-bold show-lichsu" style="cursor: pointer;" onclick="game_client.getHistory(0,10018,0)">Lịch Sử</a>
+								<a  class="slq f-roboto-bold show-lichsu" style="cursor: pointer;" onclick="game_client.getHistory(0,-1,0)">Lịch Sử</a>
 							</div>
 						</div>
 						  <div id="wheel-container">
@@ -229,7 +229,7 @@
 					  Số 18 Tam Trinh phường Minh Khai, quận Hai Bà Trưng, Hà Nội<br>
 					  SĐT : (84-4).39877470 | Email : vtcmobile@vtc.vn<br>
 					  Người chịu trách nhiệm quản lý nội dung: Ông Nguyễn Viết Quang Minh.<br>
-					  Giấy phép phê duyệt nội dung kịch bản trò chơi điện tử trên mạng số 1326/GP-BTTTT<br>
+					  Giấy phép phê duyệt nội dung kịch bản trò chơi điện tử trên mạng số 99/QD-BTTTT<br>
 					  
 					</div>
 				  </div>
@@ -253,11 +253,11 @@
 							<p>Số dư Tiểu Quỷ của bạn không đủ để tầm bảo nhận thêm Tiểu Quỷ để tầm bảo.</p>
 						</div>
 						<div class="dt-box">
-							<a href="#frame4" class="bt-dnn f-UTMPacific">Nhận Tiểu Quỷ</a>
+							<a href="#frame4" class="bt-dnn f-UTMPacific" onclick="game_client.reciveTieuQuy()">Nhận Tiểu Quỷ</a>
 						</div>
 					</div>
                 </div>
-				
+				<a class="close-content"></a>
             </div>
         </div>
     </div>
@@ -337,7 +337,7 @@
                 <div class="content-new-detail1 f-roboto-bold">
 					<div class="text1">
 						<div class="dt-box">
-							<p>Điểm danh thành công.<br>Chúc mừng bạn đã nhận được: xxx lượt quay</p>
+							<p>Điểm danh thành công.<br>Chúc mừng bạn đã nhận được: 1 lượt quay</p>
 						</div>
 						<div class="dt-box">
 							<a href="#frame4" class="bt-dnn f-UTMPacific">Quay Ngay</a>
@@ -359,7 +359,7 @@
                 <div class="content-new-detail1 f-roboto-bold">
 					<div class="text1">
 						<div class="dt-box">
-							<p>Điểm danh thành công.<br>Chúc mừng bạn đã nhận được: xxx điểm đổi thưởng</p>
+							<p>Điểm danh thành công.<br>Chúc mừng bạn đã nhận được: 100 điểm đổi thưởng</p>
 						</div>
 						<div class="dt-box">
 							<a href="#frame4" class="bt-dnn f-UTMPacific">Đổi Thưởng Ngay</a>
@@ -403,7 +403,7 @@
                 <div class="content-new-detail1 f-roboto-bold">
 					<div class="text1">
 						<div class="dt-box">
-							<p>Điểm danh thành công.<br> Chúc mừng bạn nhận được 300 điểm đổi thưởng</p>
+							<p>Điểm danh thành công.<br> Chúc mừng bạn nhận được 200 điểm đổi thưởng</p>
 						</div>
 						<div class="dt-box">
 							<a href="#frame5" class="bt-dnn f-UTMPacific">Đổi Thưởng</a>
@@ -538,11 +538,11 @@
                 <div class="content-new-detail1 f-roboto-bold">
 					<div class="text1">
 						<div class="dt-box">
-							<p>Số lượt quay của bạn không đủ. <br> Nhận thêm lượt quay để quay</p>
+							<p>Số lượt quay của bạn không đủ để tham gia vòng quay.</p>
 						</div>
-						<div class="dt-box">
+						<!-- <div class="dt-box">
 							<a href="" class="bt-dnn f-UTMPacific">Nhận Lượt Ngay</a>
-						</div>
+						</div> -->
 					</div>
                 </div>
                 <a class="close-content"></a>
@@ -563,7 +563,7 @@
 							<p>Số điểm đổi thưởng của bạn không đủ để đổi thưởng!<br>Nhận thêm điểm ngay</p>
 						</div>
 						<div class="dt-box">
-							<a href="" class="bt-dnn f-UTMPacific">Nhận Điểm</a>
+							<a href="#frame4" class="bt-dnn f-UTMPacific" onclick="game_client.recivePoint()">Nhận Điểm</a>
 						</div>
 					</div>
                 </div>

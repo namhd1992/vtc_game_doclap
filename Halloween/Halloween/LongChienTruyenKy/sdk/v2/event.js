@@ -47,8 +47,10 @@ const vtcmEvent = {
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {
+                vtcmEvent.scrollTop();
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $("body").css({"background":"#fff"});
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -90,16 +92,13 @@ const vtcmEvent = {
             }else if (err.request) {
                 vtcmEvent.scrollTop();
                 $('body').html('');
+                $("body").css({"background":"#fff"});
                 $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;font-size:25px">Bạn đang chơi quá nhanh. Vui lòng quay chậm lại.</div>');
             }else{
                 console.log('Error', err.message);
             }
             
         })
-    },
-
-    scrollTop(){
-        window.scrollTo(0, 0);
     },
 
 
@@ -136,8 +135,10 @@ const vtcmEvent = {
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {
+                vtcmEvent.scrollTop();
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $("body").css({"background":"#fff"});
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -180,8 +181,10 @@ const vtcmEvent = {
                     common_sdk.ui.hideLoading();
                 }
             }else if (err.request) {
+                vtcmEvent.scrollTop();
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $("body").css({"background":"#fff"});
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -222,7 +225,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -264,7 +267,7 @@ const vtcmEvent = {
                         }
                     }else if (err.request) {
                         $('body').html('');
-                        $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                        $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
                     }else{
                         console.log('Error', err.message);
                     }
@@ -299,7 +302,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -338,7 +341,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -377,7 +380,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -411,7 +414,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -445,7 +448,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -479,7 +482,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -513,7 +516,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -548,7 +551,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -582,7 +585,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -615,7 +618,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -648,7 +651,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -683,7 +686,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -719,7 +722,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -753,7 +756,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -787,7 +790,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -821,7 +824,7 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
@@ -857,12 +860,16 @@ const vtcmEvent = {
                 }
             }else if (err.request) {
                 $('body').html('');
-                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Hệ thống đang tạm dừng để bảo trì. Vui lòng quay lại sau.</div>');
+                $('body').html('<div style="width: 100%;height: 50px;color: black;text-align: center;padding: 50px;">Thao tác quá nhanh, tải lại trang để chơi tiếp.</div>');
             }else{
                 console.log('Error', err.message);
             }
             
         })
+    },
+
+    scrollTop(){
+        window.scrollTo(0, 0);
     },
 
 }

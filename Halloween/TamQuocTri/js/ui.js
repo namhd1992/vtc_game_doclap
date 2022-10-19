@@ -95,7 +95,7 @@ const game_client = {
 
 	uiLine(response){
 		console.log(response.data.data.siteInfo)
-		var day=game_client.checkTime(response.data.data.siteInfo.startSiteMsTimeStamp) + 1;
+		var day=game_client.checkTime(response.data.data.siteInfo.startSiteMsTimeStamp);
 		if(day!==-1 && day < 6){
 			$(`div.css_day${day} > a`).removeClass("bt-diemdanh-gray")
 			$(`div.css_day${day} > a`).addClass("bt-diemdanh")
@@ -268,6 +268,8 @@ const game_client = {
 					break;
 			}
 			game_client.updatePoint();
+		}else{
+			game_client.notification(response.data.message,'')
 		}
 	},
 
@@ -334,6 +336,8 @@ const game_client = {
 			game_client.updatePoint()
 			// response.data.data.rewards[0]
 
+		}else if(response.data.code>=-53){
+			$('#popup-hetluot').fadeIn();
 		}else{
 			// var e = document.getElementsByClassName(objectParamsReturn.key);
 			// var f=e.item(0);
@@ -432,11 +436,18 @@ const game_client = {
 
 	handlingExchangeRewards(objectParamsReturn, response){
 		if(response.data.code >= 0){
+			vtcmApp.getAppSetting(game_client.cbwithtoken);
 			var e = document.getElementsByClassName('box-code');
 			var f=e.item(0);
 			f.innerHTML=response.data.data.rewards[0].rewardCode;
 			game_client.contentGiftcode=response.data.data.rewards[0].rewardCode;
 			$('#popup-code').fadeIn();
+		}else if(response.data.code===-53){
+			if(objectParamsReturn.modeId===10001){
+				$('#popup-1').fadeIn();
+			}else{
+				$('#popup-diemkhongdu').fadeIn();
+			}
 		}else{
 			game_client.notification(response.data.message,'')
 		}
@@ -458,6 +469,7 @@ const game_client = {
 
 	handlingExchangeRewardsWithMilestones(response, objectParamsReturn){
 		if(response.data.code >= 0){
+			
 			var e = document.getElementsByClassName('box-code');
 			var f=e.item(0);
 			f.innerHTML=response.data.data.rewards[0].rewardCode;
@@ -495,6 +507,14 @@ const game_client = {
 
 	hidePopupNhanqua10(){
 		$('#popup-nhanqua10').fadeOut();
+	},
+
+	reciveTieuQuy(){
+		$('#popup-1').fadeOut();
+	},
+
+	recivePoint(){
+		$('#popup-diemkhongdu').fadeOut();
 	},
 
 	
@@ -561,11 +581,11 @@ const game_client = {
 			var y=a.getFullYear();
 			var day_a = a.getDate();
 			var day_b = b.getDate();
-			if(day_b > day_a){
-				return day_b-day_a;
+			if(day_b >= day_a){
+				return day_b-day_a+1;
 			}else{
 				var day_b=day_b+game_client.daysInMonth(m,y);
-				return day_b-day_a;
+				return day_b-day_a+1;
 			}
 		}else{
 			return -1;
