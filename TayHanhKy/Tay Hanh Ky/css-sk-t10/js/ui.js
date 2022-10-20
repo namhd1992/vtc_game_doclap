@@ -348,7 +348,7 @@ const game_client = {
 			vtcmEvent.rollup(modeId, roomId,objectParamsReturn, this.handlingRollup, this.notificationErrRollup)
 		}else{
 			// game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, 'pop__mission')
-			game_client.showLogin();
+			game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, '')
         }
 	},
 
@@ -415,7 +415,7 @@ const game_client = {
 					game_client.theWheel.startAnimation();
 					vtcmEvent.playGame(modeId, numPlayed, objectParamsReturn, this.handlingPlayGame, this.notificationErr, this.setStatusVQ)
 				}else{
-					game_client.showLogin();
+					game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, '')
 					game_client.isPlay=false;
 				}
 			}
@@ -478,7 +478,7 @@ const game_client = {
                 vtcmEvent.getHistory(page, modeId, rewardType, this.handlingGetHistory, this.notificationErr)
             }
         } else{
-            game_client.showLogin();
+            game_client.notification(`Bạn chưa đăng nhập. <a style="color:red;cursor: pointer;" cusr onclick="vtcmAuth.login()">Đăng Nhập</a>`, '')
         }
     },
 
@@ -571,6 +571,7 @@ const game_client = {
 
 	handlingExchangeRewards(objectParamsReturn, response){
 		if(response.data.code >= 0){
+			vtcmApp.getAppSetting(game_client.cbwithtoken);
 			var e = document.getElementsByClassName('sdk_content_giftcode');
 			var f=e.item(0);
 			f.innerHTML=response.data.data.rewards[0].rewardCode;
