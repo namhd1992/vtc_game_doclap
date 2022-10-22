@@ -648,27 +648,80 @@ const game_client = {
 	}, 
 
 	setUI(count){
-		if(count < 2000){
-			$("#bg_tdv_mobile").attr("src","images/bg3.jpg");
-			$("#bg_tdv_desktop").attr("src","images/bg3.jpg");
-		}else if(count >=2000 && count< 4000){
-			$("#bg_tdv_mobile").attr("src","images/2k.jpg");
-			$("#bg_tdv_desktop").attr("src","images/2k_m.jpg");
+
+		if(count >= 10000){
+			$("#bg_tdv_mobile").attr("src","images/10k_m.jpg");
+			$("#bg_tdv_desktop").attr("src","images/10k.jpg");
+			return;
+		}else if(count >= 6000 && count < 10000){
+			$("#bg_tdv_mobile").attr("src","images/6k_m.jpg");
+			$("#bg_tdv_desktop").attr("src","images/6k.jpg");
+			return;
 		}else if(count >=4000 && count< 6000){
-			$("#bg_tdv_mobile").attr("src","images/4k.jpg");
-			$("#bg_tdv_desktop").attr("src","images/4k_m.jpg");
-		}else if(count >=6000 && count< 10000){
-			$("#bg_tdv_mobile").attr("src","images/6k.jpg");
-			$("#bg_tdv_desktop").attr("src","images/6k_m.jpg");
+			$("#bg_tdv_mobile").attr("src","images/4k_m.jpg");
+			$("#bg_tdv_desktop").attr("src","images/4k.jpg");
+			return;
+		}else if(count >=2000 && count< 4000){
+			$("#bg_tdv_mobile").attr("src","images/2k_m.jpg");
+			$("#bg_tdv_desktop").attr("src","images/2k.jpg");
+			return;
 		}else{
-			$("#bg_tdv_mobile").attr("src","images/10k.jpg");
-			$("#bg_tdv_desktop").attr("src","images/10k_m.jpg");
+			$("#bg_tdv_mobile").attr("src","images/bg3-m.jpg");
+			$("#bg_tdv_desktop").attr("src","images/bg3.jpg");
+			return;
 		}
 	},
 
 
 	getBXHPayment(){
-        vtcmEvent.getBXHRecharge(this.handlingGetBXHRecharge, this.notificationErr);
+        // vtcmEvent.getBXHRecharge(this.handlingGetBXHRecharge, this.notificationErr);
+		var requestOptions = {
+			method: 'GET',
+			redirect: 'follow'
+		  };
+		  
+		  fetch("http://duatop.tayhanhky.vn/handler/gettopcharge", requestOptions)
+			.then(response => response.json())
+			.then(list => {
+				var tb = document.getElementById('tb_bxh_nap');
+				tb.innerHTML='';
+				for (let i = 0; i < list.length; i++) {
+					if(i===0){
+						$(tb).append(`<tr>
+							<th scope="row"><img src="images/top1.png" class="img-responsive center-align" alt=""></th>
+							<th style="font-size: 20px;">${list[i].userName}</th>
+							<th style="font-size: 20px;">${game_client.getNumberWithCommas(list[i].totalScoin)}</th>
+						</tr>`);
+					}
+
+					if(i===1){
+						$(tb).append(`<tr>
+							<th scope="row"><img src="images/top2.png" class="img-responsive center-align" alt=""></th>
+							<th style="font-size: 20px;">${list[i].userName}</th>
+							<th style="font-size: 20px;">${game_client.getNumberWithCommas(list[i].totalScoin)}</th>
+						</tr>`);
+					}
+					if(i===2){
+						$(tb).append(`<tr>
+							<th scope="row"><img src="images/top3.png" class="img-responsive center-align" alt=""></th>
+							<th style="font-size: 20px;">${list[i].userName}</th>
+							<th style="font-size: 20px;">${game_client.getNumberWithCommas(list[i].totalScoin)}</th>
+						</tr>`);
+					}
+
+					if(i>2){
+						$(tb).append(`<tr>
+							<th scope="row" style="color: black; font-size: 20px;">${list[i].rownumber}</th>
+							<th style="color: black; font-size: 20px;">${list[i].userName}</th>
+							<th style="color: black; font-size: 20px;">${game_client.getNumberWithCommas(list[i].totalScoin)}</th>
+						</tr>`);
+					}
+					
+				}
+			})
+			.catch(error => {
+				game_client.notification(`Danh sách trống.`, '')
+			});
     },
 
 	handlingGetBXHRecharge(response){
@@ -687,32 +740,32 @@ const game_client = {
 					if(i===0){
 						$(tb).append(`<tr>
 							<th scope="row"><img src="images/top1.png" class="img-responsive center-align" alt=""></th>
-							<th>${list[i].userName}</th>
-							<th>${list[i].totalAmount}</th>
+							<th style="font-size: 20px;">${list[i].userName}</th>
+							<th style="font-size: 20px;">${game_client.getNumberWithCommas(list[i].totalAmount)}</th>
 						</tr>`);
 					}
 
 					if(i===1){
 						$(tb).append(`<tr>
 							<th scope="row"><img src="images/top2.png" class="img-responsive center-align" alt=""></th>
-							<th>${list[i].userName}</th>
-							<th>${list[i].totalAmount}</th>
+							<th style="font-size: 20px;">${list[i].userName}</th>
+							<th style="font-size: 20px;">${game_client.getNumberWithCommas(list[i].totalAmount)}</th>
 						</tr>`);
 					}
 
 					if(i===2){
 						$(tb).append(`<tr>
 							<th scope="row"><img src="images/top3.png" class="img-responsive center-align" alt=""></th>
-							<th>${list[i].userName}</th>
-							<th>${list[i].totalAmount}</th>
+							<th style="font-size: 20px;">${list[i].userName}</th>
+							<th style="font-size: 20px;">${game_client.getNumberWithCommas(list[i].totalAmount)}</th>
 						</tr>`);
 					}
 
 					if(i>2){
 						$(tb).append(`<tr>
-							<th scope="row" style="color: black">${list[i].order}</th>
-							<th style="color: black">${list[i].userName}</th>
-							<th style="color: black">${list[i].totalAmount}</th>
+							<th scope="row" style="color: black; font-size: 20px;">${list[i].order}</th>
+							<th style="color: black; font-size: 20px;">${list[i].userName}</th>
+							<th style="color: black; font-size: 20px;">${game_client.getNumberWithCommas(list[i].totalAmount)}</th>
 						</tr>`);
 					}
 					
@@ -725,6 +778,10 @@ const game_client = {
 			game_client.notification(response.data.message, '')
 		}
 	}, 
+
+	getNumberWithCommas(number) {
+		return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+	},
 
 	notificationErr(objectParamsReturn, error){
 		// var e = document.getElementsByClassName(objectParamsReturn.key);
