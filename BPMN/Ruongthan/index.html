@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="no-js mac" lang="vi"><head>
+  <meta charset="utf-8">
+  <title>Rương Thần Bí</title>
+  <meta name="description" content="Rương Thần Bí">
+  <meta name="keywords" content="Rương Thần Bí">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <link rel="stylesheet" href="http://static.gf.splay.vn/gf-sdk/v2.0/css/index.css">
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/style.min.css">
+
+  <meta property="og:site_name" content="Rương Thần Bí"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://tramtien.splay.vn/ruongthanbi"/>
+  <meta property="og:title" content="Rương Thần Bí"/>
+  <meta property="og:description" content="Trảm Tiên Quyết  VTC - Tuyệt Tác Tu Ma - 10 Năm Có 1"/>
+  <meta property="og:image:type" content="image/jpeg"/>
+  <meta property="og:image" content="https://tramtien.splay.vn/ruongthanbi/sharefb.jpg"/>
+</head>
+<body class="" style="padding-right: 0px;">
+  <div class="page sdk_page">
+    <header class="header headroom headroom--not-top headroom--unpinned headroom--bottom" id="header" style="right: 0px; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+      <div class="container">
+        <a class="btn-bg btn-fanpage header-btn sdk_fanpage_fb" href="https://www.facebook.com/tramtienquyet.vn" role="button" target="_blank">
+          <span class="visually-hidden">Fanpage</span>
+        </a>
+        <a class="btn-bg btn-group header-btn sdk_group_fb" href="https://www.facebook.com/groups/tramtienquyet" role="button" target="_blank">
+          <span class="visually-hidden">Group</span>
+        </a>
+        <a class="btn-bg btn-dang-nhap header-btn" style="cursor: pointer;" role="button" id="login" onclick="vtcmAuth.login()">
+          <span class="visually-hidden">Đăng Nhập</span>
+        </a>
+        <span class="header-acc" style="cursor: pointer; padding: 0.25rem 0.875rem;" id="logout" onclick="vtcmAuth.logout()">
+          <p style="margin: 2px;">Xin chào, <span class="username"></span> | Thoát</p>
+          <p style="margin: 2px;">Scoin: <span class="sdk_numberscoin"></span></p>
+        </span>
+        <img class="img-fluid header-age-rating" src="images/age-rating.jpg" alt="">
+      </div>
+    </header>
+    <div class="page-main">
+      <section class="section-1 section" id="section-1">
+        <div class="container">
+          <h2 class="section-title visually-hidden">Rương thần bí</h2>
+          <div class="section-btns" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+            <button class="btn-bg btn-the-le" type="button" data-bs-target="#modal-the-le" data-bs-toggle="modal">
+              <span class="visually-hidden">Thể lệ</span>
+            </button>
+            <button class="btn-bg btn-phan-thuong" type="button" data-bs-target="#modal-phan-thuong" data-bs-toggle="modal">
+              <span class="visually-hidden">Phần thưởng</span>
+            </button>
+            <button class="btn-bg btn-mua-khoa" type="button" style="cursor: pointer;" onclick="game_client.showModalChangeScoin()">
+              <span class="visually-hidden">Mua khoá</span>
+            </button>
+            <button class="btn-bg btn-lich-su" type="button" style="cursor: pointer;" onclick="game_client.getHistory(0,0,0)">
+              <span class="visually-hidden">Lịch sử</span>
+            </button>
+          </div>
+          <p class="section-text" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">Số điểm hiện có: <span class="sdk_numberpoint">0</span></p>
+          <div class="treasure">
+            <div class="treasure-item">
+              <img class="treasure-item-img" src="images/home/s1/ruong-thuong.png" alt="" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+              <div class="treasure-item-btns">
+                <button class="btn-bg btn-mo-free" type="button" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);" onclick="game_client.purchases(10379,7)">
+                  <span class="visually-hidden">Mở Free (1 ngày 1 lần)</span>
+                </button>
+                
+                
+              </div>
+            </div>
+            <div class="treasure-item">
+              <img class="treasure-item-img" src="images/home/s1/ruong-vip.png" alt="" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+              <div class="treasure-item-btns">
+                
+                
+                <button class="btn-bg btn-mo-10-ruong-vip" type="button" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);" onclick="game_client.purchases(10380,8)">
+                  <span class="visually-hidden">Mở 10 rương (tốn 10 chìa khóa)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-2 section" id="section-2">
+        <div id="section-2-1">
+          <div class="container">
+            <h2 class="section-title visually-hidden">Nhận quà, đổi quà, rèn</h2>
+             <h2 class="section-title" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+            <span class="visually-hidden">Bảng xếp hạng</span>
+            <img class="img-block" src="images/home/s2/title1.png" alt="Bảng xếp hạng">
+          </h2>
+            
+            <div class="dq-group" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+              <div class="dq">
+                <img class="img-block dq-img sdk_goi_1" src="images/home/s2/doi-qua/items.png" alt="">
+                <button class="btn-bg btn-doi-qua-1 dq-btn" type="button"  onclick="game_client.purchases(10381,1)">
+                  <span class="visually-hidden">Đổi quà (tốn 200 điểm)</span>
+                </button>
+              </div>
+              <div class="dq">
+                <img class="img-block dq-img sdk_goi_2" src="images/home/s2/doi-qua/items.png" alt="">
+                <button class="btn-bg btn-doi-qua-2 dq-btn" type="button" onclick="game_client.purchases(10382,2)">
+                  <span class="visually-hidden">Đổi quà (tốn 1000 điểm)</span>
+                </button>
+              </div>
+              <div class="dq">
+                <img class="img-block dq-img sdk_goi_3" src="images/home/s2/doi-qua/items.png" alt="">
+                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" onclick="game_client.purchases(10383,3)">
+                  <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
+                </button>
+              </div>
+              <div class="dq">
+                <img class="img-block dq-img sdk_goi_4" src="images/home/s2/doi-qua/items.png" alt="">
+                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" onclick="game_client.purchases(10384,4)">
+                  <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
+                </button>
+              </div>
+              <div class="dq">
+                <img class="img-block dq-img sdk_goi_5" src="images/home/s2/doi-qua/items.png" alt="">
+                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button"  onclick="game_client.purchases(10385,5)">
+                  <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
+                </button>
+              </div>
+              <div class="dq">
+                <img class="img-block dq-img sdk_goi_6" src="images/home/s2/doi-qua/items.png" alt="">
+                <button class="btn-bg btn-doi-qua-3 dq-btn" type="button" onclick="game_client.purchases(10386,6)">
+                  <span class="visually-hidden">Đổi quà (tốn 2000 điểm)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </section>
+      <section class="section-3 section" id="section-3">
+        <div class="container">
+          <h2 class="section-title" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+            <span class="visually-hidden">Bảng xếp hạng</span>
+            <img class="img-block" src="images/home/s3/title.png" alt="Bảng xếp hạng">
+          </h2>
+          <button class="btn-img btn-bxh" type="button" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px); cursor: pointer;" onclick="game_client.getBXHPayment()">
+            <span class="visually-hidden">Xem bảng xếp hạng</span>
+            <img src="images/home/s3/btn-bxh.png" alt="Xem bảng xếp hạng">
+          </button>
+          <div class="boxtop-group">
+            <div class="boxtop boxtop-2" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+              <h3 class="boxtop-title visually-hidden">Top 2</h3>
+              <img class="boxtop-img" src="images/home/s3/top-2-items.png" alt="">
+              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" style="cursor: pointer;" onclick="game_client.exchangeRewardsWithMilestones(10296, 10319, 2)">
+                <span class="visually-hidden">Nhận Thưởng</span>
+              </button>
+            </div>
+            <div class="boxtop boxtop-1" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+              <h3 class="boxtop-title visually-hidden">Top 1</h3>
+              <img class="boxtop-img" src="images/home/s3/top-1-items.png" alt="">
+              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" style="cursor: pointer;" onclick="game_client.exchangeRewardsWithMilestones(10296, 10318, 1)">
+                <span class="visually-hidden">Nhận Thưởng</span>
+              </button>
+            </div>
+            <div class="boxtop boxtop-3" style="opacity: 1; visibility: inherit; transform: translate(0px, 0px);">
+              <h3 class="boxtop-title visually-hidden">Top 3</h3>
+              <img class="boxtop-img" src="images/home/s3/top-3-items.png" alt="">
+              <button class="btn-bg btn-nhan-thuong boxtop-btn" type="button" style="cursor: pointer;" onclick="game_client.exchangeRewardsWithMilestones(10296, 10320, 3)">
+                <span class="visually-hidden">Nhận Thưởng</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="footer" id="footer">
+      <div class="container-fluid">
+        <a class="footer-logo" href="#">
+          <img src="images/logo-vtc.png" alt="">
+        </a>
+        <div class="footer-body">Copyright 2021 VTC Mobile. All rights reserved
+          <br>
+          Công ty cổ phần VTC Dịch vụ di động - Tầng 11, Tòa nhà VTC Online
+          <br>
+          Số 18 Tam Trinh, phường Minh Khai, quận Hai Bà Trưng, Hà Nội
+          <br>
+          Hotline : <a href="tel:19001104">1900 1104</a>
+          <br>
+          Email : <a href="mailto: vtcmobile@vtc.vn">vtcmobile@vtc.vn</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  
+  <div class="modal modal-light fade" id="modal-the-le" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="perfect-scrollbar ps" data-plugin="perfect-scrollbar">
+          <h2 class="modal-title" data-text="Thể Lệ">Thể Lệ</h2>
+          <p class="sdk_content_evt_guide"></p>
+          <!-- <p>
+            <span class="text-secondary">*Thời gian:</span> từ 2/11/2021 đến 2/12/2021
+            <br>
+            <span class="text-secondary">*Cách tham gia:</span>
+            <br>-Bước 1
+            <br>-Bước 2
+            <br>-Bước 3
+            <br>
+            <span class="text-secondary">*Thể lệ:</span>
+            <br>-Bước 1
+            <br>-Bước 2
+            <br>-Bước 3
+          </p> -->
+        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal-light fade" id="modal-phan-thuong" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="perfect-scrollbar ps" data-plugin="perfect-scrollbar">
+          <h2 class="modal-title" data-text="Phần thưởng">Phần thưởng</h2>
+          <p class="sdk_content_rewards"></p>
+          <!-- <p>
+            <span class="text-secondary">*Rèn Scoin: có thể rèn ra các phần thưởng</span>
+            <br>-Thẻ Scoin: 10.000 Scoin, 20.000 Scoin, 50.000 Scoin, 100.000 Scoin, 200.000 Scoin, 500.000 Scoin
+            <br>
+            <span class="text-secondary">*Rèn Code: có thể rèn ra các phần thưởng</span>
+            <br>
+            <span class="text-secondary">-Code Bạc:</span>
+            <br>+ 999 tên vật phẩm
+            <br>+ 999 tên vật phẩm
+            <br>
+            <span class="text-secondary">-Code Vàng:</span>
+            <br>+ 999 tên vật phẩm
+            <br>+ 999 tên vật phẩm
+          </p> -->
+        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal-light fade" id="modal-shop-khoa" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content justify-content-center">
+        <h2 class="modal-title" data-text="Shop Điểm">Shop Điểm</h2>
+        <form class="modal-form">
+          <div class="modal-form-grid">
+            <label class="col-form-label" for="modal-sk-form-sl">Số lượng</label>
+            <input class="form-control" id="modal-sk-form-sl" type="number" placeholder="Nhập số lượng" onkeyup="game_client.changeScoin()">
+            <label class="col-form-label" for="modal-sk-form-tg">Tổng Scoin</label>
+            <input class="form-control" id="modal-sk-form-tg" type="text" disabled>
+          </div>
+          <p class="text-center">(Đơn giá 1 Điểm = 1 SCoin)</p>
+          <button class="btn-img btn-xac-nhan-mua mx-auto" type="button" onclick="game_client.topupsScoinToPoint()">
+            <span class="visually-hidden">Xác nhận mua</span>
+            <img src="images/modals/btn-xac-nhan-mua.png" alt="Xác nhận mua">
+          </button>
+        </form>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal-light-lg fade" id="modal-lsmr" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <h2 class="modal-title" data-text="Lịch Sử Đổi">Lịch Sử Đổi</h2>
+        <table class="table-1 table table-borderless table-pe-0">
+          <thead>
+            <tr>
+              <th scope="col">
+                <span>STT</span>
+              </th>
+              <th scope="col">
+                <span>Gói Đổi</span>
+              </th>
+              <th scope="col">
+                <span>Mã Code</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="tb_history">
+            <!-- <tr>
+              <th scope="row">1</th>
+              <td>99999 Điểm</td>
+              <td>1234567890abcdegfjskfj</td>
+            </tr> -->
+          </tbody>
+        </table>
+        <div aria-label="Page navigation example" style="margin-left:40%">
+          <a class="page-link" style="cursor: pointer; border: 1px solid; padding: 5px; border-radius: 3px; margin-right: 3px; width: 50px;" onclick="game_client.previous()">Previous</a>
+          <a class="page-link" style="cursor: pointer; border: 1px solid; padding: 5px; border-radius: 3px; width: 50px;" onclick="game_client.next()">Next</a>
+          <!-- <ul class="pagination pagination-simple mb-0">
+            <li class="page-item" style="cursor: pointer;">
+           
+            </li>
+            <li class="page-item" style="cursor: pointer;">
+            
+            </li>
+          </ul> -->
+        </div>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  
+  
+  <div class="modal modal-light fade" id="modal-nhan-qua" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content justify-content-center">
+        <h2 class="modal-title" data-text="Quà Của Bạn">Quà Của Bạn</h2>
+        <label class="form-label visually-hidden" for="modal-form-code">Code</label>
+        <input class="form-control form-control-code" id="sdk_content_giftcode" type="text" value="">
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="modal-qua-top modal fade" id="modal-qua-top-1" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content justify-content-center">
+        <h2 class="modal-title" data-text="Chúc mừng bạn đã nhận được">Chúc mừng bạn đã nhận được</h2>
+        <div class="modal-text-top">
+          <span class="visually-hidden">Phần thưởng của bạn</span>
+          <img src="images/modals/text-qua-top-1.png" alt="">
+        </div>
+        <p class="modal-text-1 text-center mb-0">INBOX FANPAGE ĐỂ NHẬN THƯỞNG</p>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-qua-top modal fade" id="modal-qua-top-2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content justify-content-center">
+        <h2 class="modal-title" data-text="Chúc mừng bạn đã nhận được">Chúc mừng bạn đã nhận được</h2>
+        <div class="modal-text-top">
+          <span class="visually-hidden">Phần thưởng của bạn</span>
+          <img src="images/modals/text-qua-top-2.png" alt="">
+        </div>
+        <p class="modal-text-1 text-center mb-0">INBOX FANPAGE ĐỂ NHẬN THƯỞNG</p>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-qua-top modal fade" id="modal-qua-top-3" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content justify-content-center">
+        <h2 class="modal-title" data-text="Chúc mừng bạn đã nhận được">Chúc mừng bạn đã nhận được</h2>
+        <div class="modal-text-top">
+          <span class="visually-hidden">Phần thưởng của bạn</span>
+          <img src="images/modals/text-qua-top-3.png" alt="">
+        </div>
+        <p class="modal-text-1 text-center mb-0">INBOX FANPAGE ĐỂ NHẬN THƯỞNG</p>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal-light-lg fade" id="modal-bxh" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <h2 class="modal-title mb-0" data-text="Bảng Xếp Hạng">Bảng Xếp Hạng</h2>
+        <p class="text-uppercase ff-secondary text-center">(BXH DỰA THEO TỔNG ĐÃ NẠP VÀO GAME TRONG THỜI GIAN SỰ KIỆN)</p>
+        <table class="table-1 table table-borderless table-pe-0">
+          <thead>
+            <tr>
+              <th scope="col">
+                <span>XH</span>
+              </th>
+              <th scope="col">
+                <span>Tên Tài Khoản</span>
+              </th>
+              <th scope="col">
+                <span>Tổng Nạp</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="tb_modal_bxh">
+            <tr>
+              <th scope="row">1</th>
+              <td>Ngự Thần Sư *****</td>
+              <td>1000</td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-qua-top modal fade" id="popup-error" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content justify-content-center">
+        <h2 class="modal-title">Thông Báo</h2>
+        <div class="modal-text-top">
+          <p class="sdk_text_notify"></p>
+        </div>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-qua-top modal fade" id="popup-log" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content justify-content-center">
+        <h2 class="modal-title">Thông Báo</h2>
+        <div class="modal-text-top">
+          <p>Bạn vui lòng đăng nhập để tham gia sự kiện nhé!</p>
+        </div>
+        <p class="modal-text-top" style="cursor: pointer;" onclick="vtcmAuth.login()">Đăng Nhập</p>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="loader" id="loader" style="opacity: 0; visibility: hidden; display: none;">
+    <div class="loader-spinner">
+      <div class="sk-circle-fade">
+        <div class="sk-circle-fade-dot"></div>
+        <div class="sk-circle-fade-dot"></div>
+        <div class="sk-circle-fade-dot"></div>
+        <div class="sk-circle-fade-dot"></div>
+        <div class="sk-circle-fade-dot"></div>
+        <div class="sk-circle-fade-dot"></div>
+        <div class="sk-circle-fade-dot"></div>
+        <div class="sk-circle-fade-dot"></div>
+        <div class="sk-circle-fade-dot"></div>
+        <div class="sk-circle-fade-dot"></div>
+        <div class="sk-circle-fade-dot"></div>
+        <div class="sk-circle-fade-dot"></div>
+      </div>
+      <span class="loader-text" id="loader-text">100%</span>
+    </div>
+  </div>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/imagesloaded.pkgd.min.js"></script>
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/vendor/perfect-scrollbar.min.js"></script>
+  <script src="js/vendor/headroom.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script src="http://static.gf.splay.vn/gf-sdk/v2.0/vendor/axios.min.js?v=1"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v1.0/vendor/jquery.min.js?v=1"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/vendor/moment-with-locales.min.js?v=1"></script>
+	<!-- <script src="http://static.gf.splay.vn/gf-sdk/v2.0/app.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/auth.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/common.js"></script>
+    <script src="http://static.gf.splay.vn/gf-sdk/v2.0/event.js"></script> -->
+
+	<script src="./sdk/v2/app.js"></script>
+  <script src="./sdk/v2/auth.js"></script>
+  <script src="./sdk/v2/common.js"></script>
+  <script src="./sdk/v2/event.js"></script>
+    <!-- <script src="./script.js"></script> -->
+	<script src="./js/ui.js"></script>
+	<script type="text/javascript">
+        const vtcmAppConfig = {
+            gameId:100083,
+            apiBaseUrl: 'http://api.gf.splay.vn',
+            client_id: "GF_EVENTS_WEB",
+            client_secret: "aP6k2Ql68arPH8l",
+            // url_return:`http://127.0.0.1:5500/index.html`,
+            // path:'/index.html',
+            url_return:`https://tramtien.splay.vn/ruongthanbi`,
+            path:'/ruongthanbi'
+       };
+       game_client.initApp(vtcmAppConfig);
+   </script>
+
+</body></html>

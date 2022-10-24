@@ -48,7 +48,7 @@ const vtcmEvent = {
         alert(value)
     },
 
-    playGame(type, value, key, handlingPlayGame, notificationErr, setStatusVQ){
+    playGame(modeId, type, value, key, handlingPlayGame, notificationErr, setStatusVQ){
         var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/rewards/receive-event-play';
         var header = {
             headers: {
@@ -57,7 +57,7 @@ const vtcmEvent = {
             }
         }
         var data= {...info};
-        data.modeId=10003;
+        data.modeId=modeId;
         data.gameId=vtcmApp.config_.gameId;
         data.userId=vtcmAuth.getUserId();
         data.autoPlay=false;
@@ -168,7 +168,7 @@ const vtcmEvent = {
     },
 
 
-    playFlipCard(value, key, content, handlingPlayFlipCard, notificationErr, setStatusLatThe){
+    playFlipCard(modeId, value, key, content, handlingPlayFlipCard, notificationErr, setStatusLatThe){
         var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/rewards/receive-event-play';
                 var header = {
                     headers: {
@@ -177,7 +177,7 @@ const vtcmEvent = {
                     }
                 }
                 var data= {...info};
-                data.modeId=10010;
+                data.modeId=modeId;
                 // data.modeId=10003;
                 data.userId=vtcmAuth.getUserId();
                 data.autoPlay=false;
