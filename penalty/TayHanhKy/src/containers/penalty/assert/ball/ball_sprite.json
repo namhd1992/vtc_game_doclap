@@ -1,0 +1,167 @@
+{
+	"textures": [
+		{
+			"image": "ball_sprite.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 714,
+				"h": 102
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "rotation_001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 100
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 100,
+						"h": 100
+					}
+				},
+				{
+					"filename": "rotation_002.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 100
+					},
+					"frame": {
+						"x": 103,
+						"y": 1,
+						"w": 100,
+						"h": 100
+					}
+				},
+				{
+					"filename": "rotation_003.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 100
+					},
+					"frame": {
+						"x": 205,
+						"y": 1,
+						"w": 100,
+						"h": 100
+					}
+				},
+				{
+					"filename": "rotation_004.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 100
+					},
+					"frame": {
+						"x": 307,
+						"y": 1,
+						"w": 100,
+						"h": 100
+					}
+				},
+				{
+					"filename": "rotation_005.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 100
+					},
+					"frame": {
+						"x": 409,
+						"y": 1,
+						"w": 100,
+						"h": 100
+					}
+				},
+				{
+					"filename": "rotation_006.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 100
+					},
+					"frame": {
+						"x": 511,
+						"y": 1,
+						"w": 100,
+						"h": 100
+					}
+				},
+				{
+					"filename": "rotation_007.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 100
+					},
+					"frame": {
+						"x": 613,
+						"y": 1,
+						"w": 100,
+						"h": 100
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:9753b6f8fad6efbb0e228f5d54deffb6:dad7df074fdb40df65f10747af83d643:324e3737b66cb31d24cadf9851b69852$"
+	}
+}
