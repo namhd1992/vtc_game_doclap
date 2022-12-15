@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Quay chọn người trúng giải</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  
+  
+</head>
+
+<body>
+<div class="bg-page d-flex justify-content-center align-items-center">
+	<div class="bg-form">
+   	  <div class="row">
+        	<div class="col-12 p-0">
+              <ul class="bg-dropdown ps-0">
+                <li class="nav-item dropdown">
+                  <a class="nav-link text-g" href="#" role="button" data-bs-toggle="dropdown"><span id="txt_bonus">Giải Nhất</span></a>
+                  <ul class="dropdown-menu w-100 bg-color-form">
+                    <li><a class="dropdown-item text text-g border-bottom border-danger" onclick="changeBonus(1)">Giải Nhất</a></li>
+                    <li><a class="dropdown-item text text-g border-bottom border-danger" onclick="changeBonus(2)">Giải Nhì</a></li>
+                    <li><a class="dropdown-item text text-g" onclick="changeBonus(3)">Giải Ba</a></li>
+                  </ul>
+                </li>
+              </ul>
+        	</div>
+            <div id="ip_cccd" class="col-6 w-48 text-box text-center h1 fw-bold text-black-50">
+            	CCCD
+            </div>
+            <div id="ip_id-scoin" class="col-6 w-48 text-box text-center h1 fw-bold text-black-50 ms-4">
+            	ID Scoin
+            </div>
+            <div id="ip_username" class="col-12 text-box text-center h1 fw-bold text-black-50 mt-70">
+            	Tên Tài Khoản
+            </div>
+            <div class="col-12 text-center mt-70 pulse"> <a href="#"><img src="images/spin/btn-spin.png" alt="" /></a>
+          </div>
+    	</div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="js/quayso.js"></script>
+</body>
+</html>

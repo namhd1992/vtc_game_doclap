@@ -17,11 +17,11 @@ const vtcmEvent = {
   
     rollup(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/rewards/receive-event-free';
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
 
-    playGame(listParams, objectParamsReturn, handlingData, notification){
+    playGame(listParams, objectParamsReturn, handlingData, notification, setStatusGame){
         var url=vtcmApp.config_.apiBaseUrl+'/luckyrandom/api/v1/rewards/receive-event-play';
         var header = {
             headers: {
@@ -33,7 +33,7 @@ const vtcmEvent = {
         common_sdk.ui.showLoading();
         axios.post(url,data,header)
         .then(function (response) {
-            handlingPlayGame(objectParamsReturn, response)
+            handlingData(response, objectParamsReturn)
             common_sdk.ui.hideLoading();
         })
         .catch(function (err) {
@@ -43,7 +43,7 @@ const vtcmEvent = {
                 }else{
                     common_sdk.ui.hideLoading();
                     setStatusGame();
-                    notificationErr(objectParamsReturn,err)
+                    notificationErr(err, objectParamsReturn)
                 }
             }else if (err.request) {
                 vtcmEvent.scrollTop();
@@ -63,106 +63,106 @@ const vtcmEvent = {
 
     getHistory(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/games/logs'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
 
     exchangeRewards(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/rewards/exchange';
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     exchangeRewardsWithMilestones(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/rewards/receive-event-milestones';
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
 
     getBXHPayment(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/games/payment-leaderboard'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     getInviteCodeForShare(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/account/get-invite-code'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     sendInviteCode(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/account/post-invite-code'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     getUserData(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/account/get-user-data'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     setDataUserInGame(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/account/save-user-game-data'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     updateChonPhe(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/account/save-vote-data'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     updateDataUser(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/account/save-user-data'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     getLocation(listParams, objectParamsReturn, handlingData, notification){
         // console.log(listParams)
         var path='/catalog/api/v1/setting/get-location'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     getListServer(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/account/get-server-list'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     getListCharacter(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/account/get-character-list'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     getRewards(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/rewards/get-rewards'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     
     getListServerAndCharacter(listParams, objectParamsReturn, handlingData, notification){
         var path='/GameGw/api/v1/games/get-server-list'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     getBXHPlay(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/games/exchange-leaderboard'
-        event.common_f(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_f(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     getBalanceScoin(listParams, objectParamsReturn, handlingData, notification){
         var path='/payment/api/v1/scoin/get-balances'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     topupsScoinToPoint(listParams, objectParamsReturn, handlingData, notification){
         var path='/payment/api/v1/wallet/topups'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     purchases(listParams, objectParamsReturn, handlingData, notification){
         var path='/payment/api/v1/wallet/purchases'
-        event.common_token(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_token(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
     getBXHRecharge(listParams, objectParamsReturn, handlingData, notification){
         var path='/luckyrandom/api/v1/games/recharge-leaderboard'
-        event.common_f(listParams, objectParamsReturn, handlingData, notification, path)
+        vtcmEvent.common_f(listParams, objectParamsReturn, handlingData, notification, path)
     },
 
 
