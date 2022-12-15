@@ -84,20 +84,3 @@ function getResultRandom(){
         console.log('Error', err.message);
     })
 }
-
-
-function getInfoUserWin(){
-    var url="http://api.gf.splay.vn/catalog/api/v1/setting/get-app-settings"
-
-    var data= {...info};
-    
-    axios.get(url,{
-        params: data
-    })
-    .then(function (response) {
-        console.log(response)
-    })
-    .catch(function (err) {
-        console.log('Error', err.message);
-    })
-}
