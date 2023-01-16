@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Quay chọn người trúng giải</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body>
+<div class="bg-page d-flex justify-content-center align-items-center">
+	<div class="bg-form">
+   	  <div class="row">
+        	<div class="col-12 p-0">
+              <ul class="bg-dropdown ps-0">
+                <li class="nav-item dropdown">
+                  <a class="nav-link text-g" href="#" role="button" data-bs-toggle="dropdown"><span id="txt_bonus">Giải Nhất</span></a>
+                  <ul class="dropdown-menu w-100 bg-color-form">
+                    <li><a class="dropdown-item text text-g border-bottom border-danger" onclick="changeBonus(1)">Giải Nhất</a></li>
+                    <li><a class="dropdown-item text text-g border-bottom border-danger" onclick="changeBonus(2)">Giải Nhì</a></li>
+                    <li><a class="dropdown-item text text-g" onclick="changeBonus(3)">Giải Ba</a></li>
+                  </ul>
+                </li>
+              </ul>
+        	</div>
+            <div id="ip_cccd" class="col-6 w-48 text-box text-center h1 fw-bold text-black-50">
+            	CCCD
+            </div>
+            <div id="ip_id-scoin" class="col-6 w-48 text-box text-center h1 fw-bold text-black-50 ms-4">
+            	ID Scoin
+            </div>
+            <div id="ip_username" class="col-12 text-box text-center h1 fw-bold text-black-50 mt-70">
+            	Tên Tài Khoản
+            </div>
+            <div class="col-12 text-center mt-70 pulse"> <a onclick="getResultRandom()"><img src="images/spin/btn-spin.png" alt="" /></a>
+          </div>
+    	</div>
+    </div>
+</div>
+
+
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-transparent border-0">
+
+      <!-- Modal Header -->
+      
+
+      <!-- Modal body -->
+      <div class="modal-body popup">
+          <div class="modal-header border-0 p-0">
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+        <img src="images/spin/bg-popup.png">
+        <div class="row position-relative fw-bold text-uppercase ps-3" style="color: #fdfae0;">
+          <div class="col-12"><h1><strong>Chúc mừng khách hàng</strong></h1></div>
+          <div class="col-12 pt-5"><h3><strong>Tên tài khoản: <span class="h3 fw-bold text-nowrap" id="user_win">Trần Quyết Chiến</span></strong> </h3></div>
+          <div class="col-12 pt-4"><h3><strong>Số CCCD: <span class="h3 fw-bold" id="cccd_win">029286234234</span></strong></h3></div>
+          <div class="col-12 pt-4"><h3><strong>ID Scoin: <span class="h3 fw-bold" id="scoin_win">3932756243</span></strong></h3></div>
+          <div class="col-12 pt-5"><h1 class="display-5 fw-bold"><strong><em>Đã trúng <span class="display-4 fw-bold text-decoration-underline" id="name_win">giải nhất</span></em></strong></h1></div>
+          <div class="col-12 pt-5 mt-5"><p class="mt-4 text-center display-6" type="button" data-bs-dismiss="modal">&nbsp;</p></div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<!-- The Modal Error -->
+<div class="modal" id="modal_error">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+</svg> Thông báo</h4>        
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body text-danger">
+        <p id="txt_error"></p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./js/jquery-1.9.1.min.js"></script>
+<script src="js/quayso.js"></script>
+</body>
+</html>
