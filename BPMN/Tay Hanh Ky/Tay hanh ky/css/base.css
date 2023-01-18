@@ -538,7 +538,7 @@ ul {
 }
 .table-rank tbody tr th{
 	text-align: center;
-	padding: 50px 10px 10px 20px; 
+	padding: 47px 10px 10px 20px; 
 	font-size: 20px;
 	line-height: 31px;
 	vertical-align: middle;
@@ -587,7 +587,7 @@ ul {
 		line-height: 25px;
 	}
 	.table-rank tbody tr th{
-		padding: 50px 10px 40px 20px; 
+		padding: 47px 10px 40px 20px; 
 		font-size: 20px;
 		line-height: 25px;
 	}
